@@ -1,1 +1,2 @@
 user1 Password123!
+user3 Password123!
