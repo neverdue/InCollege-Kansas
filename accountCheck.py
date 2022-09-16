@@ -1,6 +1,5 @@
 #Checks if the username is already taken
 def accountExist(username):
-    x = range(0)
     fileOpen = open("users.txt", "r")
     for elements in fileOpen:
         users = elements.split()
