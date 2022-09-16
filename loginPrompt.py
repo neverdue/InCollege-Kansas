@@ -15,7 +15,7 @@ def login():
 
     loginSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
 
-    #For an existing account
+    #For a new account
     if loginSelection != 1:
         user = userPassInput.userInput(input("Enter username: "))
 
@@ -32,27 +32,29 @@ def login():
         fileWrite.write(combiUserPass)
         fileWrite.close()
     
-    #For a new account creation
+    #For an existing account
     else:
         exitLoop = 0
-        fileOpen = open("users.txt", "r")
 
-        user = input("Enter username: ")
-        password = input("Enter password: ")
-        
+        user = userPassInput.userInput(input("Enter username: "))
+        password = userPassInput.passwordInput(input("Enter password: "))
+
         while exitLoop != 1:
-            for elements in fileOpen:
-                users = elements.split()
-                for names in range(len(users)):
-                    if(user != users[0] and password != users[1]):
+            #scanning file
+            with open("users.txt", "r") as file:
+                if exitLoop != 1:
+                    for accounts in file:
+                        accounts.split()
+                        #checking username and password
+                        for i in range(1):
+                            if user == accounts.split()[0] and password == accounts.split()[1]:
+                                exitLoop = 1
+                                break
+                    if exitLoop != 1:
                         print("Incorrect username / password, please try again.")
-                        user = input("Enter username: ")
-                        password = input("Enter password: ")
-                    else:
-                        exitLoop = 1
-                        break
+                        user = userPassInput.userInput(input("Enter username: "))
+                        password = userPassInput.passwordInput(input("Enter password: "))
 
-        fileOpen.close()
         print("You have successfully logged in.")
                     
 login()
