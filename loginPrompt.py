@@ -1,13 +1,14 @@
 import accountCount
 import accountCheck
 import passwordCheck
+import userPassInput
 
 #Create a prompt that asks a user to input their username and password
 
 #Takes user input for username and password
 #Stores concatenated user and password separated by a space into a file
 
-#Dependent on 3 functions each imported from their own file
+#Dependent on other functions each imported from their own file
 
 def login():
     fileWrite = open("users.txt", "a")
@@ -16,7 +17,7 @@ def login():
 
     #For an existing account
     if loginSelection != 1:
-        user = input("Enter username: ")
+        user = userPassInput.userInput(input("Enter username: "))
 
         if accountCheck.accountExist(user) == 1: return
         if accountCount.accountLimit() >= 5:
@@ -25,7 +26,7 @@ def login():
 
         password = input("Enter password: ")
         while passwordCheck.securePassword(password) != 1:
-            password = input("Enter password: ")
+            password = userPassInput.passwordInput(input("Enter password: "))
 
         combiUserPass = user + " " + password + "\n"
         fileWrite.write(combiUserPass)
@@ -38,7 +39,6 @@ def login():
 
         user = input("Enter username: ")
         password = input("Enter password: ")
-
         
         while exitLoop != 1:
             for elements in fileOpen:
