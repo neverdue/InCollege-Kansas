@@ -1,9 +1,8 @@
 import pytest
-import Source.passwordCheck as passwordCheck
-import Source.accountCount as accountCount
-import Source.accountCheck as accountCheck
-import Source.loginPrompt as loginPrompt
-import builtins
+import passwordCheck
+import accountCount
+import accountCheck
+import loginPrompt
 
 # Initial Screen
 # Test case to check if two options are present for Register and Login

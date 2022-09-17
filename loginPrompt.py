@@ -1,6 +1,6 @@
-import Source.accountCount as accountCount
-import Source.accountCheck as accountCheck
-import Source.passwordCheck as passwordCheck
+import accountCount
+import accountCheck
+import passwordCheck
 
 #Create a prompt that asks a user to input their username and password
 
