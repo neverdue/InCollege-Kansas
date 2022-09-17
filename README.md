@@ -5,10 +5,7 @@ Folder structure:
 ```
 table of contents
 ├── README.md
-├── Source
-    ├── All functionality files (main code)
-├── Tests
-    ├── All test files
+├── All functionality files (main code) and test files
 ```
 
 loginPrompt.py is the "main" function for any login related activites. The function depends on three other imported
