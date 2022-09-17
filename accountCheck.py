@@ -4,7 +4,6 @@ def accountExist(username):
     for elements in fileOpen:
         users = elements.split()
         if(username == users[0]):
-            print("Username {} already exists, please try again.".format(username))
             return 1
     fileOpen.close()
     return 0

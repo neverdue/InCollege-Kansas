@@ -31,7 +31,8 @@ def main():
 def register(username, password):
     fileWrite = open("users.txt", "a")
 
-    if accountCheck.accountExist(username) == 1: 
+    if accountCheck.accountExist(username) == 1:
+        print("Username {} already exists, please try again.".format(username)) 
         return
     if accountCount.accountLimit() >= 5:
         print("All permitted accounts have been created, please come back and try later.")

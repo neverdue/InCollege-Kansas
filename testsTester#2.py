@@ -4,25 +4,17 @@ import accountCount
 import accountCheck
 import loginPrompt
 
-# Initial Screen
-# Test case to check if two options are present for Register and Login
-# Test case to see that we can access each option
+@pytest.fixture(autouse=True)
+def setup():
+    open('users.txt', 'w').close()
 
-# Register
-# Test case to check if output to the screen is for Register
-# Test case to check if length > 0 for the username input
-# Test case to check if username is in the users.txt file
-# Test case to register new username
-# Test case to check if password is valid
-# Test case to check if 6th account registration attempt, check for error
+@pytest.fixture
+def username():
+    return "test"
 
-# Login
-# Test case to check if output to the screen is for Login
-# Test case to check if length > 0 for the username input
-# Test case to check if username is in the users.txt file
-    ## Test case to ask for password if user exists
-        ### Test case to check if password is valid and print message if valid
-    ## Test case to tell them user doesn't exist
+@pytest.fixture
+def password():
+    return "Test123@"
 
 def test_validate_password():
     good_password = "GoodPass123@"
@@ -31,24 +23,17 @@ def test_validate_password():
     for password in bad_passwords:
         assert passwordCheck.securePassword(password) != 1
 
-def test_account_limit():
-    open('users.txt', 'w').close()
+def test_account_limit(username, password):
     assert accountCount.accountLimit() == 0
-    username = "test"
-    password = "Test123@"
     loginPrompt.register(username, password)
     assert accountCount.accountLimit() == 1
 
-def test_account_exist():
-    open('users.txt', 'w').close()
-    username = "test"
-    password = "Test123@"
+def test_account_exist(username, password):
     assert accountCheck.accountExist(username) != 1
     loginPrompt.register(username, password)
     assert accountCheck.accountExist(username) == 1
 
 def test_five_accounts():
-    open('users.txt', 'w').close()
     potential_users = {
         "test1": "Test123@",
         "test2": "Test123@",
@@ -64,26 +49,21 @@ def test_five_accounts():
     assert loginPrompt.register(bad_user, password) != 1
     assert accountCount.accountLimit() == 5
 
-def test_login():
-    open('users.txt', 'w').close()
-    username = "test"
-    password = "Test123@"
+def test_login(username, password):
     loginPrompt.register(username, password)
     assert loginPrompt.login(username, password) == 1
     bad_username = "bad"
     assert loginPrompt.login(bad_username, password) != 1
 
-def test_register_existing_user():
-    open('users.txt', 'w').close()
-    username = "test"
-    password = "Test123@"
+def test_register_existing_user(username, password):
     loginPrompt.register(username, password)
     assert loginPrompt.register(username, password) != 1
 
-def test_login_existing_user():
-    open('users.txt', 'w').close()
-    username = "test"
-    password = "Test123@"
+def test_register_bad_password(username, password):
+    password = "bad"
+    assert passwordCheck.securePassword(password) != 1
+
+def test_login_existing_user(username, password):
     loginPrompt.register(username, password)
     assert loginPrompt.login(username, password) == 1
 
