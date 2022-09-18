@@ -5,7 +5,11 @@ Folder structure:
 ```
 table of contents
 ├── README.md
-├── All functionality files (main code) and test files
+├── main.py (main script)
+├── tests.py (test script for InCollege features)
+├── testsTester#2.py (test script for login/registration features)
+├── Code
+│   ├── Source - All functionality files
 ```
 
 loginPrompt.py is the "main" function for any login related activites. The function depends on three other imported
