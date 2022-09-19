@@ -1,6 +1,9 @@
 #Checks if the username is already taken
-def accountExist(username):
-    fileOpen = open("users.txt", "r")
+def accountExist(username, TESTMODE = False):
+    if TESTMODE == True:
+        fileOpen = open("users-test.txt", "r")
+    else:
+        fileOpen = open("users.txt", "r")
     for elements in fileOpen:
         users = elements.split()
         if(username == users[0]):
