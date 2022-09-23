@@ -1,9 +1,10 @@
 from Code.Source.loginPrompt import register, login
 from Code.Source.accountCount import accountLimit
 from Code.Source.home_page import homePage, readJobPosts
-from Code.Source.globalVariables import init, addPage
+from Code.Source.globalVariables import stackInit, addPage, userInit
 import potentialConnection
 import successStory
+import json
 
 
 def main():
@@ -11,7 +12,7 @@ def main():
     jobPosts = readJobPosts()
 
     #Initialize stack and add login page
-    init()
+    stackInit()
     addPage("main")
 
     successStory.storyDisplay()
@@ -26,6 +27,16 @@ def main():
         password = input("Enter password: ")
         temp = login(username, password)
         if temp == 1:
+            #get logged in user's first and last name
+            with open("accounts.json", "r") as json_file:
+                data = json.load(json_file)
+                for items in data["accounts"]:
+                    tempUser = items["username"]
+                    if username == tempUser:
+                        firstname = items["firstName"]
+                        lastname = items["lastName"]
+            #set user variable
+            userInit(username, firstname, lastname)
             homePage()
 
     elif menuSelection == 2:
@@ -35,6 +46,7 @@ def main():
         lastname = input("Enter your last name: ")
         temp = register(username, password, firstname, lastname)
         if temp == 1:
+            userInit(username, firstname, lastname)
             homePage()
 
     elif menuSelection == 3:
@@ -58,12 +70,23 @@ def main():
                 lastname = input("Enter your last name: ")
                 temp = register(username, password, firstname, lastname)
                 if temp == 1:
+                    (username, firstname, lastname)
                     homePage()
             elif signUp == 2:
                 username = input("Enter username: ")
                 password = input("Enter password: ")
                 temp = login(username, password)
                 if temp == 1:
+                    #get logged in user's first and last name
+                    with open("accounts.json", "r") as json_file:
+                        data = json.load(json_file)
+                        for items in data["accounts"]:
+                            tempUser = items["username"]
+                            if username == tempUser:
+                                firstname = items["firstName"]
+                                lastname = items["lastName"]
+                    #set user variable
+                    userInit(username, firstname, lastname)
                     homePage()
         else:
             print("They are not yet a part of the InCollege system yet.")

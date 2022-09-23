@@ -7,7 +7,7 @@
 # Learn new skill = "learnSkill"
 
 #Initializes stack as global variable
-def init():
+def stackInit():
     global pageStack
     pageStack = []
 
@@ -23,3 +23,21 @@ def removePage():
 
 def printStack():
     print(pageStack)
+
+
+def userInit(user, first, last):
+    global loggedUser
+    loggedUser = {
+        "username" : user,
+        "firstName" : first,
+        "lastName" : last
+    }
+
+def getFirst():
+    return loggedUser.get("firstName")
+
+def getLast():
+    return loggedUser.get("lastName")
+
+def getUser():
+    return loggedUser.get("username")
