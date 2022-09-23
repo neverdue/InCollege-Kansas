@@ -1,3 +1,8 @@
+import json
+
+firstName = "John"
+lastName = "Doe"
+
 def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
@@ -59,7 +64,91 @@ def returnToHomePage():
         exit
 
 def jobPage():
-    showConstructionMessage("Search for a job")
+    user_choice = input("\n1. Post a job\n2. Home page\n\nEnter your option: ")
+    while user_choice != '1' and user_choice != '2':
+        user_choice = input('invalid input. \n1. Post a job\n2. Home page\n')
+    if user_choice == 2:
+        homePage()
+    elif user_choice == 1:
+        addJobPost()
+    
+def addJobPost():
+    #Checks if already 5 job posts
+    with open ('jobPosts.json') as jsonFile:
+        data = json.load(jsonFile)
+        temp1 = data["numPosts"]
+        if temp1 >= 5:
+            print("There are already five job posts. Try again later.")
+            return
+
+    print("Please input the following information about the job when prompted.\n")
+    while True:
+        jobTitle = input("Job Title: ")
+        length = checkLength(jobTitle, 50)
+        if length == True:
+            break
+    while True:
+        jobDescription = input("Job Description: ")
+        length = checkLength(jobDescription, 250)
+        if length == True:
+            break
+    while True:
+        jobEmployer = input("Employer: ")
+        length = checkLength(jobEmployer, 50)
+        if length == True:
+            break
+    while True:
+        jobLocation = input("Job Location: ")
+        length = checkLength(jobLocation, 50)
+        if length == True:
+            break
+    while True:
+        jobSalary = input("Job Salary: ")
+        length = checkLength(jobSalary, 50)
+        if length == True:
+            break
+    print("\n")
+
+    jobDictionary = {
+        "Title" : jobTitle,
+        "Description" : jobDescription,
+        "Employer" : jobEmployer,
+        "Location" : jobLocation,
+        "Salary" : jobSalary,
+        "Name" : firstName + ' ' + lastName
+    }
+
+    #Appends new post to json file, Increase post count if < 5
+    with open ('jobPosts.json') as jsonFile:
+        data = json.load(jsonFile)
+        temp = data["jobPosts"]
+        y = jobDictionary
+        temp.append(y)
+
+        #increment number of job posts
+        temp1 = data["numPosts"]
+        data["numPosts"] = temp1 + 1
+    
+    writeJson(data, 'jobPosts.json')
+        
+#Write data to a json File
+def writeJson(data, filename):
+    with open (filename, "w") as f:
+        json.dump(data, f, indent = 4) 
+
+#Read in job posts at application start upclear
+def readJobPosts():
+    with open('jobPosts.json') as json_file:
+        data  = json.load(json_file)
+        jobPosts = data["jobPosts"]
+    return jobPosts
+
+#Character Limiter Function (Security Measure)
+def checkLength(input, limit):
+    if len(input) > limit:
+        print("\nERROR: Maximum characters of " + str(limit) + " reached.\n")
+        return False
+    return True
 
 def findSomeonePage():
     showConstructionMessage("Find someone you know")
