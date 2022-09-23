@@ -1,8 +1,11 @@
 from Code.Source.loginPrompt import register, login
 from Code.Source.accountCount import accountLimit
-from Code.Source.home_page import homePage
+from Code.Source.home_page import homePage, readJobPosts
 
 def main():
+    #Read in jobPosts at start up
+    jobPosts = readJobPosts()
+
     fileWrite = open("users.txt", "a")
     try:
         menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
