@@ -1,10 +1,9 @@
 #Checks if there are more than 5 or more accounts in the txt file
-def accountLimit(TESTMODE = False):
+import json
+def accountLimit():
     userCount = 0
-    if TESTMODE == True:
-        fileOpen = open("users-test.txt", "r")
-    else:
-        fileOpen = open("users.txt", "r")
-    for elements in fileOpen:
-        userCount+=1
+    with open("accounts.json", "r") as json_file:
+        data = json.load(json_file)
+        for items in data["accounts"]:
+            userCount+=1
     return userCount

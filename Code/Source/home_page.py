@@ -1,11 +1,8 @@
-from globalVariables import init, addPage, removePage, printStack
+from Code.Source.globalVariables import addPage, removePage, printStack
 import json
 
 firstName = "John"
 lastName = "Doe"
-
-#TEMPERARY FOR TESTING
-init()
 
 def showHomePageGreeting():
     printDivider()

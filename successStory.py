@@ -6,5 +6,3 @@ def storyDisplay():
     print("Not only am I a software engineer, i'm also now an ex-Navy SEAL, an ex-astronaught, and a part time neurosurgeon!")
     print("All of my accomplishments was stemmed off of me using InCollege. If you too sign up for InCollege, you can also be successful like me!")
     print("Thanks InCollege!'\n")
-
-storyDisplay()
