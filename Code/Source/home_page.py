@@ -1,8 +1,5 @@
-from Code.Source.globalVariables import addPage, removePage, printStack
+from Code.Source.globalVariables import addPage, removePage, printStack, getFirst, getLast, getUser
 import json
-
-firstName = "John"
-lastName = "Doe"
 
 def showHomePageGreeting():
     printDivider()
@@ -97,11 +94,11 @@ def jobPage():
     user_choice = input("\n1. Post a job\n2. Home page\n3. Previous Page\n\nEnter your option: ")
     while user_choice != '1' and user_choice != '2' and user_choice != '3':
         user_choice = input('invalid input. \n1. Post a job\n2. Home page\n3. Previous Page\n')
-    if user_choice == 1:
+    if user_choice == '1':
         addJobPost()
-    elif user_choice == 2:
+    elif user_choice == '2':
         homePage() 
-    elif user_choice == 3:
+    elif user_choice == '3':
         lastPage = removePage()
         checkPages(lastPage)
     
@@ -148,7 +145,7 @@ def addJobPost():
         "Employer" : jobEmployer,
         "Location" : jobLocation,
         "Salary" : jobSalary,
-        "Name" : firstName + ' ' + lastName
+        "Name" : getFirst() + ' ' + getLast()
     }
 
     #Appends new post to json file, Increase post count if < 5

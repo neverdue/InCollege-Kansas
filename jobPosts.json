@@ -1,5 +1,5 @@
 {
-    "numPosts": 4,
+    "numPosts": 5,
     "jobPosts": [
         {
             "Title": "Software Engineer",
@@ -31,6 +31,14 @@
             "Location": "test3",
             "Salary": "test3",
             "Name": "John Doe"
+        },
+        {
+            "Title": "test5",
+            "Description": "test5",
+            "Employer": "test5",
+            "Location": "test5",
+            "Salary": "test5",
+            "Name": "Andy Nguyen"
         }
     ]
 }
