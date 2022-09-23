@@ -1,6 +1,7 @@
 from Code.Source.accountCount import accountLimit
 from Code.Source.accountCheck import accountExist
 from Code.Source.passwordCheck import securePassword
+import globalVariables
 
 #Create a prompt that asks a user to input their username and password
 
@@ -10,6 +11,8 @@ from Code.Source.passwordCheck import securePassword
 #Dependent on other functions each imported from their own file
 
 def register(username, password, TESTMODE = False):
+    globalVariables.addPage("register")
+
     if TESTMODE == True:
         fileWrite = open("users-test.txt", "a")
     else:

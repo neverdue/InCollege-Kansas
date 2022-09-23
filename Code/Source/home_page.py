@@ -1,35 +1,42 @@
+from globalVariables import init, addPage, removePage, printStack
 import json
 
 firstName = "John"
 lastName = "Doe"
 
+#TEMPERARY FOR TESTING
+init()
+
 def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job
-2. Find someone you know\n3. Learn a new skill\n\n""")
+2. Find someone you know\n3. Learn a new skill\n4. Go to previously visited page\n\n""")
 
 def showSkillPageGreeting():
     printDivider()
     print("""Learn and explore the skill options below!\n1. Communication\n2. Leadership\n3. Collaboration\n4. Responsibility\n5. Time Management\n
-Please enter a number from 1-5.\nEnter x to return to the home page.\n""")
+Please enter a number from 1-5.\nEnter x to return to the home page.\nEnter y to go to previously visited page.\n""")
 
 def showConstructionMessage(message):
     printDivider()
     print("We're sorry!\n'{}' feature is still under construction.\n".format(message))
 
 def homePage(): 
+    #Add home page to page stack
+    addPage("home")
+    printStack()
     showHomePageGreeting()
     try: 
-        user_choice = int(input("Enter your option (1, 2, or 3): "))
+        user_choice = int(input("Enter your option (1, 2, 3, or 4): "))
     except:
         print("Invalid Input!") 
         return
 
-    while user_choice not in range(1, 4):
+    while user_choice not in range(1, 5):
         showHomePageGreeting()
         try:
-            user_choice = int(input("Enter your option (1, 2, or 3): "))   
+            user_choice = int(input("Enter your option (1, 2, 3 or 4): "))   
         except:
             print("Invalid Input!") 
             return
@@ -42,17 +49,41 @@ def route(user_choice):
         jobPage()
     elif user_choice == 2:
         findSomeonePage()
-    else:
+    elif user_choice == 3:
+        addPage("learnSkill")
         showSkillPageGreeting()
         skill_choice = input("Your choice: ")
-        while skill_choice != 'x' and skill_choice not in [str(i) for i in range(1, 6)]:
+        while skill_choice != 'y' and skill_choice != 'x' and skill_choice not in [str(i) for i in range(1, 6)]:
             showSkillPageGreeting()
             skill_choice = input("Your choice: ")
         if skill_choice == 'x':
             homePage()
+        elif skill_choice == 'y':
+            lastPage = removePage()
+            checkPages(lastPage)
         else: 
             skillPage(skill_choice)
-    
+    elif user_choice == 4:
+        lastPage = removePage()
+        checkPages(lastPage)
+
+#Checks all possible pages to call back to last page visited
+def checkPages(page):
+    if page == "main":
+        main()
+    elif page == "home":
+        homePage()
+    elif page == "job":
+        jobPage()
+    elif page == "postJob":
+        addJobPost()
+    elif page == "findSomeone":
+        findSomeonePage()
+    elif page == "learnSkill":
+        skillPage()
+    else:
+        print("ERROR. Page not found")
+
 def returnToHomePage():
     user_choice = input('Go back to homepage? (y/n): ')
     while user_choice != 'y' and user_choice != 'n':
@@ -64,13 +95,18 @@ def returnToHomePage():
         exit
 
 def jobPage():
-    user_choice = input("\n1. Post a job\n2. Home page\n\nEnter your option: ")
-    while user_choice != '1' and user_choice != '2':
-        user_choice = input('invalid input. \n1. Post a job\n2. Home page\n')
-    if user_choice == 2:
-        homePage()
-    elif user_choice == 1:
+    addPage("job")
+
+    user_choice = input("\n1. Post a job\n2. Home page\n3. Previous Page\n\nEnter your option: ")
+    while user_choice != '1' and user_choice != '2' and user_choice != '3':
+        user_choice = input('invalid input. \n1. Post a job\n2. Home page\n3. Previous Page\n')
+    if user_choice == 1:
         addJobPost()
+    elif user_choice == 2:
+        homePage() 
+    elif user_choice == 3:
+        lastPage = removePage()
+        checkPages(lastPage)
     
 def addJobPost():
     #Checks if already 5 job posts
@@ -151,6 +187,7 @@ def checkLength(input, limit):
     return True
 
 def findSomeonePage():
+    addPage("findSomeone")
     showConstructionMessage("Find someone you know")
 
 def skillPage(skill):
