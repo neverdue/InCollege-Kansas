@@ -1,9 +1,9 @@
 #Checks if the username is already taken
+import json
 def accountExist(username):
-    fileOpen = open("users.txt", "r")
-    for elements in fileOpen:
-        users = elements.split()
-        if(username == users[0]):
-            return 1
-    fileOpen.close()
+    with open("accounts.json", "r") as json_file:
+        data = json.load(json_file)
+        for items in data["accounts"]:
+            user = items["username"]
+            if(username == user): return 1
     return 0
