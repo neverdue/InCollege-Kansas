@@ -1,7 +1,8 @@
 from Code.Source.accountCount import accountLimit
 from Code.Source.accountCheck import accountExist
 from Code.Source.passwordCheck import securePassword
-import globalVariables
+#import globalVariables
+from Code.Source.globalVariables import init, addPage, removePage, printStack
 
 #Create a prompt that asks a user to input their username and password
 

@@ -1,4 +1,5 @@
-from globalVariables import init, addPage, removePage, printStack
+#from globalVariables import init, addPage, removePage, printStack
+from Code.Source.globalVariables import init, addPage, removePage, printStack
 import json
 
 firstName = "John"

@@ -17,7 +17,7 @@ def addPage(pageName):
 
 #Remove page from stack (go back a page)
 def removePage():
-    currentPage = pageStack.pop()
+    #currentPage = pageStack.pop()
     lastPage = pageStack.pop()
     return lastPage
 
