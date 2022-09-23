@@ -24,7 +24,7 @@ def removePage():
 def printStack():
     print(pageStack)
 
-
+#User variable stores username, firstname, lastname
 def userInit(user, first, last):
     global loggedUser
     loggedUser = {

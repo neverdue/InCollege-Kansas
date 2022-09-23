@@ -19,7 +19,7 @@ def showConstructionMessage(message):
 def homePage(): 
     #Add home page to page stack
     addPage("home")
-    printStack()
+
     showHomePageGreeting()
     try: 
         user_choice = int(input("Enter your option (1, 2, 3, or 4): "))
