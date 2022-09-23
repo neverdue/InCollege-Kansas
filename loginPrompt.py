@@ -3,6 +3,7 @@ import accountCheck
 import passwordCheck
 import json
 import writeJson
+import potentialConnection
 
 #import printJson
 
@@ -22,13 +23,15 @@ import writeJson
 #           The issue that occurs that its wasted time if there are 5 accounts but on the 6th, the system still asks for first + last name
 #           The funtionality still works, but it doesn't make sense for it still to ask for first and last name during the 6th account checking
 #           Now this may be fine since Epic2 doesn't specify if this is an issue or not
+
+# QUESTION: Should we convert all user input to lower/upper case for ease of checking in other functions?
 #################################################################
 
 
 def main():
-    menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
+    menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelect 3 to connect to an existing user\nSelection: "))
 
-    while (menuSelection != 1 and menuSelection != 2):
+    while (menuSelection != 1 and menuSelection != 2 and menuSelection != 3):
         print("Invalid selection, please try again.\n")
         menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
 
@@ -36,16 +39,44 @@ def main():
         username = input("Enter username: ")
         password = input("Enter password: ")
         login(username, password)
+
     elif menuSelection == 2:
         username = input("Enter username: ")
         password = input("Enter password: ")
         firstname = input("Enter your first name: ")
-        lastname =  input("Enter your last name: ")
+        lastname = input("Enter your last name: ")
         register(username, password, firstname, lastname)
+
+    elif menuSelection == 3:
+        firstname = input("Enter a first name: ")
+        lastname = input("Enter a last name: ")
+
+        firstname = firstname.lower()
+        lastname = lastname.lower()
+
+        if potentialConnection.find(firstname, lastname) == 1:
+            print("They are a part of the InCollege system.\nWould you like to sign up for an existing account?")
+            signUp = int(input("Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\nSelection: "))
+
+            while(signUp != 1 and signUp != 2):
+                print("Invalid selection, please try again.\n")
+                signUp = int(input("Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\nSelection: "))
+            if signUp == 1:
+                username = input("Enter username: ")
+                password = input("Enter password: ")
+                firstname = input("Enter your first name: ")
+                lastname = input("Enter your last name: ")
+                register(username, password, firstname, lastname)
+            elif signUp == 2:
+                username = input("Enter username: ")
+                password = input("Enter password: ")
+                login(username, password)
+        else:
+            print("They are not yet a part of the InCollege system yet.")
+
     
 
 def register(username, password, first, last): 
-
     if accountCheck.accountExist(username) == 1:
         print("Username {} already exists, please try again.".format(username)) 
         return
