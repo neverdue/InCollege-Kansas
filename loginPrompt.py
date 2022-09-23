@@ -4,6 +4,7 @@ import passwordCheck
 import json
 import writeJson
 import potentialConnection
+import successStory
 
 #import printJson
 
@@ -29,9 +30,10 @@ import potentialConnection
 
 
 def main():
-    menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelect 3 to connect to an existing user\nSelection: "))
+    successStory.storyDisplay()
+    menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelect 3 to connect to an existing user\nSelect 4 to view introduction video\nSelection: "))
 
-    while (menuSelection != 1 and menuSelection != 2 and menuSelection != 3):
+    while (menuSelection != 1 and menuSelection != 2 and menuSelection != 3 and menuSelection != 4):
         print("Invalid selection, please try again.\n")
         menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
 
@@ -55,7 +57,7 @@ def main():
         lastname = lastname.lower()
 
         if potentialConnection.find(firstname, lastname) == 1:
-            print("They are a part of the InCollege system.\nWould you like to sign up for an existing account?")
+            print("They are a part of the InCollege system.\nWould you like to sign up for an existing account?\n")
             signUp = int(input("Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\nSelection: "))
 
             while(signUp != 1 and signUp != 2):
@@ -73,6 +75,9 @@ def main():
                 login(username, password)
         else:
             print("They are not yet a part of the InCollege system yet.")
+
+    elif menuSelection == 4:
+        print("Video is now playing")
 
     
 
