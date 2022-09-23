@@ -39,7 +39,7 @@ def main():
     elif menuSelection == 2:
         username = input("Enter username: ")
         password = input("Enter password: ")
-        firstname = input("Enter your user name: ")
+        firstname = input("Enter your first name: ")
         lastname =  input("Enter your last name: ")
         register(username, password, firstname, lastname)
     
