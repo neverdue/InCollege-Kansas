@@ -1,17 +1,15 @@
 from Code.Source.loginPrompt import register, login
 from Code.Source.accountCount import accountLimit
 from Code.Source.home_page import homePage, readJobPosts
-#from Code.Source.globalVariables import init, addPage, removePage, pageStack
+from Code.Source.globalVariables import init, addPage, removePage, pageStack
 
 def main():
     #Read in jobPosts at start up
     jobPosts = readJobPosts()
 
     #Initialize stack and add login page
-    #init()
-    #addPage("main")
-    
-    #print(pageStack)
+    init()
+    addPage("main")
 
     fileWrite = open("users.txt", "a")
     try:
