@@ -1,6 +1,10 @@
 import accountCount
 import accountCheck
 import passwordCheck
+import json
+import writeJson
+
+#import printJson
 
 #Create a prompt that asks a user to input their username and password
 
@@ -9,8 +13,19 @@ import passwordCheck
 
 #Dependent on other functions each imported from their own file
 
+#################################################################
+# 9/22/22 altered functions to also take first+last name
+# replaced account text file with json file
+
+# QUESTION: When we create an account, the system needs to check if there are 5 or more accounts.
+#           When it does check during account creation, it still requests first name and last name
+#           The issue that occurs that its wasted time if there are 5 accounts but on the 6th, the system still asks for first + last name
+#           The funtionality still works, but it doesn't make sense for it still to ask for first and last name during the 6th account checking
+#           Now this may be fine since Epic2 doesn't specify if this is an issue or not
+#################################################################
+
+
 def main():
-    fileWrite = open("users.txt", "a")
     menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
 
     while (menuSelection != 1 and menuSelection != 2):
@@ -24,12 +39,12 @@ def main():
     elif menuSelection == 2:
         username = input("Enter username: ")
         password = input("Enter password: ")
-        register(username, password)
+        firstname = input("Enter your user name: ")
+        lastname =  input("Enter your last name: ")
+        register(username, password, firstname, lastname)
     
-    fileWrite.close()
 
-def register(username, password):
-    fileWrite = open("users.txt", "a")
+def register(username, password, first, last): 
 
     if accountCheck.accountExist(username) == 1:
         print("Username {} already exists, please try again.".format(username)) 
@@ -43,14 +58,18 @@ def register(username, password):
     
     print("You have successfully registered.")
 
-    combiUserPass = username + " " + password + "\n"
-    fileWrite.write(combiUserPass)
-    fileWrite.close()
+    #Adding credentials + names to json
+    with open("accounts.json") as json_file:
+        data = json.load(json_file)
+        temp = data["accounts"]
+        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last}
+        temp.append(newData)
+
+    writeJson.wJson(data)
     return 1
 
 def login(username, password):
     exitLoop = 0
-
     if accountCheck.accountExist(username) != 1: 
         print("User does not exist.")
         return
@@ -64,13 +83,15 @@ def login(username, password):
         else:
             print("You have successfully logged in.")
             exitLoop = 1
-
     return 1
 
 def verifyCredentials(usernameInput, passwordInput):
-    with open("users.txt", "r") as file:
-        for accounts in file:
-            if usernameInput == accounts.split()[0] and passwordInput == accounts.split()[1]:
+    with open("accounts.json", "r") as json_file:
+        data = json.load(json_file)
+        for items in data["accounts"]:
+            user = items["username"]
+            password = items["password"]
+            if usernameInput == user and passwordInput == password:
                 return 1
     return 0
 
