@@ -24,7 +24,6 @@ def unique():
                 nextFname = nextFname.lower()
                 nextLname = nextLname.lower()
 
-                #if i < len(data["accounts"])-1 and (fname == nextFname and lname == nextLname):
                 if fname == nextFname and lname == nextLname:
                     print("First and last names must be unique")
                     return 0
