@@ -2,8 +2,8 @@ from Code.Source.loginPrompt import register, login
 from Code.Source.accountCount import accountLimit
 from Code.Source.home_page import homePage, readJobPosts
 from Code.Source.globalVariables import stackInit, addPage, userInit
-import potentialConnection
-import successStory
+from successStory import storyDisplay
+from potentialConnection import find
 import json
 
 
@@ -15,7 +15,7 @@ def main():
     stackInit()
     addPage("main")
 
-    successStory.storyDisplay()
+    storyDisplay()
     menuSelection = int(input("Welcome to InCollege!\n\nSelect 1 to login to an existing account\nSelect 2 to register a new account\nSelect 3 to connect to an existing user\nSelect 4 to view introduction video\n\nSelection: "))
 
     while (menuSelection != 1 and menuSelection != 2 and menuSelection != 3 and menuSelection != 4):
@@ -56,7 +56,7 @@ def main():
         firstname = firstname.lower()
         lastname = lastname.lower()
 
-        if potentialConnection.find(firstname, lastname) == 1:
+        if find(firstname, lastname) == 1:
             print("They are a part of the InCollege system.\nWould you like to sign up for an existing account?\n")
             signUp = int(input("Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\nSelection: "))
 
