@@ -1,5 +1,5 @@
 import json
 
-def wJson(data):
-    with open("accounts.json", "w") as json_file:
+def wJson(data, dataFile):
+    with open(dataFile, "w") as json_file:
         json.dump(data, json_file, indent = 2)

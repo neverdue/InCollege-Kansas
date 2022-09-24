@@ -1,7 +1,12 @@
 import json
 
-def find(first, last):
-    with open("accounts.json", "r") as json_file:
+def find(first, last, TESTMODE = False):
+    if TESTMODE == False:
+        dataFile = "accounts.json"
+    else:
+        dataFile = "accounts-test.json"
+    
+    with open(dataFile, "r") as json_file:
         data = json.load(json_file)
         for names in data["accounts"]:
             fName = names["firstName"]
