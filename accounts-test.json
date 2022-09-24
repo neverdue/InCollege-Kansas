@@ -1,0 +1,10 @@
+{
+  "accounts": [
+    {
+      "username": "test",
+      "password": "Test123@",
+      "firstName": "Test",
+      "lastName": "User"
+    }
+  ]
+}
