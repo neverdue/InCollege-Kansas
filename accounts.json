@@ -1,0 +1,34 @@
+{
+  "accounts": [
+    {
+      "username": "username#1",
+      "password": "Password#1",
+      "firstName": "default",
+      "lastName": "default"
+    },
+    {
+      "username": "username#2",
+      "password": "Password#2",
+      "firstName": "default",
+      "lastName": "default"
+    },
+    {
+      "username": "testtest#123",
+      "password": "TestTest#123",
+      "firstName": "riertester",
+      "lastName": "riertester"
+    },
+    {
+      "username": "test",
+      "password": "Test123@",
+      "firstName": "Test",
+      "lastName": "User"
+    },
+    {
+      "username": "test1",
+      "password": "Test123@",
+      "firstName": "Test1",
+      "lastName": "User"
+    }
+  ]
+}
