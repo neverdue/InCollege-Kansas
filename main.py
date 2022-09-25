@@ -18,7 +18,7 @@ def main():
     storyDisplay()
     menuSelection = int(input("Welcome to InCollege!\n\nSelect 1 to login to an existing account\nSelect 2 to register a new account\nSelect 3 to connect to an existing user\nSelect 4 to view introduction video\n\nSelection: "))
 
-    while (menuSelection != 1 and menuSelection != 2 and menuSelection != 3 and menuSelection != 4):
+    while (menuSelection not in range(1, 5)):
         print("Invalid selection, please try again.\n")
         menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
 
@@ -58,11 +58,14 @@ def main():
 
         if find(firstname, lastname) == 1:
             print("They are a part of the InCollege system.\nWould you like to sign up for an existing account?\n")
-            signUp = int(input("Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\nSelection: "))
-
+            message = "Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\n"
+            print(message)
+            signUp = int(input("Selection: "))
+        
             while(signUp != 1 and signUp != 2):
                 print("Invalid selection, please try again.\n")
-                signUp = int(input("Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\nSelection: "))
+                print(message)
+                signUp = int(input("Selection: "))
             if signUp == 1:
                 username = input("Enter username: ")
                 password = input("Enter password: ")
@@ -70,7 +73,7 @@ def main():
                 lastname = input("Enter your last name: ")
                 temp = register(username, password, firstname, lastname)
                 if temp == 1:
-                    (username, firstname, lastname)
+                    userInit(username, firstname, lastname)
                     homePage()
             elif signUp == 2:
                 username = input("Enter username: ")
@@ -93,7 +96,6 @@ def main():
 
     elif menuSelection == 4:
         print("Video is now playing\n\n")
-        main()
 
 if __name__ == "__main__":
     main()
