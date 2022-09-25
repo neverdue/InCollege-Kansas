@@ -3,6 +3,9 @@ import pytest
 from pytest import MonkeyPatch
 from Code.Source import globalVariables
 from Code.Source import home_page
+from Code.Source import dupNames
+
+TESTMODE = True
 
 #testing that the creation of the stack as a global, add and removal works properly
 def test_pageStack_updates() -> None:
@@ -37,13 +40,12 @@ def test_findSomeonePage() -> None:
 
 
 
+def test_uniqueNames_good():
+    assert dupNames.uniqueNames("Test","User", TESTMODE) == 0
 
 
 
+def test_uniqueNames_bad():
+    assert dupNames.uniqueNames("FailcaseFirst","FailcaseLast", TESTMODE) == 1
 
-#@TODO---- implement current user checks
-
-@pytest.mark.skip(reason="Need to refactor before a test is valuable")
-def test_currentUserTests():
-    assert 1==1 #placeholder
 

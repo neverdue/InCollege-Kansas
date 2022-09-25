@@ -33,7 +33,7 @@ def unique(TESTMODE = False):
                     print("First and last names must be unique")
                     return 0
                 #Outer loop name checked all names from inner loop. Move on to the next name to check
-                if i >= len(data["accounts"])-1:
+                if i >= len(data["acctounts"])-1:
                     j+=1
                     break
         return 1

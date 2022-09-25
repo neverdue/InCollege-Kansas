@@ -1,9 +1,14 @@
 import json
 
 #checks first and last names and prevents duplicate first-last name combinations
+#@TODO - ADD TESTMODE Functionality
+def uniqueNames(first, last, TESTMODE = False):
+    if TESTMODE==False:
+        dataFile = "accounts.json"
+    else:
+        dataFile = "accounts-test.json"
 
-def uniqueNames(first, last):
-    with open("accounts.json", "r") as json_file:
+    with open(dataFile, "r") as json_file:
         data = json.load(json_file)
 
         first = first.lower()
