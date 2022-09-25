@@ -6,8 +6,13 @@ import json
 # Returns 1 if all names are unique
 # returns 0 if not
 
-def unique():
-    with open("accounts.json", "r") as json_file:
+def unique(TESTMODE = False):
+    if TESTMODE == False:
+        dataFile = "accounts.json"
+    else:
+        dataFile = "accounts-test.json"
+    
+    with open(dataFile, "r") as json_file:
         data = json.load(json_file)
         j = 1
         for names in data["accounts"]:
