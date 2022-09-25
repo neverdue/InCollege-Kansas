@@ -1,28 +1,22 @@
 {
   "accounts": [
     {
-      "username": "user1",
+      "username": "username1",
+      "password": "Password#1",
+      "firstName": "default",
+      "lastName": "default"
+    },
+    {
+      "username": "username2",
+      "password": "Password#2",
+      "firstName": "default",
+      "lastName": "default"
+    },
+    {
+      "username": "usernam1",
       "password": "Password123!",
-      "firstName": "Andy",
-      "lastName": "Nguyen"
-    },
-    {
-      "username": "user2",
-      "password": "Password123*",
-      "firstName": "Spoopy",
-      "lastName": "Ando"
-    },
-    {
-      "username": "testuser1",
-      "password": "Password123@",
-      "firstName": "tommy",
-      "lastName": "truong"
-    },
-    {
-      "username": "testuser2",
-      "password": "Password123$",
-      "firstName": "kevin",
-      "lastName": "vu"
+      "firstName": "default2",
+      "lastName": "default2"
     }
   ]
 }
