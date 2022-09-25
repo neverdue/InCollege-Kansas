@@ -17,8 +17,14 @@ def addPage(pageName):
 
 #Remove page from stack (go back a page)
 def removePage():
-    currentPage = pageStack.pop()
-    lastPage = pageStack.pop()
+    if(len(pageStack) > 1):
+            #the first pop is to clear the current page from pageStack
+            currentPage = pageStack.pop()
+            #the second pop is to clear the page we are going to, because otherwise we could get a scenario of [p1, p2, p3] goes to next page and now [p1, p2, p3, p3]
+            lastPage = pageStack.pop()
+    else:
+        return pageStack
+
     return lastPage
 
 def printStack():

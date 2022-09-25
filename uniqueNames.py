@@ -33,4 +33,4 @@ def unique():
                     break
         return 1
 
-unique()
+print("all names unique: ", unique())
