@@ -24,5 +24,3 @@ def uniqueNames(first, last, TESTMODE = False):
                 print("Error: first and last name must be different than existing user's")
                 return 0
     return 1
-
-print(uniqueNames("defaut", "default"))

@@ -3,12 +3,16 @@ from Code.Source.accountCount import accountLimit
 from Code.Source.home_page import homePage, readJobPosts
 from Code.Source.globalVariables import stackInit, addPage, userInit
 from Code.Source.dupNames import uniqueNames
-from successStory import storyDisplay
-from potentialConnection import find
+from Code.Source.successStory import storyDisplay
+from Code.Source.potentialConnection import find
 import json
 
 
-def main():
+def main(TESTMODE = False):
+    if TESTMODE == True:
+        dataFile = "accounts-test.json"
+    else:
+        dataFile = "accounts.json"
     #Read in jobPosts at start up
     jobPosts = readJobPosts()
 
@@ -26,10 +30,10 @@ def main():
     if menuSelection == 1 and accountLimit() != 0:
         username = input("Enter username: ")
         password = input("Enter password: ")
-        temp = login(username, password)
+        temp = login(username, password, TESTMODE)
         if temp == 1:
             #get logged in user's first and last name
-            with open("accounts.json", "r") as json_file:
+            with open(dataFile, "r") as json_file:
                 data = json.load(json_file)
                 for items in data["accounts"]:
                     tempUser = items["username"]
@@ -45,7 +49,7 @@ def main():
         password = input("Enter password: ")
         firstname = input("Enter your first name: ")
         lastname = input("Enter your last name: ")
-        while(uniqueNames(firstname, lastname) == 0):
+        while(uniqueNames(firstname, lastname, TESTMODE) == 0):
             firstname = input("Enter your first name: ")
             lastname = input("Enter your last name: ")
         temp = register(username, password, firstname, lastname)
@@ -75,20 +79,20 @@ def main():
                 password = input("Enter password: ")
                 firstname = input("Enter your first name: ")
                 lastname = input("Enter your last name: ")
-                while(uniqueNames(firstname, lastname) == 0):
+                while(uniqueNames(firstname, lastname, TESTMODE) == 0):
                     firstname = input("Enter your first name: ")
                     lastname = input("Enter your last name: ")
-                temp = register(username, password, firstname, lastname)
+                temp = register(username, password, firstname, lastname, TESTMODE)
                 if temp == 1:
                     userInit(username, firstname, lastname)
                     homePage()
             elif signUp == 2:
                 username = input("Enter username: ")
                 password = input("Enter password: ")
-                temp = login(username, password)
+                temp = login(username, password, TESTMODE)
                 if temp == 1:
                     #get logged in user's first and last name
-                    with open("accounts.json", "r") as json_file:
+                    with open(dataFile, "r") as json_file:
                         data = json.load(json_file)
                         for items in data["accounts"]:
                             tempUser = items["username"]

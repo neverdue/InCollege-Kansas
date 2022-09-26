@@ -1,8 +1,8 @@
 from Code.Source.accountCount import accountLimit
 from Code.Source.accountCheck import accountExist
 from Code.Source.passwordCheck import securePassword
+from Code.Source.writeJson import wJson
 import json
-import writeJson
 
 #Create a prompt that asks a user to input their username and password
 
@@ -50,7 +50,7 @@ def register(username, password, first, last, TESTMODE = False):
         newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last}
         temp.append(newData)
 
-    writeJson.wJson(data, dataFile)
+    wJson(data, dataFile)
     return 1
 
 def login(username, password, TESTMODE = False):

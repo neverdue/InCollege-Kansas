@@ -3,10 +3,13 @@ import json
 import sys
 from io import StringIO
 from main import main
-from potentialConnection import find
-from successStory import storyDisplay
-from Code.Source.home_page import jobPage, addJobPost, readJobPosts
+from Code.Source import globalVariables
+from Code.Source.potentialConnection import find
+from Code.Source.successStory import storyDisplay
+from Code.Source.home_page import jobPage, addJobPost, readJobPosts, findSomeonePage
 from Code.Source.globalVariables import userInit
+from Code.Source.loginPrompt import register
+from Code.Source.dupNames import uniqueNames
 
 TESTMODE = True
 FILENAME = 'jobPosts-test.json'
@@ -14,6 +17,14 @@ FILENAME = 'jobPosts-test.json'
 # Get test user's first & last name and log in
 @pytest.fixture(autouse=True)
 def setup():
+    open('accounts-test.json', 'w').close()
+    with open('accounts-test.json', 'w') as json_file:
+        json_file.write('{"accounts": []}')
+    register("user1", "Password123!", "Andy", "Nguyen", TESTMODE)
+    register("user2", "Password123*", "Spoopy", "Ando", TESTMODE)
+    register("testuser1", "Password123@", "tommy", "truong", TESTMODE)
+    register("testuser2", "Password123$", "kevin", "vu", TESTMODE)
+
     with open('accounts-test.json', 'r') as json_file:
         data = json.load(json_file)
         test_data = data["accounts"][0]
@@ -49,7 +60,7 @@ def test_success_story(capfd):
     assert out == message
 
 @pytest.mark.parametrize("test_inputs, messages", 
-[(['3', 'Andy', 'Nguyen', '1', 'chau', 'a123!', 'Chau', 'Nguyen'], "Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\n"),
+[(['3', 'Andy', 'Nguyen', '1', 'chau', 'Password123!', 'Chau', 'Nguyen'], "Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\n"),
 (['3', 'Andy', 'Nguyen', '2', 'user1', 'Password123!'], "Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\n"),
 (['3', 'Jennie', 'Kim'], "They are not yet a part of the InCollege system yet.")])
 
@@ -57,9 +68,9 @@ def test_success_story(capfd):
 #       Else, display message 
 def test_signPrompt(capsys, monkeypatch, test_inputs, messages) -> None:
     monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
-    main()
+    main(TESTMODE)
     out, err = capsys.readouterr()
-    assert messages in out 
+    assert messages in out
     
 # Test: Display option to show video about InCollege
 def test_play_video(capsys, monkeypatch) -> None:
@@ -111,3 +122,41 @@ def test_exceed_num_jobs(capsys, monkeypatch):
     addJobPost(TESTMODE) 
     out, err = capsys.readouterr()
     assert out == "There are already five job posts. Try again later.\n"
+
+#testing that the creation of the stack as a global, add and removal works properly
+def test_pageStack_updates() -> None:
+    globalVariables.stackInit()
+    globalVariables.addPage("page1")
+    globalVariables.addPage("page2")
+    globalVariables.addPage("page3")
+
+    #calling this functionality inside another test is an example of what really should be in an isolated test, it shouldn't be here. - Rier
+    findSomeonePage()
+    
+
+    assert globalVariables.pageStack == ["page1", "page2", "page3", "findSomeone"]
+    #where we should end up
+    assert globalVariables.removePage() == "page3"
+    #what should be at the back
+    assert globalVariables.pageStack[-1] == "page2"
+
+#test to separately see if the empty pageStack() case failed
+def test_pageStack_empty() -> None:
+    globalVariables.stackInit()
+    
+    globalVariables.pageStack
+    assert globalVariables.removePage() == []
+
+#testing things the findSomeonePage should handle independently
+def test_findSomeonePage() -> None:
+    globalVariables.stackInit()
+    findSomeonePage()
+
+    assert globalVariables.pageStack == ["findSomeone"]
+
+def test_uniqueNames_good():
+    register("test", "Test123@", "Test", "User", TESTMODE)
+    assert uniqueNames("Test","User", TESTMODE) == 0
+
+def test_uniqueNames_bad():
+    assert uniqueNames("FailcaseFirst","FailcaseLast", TESTMODE) == 1
