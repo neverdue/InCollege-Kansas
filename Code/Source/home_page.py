@@ -5,7 +5,7 @@ def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job
-2. Find someone you know\n3. Learn a new skill\n4. Go to previously visited page\n\n""")
+2. Find someone you know\n3. Learn a new skill\n4. Go to previously visited page\n""")
 
 def showSkillPageGreeting():
     printDivider()
@@ -91,9 +91,12 @@ def returnToHomePage():
 def jobPage():
     addPage("job")
 
-    user_choice = input("\n1. Post a job\n2. Home page\n3. Previous Page\n\nEnter your option: ")
+    message = "\n1. Post a job\n2. Home page\n3. Previous Page\n"
+    print(message)
+    user_choice = input("Enter your option: ")
     while user_choice != '1' and user_choice != '2' and user_choice != '3':
-        user_choice = input('invalid input. \n1. Post a job\n2. Home page\n3. Previous Page\n')
+        print("\nInvalid input.\n" + message)
+        user_choice = input("Enter your option: ")
     if user_choice == '1':
         addJobPost()
     elif user_choice == '2':
@@ -102,9 +105,13 @@ def jobPage():
         lastPage = removePage()
         checkPages(lastPage)
     
-def addJobPost():
+def addJobPost(TESTMODE = False):
+    fileName = 'jobPosts.json'
+    if TESTMODE:
+        fileName = 'jobPosts-test.json'
+
     #Checks if already 5 job posts
-    with open ('jobPosts.json') as jsonFile:
+    with open (fileName) as jsonFile:
         data = json.load(jsonFile)
         temp1 = data["numPosts"]
         if temp1 >= 5:
@@ -149,7 +156,7 @@ def addJobPost():
     }
 
     #Appends new post to json file, Increase post count if < 5
-    with open ('jobPosts.json') as jsonFile:
+    with open (fileName) as jsonFile:
         data = json.load(jsonFile)
         temp = data["jobPosts"]
         y = jobDictionary
@@ -159,7 +166,7 @@ def addJobPost():
         temp1 = data["numPosts"]
         data["numPosts"] = temp1 + 1
     
-    writeJson(data, 'jobPosts.json')
+    writeJson(data, fileName)
         
 #Write data to a json File
 def writeJson(data, filename):
@@ -167,9 +174,12 @@ def writeJson(data, filename):
         json.dump(data, f, indent = 4) 
 
 #Read in job posts at application start upclear
-def readJobPosts():
-    with open('jobPosts.json') as json_file:
-        data  = json.load(json_file)
+def readJobPosts(TESTMODE = False):
+    fileName = 'jobPosts.json'
+    if TESTMODE:
+        fileName = 'jobPosts-test.json'
+    with open(fileName) as json_file:
+        data = json.load(json_file)
         jobPosts = data["jobPosts"]
     return jobPosts
 
