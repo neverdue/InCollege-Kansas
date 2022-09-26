@@ -2,6 +2,7 @@ from Code.Source.loginPrompt import register, login
 from Code.Source.accountCount import accountLimit
 from Code.Source.home_page import homePage, readJobPosts
 from Code.Source.globalVariables import stackInit, addPage, userInit
+from Code.Source.dupNames import uniqueNames
 from successStory import storyDisplay
 from potentialConnection import find
 import json
@@ -44,6 +45,9 @@ def main():
         password = input("Enter password: ")
         firstname = input("Enter your first name: ")
         lastname = input("Enter your last name: ")
+        while(uniqueNames(firstname, lastname) == 0):
+            firstname = input("Enter your first name: ")
+            lastname = input("Enter your last name: ")
         temp = register(username, password, firstname, lastname)
         if temp == 1:
             userInit(username, firstname, lastname)
@@ -68,6 +72,9 @@ def main():
                 password = input("Enter password: ")
                 firstname = input("Enter your first name: ")
                 lastname = input("Enter your last name: ")
+                while(uniqueNames(firstname, lastname) == 0):
+                    firstname = input("Enter your first name: ")
+                    lastname = input("Enter your last name: ")
                 temp = register(username, password, firstname, lastname)
                 if temp == 1:
                     (username, firstname, lastname)

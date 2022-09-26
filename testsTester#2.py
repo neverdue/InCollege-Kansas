@@ -67,7 +67,7 @@ def test_login(username, password, firstName, lastName):
     register(username, password, firstName, lastName, TESTMODE)
     assert login(username, password, TESTMODE) == 1
     bad_username = "bad"
-    assert login(bad_username, password, TESTMODE) != 1
+    assert login(bad_username, password) != 1
 
 def test_register_existing_user(username, password, firstName, lastName):
     register(username, password, firstName, lastName, TESTMODE)
@@ -83,4 +83,4 @@ def test_login_existing_user(username, password, firstName, lastName):
 
     # With invalid password
     bad_password = "bad"
-    assert verifyCredentials(username, bad_password, TESTMODE) != 1
+    assert verifyCredentials(username, bad_password) != 1
