@@ -23,6 +23,12 @@
       "password": "Password123$",
       "firstName": "kevin",
       "lastName": "vu"
+    },
+    {
+      "username": "mayank",
+      "password": "Mayank123@",
+      "firstName": "Mayank",
+      "lastName": "Pandey"
     }
   ]
 }

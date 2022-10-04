@@ -1,4 +1,4 @@
-from Code.Source.globalVariables import addPage, removePage, printStack, getFirst, getLast, getUser
+from Code.Source.globalVariables import addPage, getDataFile, getJobFile, removePage, printStack, getFirst, getLast, getUser
 import json
 
 def showHomePageGreeting():
@@ -105,10 +105,8 @@ def jobPage():
         lastPage = removePage()
         checkPages(lastPage)
     
-def addJobPost(TESTMODE = False):
-    fileName = 'jobPosts.json'
-    if TESTMODE:
-        fileName = 'jobPosts-test.json'
+def addJobPost():
+    fileName = getJobFile()
 
     #Checks if already 5 job posts
     with open (fileName) as jsonFile:
@@ -174,10 +172,8 @@ def writeJson(data, filename):
         json.dump(data, f, indent = 4) 
 
 #Read in job posts at application start upclear
-def readJobPosts(TESTMODE = False):
-    fileName = 'jobPosts.json'
-    if TESTMODE:
-        fileName = 'jobPosts-test.json'
+def readJobPosts():
+    fileName = getJobFile()
     with open(fileName) as json_file:
         data = json.load(json_file)
         jobPosts = data["jobPosts"]
@@ -200,8 +196,5 @@ def skillPage(skill):
 def printDivider():
     print('\n' + '-'*60 + '\n')
 
-def main(): 
+def main():
     homePage()
-
-if __name__ == "__main__":
-    main()

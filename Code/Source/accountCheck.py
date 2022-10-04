@@ -1,11 +1,9 @@
 #Checks if the username is already taken
 import json
-def accountExist(username, TESTMODE = False):
-    if TESTMODE == False:
-        dataFile = "accounts.json"
-    else:
-        dataFile = "accounts-test.json"
+from Code.Source.globalVariables import getDataFile
 
+def accountExist(username):
+    dataFile = getDataFile()
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
         for items in data["accounts"]:
