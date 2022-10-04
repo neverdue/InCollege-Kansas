@@ -1,10 +1,8 @@
 import json
+from Code.Source.globalVariables import getDataFile
 
-def find(first, last, TESTMODE = False):
-    if TESTMODE == False:
-        dataFile = "accounts.json"
-    else:
-        dataFile = "accounts-test.json"
+def find(first, last):
+    dataFile = getDataFile()
     
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)

@@ -7,25 +7,28 @@ from Code.Source import globalVariables
 from Code.Source.potentialConnection import find
 from Code.Source.successStory import storyDisplay
 from Code.Source.home_page import jobPage, addJobPost, readJobPosts, findSomeonePage
-from Code.Source.globalVariables import userInit
+from Code.Source.globalVariables import userInit, dataFileInit
 from Code.Source.loginPrompt import register
 from Code.Source.dupNames import uniqueNames
 
 TESTMODE = True
-FILENAME = 'jobPosts-test.json'
+FILENAME = 'Code/Data/jobPosts-test.json'
+DATAFILE = 'Code/Data/accounts-test.json'
 
 # Get test user's first & last name and log in
 @pytest.fixture(autouse=True)
 def setup():
-    open('accounts-test.json', 'w').close()
-    with open('accounts-test.json', 'w') as json_file:
-        json_file.write('{"accounts": []}')
-    register("user1", "Password123!", "Andy", "Nguyen", TESTMODE)
-    register("user2", "Password123*", "Spoopy", "Ando", TESTMODE)
-    register("testuser1", "Password123@", "tommy", "truong", TESTMODE)
-    register("testuser2", "Password123$", "kevin", "vu", TESTMODE)
+    dataFileInit(TESTMODE)
 
-    with open('accounts-test.json', 'r') as json_file:
+    open(DATAFILE, 'w').close()
+    with open(DATAFILE, 'w') as json_file:
+        json_file.write('{"accounts": []}')
+    register("user1", "Password123!", "Andy", "Nguyen")
+    register("user2", "Password123*", "Spoopy", "Ando")
+    register("testuser1", "Password123@", "tommy", "truong")
+    register("testuser2", "Password123$", "kevin", "vu")
+
+    with open(DATAFILE, 'r') as json_file:
         data = json.load(json_file)
         test_data = data["accounts"][0]
         pytest.username = test_data["username"]
@@ -37,14 +40,14 @@ def setup():
 def test_find_connection():
     first = pytest.first.lower()
     last = pytest.last.lower()
-    assert find(first, last, TESTMODE) == 1
+    assert find(first, last) == 1
 
 # Test: Nonexisting users with following cases 
 @pytest.mark.parametrize("not_users", [("", ""), ("Jennie", "Kim"), ("John", "Greens")])
 def test_not_find_connection(not_users):
     bad_first = not_users[0].lower()
     bad_last = not_users[1].lower()
-    assert find(bad_first, bad_last, TESTMODE) != 1
+    assert find(bad_first, bad_last) != 1
 
 # Test: Check if user is greeted by student success story displayed on home screen 
 def test_success_story(capfd):
@@ -68,7 +71,7 @@ def test_success_story(capfd):
 #       Else, display message 
 def test_signPrompt(capsys, monkeypatch, test_inputs, messages) -> None:
     monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
-    main(TESTMODE)
+    main()
     out, err = capsys.readouterr()
     assert messages in out
     
@@ -103,9 +106,9 @@ def test_add_job_post(monkeypatch):
         for value in job:
             test_input += value + '\n'
         monkeypatch.setattr('sys.stdin', StringIO(test_input))
-        addJobPost(TESTMODE)
+        addJobPost()
 
-    added_jobs = readJobPosts(TESTMODE)
+    added_jobs = readJobPosts()
     for i in range(5):
         assert list(added_jobs[i].values())[0:5] in test_jobs
     
@@ -119,7 +122,7 @@ def test_max_num_jobs():
 def test_exceed_num_jobs(capsys, monkeypatch):
     bad_input = ['a']*5
     monkeypatch.setattr('builtins.input', lambda _: bad_input.pop(0))
-    addJobPost(TESTMODE) 
+    addJobPost() 
     out, err = capsys.readouterr()
     assert out == "There are already five job posts. Try again later.\n"
 
@@ -155,8 +158,8 @@ def test_findSomeonePage() -> None:
     assert globalVariables.pageStack == ["findSomeone"]
 
 def test_uniqueNames_good():
-    register("test", "Test123@", "Test", "User", TESTMODE)
-    assert uniqueNames("Test","User", TESTMODE) == 0
+    register("test", "Test123@", "Test", "User")
+    assert uniqueNames("Test","User") == 0
 
 def test_uniqueNames_bad():
-    assert uniqueNames("FailcaseFirst","FailcaseLast", TESTMODE) == 1
+    assert uniqueNames("FailcaseFirst","FailcaseLast") == 1

@@ -6,6 +6,23 @@
 # Find someone = "findSomeone"
 # Learn new skill = "learnSkill"
 
+# Initialize the data file and job file as global variables so that they can be accessed from any file
+def dataFileInit(TESTMODE = False):
+    global dataFile
+    global jobFile
+    if TESTMODE == False:
+        dataFile = "Code/Data/accounts.json"
+        jobFile = "Code/Data/jobPosts.json"
+    else:
+        dataFile = "Code/Data/accounts-test.json"
+        jobFile = "Code/Data/jobPosts-test.json"
+
+def getDataFile():
+    return dataFile
+
+def getJobFile():
+    return jobFile
+
 #Initializes stack as global variable
 def stackInit():
     global pageStack

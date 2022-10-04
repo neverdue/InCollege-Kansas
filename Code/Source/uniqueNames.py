@@ -1,4 +1,5 @@
 import json
+from Code.Source.globalVariables import getDataFile
 
 # I'm not even sure if this is even needed since since the epic just says: 
 # "Assume that all first and last name combinations in the system are unique"
@@ -6,11 +7,8 @@ import json
 # Returns 1 if all names are unique
 # returns 0 if not
 
-def unique(TESTMODE = False):
-    if TESTMODE == False:
-        dataFile = "accounts.json"
-    else:
-        dataFile = "accounts-test.json"
+def unique():
+    dataFile = getDataFile()
     
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
@@ -37,5 +35,3 @@ def unique(TESTMODE = False):
                     j+=1
                     break
         return 1
-
-print("all names unique: ", unique())

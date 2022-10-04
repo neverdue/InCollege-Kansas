@@ -2,6 +2,7 @@ from Code.Source.accountCount import accountLimit
 from Code.Source.accountCheck import accountExist
 from Code.Source.passwordCheck import securePassword
 from Code.Source.writeJson import wJson
+from Code.Source.globalVariables import getDataFile, userInit
 import json
 
 #Create a prompt that asks a user to input their username and password
@@ -25,24 +26,19 @@ import json
 #################################################################
 
 
-def register(username, password, first, last, TESTMODE = False):
-    if TESTMODE == False:
-        dataFile = "accounts.json"
-    else:
-        dataFile = "accounts-test.json"
+def register(username, password, first, last):
+    dataFile = getDataFile()
 
-    if accountExist(username, TESTMODE) == 1:
+    if accountExist(username) == 1:
         print("Username {} already exists, please try again.".format(username)) 
         return
-    if accountLimit(TESTMODE) >= 5:
+    if accountLimit() >= 5:
         print("All permitted accounts have been created, please come back and try later.")
         return
 
     while securePassword(password) != 1:
         password = input("Enter password: ")
     
-    print("You have successfully registered.")
-
     #Adding credentials + names to json
     with open(dataFile) as json_file:
         data = json.load(json_file)
@@ -51,30 +47,46 @@ def register(username, password, first, last, TESTMODE = False):
         temp.append(newData)
 
     wJson(data, dataFile)
+
+    print("You have successfully registered.")
+
+    userInit(username, first, last)
+
     return 1
 
-def login(username, password, TESTMODE = False):
+def login(username, password):
     exitLoop = 0
-    if accountExist(username, TESTMODE) != 1: 
+
+    dataFile = getDataFile()
+
+    if accountExist(username) != 1: 
         print("User does not exist.")
         return
 
     while exitLoop != 1:
         #scanning file
-        if verifyCredentials(username, password, TESTMODE) != 1:
+        if verifyCredentials(username, password) != 1:
             print("Incorrect username / password, please try again.")
             username = input("Enter username: ")
             password = input("Enter password: ")
         else:
             print("You have successfully logged in.")
             exitLoop = 1
+    
+    #get logged in user's first and last name
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+        for items in data["accounts"]:
+            tempUser = items["username"]
+            if username == tempUser:
+                firstname = items["firstName"]
+                lastname = items["lastName"]
+                #set user variable
+                userInit(username, firstname, lastname)
     return 1
 
-def verifyCredentials(usernameInput, passwordInput, TESTMODE = False):
-    if TESTMODE == False:
-        dataFile = "accounts.json"
-    else:
-        dataFile = "accounts-test.json"
+def verifyCredentials(usernameInput, passwordInput):
+    dataFile = getDataFile()
 
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
