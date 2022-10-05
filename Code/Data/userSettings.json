@@ -1,0 +1,11 @@
+{
+    "userSettings": [
+        {
+            "username": "user1",
+            "language": "english",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True"
+        }
+    ]
+}

@@ -1,27 +1,25 @@
-
-# PAGE KEY:
-# Login page = "main"
-# Home page = "home"
-# Find a job = "job"
-# Find someone = "findSomeone"
-# Learn new skill = "learnSkill"
-
 # Initialize the data file and job file as global variables so that they can be accessed from any file
 def dataFileInit(TESTMODE = False):
     global dataFile
     global jobFile
+    global settingFile
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
+        settingFile = "Code/Data/userSettings.json"
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
+        settingFile = "Code/Data/jobPosts-test.json"
 
 def getDataFile():
     return dataFile
 
 def getJobFile():
     return jobFile
+
+def getSettingFile():
+    return settingFile
 
 #Initializes stack as global variable
 def stackInit():
@@ -48,12 +46,16 @@ def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last):
+def userInit(user, first, last, language, email, sms, ads):
     global loggedUser
     loggedUser = {
         "username" : user,
         "firstName" : first,
-        "lastName" : last
+        "lastName" : last,
+        "language" : language,
+        "emailPref" : email,
+        "SMSPref" : sms,
+        "adPref" : ads
     }
 
 def getFirst():
@@ -64,3 +66,15 @@ def getLast():
 
 def getUser():
     return loggedUser.get("username")
+
+def getLang():
+    return loggedUser.get("language")
+
+def getEmailPref():
+    return loggedUser.get("emailPref")
+
+def getSMSPref():
+    return loggedUser.get("SMSPref")
+
+def getAdPref():
+    return loggedUser.get("adPref")
