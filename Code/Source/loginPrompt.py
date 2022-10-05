@@ -3,7 +3,7 @@ from Code.Source.accountCheck import accountExist
 from Code.Source.passwordCheck import securePassword
 from Code.Source.writeJson import wJson
 from Code.Source.dupNames import uniqueNames
-from Code.Source.globalVariables import getDataFile, userInit
+from Code.Source.globalVariables import getDataFile, getSettingFile, userInit
 import json
 
 #Create a prompt that asks a user to input their username and password
@@ -62,6 +62,16 @@ def register(username, password, first, last):
 
     wJson(data, dataFile)
 
+    #Adding defualt settings to userSetting file
+    settingFile = getSettingFile()
+    with open(settingFile) as json_file:
+        data = json.load(json_file)
+        temp = data["userSettings"]
+        newData = {"username": username, "language": "english", "email": True, "SMS": True, "ads": True}
+        temp.append(newData)
+
+    wJson(data, settingFile)
+
     print("You have successfully registered.")
 
     userInit(username, first, last)
@@ -95,8 +105,22 @@ def login(username, password):
             if username == tempUser:
                 firstname = items["firstName"]
                 lastname = items["lastName"]
-                #set user variable
-                userInit(username, firstname, lastname)
+
+
+    settingFile = getSettingFile()
+    with open(settingFile) as json_file:
+        data = json.load(json_file)
+        for items in data["userSettings"]:
+            user = items["username"]
+            if(username == user): 
+                language = items["language"]
+                email = items["email"]
+                SMS = items["SMS"]
+                ads = items["ads"]
+    
+    #set user variable
+    userInit(username, firstname, lastname, language, email, SMS, ads)
+
     return 1
 
 def verifyCredentials(usernameInput, passwordInput):
