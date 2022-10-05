@@ -25,10 +25,10 @@
       "lastName": "vu"
     },
     {
-      "username": "mayank",
-      "password": "Mayank123@",
-      "firstName": "Mayank",
-      "lastName": "Pandey"
+      "username": "test",
+      "password": "Test123@",
+      "firstName": "Testy",
+      "lastName": "Python"
     }
   ]
 }

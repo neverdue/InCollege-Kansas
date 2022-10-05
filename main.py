@@ -1,4 +1,4 @@
-from Code.Source.loginPrompt import register, login
+from Code.Source.loginPrompt import signUpPage, register, login
 from Code.Source.accountCount import accountLimit
 from Code.Source.home_page import homePage, readJobPosts
 from Code.Source.globalVariables import dataFileInit, getDataFile, stackInit, addPage
@@ -39,14 +39,7 @@ def main():
             homePage()
 
     elif menuSelection == 2:
-        username = input("Enter username: ")
-        password = input("Enter password: ")
-        firstname = input("Enter your first name: ")
-        lastname = input("Enter your last name: ")
-        while(uniqueNames(firstname, lastname) == 0):
-            firstname = input("Enter your first name: ")
-            lastname = input("Enter your last name: ")
-        if register(username, password, firstname, lastname) == 1:
+        if signUpPage() == 1:
             homePage()
 
     elif menuSelection == 3:

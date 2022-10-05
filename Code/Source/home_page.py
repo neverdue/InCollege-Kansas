@@ -54,27 +54,17 @@ def route(user_choice):
             homePage()
         elif skill_choice == 'y':
             lastPage = removePage()
-            checkPages(lastPage)
+            checkPages(lastPage, homePageLinks)
         else: 
             skillPage(skill_choice)
     elif user_choice == 4:
         lastPage = removePage()
-        checkPages(lastPage)
+        checkPages(lastPage, homePageLinks)
 
 #Checks all possible pages to call back to last page visited
-def checkPages(page):
-    if page == "main":
-        main()
-    elif page == "home":
-        homePage()
-    elif page == "job":
-        jobPage()
-    elif page == "postJob":
-        addJobPost()
-    elif page == "findSomeone":
-        findSomeonePage()
-    elif page == "learnSkill":
-        skillPage()
+def checkPages(page, links):
+    if page in links:
+        links[page]()
     else:
         print("ERROR. Page not found")
 
@@ -103,7 +93,7 @@ def jobPage():
         homePage() 
     elif user_choice == '3':
         lastPage = removePage()
-        checkPages(lastPage)
+        checkPages(lastPage, homePageLinks)
     
 def addJobPost():
     fileName = getJobFile()
@@ -198,3 +188,12 @@ def printDivider():
 
 def main():
     homePage()
+
+homePageLinks = {
+    "job": jobPage,
+    "findSomeone": findSomeonePage,
+    "learnSkill": skillPage,
+    "home": homePage,
+    "main": main,
+    "postJob": addJobPost
+}

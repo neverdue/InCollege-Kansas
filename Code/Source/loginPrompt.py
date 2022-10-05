@@ -2,6 +2,7 @@ from Code.Source.accountCount import accountLimit
 from Code.Source.accountCheck import accountExist
 from Code.Source.passwordCheck import securePassword
 from Code.Source.writeJson import wJson
+from Code.Source.dupNames import uniqueNames
 from Code.Source.globalVariables import getDataFile, userInit
 import json
 
@@ -25,6 +26,19 @@ import json
 # QUESTION: Should we convert all user input to lower/upper case for ease of checking in other functions?
 #################################################################
 
+def signUpPage():
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    firstname = input("Enter your first name: ")
+    lastname = input("Enter your last name: ")
+    while(uniqueNames(firstname, lastname) == 0):
+        firstname = input("Enter your first name: ")
+        lastname = input("Enter your last name: ")
+
+    # successful registration returns 1
+    registrationAttempt = register(username, password, firstname, lastname)
+
+    return registrationAttempt
 
 def register(username, password, first, last):
     dataFile = getDataFile()
