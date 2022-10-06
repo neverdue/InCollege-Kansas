@@ -5,7 +5,7 @@
             "language": "english",
             "email": "True",
             "SMS": "False",
-            "ads": "False"
+            "ads": "True"
         }
     ]
 }

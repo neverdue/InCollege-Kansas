@@ -3,7 +3,7 @@ from Code.Source.accountCheck import accountExist
 from Code.Source.passwordCheck import securePassword
 from Code.Source.writeJson import wJson
 from Code.Source.dupNames import uniqueNames
-from Code.Source.globalVariables import getDataFile, getSettingFile, userInit
+from Code.Source.globalVariables import getDataFile, getLoggedUser, getSettingFile, userInit
 import json
 
 #Create a prompt that asks a user to input their username and password
@@ -27,6 +27,9 @@ import json
 #################################################################
 
 def signUpPage():
+    if getLoggedUser() != None:
+        print("You are already logged in.")
+        return
     username = input("Enter username: ")
     password = input("Enter password: ")
     firstname = input("Enter your first name: ")
@@ -114,9 +117,9 @@ def login(username, password):
             user = items["username"]
             if(username == user): 
                 language = items["language"]
-                email = items["email"]
-                SMS = items["SMS"]
-                ads = items["ads"]
+                email = True if items["email"] == "True" else False
+                SMS = True if items["SMS"] == "True" else False
+                ads = True if items["ads"] == "True" else False
     
     #set user variable
     userInit(username, firstname, lastname, language, email, SMS, ads)
