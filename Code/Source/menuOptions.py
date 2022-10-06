@@ -1,6 +1,6 @@
 import json
 import time
-from Code.Source.globalVariables import addPage, getAdPref, getDataFile, getEmailPref, getLang, getLoggedUser, getSMSPref, getUser, printStack, removePage, setAdPref, setEmailPref, setLang, setSMSPref, getTimer
+from Code.Source.globalVariables import addPage, getAdPref, getDataFile, getEmailPref, getLang, getSMSPref, getUser, removePage, setAdPref, setEmailPref, setLang, setSMSPref, getTimer
 from Code.Source.loginPrompt import signUpPage
 from Code.Source.utility import printDivider, inputValidation, writeJson
 
