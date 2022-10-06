@@ -149,7 +149,8 @@ def general():
     inputSelection = inputValidation(1, 9)
     
     if inputSelection == 1:
-        links["Sign Up"]()
+        if links["Sign Up"]() == 1:
+            links["homePage"]()
     elif inputSelection == 2:
         links["Help Center"]()
     elif inputSelection == 3:
@@ -176,33 +177,6 @@ def privacyPolicy():
             exit
     elif inputSelection == 2:
         links["Back"]()
-
-links = {
-    "mainPage": mainPage,
-    "Useful Links": usefulLinksMenu,
-    "InCollege Important Links": incollegeImpLinks,
-    "General": general,
-    "Browse InCollege": browseInCollege,
-    "Business Solutions": businessSolutions,
-    "Directories": directories,
-    "Sign Up": signUpPage,
-    "Help Center": helpCenter,
-    "About": about,
-    "Press": press,
-    "Blog": blog,
-    "Careers": careers,
-    "Developers": developers,
-    "Copyright Notice": copyrightNotice,
-    "Accessibility": accessibility, 
-    "User Agreement": userAgreement,
-    "Privacy Policy": privacyPolicy,
-    "Cookie Policy": cookiePolicy,
-    "Copyright Policy": copyrightPolicy,
-    "Brand Policy": brandPolicy,
-    "Guest Controls": guestControls,
-    "Languages": languages,
-    "Back": back
-}
 
 # HOME PAGE
 def showHomePageGreeting():
@@ -386,6 +360,34 @@ def skillPage(skill):
 
 def main():
     homePage()
+
+links = {
+    "mainPage": mainPage,
+    "homePage": homePage,
+    "Useful Links": usefulLinksMenu,
+    "InCollege Important Links": incollegeImpLinks,
+    "General": general,
+    "Browse InCollege": browseInCollege,
+    "Business Solutions": businessSolutions,
+    "Directories": directories,
+    "Sign Up": signUpPage,
+    "Help Center": helpCenter,
+    "About": about,
+    "Press": press,
+    "Blog": blog,
+    "Careers": careers,
+    "Developers": developers,
+    "Copyright Notice": copyrightNotice,
+    "Accessibility": accessibility, 
+    "User Agreement": userAgreement,
+    "Privacy Policy": privacyPolicy,
+    "Cookie Policy": cookiePolicy,
+    "Copyright Policy": copyrightPolicy,
+    "Brand Policy": brandPolicy,
+    "Guest Controls": guestControls,
+    "Languages": languages,
+    "Back": back
+}
 
 homePageLinks = {
     "job": jobPage,
