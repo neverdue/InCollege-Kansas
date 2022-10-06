@@ -1,5 +1,5 @@
 from Code.Source.globalVariables import dataFileInit, stackInit
-from Code.Source.menu import mainPage
+from Code.Source.mainPage import mainPage
 
 
 def main():

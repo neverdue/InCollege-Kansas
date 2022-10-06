@@ -1,10 +1,6 @@
-from Code.Source.accountCount import accountLimit
-from Code.Source.accountCheck import accountExist
-from Code.Source.passwordCheck import securePassword
-from Code.Source.writeJson import wJson
-from Code.Source.dupNames import uniqueNames
-from Code.Source.globalVariables import getDataFile, getLoggedUser, getSettingFile, userInit
 import json
+from Code.Source.utility import accountLimit, accountExist, securePassword, wJson, uniqueNames
+from Code.Source.globalVariables import getDataFile, getLoggedUser, getSettingFile, userInit
 
 #Create a prompt that asks a user to input their username and password
 

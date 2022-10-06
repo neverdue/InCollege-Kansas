@@ -1,9 +1,8 @@
 import pytest
-from Code.Source.passwordCheck import securePassword
-from Code.Source.accountCount import accountLimit
-from Code.Source.accountCheck import accountExist
+from Code.Source.utility import securePassword, accountLimit, accountExist
 from Code.Source.loginPrompt import register, login, verifyCredentials
-from Code.Source.menu import showHomePageGreeting, showSkillPageGreeting, showConstructionMessage, route
+from Code.Source.menu import route
+from Code.Source.homePageOptions import showHomePageGreeting, showSkillPageGreeting, showConstructionMessage
 from Code.Source.globalVariables import stackInit, dataFileInit
 
 TESTMODE = True

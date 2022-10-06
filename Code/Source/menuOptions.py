@@ -1,6 +1,7 @@
 import json
 import time
 from Code.Source.globalVariables import addPage, getAdPref, getEmailPref, getSMSPref, getSettingFile, getUser, printStack, removePage
+from Code.Source.loginPrompt import signUpPage
 from Code.Source.utility import printDivider, inputValidation, writeJson
 
 def underConstruction():
@@ -122,7 +123,45 @@ def goBackOption():
 def back():
     lastPage = removePage()
     lastPage()
-    # checkPages(lastPage, links)
+
+def general():
+    addPage(general)
+    printStack()
+    message = "You are at the General Page!\n\n"
+    message += "Select 1 for Sign Up\nSelect 2 for Help Center\nSelect 3 for About\nSelect 4 for Press\nSelect 5 for Blog\nSelect 6 for Careers\nSelect 7 for Developers\nSelect 8 to go back\n"
+    printDivider()
+    print(message)
+    inputSelection = inputValidation(1, 9)
+    
+    if inputSelection == 1:
+        if signUpPage() == 1:
+            return "homePage"
+    elif inputSelection == 2:
+        helpCenter()
+    elif inputSelection == 3:
+        about()
+    elif inputSelection == 4:
+        press()
+    elif inputSelection == 5:
+        blog()
+    elif inputSelection == 6:
+        careers()
+    elif inputSelection == 7:
+        developers()
+    elif inputSelection == 8:
+        back()
+
+def privacyPolicy():
+    addPage(privacyPolicy)
+    printDivider()
+    message = "Select 1 for Guest Controls\nSelect 2 to go back\n"
+    print(message)
+    inputSelection = inputValidation(1, 3)
+    if inputSelection == 1:
+        if guestControls() == -1:
+            exit
+    elif inputSelection == 2:
+        back()
 
 def guestControls():
     addPage(guestControls)

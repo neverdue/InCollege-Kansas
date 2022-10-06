@@ -4,12 +4,11 @@ import sys
 from io import StringIO
 from main import main
 from Code.Source import globalVariables
-from Code.Source.potentialConnection import find
-from Code.Source.successStory import storyDisplay
-from Code.Source.menu import jobPage, addJobPost, readJobPosts, findSomeonePage
+from Code.Source.utility import find, storyDisplay, uniqueNames
+from Code.Source.homePageOptions import addJobPost, readJobPosts, findSomeonePage
+from Code.Source.menu import jobPage
 from Code.Source.globalVariables import userInit, dataFileInit
 from Code.Source.loginPrompt import register
-from Code.Source.dupNames import uniqueNames
 
 TESTMODE = True
 FILENAME = 'Code/Data/jobPosts-test.json'
