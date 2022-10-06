@@ -1,30 +1,26 @@
 import pytest
 import json
 from io import StringIO
-from main import main
 from Code.Source import globalVariables
 from Code.Source.utility import find, storyDisplay, uniqueNames
 from Code.Source.homePageOptions import addJobPost, readJobPosts, findSomeonePage
 from Code.Source.menu import jobPage
-from Code.Source.globalVariables import userInit, dataFileInit
+from Code.Source.mainPage import mainPage
+from Code.Source.globalVariables import userInit, dataFileInit, stackInit
 from Code.Source.loginPrompt import register
 
 TESTMODE = True
 FILENAME = 'Code/Data/jobPosts-test.json'
 DATAFILE = 'Code/Data/accounts-test.json'
-SETTINGSFILE = 'Code/Data/userSettings-test.json'
 
 # Get test user's first & last name and log in
 @pytest.fixture(autouse=True)
 def setup():
     dataFileInit(TESTMODE)
-
+    stackInit()
     open(DATAFILE, 'w').close()
-    open(SETTINGSFILE, 'w').close()
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
-    with open(SETTINGSFILE, 'w') as json_file:
-        json_file.write('{"userSettings": []}')
     register("user1", "Password123!", "Andy", "Nguyen")
     register("user2", "Password123*", "Spoopy", "Ando")
     register("testuser1", "Password123@", "tommy", "truong")
@@ -73,7 +69,7 @@ def test_success_story(capfd):
 #       Else, display message 
 def test_signPrompt(capsys, monkeypatch, test_inputs, messages) -> None:
     monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
-    main()
+    mainPage()
     out, err = capsys.readouterr()
     assert messages in out
     
@@ -81,7 +77,7 @@ def test_signPrompt(capsys, monkeypatch, test_inputs, messages) -> None:
 def test_play_video(capsys, monkeypatch) -> None:
     test_input = StringIO('4')
     monkeypatch.setattr('sys.stdin', test_input)
-    assert main() == None
+    assert mainPage() == None
     out, err = capsys.readouterr()
     assert "Video is now playing" in out 
 

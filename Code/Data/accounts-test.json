@@ -7,8 +7,8 @@
       "lastName": "Nguyen",
       "language": "english",
       "email": "True",
-      "SMS": "False",
-      "ads": "False"
+      "SMS": "True",
+      "ads": "True"
     },
     {
       "username": "user2",
@@ -17,8 +17,8 @@
       "lastName": "Ando",
       "language": "english",
       "email": "True",
-      "SMS": "False",
-      "ads": "False"
+      "SMS": "True",
+      "ads": "True"
     },
     {
       "username": "testuser1",
@@ -27,8 +27,8 @@
       "lastName": "truong",
       "language": "english",
       "email": "True",
-      "SMS": "False",
-      "ads": "False"
+      "SMS": "True",
+      "ads": "True"
     },
     {
       "username": "testuser2",
@@ -37,8 +37,8 @@
       "lastName": "vu",
       "language": "english",
       "email": "True",
-      "SMS": "False",
-      "ads": "False"
+      "SMS": "True",
+      "ads": "True"
     }
   ]
 }

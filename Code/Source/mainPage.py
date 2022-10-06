@@ -13,16 +13,14 @@ def mainPage():
     try:
         menuSelection = int(input("Welcome to InCollege!\n\nSelect 1 to login to an existing account\nSelect 2 to register a new account\nSelect 3 to connect to an existing user\nSelect 4 to view introduction video\nSelect 5 to view Useful Links\nSelect 6 to view InCollege Important Links\n\nSelection: "))
     except ValueError:
-        print("Invalid input!")
-        return
+        raise Exception("Invalid input!")
 
     while (menuSelection not in range(1, 7)):
         print("Invalid selection, please try again.\n")
         try:
             menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
         except ValueError:
-            print("Invalid input!")
-            return
+            raise Exception("Invalid input!")
 
     if menuSelection == 1 and accountLimit() != 0:
         username = input("Enter username: ")
@@ -48,8 +46,7 @@ def mainPage():
             try:
                 signUp = int(input("Selection: "))
             except ValueError:
-                print("Invalid input!")
-                return
+                raise Exception("Invalid input!")
         
             while(signUp != 1 and signUp != 2):
                 print("Invalid selection, please try again.\n")
@@ -57,8 +54,7 @@ def mainPage():
                 try:
                     signUp = int(input("Selection: "))
                 except ValueError:
-                    print("Invalid input!")
-                    return
+                    raise Exception("Invalid input!")
             if signUp == 1:
                 username = input("Enter username: ")
                 password = input("Enter password: ")

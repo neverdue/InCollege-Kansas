@@ -1,5 +1,5 @@
 import json
-from Code.Source.globalVariables import addPage, getFirst, getJobFile, getLast, getLoggedUser
+from Code.Source.globalVariables import addPage, getFirst, getJobFile, getLast, getUser
 from Code.Source.menuOptions import back
 from Code.Source.utility import printDivider, writeJson
 
@@ -20,8 +20,10 @@ def showConstructionMessage(message):
     print("We're sorry!\n'{}' feature is still under construction.\n".format(message))
 
 def returnToHomePage():
-    if getLoggedUser() == None:
-        return
+    try:
+        username = getUser()
+    except:
+        raise Exception("You are not logged in!")
     user_choice = input('Go back to homepage? (y/n): ')
     while user_choice != 'y' and user_choice != 'n':
         user_choice = input('Please enter y for yes, n for no: ')

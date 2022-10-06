@@ -59,16 +59,16 @@ def homePage():
     try: 
         user_choice = int(input("Enter your option (1, 2, 3, 4, 5 or 6): "))
     except:
-        print("Invalid Input! Try again.") 
-        homePage()
+        print("Invalid input!")
+        return
 
     while user_choice not in range(1, 7):
         showHomePageGreeting()
         try:
             user_choice = int(input("Enter your option (1, 2, 3, 4, 5 or 6): "))   
         except:
-            print("Invalid Input! Try again.") 
-            homePage()
+            print("Invalid input!")
+            return
 
     route(user_choice)
     if returnToHomePage() == "homePage":

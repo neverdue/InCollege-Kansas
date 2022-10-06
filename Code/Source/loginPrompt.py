@@ -25,8 +25,7 @@ import time
 
 def signUpPage():
     if getLoggedUser() != None:
-        print("You are already logged in.")
-        return
+        raise Exception("You are already logged in.")
     username = input("Enter username: ")
     password = input("Enter password: ")
     firstname = input("Enter your first name: ")
