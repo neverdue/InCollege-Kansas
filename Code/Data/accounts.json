@@ -5,7 +5,7 @@
             "password": "Password123!",
             "firstName": "Andy",
             "lastName": "Nguyen",
-            "language": "english",
+            "language": "Spanish",
             "email": "True",
             "SMS": "False",
             "ads": "False"
@@ -15,7 +15,7 @@
             "password": "Password123*",
             "firstName": "Spoopy",
             "lastName": "Ando",
-            "language": "english",
+            "language": "English",
             "email": "False",
             "SMS": "False",
             "ads": "False"
@@ -25,17 +25,17 @@
             "password": "Password123@",
             "firstName": "tommy",
             "lastName": "truong",
-            "language": "english",
+            "language": "English",
             "email": "False",
             "SMS": "False",
-            "ads": "False"
+            "ads": "True"
         },
         {
             "username": "testuser2",
             "password": "Password123$",
             "firstName": "kevin",
             "lastName": "vu",
-            "language": "english",
+            "language": "English",
             "email": "False",
             "SMS": "False",
             "ads": "False"
@@ -45,7 +45,7 @@
             "password": "Test123@",
             "firstName": "Testy",
             "lastName": "Python",
-            "language": "english",
+            "language": "English",
             "email": "False",
             "SMS": "False",
             "ads": "False"

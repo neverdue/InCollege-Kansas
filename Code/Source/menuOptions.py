@@ -1,6 +1,6 @@
 import json
 import time
-from Code.Source.globalVariables import addPage, getAdPref, getDataFile, getEmailPref, getSMSPref, getUser, printStack, removePage
+from Code.Source.globalVariables import addPage, getAdPref, getDataFile, getEmailPref, getLang, getSMSPref, getUser, printStack, removePage, setAdPref, setEmailPref, setLang, setSMSPref, getTimer
 from Code.Source.loginPrompt import signUpPage
 from Code.Source.utility import printDivider, inputValidation, writeJson
 
@@ -62,7 +62,6 @@ def press():
 
 def copyrightNotice():
     addPage(copyrightNotice)
-    printStack()
     printDivider()
     print("Copyright Notice 2022 InCollege, Inc. InCollege is a registered trademark of InCollege, Inc. All rights reserved.")
     printDivider()
@@ -104,7 +103,47 @@ def languages():
     printDivider()
     print("Languages")
     printDivider()
-    goBackOption()
+
+    #ensure user is logged in
+    try:
+        username = getUser()
+        language = getLang()
+    except:
+        print("Error: No user logged in")
+        return -1    
+
+    while(True):
+        language2 = "English" if language == "Spanish" else "Spanish"
+        print("\nWould you like to change the language for InCollege?\nCurrent Language: ", language)
+        print("\n\nTo change to", language2, "(1),", end = '')
+        choice = input(" to go to previous page(2): ")
+
+        if choice == '1':
+            file = getDataFile()
+            with open(file) as json_file:
+                data = json.load(json_file)
+                for items in data["accounts"]:
+                    user = items["username"]
+                    if(username == user): 
+                        items["language"] = "English" if language2 == "English" else "Spanish"
+            writeJson(data, file)
+
+            #Swap languages
+            temp = language
+            language = language2
+            language2 = temp
+
+            #Set global variable
+            setLang(language2)     
+
+            print("\nYour language has been changed to", language, "\n")
+            timer = getTimer()
+            time.sleep(timer)   
+            printDivider()
+        elif choice == '2':
+            goBackOption()
+        else:
+            print("Invalid input. Please try again.")
 
 def copyrightPolicy():
     addPage(copyrightPolicy)
@@ -126,7 +165,6 @@ def back():
 
 def general():
     addPage(general)
-    printStack()
     message = "You are at the General Page!\n\n"
     message += "Select 1 for Sign Up\nSelect 2 for Help Center\nSelect 3 for About\nSelect 4 for Press\nSelect 5 for Blog\nSelect 6 for Careers\nSelect 7 for Developers\nSelect 8 to go back\n"
     printDivider()
@@ -186,7 +224,7 @@ def guestControls():
         if choice == '1':
             if emailPref == True:
                 print("\nYou will no longer recieve emails from InCollege.\n")
-                emailPref = False                
+                emailPref = False               
             else:
                 print("\nYou will now recieve emails from InCollege.\n")
                 emailPref = True
@@ -214,9 +252,15 @@ def guestControls():
             print("Invalid Input. Try again")
 
         #Allow user to see output
-        time.sleep(2)
+        timer = getTimer()
+        time.sleep(timer)
 
 def updateSettings(username, emailPref, SMSPref, adPref):
+    #Update global variables
+    setEmailPref(emailPref) 
+    setSMSPref(SMSPref)
+    setAdPref(adPref)
+
     #Update User Settings
     file = getDataFile()
     with open(file) as json_file:

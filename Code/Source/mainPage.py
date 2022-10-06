@@ -1,12 +1,15 @@
 from Code.Source.menu import homePage, incollegeImpLinks, usefulLinksMenu
 from Code.Source.utility import uniqueNames, storyDisplay, accountLimit, find
-from Code.Source.globalVariables import addPage, logout
+from Code.Source.globalVariables import addPage, logout, getTimer
 from Code.Source.loginPrompt import signUpPage, login, register
+import time
 
 def mainPage():
     addPage(mainPage)
     logout()
     storyDisplay()
+    timer = getTimer()
+    time.sleep(timer)
     try:
         menuSelection = int(input("Welcome to InCollege!\n\nSelect 1 to login to an existing account\nSelect 2 to register a new account\nSelect 3 to connect to an existing user\nSelect 4 to view introduction video\nSelect 5 to view Useful Links\nSelect 6 to view InCollege Important Links\n\nSelection: "))
     except ValueError:

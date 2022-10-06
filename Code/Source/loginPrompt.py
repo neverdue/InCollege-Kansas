@@ -1,6 +1,7 @@
 import json
 from Code.Source.utility import accountLimit, accountExist, securePassword, wJson, uniqueNames
-from Code.Source.globalVariables import getDataFile, getLoggedUser, userInit
+from Code.Source.globalVariables import getDataFile, getLoggedUser, userInit, getTimer
+import time
 
 #Create a prompt that asks a user to input their username and password
 
@@ -62,6 +63,8 @@ def register(username, password, first, last):
     wJson(data, dataFile)
 
     print("You have successfully registered.")
+    timer = getTimer()
+    time.sleep(timer)
 
     userInit(username, first, last, "english", True, True, True)
 
@@ -84,6 +87,8 @@ def login(username, password):
             password = input("Enter password: ")
         else:
             print("You have successfully logged in.")
+            timer = getTimer()
+            time.sleep(timer)
             exitLoop = 1
     
     #get logged in user's data and settings
@@ -94,7 +99,7 @@ def login(username, password):
             if username == tempUser:
                 firstname = items["firstName"]
                 lastname = items["lastName"]
-                language = True if items["language"] == "True" else False
+                language = "English" if items["language"] == "English" else "Spanish"
                 email = True if items["email"] == "True" else False
                 SMS = True if items["SMS"] == "True" else False 
                 ads = True if items["ads"] == "True" else False

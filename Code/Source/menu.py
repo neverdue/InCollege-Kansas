@@ -5,7 +5,6 @@ from Code.Source.utility import inputValidation, printDivider
 
 def incollegeImpLinks():
     addPage(incollegeImpLinks)
-    printStack()
     message = "Select 1 for Copyright Notice\nSelect 2 for About\nSelect 3 for Accessibility\nSelect 4 for User Agreement\nSelect 5 for Privacy Policy\nSelect 6 for Cookie Policy\nSelect 7 for Copyright Policy\nSelect 8 for Brand Policy\nSelect 9 for Languages\nSelect 10 to go back\n"
     printDivider()
     print(message)
@@ -34,7 +33,6 @@ def incollegeImpLinks():
 
 def usefulLinksMenu():
     addPage(usefulLinksMenu)
-    printStack()
     message = "Select 1 for General\nSelect 2 for Browse InCollege\nSelect 3 for Business Solutions\nSelect 4 for Directories\nSelect 5 to go back\n"
     printDivider()
     print(message)
@@ -56,22 +54,21 @@ def usefulLinksMenu():
 def homePage(): 
     #Add home page to page stack
     addPage(homePage)
-    printStack()
 
     showHomePageGreeting()
     try: 
         user_choice = int(input("Enter your option (1, 2, 3, 4, 5 or 6): "))
     except:
-        print("Invalid Input!") 
-        return
+        print("Invalid Input! Try again.") 
+        homePage()
 
     while user_choice not in range(1, 7):
         showHomePageGreeting()
         try:
             user_choice = int(input("Enter your option (1, 2, 3, 4, 5 or 6): "))   
         except:
-            print("Invalid Input!") 
-            return
+            print("Invalid Input! Try again.") 
+            homePage()
 
     route(user_choice)
     if returnToHomePage() == "homePage":
