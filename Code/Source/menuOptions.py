@@ -1,6 +1,6 @@
 import json
 import time
-from Code.Source.globalVariables import addPage, getAdPref, getEmailPref, getSMSPref, getSettingFile, getUser, printStack, removePage
+from Code.Source.globalVariables import addPage, getAdPref, getDataFile, getEmailPref, getSMSPref, getUser, printStack, removePage
 from Code.Source.loginPrompt import signUpPage
 from Code.Source.utility import printDivider, inputValidation, writeJson
 
@@ -167,8 +167,6 @@ def guestControls():
     addPage(guestControls)
     print("\n\n------Guest Controls------")
 
-    #Temp for testing
-    # userInit("user1", "first", "last", "english", True, True, True)
     try:
         username = getUser()
         emailPref = getEmailPref()
@@ -220,13 +218,13 @@ def guestControls():
 
 def updateSettings(username, emailPref, SMSPref, adPref):
     #Update User Settings
-    settingFile = getSettingFile()
-    with open(settingFile) as json_file:
+    file = getDataFile()
+    with open(file) as json_file:
         data = json.load(json_file)
-        for items in data["userSettings"]:
+        for items in data["accounts"]:
             user = items["username"]
             if(username == user): 
                 items["email"] = "True" if emailPref == True else "False"
                 items["SMS"] = "True" if SMSPref == True else "False"
                 items["ads"] = "True" if adPref == True else "False"
-    writeJson(data, settingFile)
+    writeJson(data, file)

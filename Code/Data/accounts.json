@@ -1,34 +1,54 @@
 {
-  "accounts": [
-    {
-      "username": "user1",
-      "password": "Password123!",
-      "firstName": "Andy",
-      "lastName": "Nguyen"
-    },
-    {
-      "username": "user2",
-      "password": "Password123*",
-      "firstName": "Spoopy",
-      "lastName": "Ando"
-    },
-    {
-      "username": "testuser1",
-      "password": "Password123@",
-      "firstName": "tommy",
-      "lastName": "truong"
-    },
-    {
-      "username": "testuser2",
-      "password": "Password123$",
-      "firstName": "kevin",
-      "lastName": "vu"
-    },
-    {
-      "username": "test",
-      "password": "Test123@",
-      "firstName": "Testy",
-      "lastName": "Python"
-    }
-  ]
+    "accounts": [
+        {
+            "username": "user1",
+            "password": "Password123!",
+            "firstName": "Andy",
+            "lastName": "Nguyen",
+            "language": "english",
+            "email": "True",
+            "SMS": "False",
+            "ads": "False"
+        },
+        {
+            "username": "user2",
+            "password": "Password123*",
+            "firstName": "Spoopy",
+            "lastName": "Ando",
+            "language": "english",
+            "email": "False",
+            "SMS": "False",
+            "ads": "False"
+        },
+        {
+            "username": "testuser1",
+            "password": "Password123@",
+            "firstName": "tommy",
+            "lastName": "truong",
+            "language": "english",
+            "email": "False",
+            "SMS": "False",
+            "ads": "False"
+        },
+        {
+            "username": "testuser2",
+            "password": "Password123$",
+            "firstName": "kevin",
+            "lastName": "vu",
+            "language": "english",
+            "email": "False",
+            "SMS": "False",
+            "ads": "False"
+        },
+        {
+            "username": "test",
+            "password": "Test123@",
+            "firstName": "Testy",
+            "lastName": "Python",
+            "language": "english",
+            "email": "False",
+            "SMS": "False",
+            "ads": "False"
+        }
+    ]
 }

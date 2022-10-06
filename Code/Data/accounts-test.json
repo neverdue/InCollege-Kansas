@@ -4,25 +4,41 @@
       "username": "user1",
       "password": "Password123!",
       "firstName": "Andy",
-      "lastName": "Nguyen"
+      "lastName": "Nguyen",
+      "language": "english",
+      "email": "True",
+      "SMS": "False",
+      "ads": "False"
     },
     {
       "username": "user2",
       "password": "Password123*",
       "firstName": "Spoopy",
-      "lastName": "Ando"
+      "lastName": "Ando",
+      "language": "english",
+      "email": "True",
+      "SMS": "False",
+      "ads": "False"
     },
     {
       "username": "testuser1",
       "password": "Password123@",
       "firstName": "tommy",
-      "lastName": "truong"
+      "lastName": "truong",
+      "language": "english",
+      "email": "True",
+      "SMS": "False",
+      "ads": "False"
     },
     {
       "username": "testuser2",
       "password": "Password123$",
       "firstName": "kevin",
-      "lastName": "vu"
+      "lastName": "vu",
+      "language": "english",
+      "email": "True",
+      "SMS": "False",
+      "ads": "False"
     }
   ]
 }

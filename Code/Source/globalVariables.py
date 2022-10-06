@@ -6,20 +6,15 @@ def dataFileInit(TESTMODE = False):
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
-        settingFile = "Code/Data/userSettings.json"
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
-        settingFile = "Code/Data/userSettings-test.json"
 
 def getDataFile():
     return dataFile
 
 def getJobFile():
     return jobFile
-
-def getSettingFile():
-    return settingFile
 
 #Initializes stack as global variable
 def stackInit():

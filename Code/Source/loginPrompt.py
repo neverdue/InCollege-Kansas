@@ -1,6 +1,6 @@
 import json
 from Code.Source.utility import accountLimit, accountExist, securePassword, wJson, uniqueNames
-from Code.Source.globalVariables import getDataFile, getLoggedUser, getSettingFile, userInit
+from Code.Source.globalVariables import getDataFile, getLoggedUser, userInit
 
 #Create a prompt that asks a user to input their username and password
 
@@ -52,24 +52,14 @@ def register(username, password, first, last):
     while securePassword(password) != 1:
         password = input("Enter password: ")
     
-    #Adding credentials + names to json
+    #Adding credentials, names, and default settings to json
     with open(dataFile) as json_file:
         data = json.load(json_file)
         temp = data["accounts"]
-        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last}
+        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last, "language": "english", "email": setting(True), "SMS": setting(True), "ads": setting(True)}
         temp.append(newData)
 
     wJson(data, dataFile)
-
-    #Adding defualt settings to userSetting file
-    settingFile = getSettingFile()
-    with open(settingFile) as json_file:
-        data = json.load(json_file)
-        temp = data["userSettings"]
-        newData = {"username": username, "language": "english", "email": setting(True), "SMS": setting(True), "ads": setting(True)}
-        temp.append(newData)
-
-    wJson(data, settingFile)
 
     print("You have successfully registered.")
 
@@ -96,7 +86,7 @@ def login(username, password):
             print("You have successfully logged in.")
             exitLoop = 1
     
-    #get logged in user's first and last name
+    #get logged in user's data and settings
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
         for items in data["accounts"]:
@@ -104,19 +94,10 @@ def login(username, password):
             if username == tempUser:
                 firstname = items["firstName"]
                 lastname = items["lastName"]
-
-
-    settingFile = getSettingFile()
-    with open(settingFile) as json_file:
-        data = json.load(json_file)
-        for items in data["userSettings"]:
-            user = items["username"]
-            if(username == user): 
-                language = items["language"]
+                language = True if items["language"] == "True" else False
                 email = True if items["email"] == "True" else False
-                SMS = True if items["SMS"] == "True" else False
+                SMS = True if items["SMS"] == "True" else False 
                 ads = True if items["ads"] == "True" else False
-    
     #set user variable
     userInit(username, firstname, lastname, language, email, SMS, ads)
 
