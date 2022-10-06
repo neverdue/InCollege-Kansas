@@ -1,4 +1,3 @@
-import json
 from Code.Source.menu import homePage, incollegeImpLinks, usefulLinksMenu
 from Code.Source.utility import uniqueNames, storyDisplay, accountLimit, find
 from Code.Source.globalVariables import addPage, logout

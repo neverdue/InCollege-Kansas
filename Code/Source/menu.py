@@ -1,9 +1,7 @@
-import json
 from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, showHomePageGreeting, showSkillPageGreeting, skillPage
 from Code.Source.globalVariables import addPage, removePage, printStack
-from Code.Source.menuOptions import about, accessibility, back, blog, brandPolicy, browseInCollege, businessSolutions, careers, cookiePolicy, copyrightNotice, copyrightPolicy, developers, directories, general, helpCenter, languages, press, privacyPolicy, userAgreement
+from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import inputValidation, printDivider
-from Code.Source.loginPrompt import signUpPage
 
 def incollegeImpLinks():
     addPage(incollegeImpLinks)

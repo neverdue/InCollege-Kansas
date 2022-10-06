@@ -1,6 +1,5 @@
 import pytest
 import json
-import sys
 from io import StringIO
 from main import main
 from Code.Source import globalVariables
