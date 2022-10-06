@@ -1,9 +1,7 @@
-from Code.Source.accountCount import accountLimit
-from Code.Source.accountCheck import accountExist
-from Code.Source.passwordCheck import securePassword
-from Code.Source.writeJson import wJson
-from Code.Source.globalVariables import getDataFile, userInit
 import json
+from Code.Source.utility import accountLimit, accountExist, securePassword, wJson, uniqueNames
+from Code.Source.globalVariables import getDataFile, getLoggedUser, userInit, getTimer
+import time
 
 #Create a prompt that asks a user to input their username and password
 
@@ -25,6 +23,22 @@ import json
 # QUESTION: Should we convert all user input to lower/upper case for ease of checking in other functions?
 #################################################################
 
+def signUpPage():
+    if getLoggedUser() != None:
+        print("You are already logged in.")
+        return
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    firstname = input("Enter your first name: ")
+    lastname = input("Enter your last name: ")
+    while(uniqueNames(firstname, lastname) == 0):
+        firstname = input("Enter your first name: ")
+        lastname = input("Enter your last name: ")
+
+    # successful registration returns 1
+    registrationAttempt = register(username, password, firstname, lastname)
+
+    return registrationAttempt
 
 def register(username, password, first, last):
     dataFile = getDataFile()
@@ -39,18 +53,20 @@ def register(username, password, first, last):
     while securePassword(password) != 1:
         password = input("Enter password: ")
     
-    #Adding credentials + names to json
+    #Adding credentials, names, and default settings to json
     with open(dataFile) as json_file:
         data = json.load(json_file)
         temp = data["accounts"]
-        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last}
+        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last, "language": "english", "email": setting(True), "SMS": setting(True), "ads": setting(True)}
         temp.append(newData)
 
     wJson(data, dataFile)
 
     print("You have successfully registered.")
+    timer = getTimer()
+    time.sleep(timer)
 
-    userInit(username, first, last)
+    userInit(username, first, last, "english", True, True, True)
 
     return 1
 
@@ -71,9 +87,11 @@ def login(username, password):
             password = input("Enter password: ")
         else:
             print("You have successfully logged in.")
+            timer = getTimer()
+            time.sleep(timer)
             exitLoop = 1
     
-    #get logged in user's first and last name
+    #get logged in user's data and settings
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
         for items in data["accounts"]:
@@ -81,8 +99,13 @@ def login(username, password):
             if username == tempUser:
                 firstname = items["firstName"]
                 lastname = items["lastName"]
-                #set user variable
-                userInit(username, firstname, lastname)
+                language = "English" if items["language"] == "English" else "Spanish"
+                email = True if items["email"] == "True" else False
+                SMS = True if items["SMS"] == "True" else False 
+                ads = True if items["ads"] == "True" else False
+    #set user variable
+    userInit(username, firstname, lastname, language, email, SMS, ads)
+
     return 1
 
 def verifyCredentials(usernameInput, passwordInput):
@@ -97,3 +120,5 @@ def verifyCredentials(usernameInput, passwordInput):
                 return 1
     return 0
 
+def setting(flag):
+    return "True" if flag == True else "False"

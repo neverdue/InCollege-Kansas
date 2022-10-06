@@ -1,19 +1,22 @@
 import pytest
-from Code.Source.passwordCheck import securePassword
-from Code.Source.accountCount import accountLimit
-from Code.Source.accountCheck import accountExist
+from Code.Source.utility import securePassword, accountLimit, accountExist
 from Code.Source.loginPrompt import register, login, verifyCredentials
-from Code.Source.home_page import showHomePageGreeting, showSkillPageGreeting, showConstructionMessage, route
+from Code.Source.menu import route
+from Code.Source.homePageOptions import showHomePageGreeting, showSkillPageGreeting, showConstructionMessage
 from Code.Source.globalVariables import stackInit, dataFileInit
 
 TESTMODE = True
 DATAFILE =  "Code/Data/accounts-test.json"
+SETTINGSFILE = 'Code/Data/userSettings-test.json'
 
 @pytest.fixture(autouse=True)
 def setup():
     open(DATAFILE, 'w').close()
+    open(SETTINGSFILE, 'w').close()
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
+    with open(SETTINGSFILE, 'w') as json_file:
+        json_file.write('{"userSettings": []}')
     dataFileInit(TESTMODE)
 
 @pytest.fixture
@@ -93,7 +96,7 @@ def test_homePage(capfd):
     showHomePageGreeting()
     out, err = capfd.readouterr()
     message = "\n------------------------------------------------------------\n"
-    message += "\nWelcome to InCollege!\nPlease choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Go to previously visited page\n\n"
+    message += "\nWelcome to InCollege!\nPlease choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Go to previously visited page\n\n"
     assert out == message
 
 def test_SkillPage(capfd):

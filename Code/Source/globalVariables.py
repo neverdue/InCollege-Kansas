@@ -1,27 +1,26 @@
-
-# PAGE KEY:
-# Login page = "main"
-# Home page = "home"
-# Find a job = "job"
-# Find someone = "findSomeone"
-# Learn new skill = "learnSkill"
-
 # Initialize the data file and job file as global variables so that they can be accessed from any file
 def dataFileInit(TESTMODE = False):
     global dataFile
     global jobFile
+    global timer
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
+        timer = 2
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
+        timer = 0
 
 def getDataFile():
     return dataFile
 
 def getJobFile():
     return jobFile
+
+def getTimer():
+    return timer
+
 
 #Initializes stack as global variable
 def stackInit():
@@ -41,20 +40,31 @@ def removePage():
             lastPage = pageStack.pop()
     else:
         return pageStack
-
+        
     return lastPage
 
 def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last):
+def userInit(user, first, last, language, email, sms, ads):
     global loggedUser
     loggedUser = {
         "username" : user,
         "firstName" : first,
-        "lastName" : last
+        "lastName" : last,
+        "language" : language,
+        "emailPref" : email,
+        "SMSPref" : sms,
+        "adPref" : ads
     }
+
+def logout():
+    global loggedUser
+    loggedUser = None
+
+def getLoggedUser():
+    return loggedUser
 
 def getFirst():
     return loggedUser.get("firstName")
@@ -64,3 +74,27 @@ def getLast():
 
 def getUser():
     return loggedUser.get("username")
+
+def getLang():
+    return loggedUser.get("language")
+
+def setLang(x):
+    loggedUser["language"] = x
+
+def getEmailPref():
+    return loggedUser.get("emailPref")
+
+def setEmailPref(x):
+    loggedUser["email"] = x
+
+def getSMSPref():
+    return loggedUser.get("SMSPref")
+
+def setSMSPref(x):
+    loggedUser["SMS"] = x
+
+def getAdPref():
+    return loggedUser.get("adPref")
+
+def setAdPref(x):
+    loggedUser["ads"] = x
