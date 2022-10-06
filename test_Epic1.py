@@ -8,12 +8,16 @@ from Code.Source.globalVariables import stackInit, dataFileInit
 
 TESTMODE = True
 DATAFILE =  "Code/Data/accounts-test.json"
+SETTINGSFILE = 'Code/Data/userSettings-test.json'
 
 @pytest.fixture(autouse=True)
 def setup():
     open(DATAFILE, 'w').close()
+    open(SETTINGSFILE, 'w').close()
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
+    with open(SETTINGSFILE, 'w') as json_file:
+        json_file.write('{"userSettings": []}')
     dataFileInit(TESTMODE)
 
 @pytest.fixture

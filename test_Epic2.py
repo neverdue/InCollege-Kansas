@@ -14,6 +14,7 @@ from Code.Source.dupNames import uniqueNames
 TESTMODE = True
 FILENAME = 'Code/Data/jobPosts-test.json'
 DATAFILE = 'Code/Data/accounts-test.json'
+SETTINGSFILE = 'Code/Data/userSettings-test.json'
 
 # Get test user's first & last name and log in
 @pytest.fixture(autouse=True)
@@ -21,8 +22,11 @@ def setup():
     dataFileInit(TESTMODE)
 
     open(DATAFILE, 'w').close()
+    open(SETTINGSFILE, 'w').close()
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
+    with open(SETTINGSFILE, 'w') as json_file:
+        json_file.write('{"userSettings": []}')
     register("user1", "Password123!", "Andy", "Nguyen")
     register("user2", "Password123*", "Spoopy", "Ando")
     register("testuser1", "Password123@", "tommy", "truong")

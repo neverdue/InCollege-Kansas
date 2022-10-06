@@ -67,7 +67,7 @@ def register(username, password, first, last):
     with open(settingFile) as json_file:
         data = json.load(json_file)
         temp = data["userSettings"]
-        newData = {"username": username, "language": "english", "email": True, "SMS": True, "ads": True}
+        newData = {"username": username, "language": "english", "email": setting(True), "SMS": setting(True), "ads": setting(True)}
         temp.append(newData)
 
     wJson(data, settingFile)
@@ -135,3 +135,5 @@ def verifyCredentials(usernameInput, passwordInput):
                 return 1
     return 0
 
+def setting(flag):
+    return "True" if flag == True else "False"
