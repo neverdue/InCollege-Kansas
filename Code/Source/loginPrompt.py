@@ -74,7 +74,7 @@ def register(username, password, first, last):
 
     print("You have successfully registered.")
 
-    userInit(username, first, last)
+    userInit(username, first, last, "english", True, True, True)
 
     return 1
 

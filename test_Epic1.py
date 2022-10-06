@@ -3,7 +3,7 @@ from Code.Source.passwordCheck import securePassword
 from Code.Source.accountCount import accountLimit
 from Code.Source.accountCheck import accountExist
 from Code.Source.loginPrompt import register, login, verifyCredentials
-from Code.Source.home_page import showHomePageGreeting, showSkillPageGreeting, showConstructionMessage, route
+from Code.Source.menu import showHomePageGreeting, showSkillPageGreeting, showConstructionMessage, route
 from Code.Source.globalVariables import stackInit, dataFileInit
 
 TESTMODE = True
@@ -93,7 +93,7 @@ def test_homePage(capfd):
     showHomePageGreeting()
     out, err = capfd.readouterr()
     message = "\n------------------------------------------------------------\n"
-    message += "\nWelcome to InCollege!\nPlease choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Go to previously visited page\n\n"
+    message += "\nWelcome to InCollege!\nPlease choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Go to previously visited page\n\n"
     assert out == message
 
 def test_SkillPage(capfd):

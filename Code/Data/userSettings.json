@@ -4,8 +4,8 @@
             "username": "user1",
             "language": "english",
             "email": "True",
-            "SMS": "True",
-            "ads": "True"
+            "SMS": "False",
+            "ads": "False"
         }
     ]
 }

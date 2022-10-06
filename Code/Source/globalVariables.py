@@ -10,7 +10,7 @@ def dataFileInit(TESTMODE = False):
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
-        settingFile = "Code/Data/jobPosts-test.json"
+        settingFile = "Code/Data/userSettings-test.json"
 
 def getDataFile():
     return dataFile
@@ -39,7 +39,7 @@ def removePage():
             lastPage = pageStack.pop()
     else:
         return pageStack
-
+        
     return lastPage
 
 def printStack():
@@ -57,6 +57,13 @@ def userInit(user, first, last, language, email, sms, ads):
         "SMSPref" : sms,
         "adPref" : ads
     }
+
+def logout():
+    global loggedUser
+    loggedUser = None
+
+def getLoggedUser():
+    return loggedUser
 
 def getFirst():
     return loggedUser.get("firstName")

@@ -6,7 +6,7 @@ from main import main
 from Code.Source import globalVariables
 from Code.Source.potentialConnection import find
 from Code.Source.successStory import storyDisplay
-from Code.Source.home_page import jobPage, addJobPost, readJobPosts, findSomeonePage
+from Code.Source.menu import jobPage, addJobPost, readJobPosts, findSomeonePage
 from Code.Source.globalVariables import userInit, dataFileInit
 from Code.Source.loginPrompt import register
 from Code.Source.dupNames import uniqueNames
@@ -34,7 +34,7 @@ def setup():
         pytest.username = test_data["username"]
         pytest.first = test_data["firstName"]
         pytest.last = test_data["lastName"]
-    userInit(pytest.username, pytest.first, pytest.last)
+    userInit(pytest.username, pytest.first, pytest.last, "english", True, True, True)
 
 # Test: Check if potential connection is an existing user 
 def test_find_connection():
@@ -129,19 +129,19 @@ def test_exceed_num_jobs(capsys, monkeypatch):
 #testing that the creation of the stack as a global, add and removal works properly
 def test_pageStack_updates() -> None:
     globalVariables.stackInit()
-    globalVariables.addPage("page1")
-    globalVariables.addPage("page2")
-    globalVariables.addPage("page3")
+    globalVariables.addPage(jobPage)
+    globalVariables.addPage(findSomeonePage)
+    globalVariables.addPage(jobPage)
 
     #calling this functionality inside another test is an example of what really should be in an isolated test, it shouldn't be here. - Rier
     findSomeonePage()
     
 
-    assert globalVariables.pageStack == ["page1", "page2", "page3", "findSomeone"]
+    assert globalVariables.pageStack == [jobPage, findSomeonePage, jobPage, findSomeonePage]
     #where we should end up
-    assert globalVariables.removePage() == "page3"
+    assert globalVariables.removePage() == jobPage
     #what should be at the back
-    assert globalVariables.pageStack[-1] == "page2"
+    assert globalVariables.pageStack[-1] == findSomeonePage
 
 #test to separately see if the empty pageStack() case failed
 def test_pageStack_empty() -> None:
@@ -155,7 +155,7 @@ def test_findSomeonePage() -> None:
     globalVariables.stackInit()
     findSomeonePage()
 
-    assert globalVariables.pageStack == ["findSomeone"]
+    assert globalVariables.pageStack == [findSomeonePage]
 
 def test_uniqueNames_good():
     register("test", "Test123@", "Test", "User")
