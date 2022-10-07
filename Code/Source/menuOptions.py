@@ -98,6 +98,11 @@ def brandPolicy():
     goBackOption()
 
 def languages():
+    addPage(languages)
+    printDivider()
+    print("Languages")
+    printDivider()
+
     #ensure user is logged in
     try:
         username = getUser()
