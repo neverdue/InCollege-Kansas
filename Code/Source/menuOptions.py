@@ -1,6 +1,6 @@
 import json
 import time
-from Code.Source.globalVariables import addPage, getAdPref, getDataFile, getEmailPref, getLang, getSMSPref, getUser, printStack, removePage, setAdPref, setEmailPref, setLang, setSMSPref, getTimer
+from Code.Source.globalVariables import addPage, getAdPref, getDataFile, getEmailPref, getLang, getSMSPref, getUser, removePage, setAdPref, setEmailPref, setLang, setSMSPref, getTimer
 from Code.Source.loginPrompt import signUpPage
 from Code.Source.utility import printDivider, inputValidation, writeJson
 
@@ -108,8 +108,12 @@ def languages():
         username = getUser()
         language = getLang()
     except:
-        print("Error: No user logged in")
-        return -1    
+        raise Exception("Error: No user logged in")
+
+    addPage(languages)
+    printDivider()
+    print("Languages")
+    printDivider()
 
     while(True):
         language2 = "English" if language == "Spanish" else "Spanish"
@@ -140,7 +144,7 @@ def languages():
             time.sleep(timer)   
             printDivider()
         elif choice == '2':
-            goBackOption()
+            back()
         else:
             print("Invalid input. Please try again.")
 
@@ -195,8 +199,7 @@ def privacyPolicy():
     print(message)
     inputSelection = inputValidation(1, 3)
     if inputSelection == 1:
-        if guestControls() == -1:
-            exit
+        guestControls()
     elif inputSelection == 2:
         back()
 
@@ -210,8 +213,7 @@ def guestControls():
         SMSPref = getSMSPref()
         adPref = getAdPref()
     except:
-        print("Error: No user logged in")
-        return -1
+        raise Exception("Error: No user logged in")
 
     while(True):
         print("\nWould you like to update any of your settings?\n")

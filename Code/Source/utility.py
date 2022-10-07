@@ -24,15 +24,13 @@ def inputValidation(left, right):
     try:
         inputSelection = int(input("Selection: "))
     except ValueError:
-        print("Invalid input!")
-        return
+        raise Exception("Invalid input!")
     while (inputSelection not in range(left, right)):
         print("Invalid selection, please try again.\n")
         try:
             inputSelection = int(input("Selection: "))
         except ValueError:
-            print("Invalid input!")
-            exit
+            raise Exception("Invalid input!")
     return inputSelection
 
 def accountExist(username):
