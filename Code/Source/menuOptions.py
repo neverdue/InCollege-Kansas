@@ -110,11 +110,6 @@ def languages():
     except:
         raise Exception("Error: No user logged in")
 
-    addPage(languages)
-    printDivider()
-    print("Languages")
-    printDivider()
-
     while(True):
         language2 = "English" if language == "Spanish" else "Spanish"
         print("\nWould you like to change the language for InCollege?\nCurrent Language: ", language)

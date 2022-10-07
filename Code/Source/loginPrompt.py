@@ -56,7 +56,7 @@ def register(username, password, first, last):
     with open(dataFile) as json_file:
         data = json.load(json_file)
         temp = data["accounts"]
-        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last, "language": "english", "email": setting(True), "SMS": setting(True), "ads": setting(True)}
+        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last, "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True)}
         temp.append(newData)
 
     wJson(data, dataFile)
@@ -65,7 +65,7 @@ def register(username, password, first, last):
     timer = getTimer()
     time.sleep(timer)
 
-    userInit(username, first, last, "english", True, True, True)
+    userInit(username, first, last, "English", True, True, True)
 
     return 1
 

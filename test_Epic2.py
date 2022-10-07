@@ -32,7 +32,7 @@ def setup():
         pytest.username = test_data["username"]
         pytest.first = test_data["firstName"]
         pytest.last = test_data["lastName"]
-    userInit(pytest.username, pytest.first, pytest.last, "english", True, True, True)
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True)
 
 # Test: Check if potential connection is an existing user 
 def test_find_connection():
