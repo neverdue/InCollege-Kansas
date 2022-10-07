@@ -1,18 +1,14 @@
-#from globalVariables import init, addPage, removePage, printStack
-from Code.Source.globalVariables import init, addPage, removePage, printStack
 import json
+from Code.Source.globalVariables import addPage, getFirst, getJobFile, getLast, getUser
+from Code.Source.menuOptions import back
+from Code.Source.utility import printDivider, writeJson
 
-firstName = "John"
-lastName = "Doe"
-
-#TEMPERARY FOR TESTING
-init()
 
 def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job
-2. Find someone you know\n3. Learn a new skill\n4. Go to previously visited page\n\n""")
+2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Go to previously visited page\n""")
 
 def showSkillPageGreeting():
     printDivider()
@@ -23,95 +19,41 @@ def showConstructionMessage(message):
     printDivider()
     print("We're sorry!\n'{}' feature is still under construction.\n".format(message))
 
-def homePage(): 
-    #Add home page to page stack
-    addPage("home")
-    printStack()
-    showHomePageGreeting()
-    try: 
-        user_choice = int(input("Enter your option (1, 2, 3, or 4): "))
-    except:
-        print("Invalid Input!") 
-        return
-
-    while user_choice not in range(1, 5):
-        showHomePageGreeting()
-        try:
-            user_choice = int(input("Enter your option (1, 2, 3 or 4): "))   
-        except:
-            print("Invalid Input!") 
-            return
-
-    route(user_choice)
-    returnToHomePage()
-
-def route(user_choice):
-    if user_choice == 1:
-        jobPage()
-    elif user_choice == 2:
-        findSomeonePage()
-    elif user_choice == 3:
-        addPage("learnSkill")
-        showSkillPageGreeting()
-        skill_choice = input("Your choice: ")
-        while skill_choice != 'y' and skill_choice != 'x' and skill_choice not in [str(i) for i in range(1, 6)]:
-            showSkillPageGreeting()
-            skill_choice = input("Your choice: ")
-        if skill_choice == 'x':
-            homePage()
-        elif skill_choice == 'y':
-            lastPage = removePage()
-            checkPages(lastPage)
-        else: 
-            skillPage(skill_choice)
-    elif user_choice == 4:
-        lastPage = removePage()
-        checkPages(lastPage)
-
-#Checks all possible pages to call back to last page visited
-def checkPages(page):
-    if page == "main":
-        main()
-    elif page == "home":
-        homePage()
-    elif page == "job":
-        jobPage()
-    elif page == "postJob":
-        addJobPost()
-    elif page == "findSomeone":
-        findSomeonePage()
-    elif page == "learnSkill":
-        skillPage()
-    else:
-        print("ERROR. Page not found")
-
 def returnToHomePage():
+    try:
+        username = getUser()
+    except:
+        raise Exception("You are not logged in!")
     user_choice = input('Go back to homepage? (y/n): ')
     while user_choice != 'y' and user_choice != 'n':
         user_choice = input('Please enter y for yes, n for no: ')
     if user_choice == 'y':
-        homePage()
+        return "homePage"
     else: 
         printDivider()
         exit
 
 def jobPage():
-    addPage("job")
+    addPage(jobPage)
 
-    user_choice = input("\n1. Post a job\n2. Home page\n3. Previous Page\n\nEnter your option: ")
+    message = "\n1. Post a job\n2. Home page\n3. Previous Page\n"
+    print(message)
+    user_choice = input("Enter your option: ")
     while user_choice != '1' and user_choice != '2' and user_choice != '3':
-        user_choice = input('invalid input. \n1. Post a job\n2. Home page\n3. Previous Page\n')
-    if user_choice == 1:
+        print("\nInvalid input.\n" + message)
+        user_choice = input("Enter your option: ")
+    if user_choice == '1':
         addJobPost()
-    elif user_choice == 2:
-        homePage() 
-    elif user_choice == 3:
-        lastPage = removePage()
-        checkPages(lastPage)
-    
+    elif user_choice == '2':
+        return "homePage"
+    elif user_choice == '3':
+        back()
+
 def addJobPost():
+    fileName = getJobFile()
+
     #Checks if already 5 job posts
-    with open ('jobPosts.json') as jsonFile:
+    with open (fileName) as jsonFile:
         data = json.load(jsonFile)
         temp1 = data["numPosts"]
         if temp1 >= 5:
@@ -152,11 +94,11 @@ def addJobPost():
         "Employer" : jobEmployer,
         "Location" : jobLocation,
         "Salary" : jobSalary,
-        "Name" : firstName + ' ' + lastName
+        "Name" : getFirst() + ' ' + getLast()
     }
 
     #Appends new post to json file, Increase post count if < 5
-    with open ('jobPosts.json') as jsonFile:
+    with open (fileName) as jsonFile:
         data = json.load(jsonFile)
         temp = data["jobPosts"]
         y = jobDictionary
@@ -166,17 +108,13 @@ def addJobPost():
         temp1 = data["numPosts"]
         data["numPosts"] = temp1 + 1
     
-    writeJson(data, 'jobPosts.json')
-        
-#Write data to a json File
-def writeJson(data, filename):
-    with open (filename, "w") as f:
-        json.dump(data, f, indent = 4) 
+    writeJson(data, fileName)
 
 #Read in job posts at application start upclear
 def readJobPosts():
-    with open('jobPosts.json') as json_file:
-        data  = json.load(json_file)
+    fileName = getJobFile()
+    with open(fileName) as json_file:
+        data = json.load(json_file)
         jobPosts = data["jobPosts"]
     return jobPosts
 
@@ -188,17 +126,8 @@ def checkLength(input, limit):
     return True
 
 def findSomeonePage():
-    addPage("findSomeone")
+    addPage(findSomeonePage)
     showConstructionMessage("Find someone you know")
 
 def skillPage(skill):
     showConstructionMessage("Learn a new skill")
-
-def printDivider():
-    print('\n' + '-'*60 + '\n')
-
-def main(): 
-    homePage()
-
-if __name__ == "__main__":
-    main()

@@ -1,0 +1,45 @@
+{
+    "numPosts": 5,
+    "jobPosts": [
+        {
+            "Title": "Job1",
+            "Description": "Work",
+            "Employer": "Apple",
+            "Location": "Silicon Valley",
+            "Salary": "$300,000",
+            "Name": "Andy Nguyen"
+        },
+        {
+            "Title": "Job2",
+            "Description": "Work",
+            "Employer": "Apple",
+            "Location": "Silicon Valley",
+            "Salary": "$300,000",
+            "Name": "Andy Nguyen"
+        },
+        {
+            "Title": "Job3",
+            "Description": "Work",
+            "Employer": "Apple",
+            "Location": "Silicon Valley",
+            "Salary": "$300,000",
+            "Name": "Andy Nguyen"
+        },
+        {
+            "Title": "Job4",
+            "Description": "Work",
+            "Employer": "Apple",
+            "Location": "Silicon Valley",
+            "Salary": "$300,000",
+            "Name": "Andy Nguyen"
+        },
+        {
+            "Title": "Job5",
+            "Description": "Work",
+            "Employer": "Apple",
+            "Location": "Silicon Valley",
+            "Salary": "$300,000",
+            "Name": "Andy Nguyen"
+        }
+    ]
+}

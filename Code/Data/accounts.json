@@ -1,0 +1,54 @@
+{
+    "accounts": [
+        {
+            "username": "user1",
+            "password": "Password123!",
+            "firstName": "Andy",
+            "lastName": "Nguyen",
+            "language": "Spanish",
+            "email": "True",
+            "SMS": "False",
+            "ads": "False"
+        },
+        {
+            "username": "user2",
+            "password": "Password123*",
+            "firstName": "Spoopy",
+            "lastName": "Ando",
+            "language": "English",
+            "email": "False",
+            "SMS": "False",
+            "ads": "False"
+        },
+        {
+            "username": "testuser1",
+            "password": "Password123@",
+            "firstName": "tommy",
+            "lastName": "truong",
+            "language": "English",
+            "email": "False",
+            "SMS": "False",
+            "ads": "True"
+        },
+        {
+            "username": "testuser2",
+            "password": "Password123$",
+            "firstName": "kevin",
+            "lastName": "vu",
+            "language": "English",
+            "email": "False",
+            "SMS": "False",
+            "ads": "False"
+        },
+        {
+            "username": "test",
+            "password": "Test123@",
+            "firstName": "Testy",
+            "lastName": "Python",
+            "language": "English",
+            "email": "False",
+            "SMS": "False",
+            "ads": "False"
+        }
+    ]
+}
