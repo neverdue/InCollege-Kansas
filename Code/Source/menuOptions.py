@@ -98,7 +98,6 @@ def brandPolicy():
     goBackOption()
 
 def languages():
-    #TODO Need to add languages options
     addPage(languages)
     printDivider()
     print("Languages")
