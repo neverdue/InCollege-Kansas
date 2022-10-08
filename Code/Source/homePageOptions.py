@@ -1,7 +1,7 @@
 import json
 from Code.Source.globalVariables import addPage, getFirst, getJobFile, getLast, getUser
 from Code.Source.menuOptions import back
-from Code.Source.utility import printDivider, writeJson
+from Code.Source.utility import endProgram, printDivider, writeJson
 
 
 def showHomePageGreeting():
@@ -25,6 +25,10 @@ def returnToHomePage():
     except:
         raise Exception("You are not logged in!")
     user_choice = input('Go back to homepage? (y/n): ')
+
+    if user_choice == '-1':
+        endProgram()
+
     while user_choice != 'y' and user_choice != 'n':
         user_choice = input('Please enter y for yes, n for no: ')
     if user_choice == 'y':
@@ -39,9 +43,16 @@ def jobPage():
     message = "\n1. Post a job\n2. Home page\n3. Previous Page\n"
     print(message)
     user_choice = input("Enter your option: ")
+
+    if user_choice == '-1':
+        endProgram()
+
     while user_choice != '1' and user_choice != '2' and user_choice != '3':
         print("\nInvalid input.\n" + message)
         user_choice = input("Enter your option: ")
+        if user_choice == '-1':
+            endProgram()
+
     if user_choice == '1':
         addJobPost()
     elif user_choice == '2':

@@ -1,5 +1,5 @@
 from Code.Source.menu import homePage, incollegeImpLinks, usefulLinksMenu
-from Code.Source.utility import uniqueNames, storyDisplay, accountLimit, find
+from Code.Source.utility import endProgram, uniqueNames, storyDisplay, accountLimit, find
 from Code.Source.globalVariables import addPage, logout, getTimer
 from Code.Source.loginPrompt import signUpPage, login, register
 import time
@@ -15,12 +15,18 @@ def mainPage():
     except ValueError:
         raise Exception("Invalid input!")
 
+    if menuSelection == -1:
+        endProgram()
+
     while (menuSelection not in range(1, 7)):
         print("Invalid selection, please try again.\n")
         try:
             menuSelection = int(input("Select 1 to login to an existing account\nSelect 2 to register a new account\nSelection: "))
         except ValueError:
             raise Exception("Invalid input!")
+        
+        if menuSelection == -1:
+            endProgram()
 
     if menuSelection == 1 and accountLimit() != 0:
         username = input("Enter username: ")
@@ -47,6 +53,9 @@ def mainPage():
                 signUp = int(input("Selection: "))
             except ValueError:
                 raise Exception("Invalid input!")
+
+            if signUp == -1:
+                endProgram()
         
             while(signUp != 1 and signUp != 2):
                 print("Invalid selection, please try again.\n")
@@ -55,6 +64,10 @@ def mainPage():
                     signUp = int(input("Selection: "))
                 except ValueError:
                     raise Exception("Invalid input!")
+                
+                if signUp == -1:
+                    endProgram()
+                
             if signUp == 1:
                 username = input("Enter username: ")
                 password = input("Enter password: ")
