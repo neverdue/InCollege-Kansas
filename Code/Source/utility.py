@@ -25,6 +25,10 @@ def inputValidation(left, right):
         inputSelection = int(input("Selection: "))
     except ValueError:
         raise Exception("Invalid input!")
+
+    if inputSelection == -1:
+        endProgram()
+
     while (inputSelection not in range(left, right)):
         print("Invalid selection, please try again.\n")
         try:
@@ -162,3 +166,7 @@ def accountLimit():
         for items in data["accounts"]:
             userCount+=1
     return userCount
+
+def endProgram():
+    print("Thank you for using InCollege!")
+    exit()

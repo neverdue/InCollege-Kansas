@@ -2,7 +2,7 @@ import json
 import time
 from Code.Source.globalVariables import addPage, getAdPref, getDataFile, getEmailPref, getLang, getSMSPref, getUser, removePage, setAdPref, setEmailPref, setLang, setSMSPref, getTimer
 from Code.Source.loginPrompt import signUpPage
-from Code.Source.utility import printDivider, inputValidation, writeJson
+from Code.Source.utility import endProgram, printDivider, inputValidation, writeJson
 
 def underConstruction():
     printDivider()
@@ -116,6 +116,9 @@ def languages():
         print("\n\nTo change to", language2, "(1),", end = '')
         choice = input(" to go to previous page(2): ")
 
+        if choice == '-1':
+            endProgram()
+
         if choice == '1':
             file = getDataFile()
             with open(file) as json_file:
@@ -216,6 +219,9 @@ def guestControls():
         print("Recieve SMS from InCollege: ", SMSPref)
         print("Recieve targeted ads:       ", adPref)
         choice = input("\nUpdate emails(1), SMS(2), ads(3), go back to previous page(4): ")
+
+        if choice == '-1':
+            endProgram()
 
         if choice == '1':
             if emailPref == True:
