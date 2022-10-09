@@ -6,16 +6,16 @@
             "firstName": "Andy",
             "lastName": "Nguyen",
             "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True"
+            "email": "False",
+            "SMS": "False",
+            "ads": "False"
         },
         {
             "username": "user2",
             "password": "Password123*",
             "firstName": "Spoopy",
             "lastName": "Ando",
-            "language": "English",
+            "language": "Spanish",
             "email": "True",
             "SMS": "True",
             "ads": "True"
