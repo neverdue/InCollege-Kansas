@@ -215,9 +215,9 @@ def guestControls():
 
     while(True):
         print("\nWould you like to update any of your settings?\n")
-        print("Recieve InCollege emails:   ", emailPref)
-        print("Recieve SMS from InCollege: ", SMSPref)
-        print("Recieve targeted ads:       ", adPref)
+        print("Receive InCollege emails:   ", emailPref)
+        print("Receive SMS from InCollege: ", SMSPref)
+        print("Receive targeted ads:       ", adPref)
         choice = input("\nUpdate emails(1), SMS(2), ads(3), go back to previous page(4): ")
 
         if choice == '-1':
@@ -225,26 +225,26 @@ def guestControls():
 
         if choice == '1':
             if emailPref == True:
-                print("\nYou will no longer recieve emails from InCollege.\n")
+                print("\nYou will no longer receive emails from InCollege.\n")
                 emailPref = False               
             else:
-                print("\nYou will now recieve emails from InCollege.\n")
+                print("\nYou will now receive emails from InCollege.\n")
                 emailPref = True
             updateSettings(username, emailPref, SMSPref, adPref)
         elif choice == '2':
             if SMSPref == True:
-                print("\nYou will no longer recieve SMS messages from InCollege.\n")
+                print("\nYou will no longer receive SMS messages from InCollege.\n")
                 SMSPref = False
             else:
-                print("\nYou will now recieve SMS messages from InCollege.\n")
+                print("\nYou will now receive SMS messages from InCollege.\n")
                 SMSPref = True
             updateSettings(username, emailPref, SMSPref, adPref)
         elif choice == '3':
             if adPref == True:
-                print("\nYou will no longer recieve targeted ads.\n")
+                print("\nYou will no longer receive targeted ads.\n")
                 adPref = False
             else:
-                print("\nYou will now recieve targeted ads.\n")
+                print("\nYou will now receive targeted ads.\n")
                 adPref = True
             updateSettings(username, emailPref, SMSPref, adPref)
         elif choice == '4':
