@@ -27,8 +27,6 @@ def test_links(capsys, monkeypatch, login):
         assert 'Useful Links' in out 
         assert 'InCollege Important Links' in out
 
-''' USEFUL LINKS TESTS '''
-
 # Test: Useful Links display appropriate links 
 def test_usefulLinksMenu(capsys, monkeypatch): 
     links = ['General', 'Browse InCollege', 'Business Solutions', 'Directories']
@@ -57,19 +55,6 @@ def test_general(capsys, monkeypatch):
         for link in links:
             assert link in out
 
-# Test: Following functions display correct message 
-@pytest.mark.parametrize('function, message',
-[(helpCenter, "We're here to help"),
-(about, "In College: Welcome to In College, the world's largest college student network with many users in many countries and territories worldwide"),
-(press, 'In College Pressroom: Stay on top of the latest news, updates, and reports')])
-
-def test_useful_links_message(capsys, function, message):
-    try: 
-        function()   
-    except NO_INPUT: 
-        out, err = capsys.readouterr()
-        assert message in out
-
 # Test: Following functions display 'Under construction' message
 @pytest.mark.parametrize('function', [blog, careers, developers, browseInCollege, businessSolutions, directories])
 def test_under_construction(capsys, function):
@@ -79,8 +64,6 @@ def test_under_construction(capsys, function):
         message = 'Under construction'
         out, err = capsys.readouterr()
         assert message in out 
-
-''' INCOLLEGE IMPORTANT LINKS TESTS '''
 
 # Test: InCollege Important Links display appropriate links
 def test_incollegeImpLinks(capsys, monkeypatch):
@@ -92,11 +75,13 @@ def test_incollegeImpLinks(capsys, monkeypatch):
         out, err = capsys.readouterr()
         for link in links:
             assert link in out 
-        # assert links in out 
 
 # Test: Following functions display appropriate messages 
 @pytest.mark.parametrize('function, message',
-[(copyrightNotice, 'Copyright Notice'), (accessibility, 'accessibility'), (userAgreement, 'User Agreement'),
+[(helpCenter, "We're here to help"),
+(about, "In College: Welcome to In College, the world's largest college student network with many users in many countries and territories worldwide"),
+(press, 'In College Pressroom: Stay on top of the latest news, updates, and reports'),
+(copyrightNotice, 'Copyright Notice'), (accessibility, 'accessibility'), (userAgreement, 'User Agreement'),
 (privacyPolicy, 'Guest Controls'), (cookiePolicy, 'cookie policy'), (copyrightPolicy, 'copyright policy'),
 (brandPolicy, 'Brand Policy'), (languages, 'English'), (languages, 'Spanish')])
 
