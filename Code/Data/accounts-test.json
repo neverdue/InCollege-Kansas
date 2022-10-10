@@ -6,9 +6,9 @@
             "firstName": "Andy",
             "lastName": "Nguyen",
             "language": "Spanish",
-            "email": "True",
-            "SMS": "True",
-            "ads": "False"
+            "email": "False",
+            "SMS": "False",
+            "ads": "True"
         },
         {
             "username": "user2",

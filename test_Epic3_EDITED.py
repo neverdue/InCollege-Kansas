@@ -103,7 +103,6 @@ def getStatus():
 (['2'], "\nYou will no longer receive SMS messages from InCollege.\n"),
 (['3'], "\nYou will no longer receive targeted ads.\n")])
 
-@pytest.mark.skipif(getStatus() == "False", reason="Skipping this test function because test JSON needs to be tested from false guest control values to true")
 def test_guestControls(capsys, monkeypatch, test_inputs, messages):
     try:
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
@@ -119,9 +118,9 @@ def test_guestControls(capsys, monkeypatch, test_inputs, messages):
 (['2'], "\nYou will now receive SMS messages from InCollege.\n"),
 (['3'], "\nYou will now receive targeted ads.\n")])
 
-@pytest.mark.skipif(getStatus() == "True", reason="Skipping this test function because test JSON needs to be tested from true guest control values to negative")
 def test_guestControls2(capsys, monkeypatch, test_inputs2, messages):
     try:
+        userInit('user1', 'Andy', 'Nguyen', 'English', False, False, False)
         monkeypatch.setattr('builtins.input', lambda _: test_inputs2.pop(0))
         guestControls()
     except IndexError:
