@@ -100,9 +100,9 @@ def getStatus():
 # IC-26 Update the User object to hold the "GuestControls" features.
 #Tests case for when need to check if GuestControl features are turned off
 @pytest.mark.parametrize("test_inputs, messages",
-[(['1'], "\nYou will no longer recieve emails from InCollege.\n"),
-(['2'], "\nYou will no longer recieve SMS messages from InCollege.\n"),
-(['3'], "\nYou will no longer recieve targeted ads.\n")])
+[(['1'], "\nYou will no longer receive emails from InCollege.\n"),
+(['2'], "\nYou will no longer receive SMS messages from InCollege.\n"),
+(['3'], "\nYou will no longer receive targeted ads.\n")])
 
 @pytest.mark.skipif(getStatus() == "False", reason="Skipping this test function because test JSON needs to be tested from false guest control values to true")
 def test_guestControls(capsys, monkeypatch, test_inputs, messages):
@@ -120,9 +120,9 @@ def test_guestControls(capsys, monkeypatch, test_inputs, messages):
 # IC-26 Update the User object to hold the "GuestControls" features.
 #Tests case for when need to check if GuestControl features are turned on
 @pytest.mark.parametrize("test_inputs2, messages",
-[(['1'], "\nYou will now recieve emails from InCollege.\n"),
-(['2'], "\nYou will now recieve SMS messages from InCollege.\n"),
-(['3'], "\nYou will now recieve targeted ads.\n")])
+[(['1'], "\nYou will now receive emails from InCollege.\n"),
+(['2'], "\nYou will now receive SMS messages from InCollege.\n"),
+(['3'], "\nYou will now receive targeted ads.\n")])
 
 @pytest.mark.skipif(getStatus() == "True", reason="Skipping this test function because test JSON needs to be tested from true guest control values to negative")
 def test_guestControls2(capsys, monkeypatch, test_inputs2, messages):
