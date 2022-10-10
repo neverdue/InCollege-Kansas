@@ -5,9 +5,9 @@
             "password": "Password123!",
             "firstName": "Andy",
             "lastName": "Nguyen",
-            "language": "English",
-            "email": "False",
-            "SMS": "False",
+            "language": "Spanish",
+            "email": "True",
+            "SMS": "True",
             "ads": "False"
         },
         {
@@ -15,7 +15,7 @@
             "password": "Password123*",
             "firstName": "Spoopy",
             "lastName": "Ando",
-            "language": "Spanish",
+            "language": "English",
             "email": "True",
             "SMS": "True",
             "ads": "True"
