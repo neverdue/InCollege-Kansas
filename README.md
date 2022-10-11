@@ -23,6 +23,6 @@ users-test.txt stores account usernames and passwords (separated by a single spa
 
 accountCheck.py checks if there are duplicate usernames
 
-accountCount.py checks if there are more than 5 accounts within the users.txt file
+accountCount.py checks if there are more than 10 accounts within the users.txt file
 
 passwordCheck.py checks if the passwords fit the criteria of having 1 upper case character, 1 special case character, etc.

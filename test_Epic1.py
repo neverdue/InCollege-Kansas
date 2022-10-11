@@ -7,6 +7,7 @@ from Code.Source.globalVariables import stackInit, dataFileInit
 
 TESTMODE = True
 DATAFILE =  "Code/Data/accounts-test.json"
+ACCOUNT_LIMIT = 10
 
 @pytest.fixture(autouse=True)
 def setup():
@@ -48,23 +49,28 @@ def test_account_exist(username, password, firstName, lastName):
     register(username, password, firstName, lastName)
     assert accountExist(username) == 1
 
-def test_five_accounts():
+def test_ten_accounts():
     potential_users = [
         ("test1", "Test123@", "Test1", "User"),
         ("test2", "Test123@", "Test2", "User"),
         ("test3", "Test123@", "Test3", "User"),
         ("test4", "Test123@", "Test4", "User"),
         ("test5", "Test123@", "Test5", "User"),
+        ("test6", "Test123@", "Test6", "User"),
+        ("test7", "Test123@", "Test7", "User"),
+        ("test8", "Test123@", "Test8", "User"),
+        ("test9", "Test123@", "Test9", "User"),
+        ("test10", "Test123@", "Test10", "User")
     ]
     for user in potential_users:
         register(user[0], user[1], user[2], user[3])
-    assert accountLimit() == 5
-    bad_user = "test6"
+    assert accountLimit() == ACCOUNT_LIMIT
+    bad_user = "test11"
     password = "Test123@"
-    first = "Test6"
+    first = "Test11"
     last = "User"
     assert register(bad_user, password, first, last) != 1
-    assert accountLimit() == 5
+    assert accountLimit() == ACCOUNT_LIMIT
 
 def test_login(username, password, firstName, lastName):
     register(username, password, firstName, lastName)
