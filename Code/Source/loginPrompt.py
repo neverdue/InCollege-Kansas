@@ -45,7 +45,7 @@ def register(username, password, first, last):
     if accountExist(username) == 1:
         print("Username {} already exists, please try again.".format(username)) 
         return
-    if accountLimit() >= 5:
+    if accountLimit() >= 10:
         print("All permitted accounts have been created, please come back and try later.")
         return
 
