@@ -6,7 +6,7 @@ def dataFileInit(TESTMODE = False):
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
-        timer = 2
+        timer = 0
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
@@ -47,7 +47,7 @@ def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last, language, email, sms, ads):
+def userInit(user, first, last, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friends = []):
     global loggedUser
     loggedUser = {
         "username" : user,
@@ -56,7 +56,10 @@ def userInit(user, first, last, language, email, sms, ads):
         "language" : language,
         "emailPref" : email,
         "SMSPref" : sms,
-        "adPref" : ads
+        "adPref" : ads,
+        "incomingRequests" : incomingRequests,
+        "outgoingRequests" : outgoingRequests,
+        "friends" : friends
     }
 
 def logout():
@@ -98,3 +101,21 @@ def getAdPref():
 
 def setAdPref(x):
     loggedUser["ads"] = x
+
+def getIncomingRequests():
+    return loggedUser.get("incomingRequests")
+
+def setIncomingRequests(x):
+    loggedUser["incomingRequests"] = x
+
+def getOutgoingRequests():
+    return loggedUser.get("outgoingRequests")
+
+def setOutgoingRequests(x):
+    loggedUser["outgoingRequests"] = x
+
+def getFriends():
+    return loggedUser.get("friends")
+
+def setFriends(x):
+    loggedUser["friends"] = x

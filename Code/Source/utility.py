@@ -167,6 +167,58 @@ def accountLimit():
             userCount+=1
     return userCount
 
+def getUserData(username):
+    dataFile = getDataFile()
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+        for user in data["accounts"]:
+            if user["username"] == username:
+                return user
+        return data
+
+def viewUser(user):
+    print("Name: {} {}".format(user["firstName"], user["lastName"]))
+    print("Username: {}".format(user["username"]))
+
+def sendRequest(user1, user2):
+    '''
+    user1 is the user that is sending the request to user2
+    '''
+    print("Sending request to {}...".format(user2["username"]))
+    print("Request sent!")
+
+def acceptRequest(user1, user2):
+    '''
+    user1 is the user that is accepting the request from user2
+    '''
+    print("Accepting request from {}...".format(user2["username"]))
+    print("Request accepted!")
+
+def rejectRequest(user1, user2):
+    '''
+    user1 is the user that is rejecting the request from user2
+    '''
+    print("Rejecting request from {}...".format(user2["username"]))
+    print("Request rejected!")
+
+def unFriend(user1, user2):
+    '''
+    user1 is the user that is unfriending user2
+    '''
+    print("Unfriending {}...".format(user2["username"]))
+    print("Unfriended!")
+
+def updateUserAttribute(loggedUser, attribute, value):
+    dataFile = getDataFile()
+    with open(dataFile) as json_file:
+        data = json.load(json_file)
+        for user in data["accounts"]:
+            if user["username"] == loggedUser["username"]:
+                user[attribute] = value
+    writeJson(data, dataFile)
+
+
+
 def endProgram():
     print("Thank you for using InCollege!")
     exit()

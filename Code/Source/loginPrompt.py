@@ -102,8 +102,21 @@ def login(username, password):
                 email = True if items["email"] == "True" else False
                 SMS = True if items["SMS"] == "True" else False 
                 ads = True if items["ads"] == "True" else False
+
+    incomingRequests = [
+        "user2",
+        "test"
+    ]
+
+    outgoingRequests = [
+        "testuser1",
+        "testuser2"
+    ]
+
+    friends = []
+
     #set user variable
-    userInit(username, firstname, lastname, language, email, SMS, ads)
+    userInit(username, firstname, lastname, language, email, SMS, ads, incomingRequests, outgoingRequests, friends)
 
     return 1
 

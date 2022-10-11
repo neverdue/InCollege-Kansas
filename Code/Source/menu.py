@@ -1,5 +1,5 @@
-from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, showHomePageGreeting, showSkillPageGreeting, skillPage
-from Code.Source.globalVariables import addPage, removePage
+from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests
+from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider
 
@@ -53,11 +53,19 @@ def usefulLinksMenu():
 # HOME PAGE
 def homePage(): 
     #Add home page to page stack
+
+    while len(getIncomingRequests()) > 0:
+        print("\n\nYou have " + str(len(getIncomingRequests())) + " incoming requests!\n")
+        if viewIncomingRequests(getIncomingRequests()) == "back":
+            break
+    else:
+        print("\n\nYou have no incoming requests!")
+
     addPage(homePage)
 
     showHomePageGreeting()
     try: 
-        user_choice = int(input("Enter your option (1, 2, 3, 4, 5 or 6): "))
+        user_choice = int(input("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, or 9): "))
     except:
         print("Invalid input!")
         return
@@ -65,10 +73,10 @@ def homePage():
     if user_choice == -1:
         endProgram()
 
-    while user_choice not in range(1, 7):
+    while user_choice not in range(1, 10):
         showHomePageGreeting()
         try:
-            user_choice = int(input("Enter your option (1, 2, 3, 4, 5 or 6): "))   
+            user_choice = int(input("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, or 9): "))   
         except:
             print("Invalid input!")
             return
@@ -105,4 +113,10 @@ def route(user_choice):
     elif user_choice == 5:
         incollegeImpLinks()
     elif user_choice == 6:
+        searchUsers()
+    elif user_choice == 7:
+        viewOutgoingRequests()
+    elif user_choice == 8:
+        showMyNetwork()
+    elif user_choice == 9:
         back()
