@@ -56,7 +56,9 @@ def register(username, password, first, last):
     with open(dataFile) as json_file:
         data = json.load(json_file)
         temp = data["accounts"]
-        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last, "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True)}
+        newData = {"username": username, "password" : password, "firstName" : first,
+         "lastName" : last, "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True),
+        "friendsList" : [], "incomingRequests" : [], "outgoingRequests" : []}
         temp.append(newData)
 
     wJson(data, dataFile)

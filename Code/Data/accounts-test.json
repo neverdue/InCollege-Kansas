@@ -8,7 +8,10 @@
             "language": "Spanish",
             "email": "False",
             "SMS": "False",
-            "ads": "True"
+            "ads": "True",
+            "friendsList": [],
+            "incomingRequests": [],
+            "outgoingRequests": []
         },
         {
             "username": "user2",
@@ -18,7 +21,10 @@
             "language": "English",
             "email": "True",
             "SMS": "True",
-            "ads": "True"
+            "ads": "True",
+            "friendsList": [],
+            "incomingRequests": [],
+            "outgoingRequests": []
         },
         {
             "username": "testuser1",
@@ -28,7 +34,10 @@
             "language": "English",
             "email": "True",
             "SMS": "True",
-            "ads": "True"
+            "ads": "True",
+            "friendsList": [],
+            "incomingRequests": [],
+            "outgoingRequests": []
         },
         {
             "username": "testuser2",
@@ -38,7 +47,10 @@
             "language": "English",
             "email": "True",
             "SMS": "True",
-            "ads": "True"
+            "ads": "True",
+            "friendsList": [],
+            "incomingRequests": [],
+            "outgoingRequests": []
         }
     ]
 }

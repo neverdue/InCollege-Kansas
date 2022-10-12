@@ -170,3 +170,24 @@ def accountLimit():
 def endProgram():
     print("Thank you for using InCollege!")
     exit()
+
+
+def createRequest(senderUsername, recipientUsername):
+    dataFile = getDataFile()
+    with open(dataFile) as json_file:
+        data = json.load(json_file)
+        for search in data["accounts"]:
+            if senderUsername.lower() == search["username"].lower():
+                print(recipientUsername, "was added to the outgoingRequests list for ", senderUsername)
+                search["outgoingRequests"].append(recipientUsername)
+                print(search["outgoingRequests"])
+            elif recipientUsername == search["username"].lower():
+                print(senderUsername, "was added to incomingRequests list for",recipientUsername)
+                search["incomingRequests"].append(senderUsername)
+                print(search["incomingRequests"])
+
+    writeJson(data, dataFile)
+
+
+
+#TODO - Update existing users easier - did not find method that did so in brief look
