@@ -5,65 +5,60 @@
             "password": "Password123!",
             "firstName": "Andy",
             "lastName": "Nguyen",
-            "university": "University of California",
+            "university": "University of South Florida",
             "major": "Computer Science",
             "language": "Spanish",
-            "email": "True",
+            "email": "False",
             "SMS": "False",
-            "ads": "False",
-            "incomingRequests": [
-                "user2",
-                "testuser1",
-                "testuser2"
-            ]
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friends": []
         },
         {
             "username": "user2",
             "password": "Password123*",
             "firstName": "Spoopy",
             "lastName": "Ando",
-            "university": "University of South Florida",
-            "major": "Computer Science",
+            "university": "University of Central Florida",
+            "major": "Mechanical Engineering",
             "language": "English",
-            "email": "False",
-            "SMS": "False",
-            "ads": "False"
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friends": []
         },
         {
             "username": "testuser1",
             "password": "Password123@",
             "firstName": "tommy",
             "lastName": "truong",
-            "university": "University of Berkely",
-            "major": "Math",
+            "university": "Florida State University",
+            "major": "Computer Science",
             "language": "English",
-            "email": "False",
-            "SMS": "False",
-            "ads": "True"
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friends": []
         },
         {
             "username": "testuser2",
             "password": "Password123$",
             "firstName": "kevin",
             "lastName": "vu",
-            "university": "University of Michigan",
-            "major": "Physics",
+            "university": "University of Florida",
+            "major": "Industrial Engineering",
             "language": "English",
-            "email": "False",
-            "SMS": "False",
-            "ads": "False"
-        },
-        {
-            "username": "test",
-            "password": "Test123@",
-            "firstName": "Testy",
-            "lastName": "Python",
-            "university": "University of Michigan",
-            "major": "Biomedical Engineering",
-            "language": "English",
-            "email": "False",
-            "SMS": "False",
-            "ads": "False"
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friends": []
         }
     ]
 }

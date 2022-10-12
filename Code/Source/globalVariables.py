@@ -47,12 +47,14 @@ def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friends = []):
+def userInit(user, first, last, university, major, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friends = []):
     global loggedUser
     loggedUser = {
         "username" : user,
         "firstName" : first,
         "lastName" : last,
+        "university" : university,
+        "major" : major,
         "language" : language,
         "emailPref" : email,
         "SMSPref" : sms,

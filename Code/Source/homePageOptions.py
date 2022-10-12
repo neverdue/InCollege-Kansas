@@ -1,6 +1,6 @@
 import json
 from Code.Source.globalVariables import addPage, getDataFile, getFirst, getFriends, getIncomingRequests, getJobFile, getLast, getLoggedUser, getOutgoingRequests, getUser, setFriends, setIncomingRequests
-from Code.Source.menuOptions import back
+from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import acceptRequest, endProgram, getUserData, printDivider, rejectRequest, sendRequest, unFriend, updateUserAttribute, viewUser, writeJson
 
 
@@ -8,7 +8,7 @@ def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job
-2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users\n7. See outgoing requests\n8. Show my network\n9. Go to previously visited page\n""")
+2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users\n7. See incoming requests\n8. See outgoing requests\n9. Show my network\n10. Go to previously visited page\n""")
 
 def showSkillPageGreeting():
     printDivider()
@@ -26,7 +26,7 @@ def returnToHomePage():
         raise Exception("You are not logged in!")
     user_choice = input('Go back to homepage? (y/n): ')
 
-    if user_choice == '-1':
+    if user_choice == '-1' or user_choice == 'n':
         endProgram()
 
     while user_choice != 'y' and user_choice != 'n':
@@ -214,6 +214,29 @@ def searchByUniversity():
     else:
         return foundUsers  
 
+def searchFilter(filterAttribute):
+    print("Enter the {} of the user you are looking for.".format(filterAttribute))
+    filterValue = input("{}: ".format(filterAttribute))
+    printDivider()
+    print("Searching for {}...".format(filterValue))
+    printDivider()
+    dataFile = getDataFile()
+    foundUsers = {}
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+        for user in data["accounts"]:
+            if user[filterAttribute] == filterValue and user["username"] != getLoggedUser()["username"] and user["username"] not in getOutgoingRequests():
+                foundUsers[user["username"]] = user
+                printDivider()
+                viewUser(user)
+                printDivider()
+    if len(foundUsers) == 0:
+        print("User not found.")
+        return -1
+    else:
+        return foundUsers  
+
+
 def searchUsers():
     addPage(searchUsers)
     message = "\n1. Search by last name\n2. Search by major\n3. Search by university\n4. Previous Page\n"
@@ -221,11 +244,11 @@ def searchUsers():
     user_choice = input("Enter your option: ")
     foundUsers = {}
     if user_choice == '1':
-        foundUsers = searchByLastName()
+        foundUsers = searchFilter("lastName")
     elif user_choice == '2':
-        foundUsers = searchByMajor()
+        foundUsers = searchFilter("major")
     elif user_choice == '3':
-        foundUsers = searchByUniversity()
+        foundUsers = searchFilter("university")
     elif user_choice == '4':
         back()
 
@@ -237,40 +260,44 @@ def searchUsers():
         else:
             print("Invalid input.")
 
-#TODO put incomingRequests inside the function
-def viewIncomingRequests(IncomingRequests):
+def viewIncomingRequests():
     addPage(viewIncomingRequests)
-    print("Incoming friend requests:")
-    printDivider()
-    for request in IncomingRequests:
+    IncomingRequests = getIncomingRequests()
+    while len(IncomingRequests) > 0:
+        print("\n\nYou have " + str(len(getIncomingRequests())) + " incoming requests!\n")
+        print("Incoming friend requests:")
         printDivider()
-        viewUser(getUserData(request))
-        printDivider()
-    print("Enter the username of the user you want to select or enter 0 to go to homepage or -1 to exit.")
-    user_choice = input("Enter your option: ")
-    if user_choice == '0':
-        return "back"
-    elif user_choice == '-1':
-        endProgram()
-    if user_choice in IncomingRequests:
-        user1 = getLoggedUser()
-        user2 = getUserData(user_choice)
-        print("1. Accept\n2. Decline")
-        option = input("Enter your option: ")
-        if option == '1':
-            acceptRequest(user1, user2)
-        elif option == '2':
-            rejectRequest(user1, user2)
+        for request in IncomingRequests:
+            printDivider()
+            viewUser(getUserData(request))
+            printDivider()
+        print("Enter the username of the user you want to select or enter 0 to go to homepage or -1 to exit.")
+        user_choice = input("Enter your option: ")
+        if user_choice == '0':
+            return "back"
+        elif user_choice == '-1':
+            endProgram()
+        if user_choice in IncomingRequests:
+            user1 = getLoggedUser()
+            user2 = getUserData(user_choice)
+            print("1. Accept\n2. Decline")
+            option = input("Enter your option: ")
+            if option == '1':
+                acceptRequest(user1, user2)
+            elif option == '2':
+                rejectRequest(user1, user2)
+            else:
+                print("Invalid input.")
+            updatedIncomingRequests = getIncomingRequests()
+            updatedIncomingRequests.remove(user_choice)
+            setIncomingRequests(updatedIncomingRequests)
+
+            #Update User Settings
+            updateUserAttribute(user1, "incomingRequests", updatedIncomingRequests)
         else:
             print("Invalid input.")
-        updatedIncomingRequests = getIncomingRequests()
-        updatedIncomingRequests.remove(user_choice)
-        setIncomingRequests(updatedIncomingRequests)
-
-        #Update User Settings
-        updateUserAttribute(user1, "incomingRequests", updatedIncomingRequests)
-    else:
-        print("Invalid input.")
+    print("You have no incoming friend requests.")
+    goBackOption()
 
 def viewOutgoingRequests():
     addPage(viewOutgoingRequests)

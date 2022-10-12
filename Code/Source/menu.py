@@ -54,13 +54,6 @@ def usefulLinksMenu():
 def homePage(): 
     #Add home page to page stack
 
-    while len(getIncomingRequests()) > 0:
-        print("\n\nYou have " + str(len(getIncomingRequests())) + " incoming requests!\n")
-        if viewIncomingRequests(getIncomingRequests()) == "back":
-            break
-    else:
-        print("\n\nYou have no incoming requests!")
-
     addPage(homePage)
 
     showHomePageGreeting()
@@ -115,8 +108,10 @@ def route(user_choice):
     elif user_choice == 6:
         searchUsers()
     elif user_choice == 7:
-        viewOutgoingRequests()
+        viewIncomingRequests()
     elif user_choice == 8:
-        showMyNetwork()
+        viewOutgoingRequests()
     elif user_choice == 9:
+        showMyNetwork()
+    elif user_choice == 10:
         back()
