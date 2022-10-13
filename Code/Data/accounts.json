@@ -12,9 +12,7 @@
             "SMS": "False",
             "ads": "True",
             "incomingRequests": [],
-            "outgoingRequests": [
-                "user2"
-            ],
+            "outgoingRequests": [],
             "friendsList": []
         },
         {
@@ -53,7 +51,7 @@
             "firstName": "kevin",
             "lastName": "vu",
             "university": "University of Florida",
-            "major": "Industrial Engineering",
+            "major": "Mechanical Engineering",
             "language": "English",
             "email": "True",
             "SMS": "True",

@@ -1,7 +1,7 @@
 import json
-from Code.Source.globalVariables import addPage, getDataFile, getFirst, getFriends, getIncomingRequests, getJobFile, getLast, getLoggedUser, getOutgoingRequests, getUser, setFriends, setIncomingRequests, setOutgoingRequests
+from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getJobFile, getLast, getOutgoingRequests, getUser
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.utility import acceptRequest, endProgram, getUserData, printDivider, rejectRequest, sendRequest, unFriend, updateUserAttribute, viewUser, writeJson
+from Code.Source.utility import addToFriendsList, createRequest, endProgram, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson
 
 
 def showHomePageGreeting():
@@ -143,100 +143,6 @@ def findSomeonePage():
 def skillPage(skill):
     showConstructionMessage("Learn a new skill")
 
-def searchByLastName():
-    addPage(searchByLastName)
-    print("Enter the last name of the user you are looking for.")
-    lastName = input("Last Name: ")
-    printDivider()
-    print("Searching for {}...".format(lastName))
-    printDivider()
-    dataFile = getDataFile()
-    foundUsers = {}
-    with open(dataFile, "r") as json_file:
-        data = json.load(json_file)
-        for user in data["accounts"]:
-            if user["lastName"] == lastName and user["username"] != getLoggedUser()["username"]:
-                foundUsers[user["username"]] = user
-                printDivider()
-                viewUser(user)
-                printDivider()
-    if len(foundUsers) == 0:
-        print("User not found.")
-        return -1
-    else:
-        return foundUsers
-
-
-def searchByMajor():
-    addPage(searchByMajor)
-    print("Enter the major of the user you are looking for.")
-    major = input("Major: ")
-    printDivider()
-    print("Searching for {}...".format(major))
-    printDivider()
-    dataFile = getDataFile()
-    foundUsers = {}
-    with open(dataFile, "r") as json_file:
-        data = json.load(json_file)
-        for user in data["accounts"]:
-            if user["major"] == major and user["username"] != getLoggedUser()["username"]:
-                foundUsers[user["username"]] = user
-                printDivider()
-                viewUser(user)
-                printDivider()
-    if len(foundUsers) == 0:
-        print("User not found.")
-        return -1
-    else:
-        return foundUsers
-
-            
-def searchByUniversity():
-    addPage(searchByUniversity)
-    print("Enter the university of the user you are looking for.")
-    university = input("University: ")
-    printDivider()
-    print("Searching for {}...".format(university))
-    printDivider()
-    dataFile = getDataFile()
-    foundUsers = {}
-    with open(dataFile, "r") as json_file:
-        data = json.load(json_file)
-        for user in data["accounts"]:
-            if user["university"] == university and user["username"] != getLoggedUser()["username"]:
-                foundUsers[user["username"]] = user
-                printDivider()
-                viewUser(user)
-                printDivider()
-    if len(foundUsers) == 0:
-        print("User not found.")
-        return -1
-    else:
-        return foundUsers  
-
-def searchFilter(filterAttribute):
-    print("Enter the {} of the user you are looking for.".format(filterAttribute))
-    filterValue = input("{}: ".format(filterAttribute))
-    printDivider()
-    print("Searching for {}...".format(filterValue))
-    printDivider()
-    dataFile = getDataFile()
-    foundUsers = {}
-    with open(dataFile, "r") as json_file:
-        data = json.load(json_file)
-        for user in data["accounts"]:
-            if user[filterAttribute] == filterValue and user["username"] != getLoggedUser()["username"] and user["username"] not in getOutgoingRequests():
-                foundUsers[user["username"]] = user
-                printDivider()
-                viewUser(user)
-                printDivider()
-    if len(foundUsers) == 0:
-        print("User not found.")
-        return -1
-    else:
-        return foundUsers  
-
-
 def searchUsers():
     addPage(searchUsers)
     message = "\n1. Search by last name\n2. Search by major\n3. Search by university\n4. Previous Page\n"
@@ -256,12 +162,7 @@ def searchUsers():
         print("Enter the username of the user you want to send a friend request.")
         user_choice = input("Enter your option: ")
         if user_choice in foundUsers:
-            sendRequest(getLoggedUser(), foundUsers[user_choice])
-            updatedOutgoingRequests = getOutgoingRequests()
-            updatedOutgoingRequests.append(user_choice)
-            setOutgoingRequests(updatedOutgoingRequests)
-
-            updateUserAttribute(getLoggedUser(), "outgoingRequests", updatedOutgoingRequests)
+            createRequest(getUser(), user_choice)
         else:
             print("Invalid input.")
 
@@ -269,38 +170,36 @@ def viewIncomingRequests():
     addPage(viewIncomingRequests)
     IncomingRequests = getIncomingRequests()
     while len(IncomingRequests) > 0:
-        print("\n\nYou have " + str(len(getIncomingRequests())) + " incoming requests!\n")
+        print("\n\nYou have " + str(len(IncomingRequests)) + " incoming requests!\n")
         print("Incoming friend requests:")
         printDivider()
         for request in IncomingRequests:
             printDivider()
-            viewUser(getUserData(request))
+            viewUser(retrieveUser(request))
             printDivider()
         print("Enter the username of the user you want to select or enter 0 to go to homepage or -1 to exit.")
         user_choice = input("Enter your option: ")
         if user_choice == '0':
-            return "back"
+            back()
         elif user_choice == '-1':
             endProgram()
         if user_choice in IncomingRequests:
-            user1 = getLoggedUser()
-            user2 = getUserData(user_choice)
             print("1. Accept\n2. Decline")
             option = input("Enter your option: ")
             if option == '1':
-                acceptRequest(user1, user2)
+                addToFriendsList(user_choice, getUser())
+                print("Accepting request from {}...".format(user_choice))
+                print("Request accepted!")
             elif option == '2':
-                rejectRequest(user1, user2)
+                removeRequest(user_choice, getUser())
+                print("Rejecting request from {}...".format(user_choice))
+                print("Request rejected!")
             else:
                 print("Invalid input.")
-            updatedIncomingRequests = getIncomingRequests()
-            updatedIncomingRequests.remove(user_choice)
-            setIncomingRequests(updatedIncomingRequests)
-
-            #Update User Settings
-            updateUserAttribute(user1, "incomingRequests", updatedIncomingRequests)
         else:
             print("Invalid input.")
+        IncomingRequests = getIncomingRequests()
+    printDivider()
     print("You have no incoming friend requests.")
     goBackOption()
 
@@ -309,9 +208,17 @@ def viewOutgoingRequests():
     print("Outgoing friend requests:")
     printDivider()
     outgoingRequests = getOutgoingRequests()
+
+    if len(outgoingRequests) == 0:
+        print("You have no outgoing friend requests.")
+        return
+    
+    printDivider()
+    print("You have " + str(len(outgoingRequests)) + " outgoing requests!\n")
+    printDivider()
     for request in outgoingRequests:
         printDivider()
-        viewUser(getUserData(request))
+        viewUser(retrieveUser(request))
         printDivider()
     print("Enter 0 to go back or -1 to exit.")
     user_choice = input("Enter your option: ")
@@ -324,13 +231,18 @@ def showMyNetwork():
     addPage(showMyNetwork)
     print("My Network:")
     printDivider()
-    myNetwork = getFriends()
+    myNetwork = getFriendsList()
+
     if len(myNetwork) == 0:
         print("You have no friends.")
         return
+        
+    printDivider()
+    print("You have " + str(len(myNetwork)) + " friends!\n")
+    printDivider()
     for user in myNetwork:
         printDivider()
-        viewUser(getUserData(user))
+        viewUser(retrieveUser(user))
         printDivider()
     print("Enter the username of the user you want to unfriend or enter 0 to go back or -1 to exit.")
     user_choice = input("Enter your option: ")
@@ -339,16 +251,4 @@ def showMyNetwork():
     elif user_choice == '-1':
         endProgram()
     if user_choice in myNetwork:
-        user1 = getLoggedUser()
-        user2 = getUserData(user_choice)
-        unFriend(user1, user2)
-        updatedMyNetwork = getFriends()
-        updatedMyNetwork.remove(user_choice)
-        setFriends(updatedMyNetwork)
-
-        #Update User Settings
-        updateUserAttribute(user1, "friendsList", updatedMyNetwork)
-
-        user2Network = user2["friendsList"]
-        user2Network.remove(user1["username"])
-        updateUserAttribute(user2, "friendsList", user2Network)
+        removeFromFriendsList(getUser(), user_choice)

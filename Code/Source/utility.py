@@ -1,5 +1,5 @@
 import json
-from Code.Source.globalVariables import getDataFile
+from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, setFriendsList, setIncomingRequests, setOutgoingRequests
 
 #Checks all possible pages to call back to last page visited
 def checkPages(page, links):
@@ -167,62 +167,13 @@ def accountLimit():
             userCount+=1
     return userCount
 
-def getUserData(username):
-    dataFile = getDataFile()
-    with open(dataFile, "r") as json_file:
-        data = json.load(json_file)
-        for user in data["accounts"]:
-            if user["username"] == username:
-                return user
-        return data
-
 def viewUser(user):
     print("Name: {} {}".format(user["firstName"], user["lastName"]))
     print("Username: {}".format(user["username"]))
 
-def sendRequest(user1, user2):
-    '''
-    user1 is the user that is sending the request to user2
-    '''
-    print("Sending request to {}...".format(user2["username"]))
-    print("Request sent!")
-
-def acceptRequest(user1, user2):
-    '''
-    user1 is the user that is accepting the request from user2
-    '''
-    print("Accepting request from {}...".format(user2["username"]))
-    print("Request accepted!")
-
-def rejectRequest(user1, user2):
-    '''
-    user1 is the user that is rejecting the request from user2
-    '''
-    print("Rejecting request from {}...".format(user2["username"]))
-    print("Request rejected!")
-
-def unFriend(user1, user2):
-    '''
-    user1 is the user that is unfriending user2
-    '''
-    print("Unfriending {}...".format(user2["username"]))
-    print("Unfriended!")
-
-def updateUserAttribute(loggedUser, attribute, value):
-    dataFile = getDataFile()
-    with open(dataFile) as json_file:
-        data = json.load(json_file)
-        for user in data["accounts"]:
-            if user["username"] == loggedUser["username"]:
-                user[attribute] = value
-    writeJson(data, dataFile)
-
-
-
 def endProgram():
     print("Thank you for using InCollege!")
     exit()
-
 
 #Utility function to get a user account object. Returned as a Dictionary.
 def retrieveUser(username):
@@ -230,72 +181,44 @@ def retrieveUser(username):
     with open(dataFile) as json_file:
         data = json.load(json_file)
         for search in data["accounts"]:
-            if username == search["username"].lower():
-                #print(search)
+            if username.lower() == search["username"].lower():
                 return search
 
 #Gets users outgoingRequest list
 def getUserOutgoingRequestList(username):
-    #print(retrieveUser(username)["outgoingRequests"])
     return retrieveUser(username)["outgoingRequests"]
-
 
 #Gets users incomingRequest list
 def getUserIncomingRequestList(username):
-    #print(retrieveUser(username)["incomingRequests"])
     return retrieveUser(username)["incomingRequests"]
 
 #Returns users friendsList
 def getUserFriendList(username):
-    #print(retrieveUser(username)["friendsList"])
     return retrieveUser(username)["friendsList"]
 
-#gets all users objects with a last name matching "lastName" parameter
-def getUsersObjectsWithLastName(lastName):
-    queryList = []
+def searchFilter(filterAttribute):
+    print("Enter the {} of the user you are looking for.".format(filterAttribute))
+    filterValue = input("{}: ".format(filterAttribute))
+    printDivider()
+    print("Searching for {}...".format(filterValue))
+    printDivider()
     dataFile = getDataFile()
-    with open(dataFile) as json_file:
+    foundUsers = {}
+    with open(dataFile, "r") as json_file:
         data = json.load(json_file)
-        for search in data["accounts"]:
-            if lastName.lower() == search["lastName"].lower():
-                queryList.append(search)
-    return queryList
-
-#gets all usernames of users with last name matching "lastName" parameter
-def getUsersByLastName(lastName):
-    queryList = []
-    dataFile = getDataFile()
-    with open(dataFile) as json_file:
-        data = json.load(json_file)
-        for search in data["accounts"]:
-            if lastName.lower() == search["lastName"].lower():
-                queryList.append(search["username"])
-
-
-#gets all usernames of users with university matching "university" parameter
-def getUsersByUniversity(university):
-    queryList = []
-    dataFile = getDataFile()
-    with open(dataFile) as json_file:
-        data = json.load(json_file)
-        for search in data["accounts"]:
-            if university.lower() == search["university"].lower():
-                #print(search["username"])
-                queryList.append(search["username"])
-    return queryList
-    
-#gets all usernames of users with major matching "major" parameter
-def getUsersByMajor(major):
-    queryList = []
-    dataFile = getDataFile()
-    with open(dataFile) as json_file:
-        data = json.load(json_file)
-        for search in data["accounts"]:
-            if major.lower() == search["major"].lower():
-                queryList.append(search["username"])
-    return queryList
-       
-
+        for user in data["accounts"]:
+            if (user[filterAttribute].lower() == filterValue.lower() and user["username"] != getUser() and
+             user["username"] not in getOutgoingRequests() and user["username"] not in getIncomingRequests() and
+             user["username"] not in getFriendsList()):
+                foundUsers[user["username"]] = user
+                printDivider()
+                viewUser(user)
+                printDivider()
+    if len(foundUsers) == 0:
+        print("User not found.")
+        return -1
+    else:
+        return foundUsers  
 
 #Functions of the form (loggedinuser,userbeinginteractedwith), no thought required 10/12/22
 #These functions cover a lot of the same proccesses many times. I don't believe I can return a json object reference. will discuss in scrum - Rier 10/12/22
@@ -309,29 +232,27 @@ def createRequest(senderUsername, recipientUsername):
         data = json.load(json_file)
         for search in data["accounts"]:
             if senderUsername.lower() == search["username"].lower():
-                print(recipientUsername, "was added to the outgoingRequests list for ", senderUsername)
                 search["outgoingRequests"].append(recipientUsername)
-                print(search["outgoingRequests"])
-            elif recipientUsername == search["username"].lower():
-                print(senderUsername, "was added to incomingRequests list for",recipientUsername)
+            elif recipientUsername.lower() == search["username"].lower():
                 search["incomingRequests"].append(senderUsername)
-                print(search["incomingRequests"])
-
+    print("Sending request to {}...".format(recipientUsername))
+    print("Request sent!")
     writeJson(data, dataFile)
+    setOutgoingRequests(getUserOutgoingRequestList(getUser()))
     return
 
-
 #Removes request list involving respective users
-def removeRequest(incomingUsername, outgoingUsername):
+def removeRequest(senderUsername, recipientUsername):
     dataFile = getDataFile()
     with open(dataFile) as json_file:
         data = json.load(json_file)
         for search in data["accounts"]:
-            if incomingUsername.lower() == search["username"].lower():
-                search["outgoingRequests"].remove(outgoingUsername)
-            elif outgoingUsername.lower() == search["username"].lower():
-                search["incomingRequests"].remove(incomingUsername)
+            if senderUsername.lower() == search["username"].lower():
+                search["outgoingRequests"].remove(recipientUsername)
+            elif recipientUsername.lower() == search["username"].lower():
+                search["incomingRequests"].remove(senderUsername)
     writeJson(data, dataFile)
+    setIncomingRequests(getUserIncomingRequestList(getUser()))
     return
 
 #Updates respective users outgoing and incoming lists, and adds them to each other's friendsList
@@ -346,6 +267,7 @@ def addToFriendsList(senderUsername, recipientUsername):
                 search["friendsList"].append(recipientUsername)
     writeJson(data, dataFile)
     removeRequest(senderUsername, recipientUsername)
+    setFriendsList(getUserFriendList(getUser()))
     return
 
 #Removes users from each other's list, doesnt really matter what is put in what parameter, but it could be helpful.
@@ -358,7 +280,10 @@ def removeFromFriendsList(currentUser, personToRemove):
                 search["friendsList"].remove(personToRemove)
             elif personToRemove.lower() == search["username"].lower():
                 search["friendsList"].remove(currentUser)
+    print("Unfriending {}...".format(personToRemove))
+    print("Unfriended!")
     writeJson(data, dataFile)
+    setFriendsList(getUserFriendList(getUser()))
     return
 
 

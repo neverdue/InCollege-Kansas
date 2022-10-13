@@ -116,8 +116,8 @@ def getOutgoingRequests():
 def setOutgoingRequests(x):
     loggedUser["outgoingRequests"] = x
 
-def getFriends():
+def getFriendsList():
     return loggedUser.get("friendsList")
 
-def setFriends(x):
+def setFriendsList(x):
     loggedUser["friendsList"] = x
