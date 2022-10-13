@@ -69,14 +69,7 @@ def mainPage():
                     endProgram()
                 
             if signUp == 1:
-                username = input("Enter username: ")
-                password = input("Enter password: ")
-                firstname = input("Enter your first name: ")
-                lastname = input("Enter your last name: ")
-                while(uniqueNames(firstname, lastname) == 0):
-                    firstname = input("Enter your first name: ")
-                    lastname = input("Enter your last name: ")
-                if register(username, password, firstname, lastname) == 1:
+                if signUpPage() == 1:
                     homePage()
             elif signUp == 2:
                 username = input("Enter username: ")

@@ -30,16 +30,18 @@ def signUpPage():
     password = input("Enter password: ")
     firstname = input("Enter your first name: ")
     lastname = input("Enter your last name: ")
+    university = input("Enter your university: ")
+    major = input("Enter your major: ")
     while(uniqueNames(firstname, lastname) == 0):
         firstname = input("Enter your first name: ")
         lastname = input("Enter your last name: ")
 
     # successful registration returns 1
-    registrationAttempt = register(username, password, firstname, lastname)
+    registrationAttempt = register(username, password, firstname, lastname, university, major)
 
     return registrationAttempt
 
-def register(username, password, first, last):
+def register(username, password, first, last, university, major):
     dataFile = getDataFile()
 
     if accountExist(username) == 1:
@@ -56,7 +58,10 @@ def register(username, password, first, last):
     with open(dataFile) as json_file:
         data = json.load(json_file)
         temp = data["accounts"]
-        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last, "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True)}
+        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last,
+         "university": university, "major": major, "language": "English",
+         "email": setting(True), "SMS": setting(True), "ads": setting(True),
+         "incomingRequests": [], "outgoingRequests": [], "friendsList": []}
         temp.append(newData)
 
     wJson(data, dataFile)
@@ -65,7 +70,7 @@ def register(username, password, first, last):
     timer = getTimer()
     time.sleep(timer)
 
-    userInit(username, first, last, "English", True, True, True)
+    userInit(username, first, last, university, major, "English", True, True, True)
 
     return 1
 
@@ -98,12 +103,18 @@ def login(username, password):
             if username == tempUser:
                 firstname = items["firstName"]
                 lastname = items["lastName"]
+                university = items["university"]
+                major = items["major"]
+                incomingRequests = items["incomingRequests"]
+                outgoingRequests = items["outgoingRequests"]
+                friendsList = items["friendsList"]
                 language = "English" if items["language"] == "English" else "Spanish"
                 email = True if items["email"] == "True" else False
                 SMS = True if items["SMS"] == "True" else False 
                 ads = True if items["ads"] == "True" else False
+
     #set user variable
-    userInit(username, firstname, lastname, language, email, SMS, ads)
+    userInit(username, firstname, lastname, university, major, language, email, SMS, ads, incomingRequests, outgoingRequests, friendsList)
 
     return 1
 

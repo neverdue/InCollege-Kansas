@@ -5,50 +5,60 @@
             "password": "Password123!",
             "firstName": "Andy",
             "lastName": "Nguyen",
+            "university": "University of South Florida",
+            "major": "Computer Science",
             "language": "Spanish",
-            "email": "True",
+            "email": "False",
             "SMS": "False",
-            "ads": "False"
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": []
         },
         {
             "username": "user2",
             "password": "Password123*",
             "firstName": "Spoopy",
             "lastName": "Ando",
+            "university": "University of Central Florida",
+            "major": "Mechanical Engineering",
             "language": "English",
-            "email": "False",
-            "SMS": "False",
-            "ads": "False"
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": []
         },
         {
             "username": "testuser1",
             "password": "Password123@",
             "firstName": "tommy",
             "lastName": "truong",
+            "university": "Florida State University",
+            "major": "Computer Science",
             "language": "English",
-            "email": "False",
-            "SMS": "False",
-            "ads": "True"
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": []
         },
         {
             "username": "testuser2",
             "password": "Password123$",
             "firstName": "kevin",
             "lastName": "vu",
+            "university": "University of Florida",
+            "major": "Mechanical Engineering",
             "language": "English",
-            "email": "False",
-            "SMS": "False",
-            "ads": "False"
-        },
-        {
-            "username": "test",
-            "password": "Test123@",
-            "firstName": "Testy",
-            "lastName": "Python",
-            "language": "English",
-            "email": "False",
-            "SMS": "False",
-            "ads": "False"
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": []
         }
     ]
 }

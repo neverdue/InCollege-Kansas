@@ -21,10 +21,10 @@ def setup():
     open(DATAFILE, 'w').close()
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
-    register("user1", "Password123!", "Andy", "Nguyen")
-    register("user2", "Password123*", "Spoopy", "Ando")
-    register("testuser1", "Password123@", "tommy", "truong")
-    register("testuser2", "Password123$", "kevin", "vu")
+    register("user1", "Password123!", "Andy", "Nguyen", "University of South Florida", "Computer Science")
+    register("user2", "Password123*", "Spoopy", "Ando", "University of Central Florida", "Mechanical Engineering")
+    register("testuser1", "Password123@", "tommy", "truong", "Florida State University", "Computer Science")
+    register("testuser2", "Password123$", "kevin", "vu", "University of Florida", "Industrial Engineering")
 
     with open(DATAFILE, 'r') as json_file:
         data = json.load(json_file)
@@ -32,7 +32,10 @@ def setup():
         pytest.username = test_data["username"]
         pytest.first = test_data["firstName"]
         pytest.last = test_data["lastName"]
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True)
+        pytest.incomingRequests = test_data["incomingRequests"]
+        pytest.outgoingRequests = test_data["outgoingRequests"]
+        pytest.friendsList = test_data["friendsList"]
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList)
 
 # Test: Check if potential connection is an existing user 
 def test_find_connection():
@@ -61,7 +64,7 @@ def test_success_story(capfd):
     assert out == message
 
 @pytest.mark.parametrize("test_inputs, messages", 
-[(['3', 'Andy', 'Nguyen', '1', 'chau', 'Password123!', 'Chau', 'Nguyen'], "Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\n"),
+[(['3', 'Andy', 'Nguyen', '1', 'chau', 'Password123!', 'Chau', 'Nguyen', 'University of South Florida', 'Computer Science'], "Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\n"),
 (['3', 'Andy', 'Nguyen', '2', 'user1', 'Password123!'], "Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\n"),
 (['3', 'Jennie', 'Kim'], "They are not yet a part of the InCollege system yet.")])
 
@@ -156,7 +159,7 @@ def test_findSomeonePage() -> None:
     assert globalVariables.pageStack == [findSomeonePage]
 
 def test_uniqueNames_good():
-    register("test", "Test123@", "Test", "User")
+    register("test", "Test123@", "Test", "User", "University of South Florida", "Computer Science")
     assert uniqueNames("Test","User") == 0
 
 def test_uniqueNames_bad():

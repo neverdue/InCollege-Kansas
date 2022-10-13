@@ -1,4 +1,5 @@
 import pytest
+import random
 from Code.Source.utility import securePassword, accountLimit, accountExist
 from Code.Source.loginPrompt import register, login, verifyCredentials
 from Code.Source.menu import route
@@ -32,6 +33,16 @@ def username():
 def password():
     return "Test123@"
 
+@pytest.fixture
+def university():
+    universities = ["University of South Florida", "University of Central Florida", "Florida State University", "University of Florida", "Florida International University"]
+    return random.choice(universities)
+
+@pytest.fixture
+def major():
+    majors = ["Computer Science", "Biomedical Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering"]
+    return random.choice(majors)
+
 def test_validate_password():
     good_password = "GoodPass123@"
     assert securePassword(good_password) == 1
@@ -39,17 +50,19 @@ def test_validate_password():
     for password in bad_passwords:
         assert securePassword(password) != 1
 
-def test_account_limit(username, password, firstName, lastName):
+def test_account_limit(username, password, firstName, lastName, university, major):
     assert accountLimit() == 0
-    register(username, password, firstName, lastName)
+    register(username, password, firstName, lastName, university, major)
     assert accountLimit() == 1
 
-def test_account_exist(username, password, firstName, lastName):
+def test_account_exist(username, password, firstName, lastName, university, major):
     assert accountExist(username) != 1
-    register(username, password, firstName, lastName)
+    register(username, password, firstName, lastName, university, major)
     assert accountExist(username) == 1
 
 def test_ten_accounts():
+    universities = ["University of South Florida", "University of Central Florida", "Florida State University", "University of Florida", "Florida International University"]
+    majors = ["Computer Science", "Biomedical Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering"]
     potential_users = [
         ("test1", "Test123@", "Test1", "User"),
         ("test2", "Test123@", "Test2", "User"),
@@ -63,31 +76,31 @@ def test_ten_accounts():
         ("test10", "Test123@", "Test10", "User")
     ]
     for user in potential_users:
-        register(user[0], user[1], user[2], user[3])
+        register(user[0], user[1], user[2], user[3], random.choice(universities), random.choice(majors))
     assert accountLimit() == ACCOUNT_LIMIT
     bad_user = "test11"
     password = "Test123@"
     first = "Test11"
     last = "User"
-    assert register(bad_user, password, first, last) != 1
+    assert register(bad_user, password, first, last, random.choice(universities), random.choice(majors)) != 1
     assert accountLimit() == ACCOUNT_LIMIT
 
-def test_login(username, password, firstName, lastName):
-    register(username, password, firstName, lastName)
+def test_login(username, password, firstName, lastName, university, major):
+    register(username, password, firstName, lastName, university, major)
     assert login(username, password) == 1
     bad_username = "bad"
     assert login(bad_username, password) != 1
 
-def test_register_existing_user(username, password, firstName, lastName):
-    register(username, password, firstName, lastName)
-    assert register(username, password, firstName, lastName) != 1
+def test_register_existing_user(username, password, firstName, lastName, university, major):
+    register(username, password, firstName, lastName, university, major)
+    assert register(username, password, firstName, lastName, university, major) != 1
 
 def test_register_bad_password(username, password, firstName, lastName):
     password = "bad"
     assert securePassword(password) != 1
 
-def test_login_existing_user(username, password, firstName, lastName):
-    register(username, password, firstName, lastName)
+def test_login_existing_user(username, password, firstName, lastName, university, major):
+    register(username, password, firstName, lastName, university, major)
     assert login(username, password) == 1
 
     # With invalid password
@@ -98,8 +111,8 @@ def test_homePage(capfd):
     showHomePageGreeting()
     out, err = capfd.readouterr()
     message = "\n------------------------------------------------------------\n"
-    message += "\nWelcome to InCollege!\nPlease choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Go to previously visited page\n\n"
-    assert out == message
+    message += "\nWelcome to InCollege!"
+    assert message in out
 
 def test_SkillPage(capfd):
     showSkillPageGreeting()
