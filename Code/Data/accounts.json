@@ -5,6 +5,8 @@
             "password": "Password123!",
             "firstName": "Andy",
             "lastName": "Nguyen",
+            "university": "USF",
+            "major": "Computer Science",
             "language": "Spanish",
             "email": "False",
             "SMS": "False",
@@ -18,6 +20,8 @@
             "password": "Password123*",
             "firstName": "Spoopy",
             "lastName": "Ando",
+            "university": "USF",
+            "major": "Computer Engineering",
             "language": "English",
             "email": "True",
             "SMS": "True",
@@ -31,29 +35,35 @@
             "password": "Password123@",
             "firstName": "tommy",
             "lastName": "truong",
+            "university": "UCF",
+            "major": "Digital Media",
             "language": "English",
             "email": "True",
             "SMS": "True",
             "ads": "True",
-            "friendsList": [],
-            "incomingRequests": [],
-            "outgoingRequests": [
-                "testuser2"
-            ]
+            "friendsList": [
+                "testuser2",
+                "meme memer"
+            ],
+            "incomingRequests": ["boomy boomer"],
+            "outgoingRequests": ["boomboozled"]
         },
         {
             "username": "testuser2",
             "password": "Password123$",
             "firstName": "kevin",
             "lastName": "vu",
+            "university": "USF",
+            "major": "Computer Science",
             "language": "English",
             "email": "True",
             "SMS": "True",
             "ads": "True",
-            "friendsList": [],
-            "incomingRequests": [
+            "friendsList": [
+                "testuser1",
                 "testuser1"
             ],
+            "incomingRequests": [],
             "outgoingRequests": []
         }
     ]

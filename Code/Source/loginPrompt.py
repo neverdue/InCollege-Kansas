@@ -39,7 +39,7 @@ def signUpPage():
 
     return registrationAttempt
 
-def register(username, password, first, last):
+def register(username, password, first, last, university, major):
     dataFile = getDataFile()
 
     if accountExist(username) == 1:
@@ -56,8 +56,8 @@ def register(username, password, first, last):
     with open(dataFile) as json_file:
         data = json.load(json_file)
         temp = data["accounts"]
-        newData = {"username": username, "password" : password, "firstName" : first,
-         "lastName" : last, "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True),
+        newData = {"username": username, "password" : password, "firstName" : first, "university" : university, "major": major,
+        "lastName" : last, "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True),
         "friendsList" : [], "incomingRequests" : [], "outgoingRequests" : []}
         temp.append(newData)
 
