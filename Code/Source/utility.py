@@ -286,6 +286,29 @@ def removeFromFriendsList(currentUser, personToRemove):
     setFriendsList(getUserFriendList(getUser()))
     return
 
+def accountPWExist(username, passw): ##--new--##
+    dataFile = getDataFile()
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+        for items in data["accounts"]:
+            user = items["username"]
+            pw = items["password"]
+            if(username == user and pw ==passw): return 1
+    return 0
+
+def destroyAccount(usern, passw): ##--new--(WIP -andy-)##
+    dataFile = getDataFile()
+    if accountPWExist(usern, passw) == 1:
+        with open(dataFile) as json_file:
+            data = json.load(json_file)
+            temp = data["accounts"]
+            for i in temp:
+                #print(i)
+                if i["username"] == usern and i["password"] == passw:
+                    i.clear()
+                    break
+    #wJson(data, dataFile)
+    open(dataFile, "w").write(json.dumps(data, sort_keys = True, indent = 4, separators = (',',': ')))
 
 
 
