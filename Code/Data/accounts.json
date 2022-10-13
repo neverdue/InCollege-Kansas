@@ -12,7 +12,9 @@
             "SMS": "False",
             "ads": "True",
             "incomingRequests": [],
-            "outgoingRequests": [],
+            "outgoingRequests": [
+                "user2"
+            ],
             "friends": []
         },
         {

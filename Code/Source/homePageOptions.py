@@ -1,5 +1,5 @@
 import json
-from Code.Source.globalVariables import addPage, getDataFile, getFirst, getFriends, getIncomingRequests, getJobFile, getLast, getLoggedUser, getOutgoingRequests, getUser, setFriends, setIncomingRequests
+from Code.Source.globalVariables import addPage, getDataFile, getFirst, getFriends, getIncomingRequests, getJobFile, getLast, getLoggedUser, getOutgoingRequests, getUser, setFriends, setIncomingRequests, setOutgoingRequests
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import acceptRequest, endProgram, getUserData, printDivider, rejectRequest, sendRequest, unFriend, updateUserAttribute, viewUser, writeJson
 
@@ -257,6 +257,11 @@ def searchUsers():
         user_choice = input("Enter your option: ")
         if user_choice in foundUsers:
             sendRequest(getLoggedUser(), foundUsers[user_choice])
+            updatedOutgoingRequests = getOutgoingRequests()
+            updatedOutgoingRequests.append(user_choice)
+            setOutgoingRequests(updatedOutgoingRequests)
+
+            updateUserAttribute(getLoggedUser(), "outgoingRequests", updatedOutgoingRequests)
         else:
             print("Invalid input.")
 
