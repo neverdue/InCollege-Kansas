@@ -347,8 +347,8 @@ def showMyNetwork():
         setFriends(updatedMyNetwork)
 
         #Update User Settings
-        updateUserAttribute(user1, "friends", updatedMyNetwork)
+        updateUserAttribute(user1, "friendsList", updatedMyNetwork)
 
-        user2Network = user2["friends"]
+        user2Network = user2["friendsList"]
         user2Network.remove(user1["username"])
-        updateUserAttribute(user2, "friends", user2Network)
+        updateUserAttribute(user2, "friendsList", user2Network)

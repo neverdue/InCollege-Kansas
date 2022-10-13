@@ -58,7 +58,10 @@ def register(username, password, first, last, university, major):
     with open(dataFile) as json_file:
         data = json.load(json_file)
         temp = data["accounts"]
-        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last, "university": university, "major": major, "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True), "incomingRequests": [], "outgoingRequests": [], "friends": []}
+        newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last,
+         "university": university, "major": major, "language": "English",
+         "email": setting(True), "SMS": setting(True), "ads": setting(True),
+         "incomingRequests": [], "outgoingRequests": [], "friendsList": []}
         temp.append(newData)
 
     wJson(data, dataFile)
@@ -104,14 +107,14 @@ def login(username, password):
                 major = items["major"]
                 incomingRequests = items["incomingRequests"]
                 outgoingRequests = items["outgoingRequests"]
-                friends = items["friends"]
+                friendsList = items["friendsList"]
                 language = "English" if items["language"] == "English" else "Spanish"
                 email = True if items["email"] == "True" else False
                 SMS = True if items["SMS"] == "True" else False 
                 ads = True if items["ads"] == "True" else False
 
     #set user variable
-    userInit(username, firstname, lastname, university, major, language, email, SMS, ads, incomingRequests, outgoingRequests, friends)
+    userInit(username, firstname, lastname, university, major, language, email, SMS, ads, incomingRequests, outgoingRequests, friendsList)
 
     return 1
 

@@ -47,7 +47,7 @@ def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last, university, major, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friends = []):
+def userInit(user, first, last, university, major, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friendsList = []):
     global loggedUser
     loggedUser = {
         "username" : user,
@@ -61,7 +61,7 @@ def userInit(user, first, last, university, major, language, email, sms, ads, in
         "adPref" : ads,
         "incomingRequests" : incomingRequests,
         "outgoingRequests" : outgoingRequests,
-        "friends" : friends
+        "friendsList" : friendsList
     }
 
 def logout():
@@ -117,7 +117,7 @@ def setOutgoingRequests(x):
     loggedUser["outgoingRequests"] = x
 
 def getFriends():
-    return loggedUser.get("friends")
+    return loggedUser.get("friendsList")
 
 def setFriends(x):
-    loggedUser["friends"] = x
+    loggedUser["friendsList"] = x

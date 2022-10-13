@@ -15,7 +15,7 @@
             "outgoingRequests": [
                 "user2"
             ],
-            "friends": []
+            "friendsList": []
         },
         {
             "username": "user2",
@@ -30,7 +30,7 @@
             "ads": "True",
             "incomingRequests": [],
             "outgoingRequests": [],
-            "friends": []
+            "friendsList": []
         },
         {
             "username": "testuser1",
@@ -45,7 +45,7 @@
             "ads": "True",
             "incomingRequests": [],
             "outgoingRequests": [],
-            "friends": []
+            "friendsList": []
         },
         {
             "username": "testuser2",
@@ -60,7 +60,7 @@
             "ads": "True",
             "incomingRequests": [],
             "outgoingRequests": [],
-            "friends": []
+            "friendsList": []
         }
     ]
 }

@@ -34,8 +34,8 @@ def setup():
         pytest.last = test_data["lastName"]
         pytest.incomingRequests = test_data["incomingRequests"]
         pytest.outgoingRequests = test_data["outgoingRequests"]
-        pytest.friends = test_data["friends"]
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friends)
+        pytest.friendsList = test_data["friendsList"]
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList)
 
 # Test: Check if potential connection is an existing user 
 def test_find_connection():
