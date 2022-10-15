@@ -1,24 +1,55 @@
 import pytest
 import json
-from Code.Source.globalVariables import dataFileInit, getDataFile, getFriendsList, getUser, stackInit, userInit
-from Code.Source.utility import accountLimit, addToFriendsList, createRequest, removeFromFriendsList, removeRequest
+from Code.Source.globalVariables import dataFileInit, getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, setIncomingRequests, setLang, stackInit, userInit
+from Code.Source.homePageOptions import viewIncomingRequests
+from Code.Source.loginPrompt import register
+from Code.Source.mainPage import mainPage
+from Code.Source.menu import homePage, route, usefulLinksMenu
+from Code.Source.utility import accountLimit, addToFriendsList, createRequest, getUserFriendList, removeFromFriendsList, removeRequest, storyDisplay
 
-TESTMODE = True 
-NO_INPUT = OSError
+TESTMODE = True
+FILENAME = 'Code/Data/jobPosts-test.json'
+DATAFILE = 'Code/Data/accounts-test.json'
 
 @pytest.fixture(autouse=True)
 def setup():
     dataFileInit(TESTMODE)
     stackInit()
-    userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', True, True, True)
+    open(DATAFILE, 'w').close()
+    with open(DATAFILE, 'w') as json_file:
+        json_file.write('{"accounts": []}')
+    register("user1", "Password123!", "Andy", "Nguyen", "University of South Florida", "Computer Science")
+    register("user2", "Password123*", "Spoopy", "Ando", "University of Central Florida", "Mechanical Engineering")
+    register("testuser1", "Password123@", "tommy", "truong", "Florida State University", "Computer Science")
+    register("testuser2", "Password123$", "kevin", "vu", "University of Florida", "Industrial Engineering")
+
+    with open(DATAFILE, 'r') as json_file:
+        data = json.load(json_file)
+        test_data = data["accounts"][0]
+        pytest.username = test_data["username"]
+        pytest.first = test_data["firstName"]
+        pytest.last = test_data["lastName"]
+        pytest.incomingRequests = test_data["incomingRequests"]
+        pytest.outgoingRequests = test_data["outgoingRequests"]
+        pytest.friendsList = test_data["friendsList"]
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList)
+    
 
 def test_accountLimit():
     assert accountLimit() <= 10
 
-def test_removeFriend(capfd):
-    out, err = capfd.readouterr()
+#Tests if friends list exists and is initialized as an empty container
+def test_friendListExist():
     datafile = getDataFile()
-    message = "Unfriended!"
+    with open(datafile) as json_file:
+        data = json.load(json_file)
+        for search in data["accounts"]:
+            assert search["friendsList"] == []
+
+#User1 sends friend request to everyone in the accounts file then all the friend requests are accepted
+#Afterwards, user1 removes their entire friendslist and the function tests for that
+def test_removeFriend():
+    datafile = getDataFile()
     with open(datafile) as json_file:
         data = json.load(json_file)
         for search in data["accounts"]:
@@ -29,7 +60,41 @@ def test_removeFriend(capfd):
             removeFromFriendsList(getUser(), recipient_friend)
             assert getFriendsList() == []
 
-    
+#Tests to make sure friend requests are sent
+def test_sendFriendRequest():
+    datafile = getDataFile()
+    with open(datafile) as json_file:
+        data = json.load(json_file)
+        #Create requests and test request
+        for search in data["accounts"]:
+            recipient_friend = search["username"]
+            if recipient_friend == getUser(): continue
+            createRequest(getUser(), recipient_friend)
+            assert getOutgoingRequests() != False
+        #Cleanup: delete all requests
+        for search in data["accounts"]:
+            recipient_friend = search["username"]
+            if recipient_friend == getUser(): continue
+            removeRequest(getUser(), recipient_friend)
+
+#Tests to make sure when user logs on, they can see friend requests
+@pytest.mark.parametrize("test_inputs, messages",
+[([], "\n\nYou have 1 incoming requests!\n\nIncoming friend requests:\n\n------------------------------------------------------------\n\n\n------------------------------------------------------------\n\nName: Spoopy Ando\nUsername: user2\n\n------------------------------------------------------------\n\nEnter the username of the user you want to select or enter 0 to go to homepage or -1 to exit.\n")])
+def test_seeFriendRequest(capsys, monkeypatch, test_inputs, messages):
+    try:
+        userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, ["user2"])
+        monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+        route(7)
+    except IndexError:
+        out, err = capsys.readouterr()
+        assert messages in out
+
+def test_friendsListRetrieval():
+    userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, [], [], ["user2", "testuser1", "testuser3"])
+    assert getFriendsList() == ['user2', 'testuser1', 'testuser3']
+        
+
+
 
 
 #pytest test_Epic4Tester2.py -rP
