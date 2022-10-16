@@ -169,8 +169,12 @@ def searchUsers():
 def viewIncomingRequests():
     addPage(viewIncomingRequests)
     IncomingRequests = getIncomingRequests()
-    while len(IncomingRequests) > 0:
-        print("\n\nYou have " + str(len(IncomingRequests)) + " incoming requests!\n")
+    length = len(IncomingRequests)
+    while length > 0:
+        if length == 1:
+            print("\n\nYou have " + str(length) + " incoming request!\n")
+        else:
+            print("\n\nYou have " + str(length) + " incoming requests!\n")
         print("Incoming friend requests:")
         printDivider()
         for request in IncomingRequests:

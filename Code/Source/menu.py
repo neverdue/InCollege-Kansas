@@ -59,7 +59,10 @@ def homePage():
     incomingRequests = getIncomingRequests()
     if len(incomingRequests) > 0:
         printDivider()
-        print("You have " + str(len(incomingRequests)) + " incoming friend requests!")
+        if len(incomingRequests) == 1:
+            print("You have " + str(len(incomingRequests)) + " incoming friend request!")
+        else:
+            print("You have " + str(len(incomingRequests)) + " incoming friend requests!")
 
     showHomePageGreeting()
     try: 
