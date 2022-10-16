@@ -1,7 +1,7 @@
 import pytest
 import json
-from Code.Source.globalVariables import dataFileInit, getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, setIncomingRequests, setLang, stackInit, userInit
-from Code.Source.homePageOptions import viewIncomingRequests
+from Code.Source.globalVariables import dataFileInit, getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, setFriendsList, setIncomingRequests, setLang, stackInit, userInit
+from Code.Source.homePageOptions import showMyNetwork, viewIncomingRequests
 from Code.Source.loginPrompt import register
 from Code.Source.mainPage import mainPage
 from Code.Source.menu import homePage, route, usefulLinksMenu
@@ -89,12 +89,29 @@ def test_seeFriendRequest(capsys, monkeypatch, test_inputs, messages):
         out, err = capsys.readouterr()
         assert messages in out
 
+#Sets a friend list for user and test if that list is returned properly
 def test_friendsListRetrieval():
     userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, [], [], ["user2", "testuser1", "testuser3"])
     assert getFriendsList() == ['user2', 'testuser1', 'testuser3']
-        
 
+#Sets outgoing requests for user and tests if that list of outgoing request is returned properly
+def test_outgoingRequestRetrieval():
+        userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, [], ["user2", "testuser1", "testuser3"], [])
+        assert getOutgoingRequests() == ["user2", "testuser1", "testuser3"]
 
+#Each user will have an option to disconnect anyone from their friendlist. If so, remove them from their friends list
+@pytest.mark.parametrize('test_inputs, messages',
+[([], "My Network:"),
+([], "You have 1 friends!\n"),
+([], "Enter the username of the user you want to unfriend or enter 0 to go back or -1 to exit.\n")])
+def test_disconnectFriend(capsys, monkeypatch, test_inputs, messages):
+    try:
+        userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, [], [], ["user2"])
+        monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+        createRequest(getUser(), "user2")
+        addToFriendsList(getUser(), "user2")
+        showMyNetwork()
+    except IndexError:
+        out, err = capsys.readouterr()
+        assert messages in out
 
-
-#pytest test_Epic4Tester2.py -rP
