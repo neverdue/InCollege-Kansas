@@ -64,7 +64,6 @@ def homePage():
         else:
             print("You have " + str(len(incomingRequests)) + " incoming friend requests!")
 
-
     showHomePageGreeting()
     try: 
         user_choice = int(input("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, or 9): "))

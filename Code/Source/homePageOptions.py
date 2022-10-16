@@ -1,7 +1,7 @@
 import json
 from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getJobFile, getLast, getOutgoingRequests, getUser
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.utility import addToFriendsList, createRequest, endProgram, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson
+from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson
 
 
 def showHomePageGreeting():
@@ -147,7 +147,7 @@ def searchUsers():
     addPage(searchUsers)
     message = "\n1. Search by last name\n2. Search by major\n3. Search by university\n4. Previous Page\n"
     print(message)
-    user_choice = input("Enter your option: ")
+    user_choice = inputValidation(1, 5)
     foundUsers = {}
     if user_choice == '1':
         foundUsers = searchFilter("lastName")
