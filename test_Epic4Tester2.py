@@ -114,4 +114,3 @@ def test_disconnectFriend(capsys, monkeypatch, test_inputs, messages):
     except IndexError:
         out, err = capsys.readouterr()
         assert messages in out
-
