@@ -2,7 +2,7 @@ from Code.Source.globalVariables import dataFileInit, getDataFile, getFriendsLis
 from Code.Source.homePageOptions import showHomePageGreeting, searchUsers, viewIncomingRequests, showMyNetwork
 from Code.Source.menu import homePage, route, usefulLinksMenu
 from Code.Source.loginPrompt import register
-from Code.Source.utility import accountLimit, addToFriendsList, createRequest, getUserFriendList, removeFromFriendsList, removeRequest, storyDisplay
+from Code.Source.utility import accountLimit, addToFriendsList, createRequest, getUserFriendList, removeFromFriendsList, removeRequest, storyDisplay, wJson, writeJson
 import pytest
 import json
 
@@ -32,6 +32,20 @@ def setup():
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
     userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList)
+
+    fileName = getDataFile()
+    with open (fileName) as jsonFile:
+        data = json.load(jsonFile)
+        for users in data["accounts"]:
+            if users["username"] == 'testuser1':
+                users["outgoingRequests"] = ["testuser2"]
+                users["friendsList"] = []
+            elif users["username"] == 'testuser2':
+                users["incomingRequests"] = ["testuser1"]
+                users["friendsList"] = []
+
+    wJson(data, fileName)
+        
 
 def test_IncomingRequestOption(capfd):
     showHomePageGreeting()
@@ -84,21 +98,38 @@ def test_RequestNotification(capfd):
     assert "You have 1 incoming friend request" in out
 
 @pytest.mark.parametrize("test_input, messages",
-[(['user1', '1'], ["You have 1 incoming request", "1. Accept\n2. Decline"])])
+[(['testuser1', '1'], ["You have 1 incoming request", "1. Accept\n2. Decline"])])
 def test_AcceptFriendRequest(capfd, monkeypatch, test_input, messages):
-    monkeypatch.setattr('builtins.input', lambda _: test_input[0])
-    #Send request
-    userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', True, True, True, [], [], [])
-    createRequest("user1", "user2")
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: test_input.pop(0))
+        
+        #Get user info from json
+        dataFile = getDataFile()
+        with open(dataFile, "r") as json_file:
+            data = json.load(json_file)
+            for items in data["accounts"]:
+                tempUser = items["username"]
+                if 'testuser2' == tempUser:
+                    firstname = items["firstName"]
+                    lastname = items["lastName"]
+                    university = items["university"]
+                    major = items["major"]
+                    incomingRequests = items["incomingRequests"]
+                    outgoingRequests = items["outgoingRequests"]
+                    friendsList = items["friendsList"]
+                    language = "English" if items["language"] == "English" else "Spanish"
+                    email = True if items["email"] == "True" else False
+                    SMS = True if items["SMS"] == "True" else False 
+                    ads = True if items["ads"] == "True" else False
 
-    #swap users and accept it
-    userInit('user2', 'Spoopy', 'Ando', 'University of Central Florida', 'Mechanical Engineering', 'English', True, True, True, ["user1"], [], [])   
-    viewIncomingRequests()
+        #set user variable
+        userInit('testuser2', firstname, lastname, university, major, language, email, SMS, ads, incomingRequests, outgoingRequests, friendsList)
+        viewIncomingRequests()
 
-    assert "user1" in getFriendsList()
-
-    out, err = capfd.readouterr()
-    assert messages in out
+    except IndexError:
+        assert "testuser1" in getFriendsList()
+        out, err = capfd.readouterr()
+        assert messages[0] in out
                  
 
 def test_accountLimit():
