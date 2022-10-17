@@ -11,7 +11,9 @@
             "email": "False",
             "SMS": "False",
             "ads": "True",
-            "incomingRequests": [],
+            "incomingRequests": [
+                "user2"
+            ],
             "outgoingRequests": [],
             "friendsList": []
         },
@@ -27,7 +29,9 @@
             "SMS": "True",
             "ads": "True",
             "incomingRequests": [],
-            "outgoingRequests": [],
+            "outgoingRequests": [
+                "user1"
+            ],
             "friendsList": []
         },
         {
@@ -52,6 +56,21 @@
             "lastName": "vu",
             "university": "University of Florida",
             "major": "Mechanical Engineering",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": []
+        },
+        {
+            "username": "testuser3",
+            "password": "Password123@",
+            "firstName": "Testyy",
+            "lastName": "Pythony",
+            "university": "University of Chicago",
+            "major": "Civil Engineering",
             "language": "English",
             "email": "True",
             "SMS": "True",
