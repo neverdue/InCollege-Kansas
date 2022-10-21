@@ -371,3 +371,12 @@ def getProfile(username):
         for account in data["accounts"]:
             if account["username"] == username:
                 return account["profile"]
+
+# Check is user has profile
+def hasProfile(username): 
+    dataFile = getDataFile()
+    with open(dataFile) as jsonFile:
+        data = json.load(jsonFile)
+        for account in data["accounts"]:
+            if account["username"] == username and account["profile"]["education"]:
+                return True 
