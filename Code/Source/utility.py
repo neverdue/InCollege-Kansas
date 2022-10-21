@@ -31,6 +31,16 @@ def inputValidation(left, right):
         print(f"Invalid input! Please enter a number from {left} to {right - 1}.")
     return int(inputSelection)
 
+#Character Limiter Function (Security Measure)
+def checkLength(input, limit, required=False):
+    if len(input) > limit:
+        print("\nERROR: Maximum characters of " + str(limit) + " reached.\n")
+        return False
+    if required and len(input) == 0: 
+        print("\nERROR: No input entered.\n")
+        return False
+    return True
+
 def accountExist(username):
     dataFile = getDataFile()
     with open(dataFile, "r") as json_file:

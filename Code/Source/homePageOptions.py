@@ -3,7 +3,7 @@ from webbrowser import get
 from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, hasProfile, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
+from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, checkLength, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
 MAX_EXPERIENCE = 3 
 
@@ -131,16 +131,6 @@ def readJobPosts():
         data = json.load(json_file)
         jobPosts = data["jobPosts"]
     return jobPosts
-
-#Character Limiter Function (Security Measure)
-def checkLength(input, limit, required=False):
-    if len(input) > limit:
-        print("\nERROR: Maximum characters of " + str(limit) + " reached.\n")
-        return False
-    if required and len(input) == 0: 
-        print("\nERROR: No input entered.\n")
-        return False
-    return True
 
 def findSomeonePage():
     addPage(findSomeonePage)
@@ -297,9 +287,10 @@ def showProfile():
         if userInput == 8: break
         elif userInput in range(2, 6): 
             updateProfile(PROFILE_KEYS[userInput - 2])
+        elif userInput == 6: 
+            editProfile(PROFILE_KEYS[userInput - 2], EXPERIENCE_KEYS, getExperienceCount())
         else: 
-            if userInput == 6: editProfile(PROFILE_KEYS[userInput - 2], EXPERIENCE_KEYS, getExperienceCount())
-            else: editProfile(PROFILE_KEYS[userInput - 2], EDUCATION_KEYS, getEducationCount())
+            editProfile(PROFILE_KEYS[userInput - 2], EDUCATION_KEYS, getEducationCount())
     back()
     
 # NOTE: Change how experience and education is displayed. Thank you!
@@ -330,6 +321,7 @@ def updateInfo(key, dict, keyword, helper):
         while True:
             userInput = input(f"Enter {keyName}: ")
             if checkLength(userInput, 200, True):
+                # e.g. if asking for date, but user input is not in the date format "MM/DD/YYYY" keep asking again
                 if keyword in keyName and not helper(userInput): continue
                 newInfo[keyName] = userInput
                 break
