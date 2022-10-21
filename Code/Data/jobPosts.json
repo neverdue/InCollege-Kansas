@@ -1,5 +1,5 @@
 {
-    "numPosts": 5,
+    "numPosts": 4,
     "jobPosts": [
         {
             "Title": "Software Engineer",
@@ -31,14 +31,6 @@
             "Location": "San Fran",
             "Salary": "300,000",
             "Name": "Mayank Pandey"
-        },
-        {
-            "Title": "dw",
-            "Description": "qweq",
-            "Employer": "dqdqw",
-            "Location": "weqe",
-            "Salary": "qdqe",
-            "Name": "Andy Nguyen"
         }
     ]
 }

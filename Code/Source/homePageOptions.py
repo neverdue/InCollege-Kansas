@@ -1,14 +1,16 @@
 import json
-from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getJobFile, getLast, getOutgoingRequests, getUser
+import time
+from webbrowser import get
+from Code.Source.globalVariables import addPage, getTimer, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, hasProfile, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson
+from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
 
 def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
-    print("""Please choose from one of the options below:\n1. Search for a job
-2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users\n7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n10. Go to previously visited page\n""")
+    print("""Please choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users
+7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. Go to previously visited page\n""".format("10. Show your profile" if hasProfile() else "10. Create your profile"))
 
 def showSkillPageGreeting():
     printDivider()
@@ -130,9 +132,12 @@ def readJobPosts():
     return jobPosts
 
 #Character Limiter Function (Security Measure)
-def checkLength(input, limit):
+def checkLength(input, limit, required=False):
     if len(input) > limit:
         print("\nERROR: Maximum characters of " + str(limit) + " reached.\n")
+        return False
+    if required and len(input) == 0: 
+        print("\nERROR: No input entered.\n")
         return False
     return True
 
@@ -257,7 +262,120 @@ def showMyNetwork():
     if user_choice in myNetwork:
         removeFromFriendsList(getUser(), user_choice)
 
+# Global variables
+PROFILE_KEYS = ["title", "major", "university", "about", "experience", "education"]
+EXPERIENCE_KEYS = ["title", "employer", "date started", "date ended", "location", "description"]
+EDUCATION_KEYS = ["school name", "degree", "years attended"]
 
-#Function used to edit the profile of the currently logged in user
-def editUserProfile():
+# PROFILE FUNCTIONS
+def createProfile():
+    addPage(createProfile)
+
+    profile = getUserProfile()
+    profileKeys = profile.keys()
+
+    printDivider()
+    print("Please enter the following information for your profile when prompted.")
+    for key in PROFILE_KEYS:
+        if key == "experience" and getExperienceCount() < 3: 
+            addExperience()
+        elif key == "education":
+            addEducation()
+            break
+        elif key not in profileKeys:
+            updateProfile(key)
+        if not continueInput("continue filling out your profile"):
+            break
+    back()
+
+def showProfile(): 
+    addPage(showProfile)
+
+    while True:
+        printDivider()
+        print("\nYour profile:")
+        displayProfile(getUserProfile(), getFirst() + " " + getLast())
+
+        print("\nEnter an option from 2-7 to replace your profile information.\nEnter 8 to go to previously visited page.")
+        userInput = inputValidation(2, 9)
+        if userInput == 8: 
+            break
+        elif userInput in range(2, 6): 
+            updateProfile(PROFILE_KEYS[userInput - 2])
+        else: 
+            editProfile(PROFILE_KEYS[userInput - 2], EDUCATION_KEYS if userInput == 6 else EXPERIENCE_KEYS)
+    back()
     
+# NOTE: Change how experience and education is displayed. Thank you!
+def displayProfile(profile, name):
+    print(f"1. Name: {name}")
+    for count, key in enumerate(PROFILE_KEYS, start=2):
+        print(f"{count}. {key.title()}: {profile[key]}")
+
+def updateProfile(key):
+    while True: 
+        if key == "about":
+            newInfo = input("\nEnter a paragraph about yourself: ")
+        else: 
+            newInfo = input(f"\nEnter your {key}: ")
+        if checkLength(newInfo, 200, True):
+            break
+
+    if key == "major" or key == "university":
+        newInfo = newInfo.title()
+
+    setProfileInfo(key, newInfo)   # Update global variable
+    updateProfileJson()            # Update json file
+
+def editInfo(key, dict, keyword, helper): 
+    print(f"\nEnter the following information about your past {key}:")
+    newInfo = {}
+    for keyName in dict:
+        while True:
+            userInput = input(f"Enter {keyName}: ")
+            if checkLength(userInput, 200, True):
+                if keyword in keyName and not helper(userInput):
+                    continue
+                newInfo[keyName] = userInput
+                break
+    return newInfo
+
+def addExperience():
+    while getExperienceCount() < 3: 
+        if not continueInput("add a past job"): 
+            break
+        newInfo = editInfo("experience", EXPERIENCE_KEYS, "date", isDate)
+        setExperienceInfo(newInfo)
+        updateProfileJson()
+    if getExperienceCount() == 3: 
+        print("\nThe limit for past job experiences have been reached.")
+            
+def addEducation():
+    while True: 
+        newInfo = editInfo("education", EDUCATION_KEYS, "years", isDigit)
+        setEducationInfo(newInfo)
+        updateProfileJson()
+        if not continueInput("add another school"): 
+            break
+
+# For experience and education
+def editProfile(key, dict): 
+    while True: 
+        index = input("Enter the number you want to replace: ")
+        if index.isdigit(): 
+            break
+    profile = getUserProfile()
+    if key == "experience":
+        profile[key][index-1] = editInfo(key, dict, "date", isDate)
+    else:
+        profile[key][index-1] = editInfo(key, dict, "years", isDigit)
+    updateProfileJson()
+
+def updateProfileJson():
+    dataFile = getDataFile()
+    with open(dataFile) as jsonFile:
+        data = json.load(jsonFile)
+        for account in data["accounts"]:
+            if account["username"] == getUser():
+                account["profile"] = getUserProfile() 
+    wJson(data, dataFile)

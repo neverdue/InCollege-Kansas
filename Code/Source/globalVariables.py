@@ -47,21 +47,20 @@ def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last, university, major, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friendsList = []):
+def userInit(user, first, last, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friendsList = [], profile = {}):
     global loggedUser
     loggedUser = {
         "username" : user,
         "firstName" : first,
         "lastName" : last,
-        "university" : university,
-        "major" : major,
         "language" : language,
         "emailPref" : email,
         "SMSPref" : sms,
         "adPref" : ads,
         "incomingRequests" : incomingRequests,
         "outgoingRequests" : outgoingRequests,
-        "friendsList" : friendsList
+        "friendsList" : friendsList,
+        "profile": profile
     }
 
 def logout():
@@ -72,10 +71,10 @@ def getLoggedUser():
     return loggedUser
 
 def getFirst():
-    return loggedUser.get("firstName")
+    return loggedUser.get("firstName").title()
 
 def getLast():
-    return loggedUser.get("lastName")
+    return loggedUser.get("lastName").title()
 
 def getUser():
     return loggedUser.get("username")
@@ -121,3 +120,22 @@ def getFriendsList():
 
 def setFriendsList(x):
     loggedUser["friendsList"] = x
+
+def hasProfile():
+    return 0 if not loggedUser["profile"]["education"] else 1
+
+def getUserProfile():
+    return loggedUser["profile"]
+
+def setProfileInfo(key, info):
+    loggedUser["profile"][key] = info
+
+def setExperienceInfo(info):
+    loggedUser["profile"]["experience"].append(info)
+
+def setEducationInfo(info):
+    loggedUser["profile"]["education"].append(info)
+    
+def getExperienceCount():
+    return len(loggedUser["profile"]["experience"])
+    
