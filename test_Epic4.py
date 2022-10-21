@@ -17,10 +17,10 @@ def setup():
     open(DATAFILE, 'w').close()
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
-    register("user1", "Password123!", "Andy", "Nguyen", "University of South Florida", "Computer Science")
-    register("user2", "Password123*", "Spoopy", "Ando", "University of Central Florida", "Mechanical Engineering")
-    register("testuser1", "Password123@", "tommy", "truong", "Florida State University", "Computer Science")
-    register("testuser2", "Password123$", "kevin", "vu", "University of Florida", "Industrial Engineering")
+    register("user1", "Password123!", "Andy", "Nguyen")
+    register("user2", "Password123*", "Spoopy", "Ando")
+    register("testuser1", "Password123@", "tommy", "truong")
+    register("testuser2", "Password123$", "kevin", "vu")
 
     with open(DATAFILE, 'r') as json_file:
         data = json.load(json_file)
@@ -92,7 +92,7 @@ def test_searchUniversity(capfd, monkeypatch, test_inputs, messages):
         assert messages in out 
 
 def test_RequestNotification(capfd):
-    userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', True, True, True, ["user2"], [], [])
+    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True, ["user2"], [], [])
     homePage()
     out, err = capfd.readouterr()
     assert "You have 1 incoming friend request" in out
@@ -112,8 +112,6 @@ def test_AcceptFriendRequest(capfd, monkeypatch, test_input, messages):
                 if 'testuser2' == tempUser:
                     firstname = items["firstName"]
                     lastname = items["lastName"]
-                    university = items["university"]
-                    major = items["major"]
                     incomingRequests = items["incomingRequests"]
                     outgoingRequests = items["outgoingRequests"]
                     friendsList = items["friendsList"]
@@ -123,7 +121,7 @@ def test_AcceptFriendRequest(capfd, monkeypatch, test_input, messages):
                     ads = True if items["ads"] == "True" else False
 
         #set user variable
-        userInit('testuser2', firstname, lastname, university, major, language, email, SMS, ads, incomingRequests, outgoingRequests, friendsList)
+        userInit('testuser2', firstname, lastname, language, email, SMS, ads, incomingRequests, outgoingRequests, friendsList)
         viewIncomingRequests()
 
     except IndexError:
@@ -179,7 +177,7 @@ def test_sendFriendRequest():
 [([], "\n\nYou have 1 incoming request!\n\nIncoming friend requests:\n\n------------------------------------------------------------\n\n\n------------------------------------------------------------\n\nName: Spoopy Ando\nUsername: user2\n\n------------------------------------------------------------\n\nEnter the username of the user you want to select or enter 0 to go to homepage or -1 to exit.\n")])
 def test_seeFriendRequest(capsys, monkeypatch, test_inputs, messages):
     try:
-        userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, ["user2"])
+        userInit('user1', 'Andy', 'Nguyen', 'English', False, False, False, ["user2"])
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
         route(7)
     except IndexError:
@@ -188,12 +186,12 @@ def test_seeFriendRequest(capsys, monkeypatch, test_inputs, messages):
 
 #Sets a friend list for user and test if that list is returned properly
 def test_friendsListRetrieval():
-    userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, [], [], ["user2", "testuser1", "testuser3"])
+    userInit('user1', 'Andy', 'Nguyen', 'English', False, False, False, [], [], ["user2", "testuser1", "testuser3"])
     assert getFriendsList() == ['user2', 'testuser1', 'testuser3']
 
 #Sets outgoing requests for user and tests if that list of outgoing request is returned properly
 def test_outgoingRequestRetrieval():
-        userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, [], ["user2", "testuser1", "testuser3"], [])
+        userInit('user1', 'Andy', 'Nguyen', 'English', False, False, False, [], ["user2", "testuser1", "testuser3"], [])
         assert getOutgoingRequests() == ["user2", "testuser1", "testuser3"]
 
 #Each user will have an option to disconnect anyone from their friendlist. If so, remove them from their friends list
@@ -203,7 +201,7 @@ def test_outgoingRequestRetrieval():
 ([], "Enter the username of the user you want to unfriend or enter 0 to go back or -1 to exit.\n")])
 def test_disconnectFriend(capsys, monkeypatch, test_inputs, messages):
     try:
-        userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, [], [], ["user2"])
+        userInit('user1', 'Andy', 'Nguyen', 'English', False, False, False, [], [], ["user2"])
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
         createRequest(getUser(), "user2")
         addToFriendsList(getUser(), "user2")

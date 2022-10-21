@@ -33,16 +33,6 @@ def username():
 def password():
     return "Test123@"
 
-@pytest.fixture
-def university():
-    universities = ["University of South Florida", "University of Central Florida", "Florida State University", "University of Florida", "Florida International University"]
-    return random.choice(universities)
-
-@pytest.fixture
-def major():
-    majors = ["Computer Science", "Biomedical Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering"]
-    return random.choice(majors)
-
 def test_validate_password():
     good_password = "GoodPass123@"
     assert securePassword(good_password) == 1
@@ -50,19 +40,17 @@ def test_validate_password():
     for password in bad_passwords:
         assert securePassword(password) != 1
 
-def test_account_limit(username, password, firstName, lastName, university, major):
+def test_account_limit(username, password, firstName, lastName):
     assert accountLimit() == 0
-    register(username, password, firstName, lastName, university, major)
+    register(username, password, firstName, lastName)
     assert accountLimit() == 1
 
-def test_account_exist(username, password, firstName, lastName, university, major):
+def test_account_exist(username, password, firstName, lastName):
     assert accountExist(username) != 1
-    register(username, password, firstName, lastName, university, major)
+    register(username, password, firstName, lastName)
     assert accountExist(username) == 1
 
 def test_ten_accounts():
-    universities = ["University of South Florida", "University of Central Florida", "Florida State University", "University of Florida", "Florida International University"]
-    majors = ["Computer Science", "Biomedical Engineering", "Mechanical Engineering", "Electrical Engineering", "Chemical Engineering"]
     potential_users = [
         ("test1", "Test123@", "Test1", "User"),
         ("test2", "Test123@", "Test2", "User"),
@@ -76,31 +64,31 @@ def test_ten_accounts():
         ("test10", "Test123@", "Test10", "User")
     ]
     for user in potential_users:
-        register(user[0], user[1], user[2], user[3], random.choice(universities), random.choice(majors))
+        register(user[0], user[1], user[2], user[3])
     assert accountLimit() == ACCOUNT_LIMIT
     bad_user = "test11"
     password = "Test123@"
     first = "Test11"
     last = "User"
-    assert register(bad_user, password, first, last, random.choice(universities), random.choice(majors)) != 1
+    assert register(bad_user, password, first, last) != 1
     assert accountLimit() == ACCOUNT_LIMIT
 
-def test_login(username, password, firstName, lastName, university, major):
-    register(username, password, firstName, lastName, university, major)
+def test_login(username, password, firstName, lastName):
+    register(username, password, firstName, lastName)
     assert login(username, password) == 1
     bad_username = "bad"
     assert login(bad_username, password) != 1
 
-def test_register_existing_user(username, password, firstName, lastName, university, major):
-    register(username, password, firstName, lastName, university, major)
-    assert register(username, password, firstName, lastName, university, major) != 1
+def test_register_existing_user(username, password, firstName, lastName):
+    register(username, password, firstName, lastName)
+    assert register(username, password, firstName, lastName) != 1
 
 def test_register_bad_password(username, password, firstName, lastName):
     password = "bad"
     assert securePassword(password) != 1
 
-def test_login_existing_user(username, password, firstName, lastName, university, major):
-    register(username, password, firstName, lastName, university, major)
+def test_login_existing_user(username, password, firstName, lastName):
+    register(username, password, firstName, lastName)
     assert login(username, password) == 1
 
     # With invalid password

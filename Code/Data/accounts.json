@@ -1,83 +1,114 @@
 {
-    "accounts": [
-        {
-            "username": "user1",
-            "password": "Password123!",
-            "firstName": "Andy",
-            "lastName": "Nguyen",
-            "university": "University of South Florida",
-            "major": "Computer Science",
-            "language": "Spanish",
-            "email": "False",
-            "SMS": "False",
-            "ads": "True",
-            "incomingRequests": [
-                "user2"
-            ],
-            "outgoingRequests": [],
-            "friendsList": []
-        },
-        {
-            "username": "user2",
-            "password": "Password123*",
-            "firstName": "Spoopy",
-            "lastName": "Ando",
-            "university": "University of Central Florida",
-            "major": "Mechanical Engineering",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [
-                "user1"
-            ],
-            "friendsList": []
-        },
-        {
-            "username": "testuser1",
-            "password": "Password123@",
-            "firstName": "tommy",
-            "lastName": "truong",
-            "university": "Florida State University",
-            "major": "Computer Science",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": []
-        },
-        {
-            "username": "testuser2",
-            "password": "Password123$",
-            "firstName": "kevin",
-            "lastName": "vu",
-            "university": "University of Florida",
-            "major": "Mechanical Engineering",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": []
-        },
-        {
-            "username": "testuser3",
-            "password": "Password123@",
-            "firstName": "Testyy",
-            "lastName": "Pythony",
-            "university": "University of Chicago",
-            "major": "Civil Engineering",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": []
-        }
-    ]
+  "accounts": [
+    {
+      "username": "user1",
+      "password": "Password123!",
+      "firstName": "Andy",
+      "lastName": "Nguyen",
+      "university": "University of South Florida",
+      "major": "Computer Science",
+      "language": "Spanish",
+      "email": "False",
+      "SMS": "False",
+      "ads": "True",
+      "incomingRequests": [
+          "user2"
+      ],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE Intern",
+            "employer": "Google",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "SF",
+            "description": "Software Engineer Intern"
+          }
+        ],
+        "education": [
+          {
+            "school name": "USF",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year Computer Science student",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "Hello"
+      }
+    },
+    {
+      "username": "user2",
+      "password": "Password123*",
+      "firstName": "Spoopy",
+      "lastName": "Ando",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [
+        "user1"
+      ],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      }
+    },
+    {
+      "username": "testuser1",
+      "password": "Password123@",
+      "firstName": "tommy",
+      "lastName": "truong",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      }
+    },
+    {
+      "username": "testuser2",
+      "password": "Password123$",
+      "firstName": "kevin",
+      "lastName": "vu",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      }
+    },
+    {
+      "username": "testuser3",
+      "password": "Password123@",
+      "firstName": "Testyy",
+      "lastName": "Pythony",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      }
+    }
+  ]
 }

@@ -1,5 +1,6 @@
 import json
-from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, setFriendsList, setIncomingRequests, setOutgoingRequests
+import datetime
+from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests
 
 #Checks all possible pages to call back to last page visited
 def checkPages(page, links):
@@ -207,7 +208,8 @@ def searchFilter(filterAttribute):
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
         for user in data["accounts"]:
-            if (user[filterAttribute].lower() == filterValue.lower() and user["username"] != getUser() and
+            if (((filterAttribute == "lastName" and user[filterAttribute].lower() == filterValue.lower()) or
+             user["profile"][filterAttribute].lower() == filterValue.lower()) and user["username"] != getUser() and
              user["username"] not in getOutgoingRequests() and user["username"] not in getIncomingRequests() and
              user["username"] not in getFriendsList()):
                 foundUsers[user["username"]] = user
@@ -286,8 +288,31 @@ def removeFromFriendsList(currentUser, personToRemove):
     setFriendsList(getUserFriendList(getUser()))
     return
 
+def isDate(userInput):
+    try:
+        flag = bool(datetime.datetime.strptime(userInput, "%m/%d/%Y"))
+    except ValueError:
+        flag = False
+        print("Incorrect input format, should be MM/DD/YYYY")
+    return flag 
 
+def isDigit(userInput):
+    if userInput.isdigit():
+        return True
+    print("Please enter a number")
+    return False 
 
-
-
+def continueInput(message):
+    while True: 
+        userInput = input(f"\nDo you want to {message} (y/n): ")
+        if userInput == "y":
+            return True
+        elif userInput == "n":
+            return False
+    # if userInput == "n":
+    #     print("\nYour profile draft is saved. Come back later to complete your profile!\n")
+    #     timer = getTimer()
+    #     time.sleep(timer)
+    #     back()
+            
 #TODO - Update existing users easier - did not find method that did so in brief look
