@@ -5,6 +5,8 @@ from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
+MAX_EXPERIENCE = 3 
+
 def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
@@ -272,7 +274,7 @@ def createProfile():
     printDivider()
     print("Please enter the following information for your profile when prompted.")
     for key in PROFILE_KEYS:
-        if key == "experience" and getExperienceCount() < 3: 
+        if key == "experience" and getExperienceCount() < MAX_EXPERIENCE: 
             addExperience()
         elif key == "education":
             addEducation()
@@ -334,12 +336,12 @@ def updateInfo(key, dict, keyword, helper):
     return newInfo
 
 def addExperience():
-    while getExperienceCount() < 3: 
+    while getExperienceCount() < MAX_EXPERIENCE: 
         if not continueInput("add a past job"): break
         newInfo = updateInfo("experience", EXPERIENCE_KEYS, "date", isDate)
         setExperienceInfo(newInfo)
         updateProfileJson()
-    if getExperienceCount() == 3: 
+    if getExperienceCount() == MAX_EXPERIENCE: 
         print("\nThe limit for past job experiences have been reached.")
             
 def addEducation():
