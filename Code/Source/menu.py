@@ -1,4 +1,4 @@
-from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests
+from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, editUserProfile
 from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider
@@ -66,7 +66,7 @@ def homePage():
 
     showHomePageGreeting()
     try: 
-        user_choice = int(input("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, or 9): "))
+        user_choice = int(input("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, or 11): "))
     except:
         print("Invalid input!")
         return
@@ -77,7 +77,7 @@ def homePage():
     while user_choice not in range(1, 10):
         showHomePageGreeting()
         try:
-            user_choice = int(input("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, or 9): "))   
+            user_choice = int(input("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, or 11): "))
         except:
             print("Invalid input!")
             return
@@ -122,4 +122,6 @@ def route(user_choice):
     elif user_choice == 9:
         showMyNetwork()
     elif user_choice == 10:
+        editUserProfile()
+    elif user_choice == 11:
         back()

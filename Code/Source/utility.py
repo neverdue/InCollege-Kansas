@@ -220,10 +220,6 @@ def searchFilter(filterAttribute):
     else:
         return foundUsers  
 
-#Functions of the form (loggedinuser,userbeinginteractedwith), no thought required 10/12/22
-#These functions cover a lot of the same proccesses many times. I don't believe I can return a json object reference. will discuss in scrum - Rier 10/12/22
-#Willing to discuss better ways to solve this if necessary, however going for the most intuitive approach first :)
-
 
 #Updates request list of respective users
 def createRequest(senderUsername, recipientUsername):
@@ -290,4 +286,3 @@ def removeFromFriendsList(currentUser, personToRemove):
 
 
 
-#TODO - Update existing users easier - did not find method that did so in brief look

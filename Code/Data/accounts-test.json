@@ -7,13 +7,15 @@
             "lastName": "Nguyen",
             "university": "University of South Florida",
             "major": "Computer Science",
-            "language": "Spanish",
-            "email": "False",
-            "SMS": "False",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
             "ads": "True",
             "incomingRequests": [],
             "outgoingRequests": [],
-            "friendsList": []
+            "friendsList": [
+                "user2"
+            ]
         },
         {
             "username": "user2",
@@ -28,7 +30,9 @@
             "ads": "True",
             "incomingRequests": [],
             "outgoingRequests": [],
-            "friendsList": []
+            "friendsList": [
+                "user1"
+            ]
         },
         {
             "username": "testuser1",
@@ -42,7 +46,9 @@
             "SMS": "True",
             "ads": "True",
             "incomingRequests": [],
-            "outgoingRequests": [],
+            "outgoingRequests": [
+                "testuser2"
+            ],
             "friendsList": []
         },
         {
@@ -56,7 +62,9 @@
             "email": "True",
             "SMS": "True",
             "ads": "True",
-            "incomingRequests": [],
+            "incomingRequests": [
+                "testuser1"
+            ],
             "outgoingRequests": [],
             "friendsList": []
         }

@@ -1,5 +1,5 @@
 import json
-from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getJobFile, getLast, getOutgoingRequests, getUser, printStack
+from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getJobFile, getLast, getOutgoingRequests, getUser
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson
 
@@ -149,13 +149,13 @@ def searchUsers():
     print(message)
     user_choice = inputValidation(1, 5)
     foundUsers = {}
-    if user_choice == 1:
+    if user_choice == '1':
         foundUsers = searchFilter("lastName")
-    elif user_choice == 2:
+    elif user_choice == '2':
         foundUsers = searchFilter("major")
-    elif user_choice == 3:
+    elif user_choice == '3':
         foundUsers = searchFilter("university")
-    elif user_choice == 4:
+    elif user_choice == '4':
         back()
 
     if foundUsers != -1:
@@ -256,3 +256,8 @@ def showMyNetwork():
         endProgram()
     if user_choice in myNetwork:
         removeFromFriendsList(getUser(), user_choice)
+
+
+#Function used to edit the profile of the currently logged in user
+def editUserProfile():
+    

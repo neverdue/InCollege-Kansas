@@ -44,6 +44,7 @@
             "language": "English",
             "email": "True",
             "SMS": "True",
+            
             "ads": "True",
             "incomingRequests": [],
             "outgoingRequests": [],
