@@ -236,12 +236,13 @@ def viewOutgoingRequests():
     elif user_choice == '-1':
         endProgram()
 
+#"Show my Network - displays a friend network and interaction options with users in that network"
 def showMyNetwork():
     addPage(showMyNetwork)
     print("My Network:")
     printDivider()
     myNetwork = getFriendsList()
-
+        
     if len(myNetwork) == 0:
         print("You have no friends.")
         return
@@ -253,19 +254,66 @@ def showMyNetwork():
         printDivider()
         viewUser(retrieveUser(user))
         printDivider()
-    print("Enter the username of the user you want to unfriend or enter 0 to go back or -1 to exit.")
-    user_choice = input("Enter your option: ")
-    if user_choice == '0':
-        back()
-    elif user_choice == '-1':
-        endProgram()
-    if user_choice in myNetwork:
-        removeFromFriendsList(getUser(), user_choice)
+    
+    #Prompts user to select a person to interact with, or exit the program.
+    user_choice = input("You may select a user from the network to interact with, press 0 to go Home, or -1 to exit")
+    selectedUser = None
+    while user_choice != '-1' and user_choice != '0' and selectedUser == None:
+        print(selectedUser)
+        if user_choice in myNetwork:
+            selectedUser = user_choice
+            print("Selected User is: ", selectedUser)  
+            print("Userchoice", user_choice)
+        else:
+            print("Username you tried to select does not exist or was spelt incorrectly.")
+            user_choice = input("You may select a user from the network to interact with, press 0 to go Home, or -1 to exit")
+    else:
+        if user_choice == '0':
+            back()
+        elif user_choice == '-1':
+            endProgram()
+        else:
+            canRemoveSelectedUser = True
+            #if hasprofile, we go through these menu options for them
+            while user_choice != '-1' and user_choice != '0':
+                print("Choose an interaction option for: ", selectedUser)
+                displayHolderString = ""
+                #if has profile append option to display
+                displayHolderString += "Interaction options: 1. View Profile,"
+                if canRemoveSelectedUser:
+                    displayHolderString += "2. Remove friend from MyNetwork,"
+                displayHolderString+= "0. go back home, -1 exit application"
+
+                print(displayHolderString)   
+                user_choice = input()
+                #if user has profile and 1 is pressed
+                #could do a dynamic options thing with count +1 count + 2 etc to determine, but that seems overkill
+                if(user_choice == '1'):
+                    print("Viewing", selectedUser,"'s profile" )
+                    #TODO should  check if they have a profile or not using a general method. 
+                    #TODO call Chau's getUserProfile method and display information easily from that profile using a displayProfile() method.
+                    #TODO If they have a profile we say they do, if not we say they dont and then just reprompt
+                elif(user_choice == '2'):
+                    #TODO - Discuss a "Are you sure? Check"
+                    if(canRemoveSelectedUser == True):
+                        print("Removing. . .", selectedUser)
+                        removeFromFriendsList(getUser(), selectedUser)
+                        #could manually set user input and force a back() call if profile is a page and we have interaction with it
+                        canRemoveSelectedUser = False    
+            else:
+                if(user_choice == '0'):
+                    back()
+                elif(user_choice == '-1'):
+                    endProgram()
+
 
 # Global variables
 PROFILE_KEYS = ["title", "major", "university", "about", "experience", "education"]
 EXPERIENCE_KEYS = ["title", "employer", "date started", "date ended", "location", "description"]
 EDUCATION_KEYS = ["school name", "degree", "years attended"]
+
+#Limits how many jobs can be listed in a profile's "experience" section
+EXPERIENCE_FIELD_LIMIT = 3
 
 # PROFILE FUNCTIONS
 def createProfile():
@@ -277,7 +325,7 @@ def createProfile():
     printDivider()
     print("Please enter the following information for your profile when prompted.")
     for key in PROFILE_KEYS:
-        if key == "experience" and getExperienceCount() < 3: 
+        if key == "experience" and getExperienceCount() < EXPERIENCE_FIELD_LIMIT: 
             addExperience()
         elif key == "education":
             addEducation()
@@ -341,13 +389,13 @@ def editInfo(key, dict, keyword, helper):
     return newInfo
 
 def addExperience():
-    while getExperienceCount() < 3: 
+    while getExperienceCount() < EXPERIENCE_FIELD_LIMIT: 
         if not continueInput("add a past job"): 
             break
         newInfo = editInfo("experience", EXPERIENCE_KEYS, "date", isDate)
         setExperienceInfo(newInfo)
         updateProfileJson()
-    if getExperienceCount() == 3: 
+    if getExperienceCount() == EXPERIENCE_FIELD_LIMIT: 
         print("\nThe limit for past job experiences have been reached.")
             
 def addEducation():

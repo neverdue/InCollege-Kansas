@@ -14,7 +14,10 @@
             "friendsList": [
                 "user2"
             ],
-            "profile": {}
+            "profile": {
+                "experience": [],
+                "education": []
+            }
         },
         {
             "username": "user2",
@@ -30,7 +33,10 @@
             "friendsList": [
                 "user1"
             ],
-            "profile": {}
+            "profile": {
+                "experience": [],
+                "education": []
+            }
         },
         {
             "username": "testuser1",
@@ -46,7 +52,10 @@
                 "testuser2"
             ],
             "friendsList": [],
-            "profile": {}
+            "profile": {
+                "experience": [],
+                "education": []
+            }
         },
         {
             "username": "testuser2",
@@ -62,7 +71,10 @@
             ],
             "outgoingRequests": [],
             "friendsList": [],
-            "profile": {}
+            "profile": {
+                "experience": [],
+                "education": []
+            }
         }
     ]
 }

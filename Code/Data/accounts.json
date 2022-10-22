@@ -11,9 +11,7 @@
       "email": "False",
       "SMS": "False",
       "ads": "True",
-      "incomingRequests": [
-          "user2"
-      ],
+      "incomingRequests": [],
       "outgoingRequests": [],
       "friendsList": [],
       "profile": {
@@ -50,13 +48,15 @@
       "SMS": "True",
       "ads": "True",
       "incomingRequests": [],
-      "outgoingRequests": [
-        "user1"
-      ],
+      "outgoingRequests": [],
       "friendsList": [],
       "profile": {
         "experience": [],
-        "education": []
+        "education": [],
+        "title": "Memer",
+        "major": "Major",
+        "university": "University",
+        "about": "paragraph about myself"
       }
     },
     {
@@ -73,7 +73,11 @@
       "friendsList": [],
       "profile": {
         "experience": [],
-        "education": []
+        "education": [],
+        "title": "t",
+        "major": "Terwer",
+        "university": "Twrt",
+        "about": "yt"
       }
     },
     {
@@ -89,8 +93,29 @@
       "outgoingRequests": [],
       "friendsList": [],
       "profile": {
-        "experience": [],
-        "education": []
+        "experience": [
+          {
+            "title": "t",
+            "employer": "t",
+            "date started": "01/12/1223",
+            "date ended": "01/12/1422",
+            "location": "4",
+            "description": "1"
+          },
+          {
+            "title": " w",
+            "employer": "w",
+            "date started": "01/11/2002",
+            "date ended": "01/2/2001",
+            "location": "2",
+            "description": "1"
+          }
+        ],
+        "education": [],
+        "title": "r",
+        "major": "T",
+        "university": "T",
+        "about": "t"
       }
     },
     {
