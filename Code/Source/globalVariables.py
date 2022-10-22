@@ -11,7 +11,7 @@ def dataFileInit(TESTMODE = False):
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
-        timer = 2
+        timer = 0
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"

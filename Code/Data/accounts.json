@@ -52,7 +52,14 @@
         "user1"
       ],
       "friendsList": [],
-      "profile": {}
+      "profile": {
+        "experience": [],
+        "education": [],
+        "title": "TitleTest",
+        "major": "Majortest",
+        "university": "Universitytest",
+        "about": "Paragraph about myself!!!"
+      }
     },
     {
       "username": "testuser1",

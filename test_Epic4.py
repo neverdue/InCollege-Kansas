@@ -128,7 +128,8 @@ def test_AcceptFriendRequest(capfd, monkeypatch, test_input, messages):
     except IndexError:
         assert "testuser1" in getFriendsList()
         out, err = capfd.readouterr()
-        assert messages[0] in out
+        for message in messages:
+            assert message in out
                  
 
 def test_accountLimit():
