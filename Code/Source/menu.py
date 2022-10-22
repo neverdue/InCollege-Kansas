@@ -107,6 +107,9 @@ def route(user_choice):
     elif user_choice == 10:
         showProfile() if hasProfile(getUser()) else createProfile()
     elif user_choice == 11:
-         displayProfile(getProfile(getUser()) ,(getLoggedUser()["firstName"] + " " + getLoggedUser()["lastName"]))
+        if hasProfile(getUser()):
+            displayProfile(getProfile(getUser()) ,(getLoggedUser()["firstName"] + " " + getLoggedUser()["lastName"]))
+        else:
+            print("Profile not found")
     elif user_choice == 12:
         back()
