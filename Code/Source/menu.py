@@ -1,5 +1,5 @@
-from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, createProfile, showProfile
-from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage, hasProfile
+from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, createProfile, showProfile, hasProfile, displayProfile, getProfile
+from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage, getUser
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider
 
@@ -65,8 +65,8 @@ def homePage():
             print("You have " + str(len(incomingRequests)) + " incoming friend requests!")
 
     showHomePageGreeting()
-    print("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, or 11).")
-    user_choice = inputValidation(1, 12)
+    print("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, or 12).")
+    user_choice = inputValidation(1, 13)
 
     route(user_choice)
     if returnToHomePage() == "homePage":
@@ -107,4 +107,6 @@ def route(user_choice):
     elif user_choice == 10:
         showProfile() if hasProfile() else createProfile()
     elif user_choice == 11:
+         displayProfile(getProfile(getUser()) ,(getLoggedUser()["firstName"] + " " + getLoggedUser()["lastName"]))
+    elif user_choice == 12:
         back()

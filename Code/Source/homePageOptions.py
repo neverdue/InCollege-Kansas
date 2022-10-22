@@ -1,6 +1,6 @@
 import json
 from webbrowser import get
-from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, hasProfile, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount
+from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, checkLength, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
@@ -11,7 +11,7 @@ def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users
-7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. Go to previously visited page\n""".format("10. Show your profile" if hasProfile() else "10. Create your profile"))
+7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. View your profile\n12. Go to previously visited page\n""".format("10. Show your profile" if hasProfile(getUser()) else "10. Create your profile"))
 
 def showSkillPageGreeting():
     printDivider()
@@ -236,7 +236,7 @@ def showMyNetwork():
     myNetwork = getFriendsList()
         
     if len(myNetwork) == 0:
-        print("You have no friends.")
+        print("You have no friends. :(")
         return
         
     printDivider()
@@ -254,8 +254,7 @@ def showMyNetwork():
         print(selectedUser)
         if user_choice in myNetwork:
             selectedUser = user_choice
-            print("Selected User is: ", selectedUser)  
-            print("Userchoice", user_choice)
+            print(f"Selected User is: {selectedUser}")  
         else:
             print("Username you tried to select does not exist or was spelt incorrectly.")
             user_choice = input("You may select a user from the network to interact with, press 0 to go Home, or -1 to exit")
@@ -268,30 +267,32 @@ def showMyNetwork():
             canRemoveSelectedUser = True
             #if hasprofile, we go through these menu options for them
             while user_choice != '-1' and user_choice != '0':
-                print("Choose an interaction option for: ", selectedUser)
+                print(f"Choose an interaction option for: {selectedUser}")
+                #reset displayHolderString after each option is processsed
                 displayHolderString = ""
                 #if has profile append option to display
                 displayHolderString += "Interaction options: 1. View Profile,"
+
                 if canRemoveSelectedUser:
                     displayHolderString += "2. Remove friend from MyNetwork,"
                 displayHolderString+= "0. go back home, -1 exit application"
 
                 print(displayHolderString)   
                 user_choice = input()
-                #if user has profile and 1 is pressed
-                #could do a dynamic options thing with count +1 count + 2 etc to determine, but that seems overkill
+                #if select profile option
                 if(user_choice == '1'):
-                    print("Viewing", selectedUser,"'s profile" )
-                    #TODO should  check if they have a profile or not using a general method. 
-                    #TODO call Chau's getUserProfile method and display information easily from that profile using a displayProfile() method.
-                    #TODO If they have a profile we say they do, if not we say they dont and then just reprompt
+                    if(hasProfile(selectedUser)):
+                        print(f"Viewing {selectedUser}'s profile" )
+                        selectedUserProfile = getProfile(selectedUser)
+                        selectedUserAccount = retrieveUser(selectedUser)
+                        displayProfile(selectedUserProfile, selectedUserAccount["firstName"] +" " + selectedUserAccount["lastName"] )
                 elif(user_choice == '2'):
-                    #TODO - Discuss a "Are you sure? Check"
                     if(canRemoveSelectedUser == True):
-                        print("Removing. . .", selectedUser)
                         removeFromFriendsList(getUser(), selectedUser)
-                        #could manually set user input and force a back() call if profile is a page and we have interaction with it
-                        canRemoveSelectedUser = False    
+                        canRemoveSelectedUser = False   
+                    #make them exit, because they should not be able to see info if unfriended
+                    user_choice = '0'
+
             else:
                 if(user_choice == '0'):
                     back()
@@ -338,11 +339,25 @@ def showProfile():
             editProfile(PROFILE_KEYS[userInput - 2], EDUCATION_KEYS, getEducationCount())
     back()
     
-# NOTE: Change how experience and education is displayed. Thank you!
 def displayProfile(profile, name):
     print(f"1. Name: {name}")
     for count, key in enumerate(PROFILE_KEYS, start=2):
-        print(f"{count}. {key.title()}: {profile[key]}")
+        #For displaying elements of objects that the profile contains
+        if(key == "experience" or key == "education"):
+            print(f"{count}. {key.title()}:")
+            for key2 in profile[key]:
+                keyList = EXPERIENCE_KEYS
+                if(key == "education"):
+                    keyList = EDUCATION_KEYS
+                for expKey in keyList:
+                    print(f"\t {expKey.title()}: {key2[expKey]}")
+            print()
+
+        
+        else:
+            print(f"{count}. {key.title()}: {profile[key]}")
+
+
 
 # Use for profile's title, major, university, and about sections
 def updateProfile(key):
@@ -424,4 +439,6 @@ def hasProfile(username):
         data = json.load(jsonFile)
         for account in data["accounts"]:
             if account["username"] == username and account["profile"]["education"]:
-                return True 
+                return True
+    return False 
+

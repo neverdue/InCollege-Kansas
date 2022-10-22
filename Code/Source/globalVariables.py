@@ -126,8 +126,7 @@ def getFriendsList():
 def setFriendsList(x):
     loggedUser["friendsList"] = x
 
-def hasProfile():
-    return 0 if not loggedUser["profile"]["education"] else 1
+
 
 def getUserProfile():
     return loggedUser["profile"]
