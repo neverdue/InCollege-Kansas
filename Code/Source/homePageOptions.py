@@ -1,6 +1,6 @@
 import json
 from webbrowser import get
-from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, hasProfile, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount
+from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, checkLength, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
@@ -11,7 +11,7 @@ def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users
-7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. Go to previously visited page\n""".format("10. Show your profile" if hasProfile() else "10. Create your profile"))
+7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. Go to previously visited page\n""".format("10. Show your profile" if hasProfile(getUser()) else "10. Create your profile"))
 
 def showSkillPageGreeting():
     printDivider()
@@ -266,12 +266,13 @@ def createProfile():
     for key in PROFILE_KEYS:
         if key == "experience" and getExperienceCount() < MAX_EXPERIENCE: 
             addExperience()
+            if not continueInput("continue filling out your profile"): break
         elif key == "education":
             addEducation()
             break
         elif key not in profileKeys:
             updateProfile(key)
-        if not continueInput("continue filling out your profile"): break
+            if not continueInput("continue filling out your profile"): break
     back()
 
 def showProfile(): 

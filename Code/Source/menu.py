@@ -1,5 +1,5 @@
-from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, createProfile, showProfile
-from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage, hasProfile
+from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, createProfile, showProfile, hasProfile
+from Code.Source.globalVariables import getUser, addPage, getIncomingRequests, getLoggedUser, removePage
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider
 
@@ -105,6 +105,6 @@ def route(user_choice):
     elif user_choice == 9:
         showMyNetwork()
     elif user_choice == 10:
-        showProfile() if hasProfile() else createProfile()
+        showProfile() if hasProfile(getUser()) else createProfile()
     elif user_choice == 11:
         back()

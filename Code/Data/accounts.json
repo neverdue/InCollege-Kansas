@@ -52,10 +52,7 @@
         "user1"
       ],
       "friendsList": [],
-      "profile": {
-        "experience": [],
-        "education": []
-      }
+      "profile": {}
     },
     {
       "username": "testuser1",
