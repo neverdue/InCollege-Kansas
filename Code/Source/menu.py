@@ -105,7 +105,7 @@ def route(user_choice):
     elif user_choice == 9:
         showMyNetwork()
     elif user_choice == 10:
-        showProfile() if hasProfile() else createProfile()
+        showProfile() if hasProfile(getUser()) else createProfile()
     elif user_choice == 11:
          displayProfile(getProfile(getUser()) ,(getLoggedUser()["firstName"] + " " + getLoggedUser()["lastName"]))
     elif user_choice == 12:
