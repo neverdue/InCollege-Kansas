@@ -1,6 +1,6 @@
 import json
 import datetime
-from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests
+from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests, PROFILE_KEYS
 
 #Checks all possible pages to call back to last page visited
 def checkPages(page, links):
@@ -22,21 +22,24 @@ def wJson(data, dataFile):
         json.dump(data, json_file, indent = 2)
 
 def inputValidation(left, right):
-    try:
-        inputSelection = int(input("Selection: "))
-    except ValueError:
-        raise Exception("Invalid input!")
+    while True: 
+        inputSelection = input("Selection: ")
+        if inputSelection.isdigit(): 
+            if int(inputSelection) in range(left, right): break
+            if int(inputSelection) == -1:
+                endProgram()
+        print(f"Invalid input! Please enter a number from {left} to {right - 1}.")
+    return int(inputSelection)
 
-    if inputSelection == -1:
-        endProgram()
-
-    while (inputSelection not in range(left, right)):
-        print("Invalid selection, please try again.\n")
-        try:
-            inputSelection = int(input("Selection: "))
-        except ValueError:
-            raise Exception("Invalid input!")
-    return inputSelection
+#Character Limiter Function (Security Measure)
+def checkLength(input, limit, required=False):
+    if len(input) > limit:
+        print("\nERROR: Maximum characters of " + str(limit) + " reached.\n")
+        return False
+    if required and len(input) == 0: 
+        print("\nERROR: No input entered.\n")
+        return False
+    return True
 
 def accountExist(username):
     dataFile = getDataFile()
@@ -199,7 +202,7 @@ def getUserFriendList(username):
 
 def searchFilter(filterAttribute):
     print("Enter the {} of the user you are looking for.".format(filterAttribute))
-    filterValue = input("{}: ".format(filterAttribute))
+    filterValue = input("{}: ".format(filterAttribute.title()))
     printDivider()
     print("Searching for {}...".format(filterValue))
     printDivider()
@@ -208,10 +211,10 @@ def searchFilter(filterAttribute):
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
         for user in data["accounts"]:
-            if (((filterAttribute == "lastName" and user[filterAttribute].lower() == filterValue.lower()) or
-             user["profile"][filterAttribute].lower() == filterValue.lower()) and user["username"] != getUser() and
-             user["username"] not in getOutgoingRequests() and user["username"] not in getIncomingRequests() and
-             user["username"] not in getFriendsList()):
+            if (((filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()) 
+             or (filterAttribute not in PROFILE_KEYS and user[filterAttribute].lower() == filterValue.lower()))
+             and user["username"] != getUser() and user["username"] not in getOutgoingRequests() and 
+             user["username"] not in getIncomingRequests() and user["username"] not in getFriendsList()):
                 foundUsers[user["username"]] = user
                 printDivider()
                 viewUser(user)
@@ -305,9 +308,4 @@ def continueInput(message):
             return True
         elif userInput == "n":
             return False
-    # if userInput == "n":
-    #     print("\nYour profile draft is saved. Come back later to complete your profile!\n")
-    #     timer = getTimer()
-    #     time.sleep(timer)
-    #     back()
             

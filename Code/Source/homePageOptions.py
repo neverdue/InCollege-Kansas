@@ -1,10 +1,11 @@
 import json
-import time
 from webbrowser import get
-from Code.Source.globalVariables import addPage, getTimer, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, hasProfile, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo
+from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, hasProfile, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount
+from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
+from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, checkLength, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
+MAX_EXPERIENCE = 3 
 
 def showHomePageGreeting():
     printDivider()
@@ -131,21 +132,12 @@ def readJobPosts():
         jobPosts = data["jobPosts"]
     return jobPosts
 
-#Character Limiter Function (Security Measure)
-def checkLength(input, limit, required=False):
-    if len(input) > limit:
-        print("\nERROR: Maximum characters of " + str(limit) + " reached.\n")
-        return False
-    if required and len(input) == 0: 
-        print("\nERROR: No input entered.\n")
-        return False
-    return True
-
 def findSomeonePage():
     addPage(findSomeonePage)
     showConstructionMessage("Find someone you know")
 
 def skillPage(skill):
+    addPage(skillPage)
     showConstructionMessage("Learn a new skill")
 
 def searchUsers():
@@ -154,13 +146,13 @@ def searchUsers():
     print(message)
     user_choice = inputValidation(1, 5)
     foundUsers = {}
-    if user_choice == '1':
+    if user_choice == 1:
         foundUsers = searchFilter("lastName")
-    elif user_choice == '2':
+    elif user_choice == 2:
         foundUsers = searchFilter("major")
-    elif user_choice == '3':
+    elif user_choice == 3:
         foundUsers = searchFilter("university")
-    elif user_choice == '4':
+    elif user_choice == 4:
         back()
 
     if foundUsers != -1:
@@ -307,14 +299,6 @@ def showMyNetwork():
                     endProgram()
 
 
-# Global variables
-PROFILE_KEYS = ["title", "major", "university", "about", "experience", "education"]
-EXPERIENCE_KEYS = ["title", "employer", "date started", "date ended", "location", "description"]
-EDUCATION_KEYS = ["school name", "degree", "years attended"]
-
-#Limits how many jobs can be listed in a profile's "experience" section
-EXPERIENCE_FIELD_LIMIT = 3
-
 # PROFILE FUNCTIONS
 def createProfile():
     addPage(createProfile)
@@ -325,15 +309,14 @@ def createProfile():
     printDivider()
     print("Please enter the following information for your profile when prompted.")
     for key in PROFILE_KEYS:
-        if key == "experience" and getExperienceCount() < EXPERIENCE_FIELD_LIMIT: 
+        if key == "experience" and getExperienceCount() < MAX_EXPERIENCE: 
             addExperience()
         elif key == "education":
             addEducation()
             break
         elif key not in profileKeys:
             updateProfile(key)
-        if not continueInput("continue filling out your profile"):
-            break
+        if not continueInput("continue filling out your profile"): break
     back()
 
 def showProfile(): 
@@ -341,17 +324,18 @@ def showProfile():
 
     while True:
         printDivider()
-        print("\nYour profile:")
+        print("Your profile:")
         displayProfile(getUserProfile(), getFirst() + " " + getLast())
 
         print("\nEnter an option from 2-7 to replace your profile information.\nEnter 8 to go to previously visited page.")
-        userInput = inputValidation(2, 9)
-        if userInput == 8: 
-            break
+        userInput = int(inputValidation(2, 9))
+        if userInput == 8: break
         elif userInput in range(2, 6): 
             updateProfile(PROFILE_KEYS[userInput - 2])
+        elif userInput == 6: 
+            editProfile(PROFILE_KEYS[userInput - 2], EXPERIENCE_KEYS, getExperienceCount())
         else: 
-            editProfile(PROFILE_KEYS[userInput - 2], EDUCATION_KEYS if userInput == 6 else EXPERIENCE_KEYS)
+            editProfile(PROFILE_KEYS[userInput - 2], EDUCATION_KEYS, getEducationCount())
     back()
     
 # NOTE: Change how experience and education is displayed. Thank you!
@@ -360,63 +344,59 @@ def displayProfile(profile, name):
     for count, key in enumerate(PROFILE_KEYS, start=2):
         print(f"{count}. {key.title()}: {profile[key]}")
 
+# Use for profile's title, major, university, and about sections
 def updateProfile(key):
     while True: 
         if key == "about":
             newInfo = input("\nEnter a paragraph about yourself: ")
         else: 
             newInfo = input(f"\nEnter your {key}: ")
-        if checkLength(newInfo, 200, True):
-            break
-
+        if checkLength(newInfo, 200, True): break
     if key == "major" or key == "university":
         newInfo = newInfo.title()
 
     setProfileInfo(key, newInfo)   # Update global variable
     updateProfileJson()            # Update json file
 
-def editInfo(key, dict, keyword, helper): 
+# Use for profile's experience and education section
+def updateInfo(key, dict, keyword, helper): 
     print(f"\nEnter the following information about your past {key}:")
     newInfo = {}
     for keyName in dict:
         while True:
             userInput = input(f"Enter {keyName}: ")
             if checkLength(userInput, 200, True):
-                if keyword in keyName and not helper(userInput):
-                    continue
+                # e.g. if asking for date, but user input is not in the date format "MM/DD/YYYY" keep asking again
+                if keyword in keyName and not helper(userInput): continue
                 newInfo[keyName] = userInput
                 break
     return newInfo
 
 def addExperience():
-    while getExperienceCount() < EXPERIENCE_FIELD_LIMIT: 
-        if not continueInput("add a past job"): 
-            break
-        newInfo = editInfo("experience", EXPERIENCE_KEYS, "date", isDate)
+    while getExperienceCount() < MAX_EXPERIENCE: 
+        if not continueInput("add a past job"): break
+        newInfo = updateInfo("experience", EXPERIENCE_KEYS, "date", isDate)
         setExperienceInfo(newInfo)
         updateProfileJson()
-    if getExperienceCount() == EXPERIENCE_FIELD_LIMIT: 
+    if getExperienceCount() == MAX_EXPERIENCE: 
         print("\nThe limit for past job experiences have been reached.")
             
 def addEducation():
     while True: 
-        newInfo = editInfo("education", EDUCATION_KEYS, "years", isDigit)
+        newInfo = updateInfo("education", EDUCATION_KEYS, "years", isDigit)
         setEducationInfo(newInfo)
         updateProfileJson()
-        if not continueInput("add another school"): 
-            break
+        if not continueInput("add another school"): break
 
-# For experience and education
-def editProfile(key, dict): 
-    while True: 
-        index = input("Enter the number you want to replace: ")
-        if index.isdigit(): 
-            break
+# Use when replacing information from experience and education sections
+def editProfile(key, dict, count): 
+    print("\nEnter the number you want to replace. ")
+    index = int(inputValidation(1, count+1))
     profile = getUserProfile()
     if key == "experience":
-        profile[key][index-1] = editInfo(key, dict, "date", isDate)
+        profile[key][index-1] = updateInfo(key, dict, "date", isDate)
     else:
-        profile[key][index-1] = editInfo(key, dict, "years", isDigit)
+        profile[key][index-1] = updateInfo(key, dict, "years", isDigit)
     updateProfileJson()
 
 def updateProfileJson():
@@ -427,3 +407,21 @@ def updateProfileJson():
             if account["username"] == getUser():
                 account["profile"] = getUserProfile() 
     wJson(data, dataFile)
+
+# Get profile from username 
+def getProfile(username): 
+    dataFile = getDataFile()
+    with open(dataFile) as jsonFile:
+        data = json.load(jsonFile)
+        for account in data["accounts"]:
+            if account["username"] == username:
+                return account["profile"]
+
+# Check is user has profile
+def hasProfile(username): 
+    dataFile = getDataFile()
+    with open(dataFile) as jsonFile:
+        data = json.load(jsonFile)
+        for account in data["accounts"]:
+            if account["username"] == username and account["profile"]["education"]:
+                return True 

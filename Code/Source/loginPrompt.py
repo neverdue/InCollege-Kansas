@@ -67,7 +67,7 @@ def register(username, password, first, last):
     timer = getTimer()
     time.sleep(timer)
 
-    userInit(username, first, last, "English", True, True, True)
+    userInit(username, first, last, "English", True, True, True, [], [], [], {"experience": [], "education": []})
 
     return 1
 

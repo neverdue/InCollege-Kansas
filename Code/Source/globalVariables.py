@@ -1,3 +1,8 @@
+# Global variables
+PROFILE_KEYS = ["title", "major", "university", "about", "experience", "education"]
+EXPERIENCE_KEYS = ["title", "employer", "date started", "date ended", "location", "description"]
+EDUCATION_KEYS = ["school name", "degree", "years attended"]
+
 # Initialize the data file and job file as global variables so that they can be accessed from any file
 def dataFileInit(TESTMODE = False):
     global dataFile
@@ -139,3 +144,5 @@ def setEducationInfo(info):
 def getExperienceCount():
     return len(loggedUser["profile"]["experience"])
     
+def getEducationCount():
+    return len(loggedUser["profile"]["education"])

@@ -31,7 +31,8 @@ def setup():
         pytest.incomingRequests = test_data["incomingRequests"]
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList)
+        pytest.profile = test_data["profile"]
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
 
     fileName = getDataFile()
     with open (fileName) as jsonFile:
@@ -92,7 +93,7 @@ def test_searchUniversity(capfd, monkeypatch, test_inputs, messages):
         assert messages in out 
 
 def test_RequestNotification(capfd):
-    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True, ["user2"], [], [])
+    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True, ["user2"], [], [], {"experience": {}, "education": {}})
     homePage()
     out, err = capfd.readouterr()
     assert "You have 1 incoming friend request" in out

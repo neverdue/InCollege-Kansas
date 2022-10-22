@@ -5,34 +5,34 @@
       "password": "Password123!",
       "firstName": "Andy",
       "lastName": "Nguyen",
-      "university": "University of South Florida",
-      "major": "Computer Science",
       "language": "Spanish",
       "email": "False",
       "SMS": "False",
       "ads": "True",
-      "incomingRequests": [],
+      "incomingRequests": [
+        "user2"
+      ],
       "outgoingRequests": [],
       "friendsList": [],
       "profile": {
         "experience": [
           {
-            "title": "SWE Intern",
-            "employer": "Google",
+            "title": "SWE",
+            "employer": "Apple",
             "date started": "01/01/2022",
             "date ended": "12/31/2022",
-            "location": "SF",
-            "description": "Software Engineer Intern"
+            "location": "California",
+            "description": "Software Engineer"
           }
         ],
         "education": [
           {
-            "school name": "USF",
+            "school name": "University of South Florida",
             "degree": "B.S. Computer Science",
             "years attended": "3"
           }
         ],
-        "title": "3rd year Computer Science student",
+        "title": "3rd year CS Student ",
         "major": "Computer Science",
         "university": "University Of South Florida",
         "about": "Hello"
@@ -48,15 +48,13 @@
       "SMS": "True",
       "ads": "True",
       "incomingRequests": [],
-      "outgoingRequests": [],
+      "outgoingRequests": [
+        "user1"
+      ],
       "friendsList": [],
       "profile": {
         "experience": [],
-        "education": [],
-        "title": "Memer",
-        "major": "Major",
-        "university": "University",
-        "about": "paragraph about myself"
+        "education": []
       }
     },
     {
@@ -73,11 +71,7 @@
       "friendsList": [],
       "profile": {
         "experience": [],
-        "education": [],
-        "title": "t",
-        "major": "Terwer",
-        "university": "Twrt",
-        "about": "yt"
+        "education": []
       }
     },
     {
@@ -93,29 +87,8 @@
       "outgoingRequests": [],
       "friendsList": [],
       "profile": {
-        "experience": [
-          {
-            "title": "t",
-            "employer": "t",
-            "date started": "01/12/1223",
-            "date ended": "01/12/1422",
-            "location": "4",
-            "description": "1"
-          },
-          {
-            "title": " w",
-            "employer": "w",
-            "date started": "01/11/2002",
-            "date ended": "01/2/2001",
-            "location": "2",
-            "description": "1"
-          }
-        ],
-        "education": [],
-        "title": "r",
-        "major": "T",
-        "university": "T",
-        "about": "t"
+        "experience": [],
+        "education": []
       }
     },
     {
