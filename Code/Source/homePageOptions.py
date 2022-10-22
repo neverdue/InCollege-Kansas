@@ -381,3 +381,4 @@ def hasProfile(username):
         for account in data["accounts"]:
             if account["username"] == username and account["profile"]["education"]:
                 return True 
+    return False
