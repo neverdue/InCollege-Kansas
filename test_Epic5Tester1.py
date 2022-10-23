@@ -76,16 +76,16 @@ def setup():
 
 @pytest.mark.parametrize("testInputs, messages", 
 [
-    (['1', 'user1', 'Password123!', '11'], "I am user1"),
-    (['1', 'user2', 'Password123*', '11'], "I am user2"),
-    (['1', 'testuser1', 'Password123@', '11'], "I am testuser1"),
-    (['1', 'testuser2', 'Password123$', '11'], "I am testuser2"),
-    (['1', 'user3', 'Password123$', '11'], "I am user3"),
-    (['1', 'user4', 'Password123$', '11'], "I am user4"),
-    (['1', 'user5', 'Password123$', '11'], "I am user5"),
-    (['1', 'user6', 'Password123$', '11'], "I am user6"),
-    (['1', 'user7', 'Password123$', '11'], "I am user7"),
-    (['1', 'user8', 'Password123$', '11'], "I am user8")
+    (['1', 'user1', 'Password123!', '10', '2'], "I am user1"),
+    (['1', 'user2', 'Password123*', '10', '2'], "I am user2"),
+    (['1', 'testuser1', 'Password123@', '10', '2'], "I am testuser1"),
+    (['1', 'testuser2', 'Password123$', '10', '2'], "I am testuser2"),
+    (['1', 'user3', 'Password123$', '10', '2'], "I am user3"),
+    (['1', 'user4', 'Password123$', '10', '2'], "I am user4"),
+    (['1', 'user5', 'Password123$', '10', '2'], "I am user5"),
+    (['1', 'user6', 'Password123$', '10', '2'], "I am user6"),
+    (['1', 'user7', 'Password123$', '10', '2'], "I am user7"),
+    (['1', 'user8', 'Password123$', '10', '2'], "I am user8")
 ])
 def test_viewMyProfile(capfd, monkeypatch, testInputs, messages):
     try:
