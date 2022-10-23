@@ -445,8 +445,9 @@ def hasProfile(username):
 
 
 
-#User options for profile
+#Menu for user interactions with profile
 def profilePage():
+    addPage(profilePage)
     print("Press 1 to create profile, 2 to view it")
     user_choice = input("...")
     if(user_choice == '1'):
