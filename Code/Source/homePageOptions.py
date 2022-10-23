@@ -278,7 +278,7 @@ def showMyNetwork():
                 displayHolderString+= "0. go back home, -1 exit application"
 
                 print(displayHolderString)   
-                user_choice = input()
+                user_choice = input("Enter your option: ")
                 #if select profile option
                 if(user_choice == '1'):
                     if(hasProfile(selectedUser)):
