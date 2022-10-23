@@ -145,3 +145,6 @@ def getExperienceCount():
     
 def getEducationCount():
     return len(loggedUser["profile"]["education"])
+
+
+#GetUserFriendList(getUser())
