@@ -11,7 +11,7 @@ def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users
-7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. Go to previously visited page\n""".format("10. Show your profile" if hasProfile(getUser()) else "10. Create your profile"))
+7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. Go to previously visited page\n""".format("10. Your profile" if hasProfile(getUser()) else "10. Create your profile"))
 
 def showSkillPageGreeting():
     printDivider()
