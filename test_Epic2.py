@@ -71,10 +71,12 @@ def test_success_story(capfd):
 # Test: If found connection, check if sign-in / sign-up option is prompted 
 #       Else, display message 
 def test_signPrompt(capsys, monkeypatch, test_inputs, messages) -> None:
-    monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
-    mainPage()
-    out, err = capsys.readouterr()
-    assert messages in out
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+        mainPage()
+    except IndexError:
+        out, err = capsys.readouterr()
+        assert messages in out
     
 # Test: Display option to show video about InCollege
 def test_play_video(capsys, monkeypatch) -> None:

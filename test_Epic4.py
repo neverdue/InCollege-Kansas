@@ -94,9 +94,11 @@ def test_searchUniversity(capfd, monkeypatch, test_inputs, messages):
 
 def test_RequestNotification(capfd):
     userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True, ["user2"], [], [], {"experience": {}, "education": {}})
-    homePage()
-    out, err = capfd.readouterr()
-    assert "You have 1 incoming friend request" in out
+    try:
+        homePage()
+    except OSError:
+        out, err = capfd.readouterr()
+        assert "You have 1 incoming friend request" in out
 
 @pytest.mark.parametrize("test_input, messages",
 [(['testuser1', '1'], ["You have 1 incoming request", "1. Accept\n2. Decline"])])
@@ -200,7 +202,7 @@ def test_outgoingRequestRetrieval():
 @pytest.mark.parametrize('test_inputs, messages',
 [([], "My Network:"),
 ([], "You have 1 friends!\n"),
-([], "Enter the username of the user you want to unfriend or enter 0 to go back or -1 to exit.\n")])
+([], "Name: Spoopy Ando\n")])
 def test_disconnectFriend(capsys, monkeypatch, test_inputs, messages):
     try:
         userInit('user1', 'Andy', 'Nguyen', 'English', False, False, False, [], [], ["user2"])
