@@ -15,27 +15,8 @@
       "outgoingRequests": [],
       "friendsList": [],
       "profile": {
-        "experience": [
-          {
-            "title": "SWE",
-            "employer": "Apple",
-            "date started": "01/01/2022",
-            "date ended": "12/31/2022",
-            "location": "California",
-            "description": "Software Engineer"
-          }
-        ],
-        "education": [
-          {
-            "school name": "University of South Florida",
-            "degree": "B.S. Computer Science",
-            "years attended": "3"
-          }
-        ],
-        "title": "3rd year CS Student ",
-        "major": "Computer Science",
-        "university": "University Of South Florida",
-        "about": "Hello"
+        "experience": [],
+        "education": []
       }
     },
     {
@@ -54,7 +35,13 @@
       "friendsList": [],
       "profile": {
         "experience": [],
-        "education": [],
+        "education": [
+          {
+            "school name": "usf",
+            "degree": "cs",
+            "years attended": "4"
+          }
+        ],
         "title": "TitleTest",
         "major": "Majortest",
         "university": "Universitytest",

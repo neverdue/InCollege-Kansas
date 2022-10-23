@@ -210,12 +210,26 @@ def searchFilter(filterAttribute):
     foundUsers = {}
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
+
+        #for each user in our account
+        #Checks if attribute is in a profile key, and if 
         for user in data["accounts"]:
-            if (((filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()) 
-             or (filterAttribute not in PROFILE_KEYS and user[filterAttribute].lower() == filterValue.lower()))
-             and user["username"] != getUser() and user["username"] not in getOutgoingRequests() and 
-             user["username"] not in getIncomingRequests() and user["username"] not in getFriendsList()):
-                foundUsers[user["username"]] = user
+            #prevent from showing oneself in search
+            if(user["username"] == getUser()):
+                continue
+            #check if the filter attribute is in the object 
+            if(filterAttribute in user["profile"].keys() or filterAttribute in user.keys()):
+                if(filterValue.lower() == user["profile"][filterAttribute].lower() or filterValue.lower() == user[filterAttribute].lower()):
+                    foundUsers[user["username"]] = user
+            else:
+                continue
+                
+        # for user in data["accounts"]:
+        #     if (((filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()) 
+        #      or (filterAttribute not in PROFILE_KEYS and user[filterAttribute].lower() == filterValue.lower()))
+        #      and user["username"] != getUser() and user["username"] not in getOutgoingRequests() and 
+        #      user["username"] not in getIncomingRequests() and user["username"] not in getFriendsList()):
+        #         foundUsers[user["username"]] = user
                 printDivider()
                 viewUser(user)
                 printDivider()
@@ -228,19 +242,29 @@ def searchFilter(filterAttribute):
 
 #Updates request list of respective users
 def createRequest(senderUsername, recipientUsername):
-    dataFile = getDataFile()
-    with open(dataFile) as json_file:
-        data = json.load(json_file)
-        for search in data["accounts"]:
-            if senderUsername.lower() == search["username"].lower():
-                search["outgoingRequests"].append(recipientUsername)
-            elif recipientUsername.lower() == search["username"].lower():
-                search["incomingRequests"].append(senderUsername)
-    print("Sending request to {}...".format(recipientUsername))
-    print("Request sent!")
-    writeJson(data, dataFile)
-    setOutgoingRequests(getUserOutgoingRequestList(getUser()))
+    if isInFriendslist(recipientUsername):
+        print("in friendslist already")
+        return
+    else:
+        dataFile = getDataFile()
+        with open(dataFile) as json_file:
+            data = json.load(json_file)
+            for search in data["accounts"]:
+                if senderUsername.lower() == search["username"].lower():
+                    search["outgoingRequests"].append(recipientUsername)
+                elif recipientUsername.lower() == search["username"].lower():
+                    search["incomingRequests"].append(senderUsername)
+        print("Sending request to {}...".format(recipientUsername))
+        print("Request sent!")
+        writeJson(data, dataFile)
+        setOutgoingRequests(getUserOutgoingRequestList(getUser()))
     return
+
+def isInFriendslist(user):
+    if user in getUserFriendList():
+        return False
+    else:
+        return True
 
 #Removes request list involving respective users
 def removeRequest(senderUsername, recipientUsername):
