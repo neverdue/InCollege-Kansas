@@ -137,12 +137,16 @@ def test_accountLimit():
     assert accountLimit() <= 10
 
 #Tests if friends list exists and is initialized as an empty container
-def test_friendListExist():
-    datafile = getDataFile()
-    with open(datafile) as json_file:
-        data = json.load(json_file)
-        for search in data["accounts"]:
-            assert search["friendsList"] == []
+@pytest.mark.parametrize("test_inputs, messages",
+[([],["My Network:\n\n------------------------------------------------------------\n\nYou have no friends.\n"])])
+def test_friendListExist(capfd, monkeypatch, test_inputs, messages):
+    monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+    userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', True, True, True, [], [], [])
+    showMyNetwork()
+
+    out, err = capfd.readouterr()
+    for message in messages:
+        assert message in out
 
 #User1 sends friend request to everyone in the accounts file then all the friend requests are accepted
 #Afterwards, user1 removes their entire friendslist and the function tests for that
@@ -198,17 +202,16 @@ def test_outgoingRequestRetrieval():
         assert getOutgoingRequests() == ["user2", "testuser1", "testuser3"]
 
 #Each user will have an option to disconnect anyone from their friendlist. If so, remove them from their friends list
-@pytest.mark.parametrize('test_inputs, messages',
-[([], "My Network:"),
-([], "You have 1 friends!\n"),
-([], "Enter the username of the user you want to unfriend or enter 0 to go back or -1 to exit.\n")])
-def test_disconnectFriend(capsys, monkeypatch, test_inputs, messages):
+@pytest.mark.parametrize("test_inputs, messages",
+[(['user1'], ["Enter the username of the user you want to unfriend or enter 0 to go back or -1 to exit."])])
+def test_disconnectFriend(capfd, monkeypatch, test_inputs, messages):
     try:
-        userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', False, False, False, [], [], ["user2"])
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
-        createRequest(getUser(), "user2")
-        addToFriendsList(getUser(), "user2")
+        userInit('user2', 'Spoopy', 'Ando', 'University of Central Florida', 'Mechanical Engineering', 'English', True, True, True, [], [], ["user1"])
+        userInit('user1', 'Andy', 'Nguyen', 'University of South Florida', 'Computer Science', 'English', True, True, True, [], [], ["user2"])
         showMyNetwork()
     except IndexError:
-        out, err = capsys.readouterr()
-        assert messages in out
+        out, err = capfd.readouterr()
+        for message in messages:
+            assert message in out
+        assert [] == getUserFriendList("user1")
