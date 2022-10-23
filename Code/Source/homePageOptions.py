@@ -352,8 +352,8 @@ def displayProfile(profile, name):
                     keyList = EDUCATION_KEYS
                 for expKey in keyList:
                     print(f"\t {expKey.title()}: {key2[expKey]}")
-            print()
-
+                    if expKey == "description":
+                        print("\n")
         
         else:
             print(f"{count}. {key.title()}: {profile[key]}")
