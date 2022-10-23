@@ -210,25 +210,16 @@ def searchFilter(filterAttribute):
     foundUsers = {}
     with open(dataFile, "r") as json_file:
         data = json.load(json_file)
-
-        #for each user in our account
-        #Checks if attribute is in a profile key, and if 
-        for user in data["accounts"]:
-            #prevent from showing oneself in search
-            if(user["username"] == getUser()):
-                continue
-            #check if the filter attribute is in the object 
-            # if(filterAttribute in user["profile"].keys() or filterAttribute in user.keys()):
-            #     if(filterValue.lower() == user["profile"][filterAttribute].lower() or filterValue.lower() == user[filterAttribute].lower()):
-            #         foundUsers[user["username"]] = user
-            # else:
-            #     continue
                 
         for user in data["accounts"]:
-            if (((filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()) 
-             or (filterAttribute not in PROFILE_KEYS and user[filterAttribute].lower() == filterValue.lower()))
-             and user["username"] != getUser() and user["username"] not in getOutgoingRequests() and 
-             user["username"] not in getIncomingRequests() and user["username"] not in getFriendsList()):
+            if (
+            filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()
+             and 
+            user["username"] != getUser() and user["username"] not in getOutgoingRequests() 
+             and 
+            user["username"] not in getIncomingRequests() 
+             and 
+            user["username"] not in getFriendsList()):
                 foundUsers[user["username"]] = user
                 printDivider()
                 viewUser(user)
