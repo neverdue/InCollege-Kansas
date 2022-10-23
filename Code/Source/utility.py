@@ -309,3 +309,5 @@ def continueInput(message):
         elif userInput == "n":
             return False
             
+def endProgram():
+    return 0
