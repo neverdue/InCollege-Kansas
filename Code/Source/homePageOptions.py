@@ -1,6 +1,6 @@
 import json
 from webbrowser import get
-from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount
+from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, checkLength, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
@@ -11,7 +11,7 @@ def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users
-7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. View your profile\n12. Go to previously visited page\n""".format("10. Show your profile" if hasProfile(getUser()) else "10. Create your profile"))
+7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. Go to previously visited page\n""".format("10. Show your profile" if hasProfile(getUser()) else "10. Create your profile"))
 
 def showSkillPageGreeting():
     printDivider()
@@ -250,8 +250,8 @@ def showMyNetwork():
     #Prompts user to select a person to interact with, or exit the program.
     user_choice = input("You may select a user from the network to interact with, press 0 to go Home, or -1 to exit")
     selectedUser = None
+    #while an option wasn't pressed that leads to another page function
     while user_choice != '-1' and user_choice != '0' and selectedUser == None:
-        print(selectedUser)
         if user_choice in myNetwork:
             selectedUser = user_choice
             print(f"Selected User is: {selectedUser}")  
@@ -259,6 +259,7 @@ def showMyNetwork():
             print("Username you tried to select does not exist or was spelt incorrectly.")
             user_choice = input("You may select a user from the network to interact with, press 0 to go Home, or -1 to exit")
     else:
+        #any backPage options, could have a list or something to make this easier
         if user_choice == '0':
             back()
         elif user_choice == '-1':
@@ -271,7 +272,8 @@ def showMyNetwork():
                 #reset displayHolderString after each option is processsed
                 displayHolderString = ""
                 #if has profile append option to display
-                displayHolderString += "Interaction options: 1. View Profile,"
+                if hasProfile(selectedUser):
+                    displayHolderString += "Interaction options: 1. View Profile,"
 
                 if canRemoveSelectedUser:
                     displayHolderString += "2. Remove friend from MyNetwork,"
@@ -292,7 +294,6 @@ def showMyNetwork():
                         canRemoveSelectedUser = False   
                     #make them exit, because they should not be able to see info if unfriended
                     user_choice = '0'
-
             else:
                 if(user_choice == '0'):
                     back()
@@ -442,3 +443,17 @@ def hasProfile(username):
                 return True
     return False 
 
+
+
+#Menu for user interactions with profile
+def profilePage():
+    addPage(profilePage)
+    print("Press 1 to create profile, 2 to view it")
+    user_choice = input("...")
+    if(user_choice == '1'):
+        showProfile() if hasProfile(getUser()) else createProfile()
+    elif(user_choice == '2'):
+        if hasProfile(getUser()):
+            displayProfile(getProfile(getUser()) ,(getLoggedUser()["firstName"] + " " + getLoggedUser()["lastName"]))
+        else:
+            print("Profile not found")
