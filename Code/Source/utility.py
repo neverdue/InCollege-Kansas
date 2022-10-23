@@ -218,18 +218,18 @@ def searchFilter(filterAttribute):
             if(user["username"] == getUser()):
                 continue
             #check if the filter attribute is in the object 
-            if(filterAttribute in user["profile"].keys() or filterAttribute in user.keys()):
-                if(filterValue.lower() == user["profile"][filterAttribute].lower() or filterValue.lower() == user[filterAttribute].lower()):
-                    foundUsers[user["username"]] = user
-            else:
-                continue
+            # if(filterAttribute in user["profile"].keys() or filterAttribute in user.keys()):
+            #     if(filterValue.lower() == user["profile"][filterAttribute].lower() or filterValue.lower() == user[filterAttribute].lower()):
+            #         foundUsers[user["username"]] = user
+            # else:
+            #     continue
                 
-        # for user in data["accounts"]:
-        #     if (((filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()) 
-        #      or (filterAttribute not in PROFILE_KEYS and user[filterAttribute].lower() == filterValue.lower()))
-        #      and user["username"] != getUser() and user["username"] not in getOutgoingRequests() and 
-        #      user["username"] not in getIncomingRequests() and user["username"] not in getFriendsList()):
-        #         foundUsers[user["username"]] = user
+        for user in data["accounts"]:
+            if (((filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()) 
+             or (filterAttribute not in PROFILE_KEYS and user[filterAttribute].lower() == filterValue.lower()))
+             and user["username"] != getUser() and user["username"] not in getOutgoingRequests() and 
+             user["username"] not in getIncomingRequests() and user["username"] not in getFriendsList()):
+                foundUsers[user["username"]] = user
                 printDivider()
                 viewUser(user)
                 printDivider()
@@ -261,10 +261,10 @@ def createRequest(senderUsername, recipientUsername):
     return
 
 def isInFriendslist(user):
-    if user in getUserFriendList():
-        return False
-    else:
+    if user in getUserFriendList(getUser()):
         return True
+    else:
+        return False
 
 #Removes request list involving respective users
 def removeRequest(senderUsername, recipientUsername):
