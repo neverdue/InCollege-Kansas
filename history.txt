@@ -1,3 +1,21 @@
+commit 573b57bca81422e4e5cbc17568a2023240f0d2a3
+Author: Chau Nguyen <minhchau.ng1028@gmail.com>
+Date:   Mon Oct 24 01:28:30 2022 -0400
+
+    fix displayProfile()
+
+commit 69243c0b52b84b3e3d447222a9ed2b4a18d77498
+Author: Chau Nguyen <minhchau.ng1028@gmail.com>
+Date:   Mon Oct 24 01:18:54 2022 -0400
+
+    Fix viewIncomingRequests() and test_Epic5
+
+commit 8c763a8c7710ccae0bda2988a7c0e3423578f97e
+Author: Andy Nguyen <nguyena5@usf.edu>
+Date:   Sun Oct 23 20:14:53 2022 -0400
+
+    test epic 5 function rename (endProgram()->terminateProgram()
+
 commit 9e1a1937da369df0e93aee242bc805788299e0b2
 Author: Mayank Pandey <mp.pandey86@gmail.com>
 Date:   Sun Oct 23 20:13:25 2022 -0400
