@@ -2,7 +2,7 @@ from Code.Source.globalVariables import addPage, dataFileInit, getFirst, getUser
 from Code.Source.homePageOptions import createProfile, displayProfile, showHomePageGreeting, showProfile, showMyNetwork
 from Code.Source.mainPage import mainPage
 from Code.Source.loginPrompt import register
-from Code.Source.utility import addToFriendsList, createRequest, endProgram,  wJson
+from Code.Source.utility import addToFriendsList, createRequest, terminateProgram,  wJson
 import pytest
 import json
 
@@ -190,7 +190,7 @@ def test_CreateProfileOption(capfd):
 def test_CreateProfile(capfd, monkeypatch, test_inputs, messages, outputs):
     #Tests creating profile
     try:
-        addPage(endProgram)
+        addPage(terminateProgram)
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
         createProfile()
     except IndexError:
@@ -215,7 +215,7 @@ def test_CreateProfile(capfd, monkeypatch, test_inputs, messages, outputs):
 ["6. Experience:\n\n7. Education:"])])
 def test_optionalExperience(capfd, monkeypatch, test_inputs, messages, outputs):
     try:
-        addPage(endProgram)
+        addPage(terminateProgram)
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
         createProfile()
     except IndexError:
@@ -242,7 +242,7 @@ def test_optionalExperience(capfd, monkeypatch, test_inputs, messages, outputs):
 ["pytest Job1", "pytest Job2", "pytest Job3"])])
 def test_maxExperience(capfd, monkeypatch, test_inputs, messages, outputs):
     try:
-        addPage(endProgram)
+        addPage(terminateProgram)
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
         createProfile()
     except IndexError:
@@ -267,8 +267,8 @@ def test_maxExperience(capfd, monkeypatch, test_inputs, messages, outputs):
 def test_returnToCreateProfile(capfd, monkeypatch, test_inputs, messages):
     #Test that you can return to profile creation after leaving
     try:
-        addPage(endProgram)
-        addPage(endProgram)
+        addPage(terminateProgram)
+        addPage(terminateProgram)
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
         createProfile()
         createProfile()
@@ -288,7 +288,7 @@ def test_returnToCreateProfile(capfd, monkeypatch, test_inputs, messages):
 def test_editProfile(capfd, monkeypatch, test_inputs, messages, inputs2, messages2):
     #Creates profile
     try:
-        addPage(endProgram)
+        addPage(terminateProgram)
         monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
         createProfile()
     except IndexError:
@@ -298,7 +298,7 @@ def test_editProfile(capfd, monkeypatch, test_inputs, messages, inputs2, message
    
     #Test editing profile
     try:
-        addPage(endProgram)
+        addPage(terminateProgram)
         monkeypatch.setattr('builtins.input', lambda _: inputs2.pop(0))
         showProfile()
     except IndexError:
