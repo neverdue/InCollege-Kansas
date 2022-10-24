@@ -1,383 +1,377 @@
 {
-    "accounts": [
-        {
-            "username": "user1",
-            "password": "Password123!",
-            "firstName": "Andy",
-            "lastName": "Nguyen",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [
-                "testuser1",
-                "testuser2",
-                "user2",
-                "user3",
-                "user5",
-                "user6"
-            ],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am user1"
-            }
-        },
-        {
-            "username": "user2",
-            "password": "Password123*",
-            "firstName": "Spoopy",
-            "lastName": "Ando",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [
-                "user1"
-            ],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am user2"
-            }
-        },
-        {
-            "username": "testuser1",
-            "password": "Password123@",
-            "firstName": "tommy",
-            "lastName": "truong",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [
-                "user1"
-            ],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am testuser1"
-            }
-        },
-        {
-            "username": "testuser2",
-            "password": "Password123$",
-            "firstName": "kevin",
-            "lastName": "vu",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [
-                "user1"
-            ],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am testuser2"
-            }
-        },
-        {
-            "username": "user3",
-            "password": "Password123$",
-            "firstName": "Michael",
-            "lastName": "vu",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [
-                "user1"
-            ],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am user3"
-            }
-        },
-        {
-            "username": "user4",
-            "password": "Password123$",
-            "firstName": "Tommy",
-            "lastName": "vu",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am user4"
-            }
-        },
-        {
-            "username": "user5",
-            "password": "Password123$",
-            "firstName": "Emily",
-            "lastName": "vu",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [
-                "user1"
-            ],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am user5"
-            }
-        },
-        {
-            "username": "user6",
-            "password": "Password123$",
-            "firstName": "Michael",
-            "lastName": "Scott",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [
-                "user1"
-            ],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am user6"
-            }
-        },
-        {
-            "username": "user7",
-            "password": "Password123$",
-            "firstName": "Alex",
-            "lastName": "vu",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am user7"
-            }
-        },
-        {
-            "username": "user8",
-            "password": "Password123$",
-            "firstName": "Emma",
-            "lastName": "vu",
-            "language": "English",
-            "email": "True",
-            "SMS": "True",
-            "ads": "True",
-            "incomingRequests": [],
-            "outgoingRequests": [],
-            "friendsList": [],
-            "profile": {
-                "experience": [
-                    {
-                        "title": "SWE",
-                        "employer": "Apple",
-                        "date started": "01/01/2022",
-                        "date ended": "12/31/2022",
-                        "location": "California",
-                        "description": "Software Engineer"
-                    }
-                ],
-                "education": [
-                    {
-                        "school name": "University of South Florida",
-                        "degree": "B.S. Computer Science",
-                        "years attended": "3"
-                    }
-                ],
-                "title": "3rd year CS Student ",
-                "major": "Computer Science",
-                "university": "University Of South Florida",
-                "about": "I am user8"
-            }
-        }
-    ]
+  "accounts": [
+    {
+      "username": "user1",
+      "password": "Password123!",
+      "firstName": "Andy",
+      "lastName": "Nguyen",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          },
+          {
+            "title": "pytest Job",
+            "employer": "pytest Employer",
+            "date started": "01/01/2020",
+            "date ended": "01/01/2022",
+            "location": "pytest Location",
+            "description": "pytest Description"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          },
+          {
+            "school name": "pytest School",
+            "degree": "pytest Degree",
+            "years attended": "2"
+          }
+        ],
+        "title": "Edited Pytest Title",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am user1"
+      }
+    },
+    {
+      "username": "user2",
+      "password": "Password123*",
+      "firstName": "Spoopy",
+      "lastName": "Ando",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am user2"
+      }
+    },
+    {
+      "username": "testuser1",
+      "password": "Password123@",
+      "firstName": "tommy",
+      "lastName": "truong",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am testuser1"
+      }
+    },
+    {
+      "username": "testuser2",
+      "password": "Password123$",
+      "firstName": "kevin",
+      "lastName": "vu",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am testuser2"
+      }
+    },
+    {
+      "username": "user3",
+      "password": "Password123$",
+      "firstName": "Michael",
+      "lastName": "vu",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am user3"
+      }
+    },
+    {
+      "username": "user4",
+      "password": "Password123$",
+      "firstName": "Tommy",
+      "lastName": "vu",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am user4"
+      }
+    },
+    {
+      "username": "user5",
+      "password": "Password123$",
+      "firstName": "Emily",
+      "lastName": "vu",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am user5"
+      }
+    },
+    {
+      "username": "user6",
+      "password": "Password123$",
+      "firstName": "Michael",
+      "lastName": "Scott",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am user6"
+      }
+    },
+    {
+      "username": "user7",
+      "password": "Password123$",
+      "firstName": "Alex",
+      "lastName": "vu",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am user7"
+      }
+    },
+    {
+      "username": "user8",
+      "password": "Password123$",
+      "firstName": "Emma",
+      "lastName": "vu",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [
+          {
+            "title": "SWE",
+            "employer": "Apple",
+            "date started": "01/01/2022",
+            "date ended": "12/31/2022",
+            "location": "California",
+            "description": "Software Engineer"
+          }
+        ],
+        "education": [
+          {
+            "school name": "University of South Florida",
+            "degree": "B.S. Computer Science",
+            "years attended": "3"
+          }
+        ],
+        "title": "3rd year CS Student ",
+        "major": "Computer Science",
+        "university": "University Of South Florida",
+        "about": "I am user8"
+      }
+    }
+  ]
 }

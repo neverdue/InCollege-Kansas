@@ -1,3 +1,182 @@
+commit 75b401f59452ca0d1964feda08dbf7cb4a5fb878
+Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
+Date:   Sun Oct 23 14:18:19 2022 -0400
+
+    merge tests
+
+commit fd489f79e681b7e1f72b8609845b5f6578992f82
+Merge: 07002bc c8a215c
+Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
+Date:   Sun Oct 23 14:12:28 2022 -0400
+
+    Merge pull request #26 from neverdue/Epic5-Ashley
+    
+    Added pytests, added a endProgram function utility for testing, added…
+
+commit 07002bc38d0714bf452961d4f70b49d6397fa4fd
+Merge: 06d152d e300408
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 13:49:39 2022 -0400
+
+    Merge pull request #25 from neverdue/Epic5-MayankTester1
+    
+    Epic5 mayank tester1
+
+commit e300408707bfc7cec67988bda6b7e1baf8d2d645
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 13:49:06 2022 -0400
+
+    Fixed Search User to work with current Epic
+
+commit f727571e2609c8f5e1456ad9456d0a992abd52fc
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 13:33:08 2022 -0400
+
+    Say Your profile instead of create your profile
+
+commit a03dfaf609d6663a73c069ac0454a40bc8c60b29
+Merge: 649a058 06d152d
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 13:30:35 2022 -0400
+
+    Merge branch 'main' into Epic5-MayankTester1
+
+commit 649a0587f4060a10ad397aca66efc509ac7fe77e
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 13:30:21 2022 -0400
+
+    Made changes to make tests work
+
+commit 06d152d82c62b70d98824f6c53a0aa8536f2b0c3
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Sun Oct 23 13:29:42 2022 -0400
+
+    Changed option 10 to - Your profile
+
+commit 6284db59fecfbb0f238bd0272567a72ed1cbe95c
+Merge: 8d549f4 414042d
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 13:25:23 2022 -0400
+
+    Merge branch 'main' into Epic5-MayankTester1
+
+commit 414042dafcc6ba10b0c345825acd56bf172acec5
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Sun Oct 23 13:24:22 2022 -0400
+
+    Bug fixes on friend request system and profile menu
+
+commit 8d549f4ef920fb5226df0f7eae3e1686d28534b3
+Merge: 3c29544 2291f8c
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 13:03:23 2022 -0400
+
+    Merge branch 'main' into Epic5-MayankTester1
+
+commit c8a215cef7b6b0ff41be4c096f5014a017afa016
+Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
+Date:   Sun Oct 23 12:50:52 2022 -0400
+
+    Added pytests, added a endProgram function utility for testing, added spacing when user has multiple job expierences
+
+commit 2291f8c92a9bcd96d291478c8d5b84d580a34b05
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Sun Oct 23 12:42:22 2022 -0400
+
+    Bug fixes, menu updates
+
+commit fb503853a86a127e7d71b4dfd455f86ee1351b60
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Sun Oct 23 12:27:07 2022 -0400
+
+    Fixed bugs, reorganized homepage, wip searchusers fix
+
+commit 3c29544fff70f21f07df0eab5516d50371d15e7b
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 07:25:37 2022 -0400
+
+    Added tests for viewing own profile and friends profiles
+
+commit 7352eef0fa62c87524aafbf4ce246bc6fafbf517
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Sat Oct 22 11:57:36 2022 -0400
+
+    Fixed profile bug
+
+commit a27df0e77be0e32440c83b858d6f808ee06e4a3a
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Sat Oct 22 11:49:32 2022 -0400
+
+    Fixed bug for option 10 of the homepage menu
+
+commit dcd5f3cf49d0e85427e3424b3d2d0d34b5e77c5e
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Fri Oct 21 22:59:01 2022 -0400
+
+    Epic5 Finishing touches
+
+commit 12bef39654b5b3463b123a54dc6a673fe41acb6f
+Merge: 849e20b 498e08c
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Fri Oct 21 20:38:39 2022 -0400
+
+    Merged Chau's code with mine
+
+commit 849e20b877757122ba32d1e856e1d45bd7f17134
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Fri Oct 21 20:34:55 2022 -0400
+
+    Preparing to merge
+
+commit e8a6c2df423efa12edc68185cf2ca456d7608518
+Merge: 9a5b702 b47fcdf
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Fri Oct 21 14:53:16 2022 -0400
+
+    Merge remote-tracking branch 'origin/Epic5-Backend' into Epic-5FrontEnd
+
+commit 498e08cc2275ada9549859ea40421bd7922610e9
+Author: Chau Nguyen <minhchau.ng1028@gmail.com>
+Date:   Fri Oct 21 14:33:12 2022 -0400
+
+    Add hasProfile for other users in homePageOptions.py
+
+commit 333e7532cafe91bea243a6fe57a59b10ac19664c
+Author: Chau Nguyen <minhchau.ng1028@gmail.com>
+Date:   Fri Oct 21 13:44:53 2022 -0400
+
+    Added comments
+
+commit 73babb1d95bc2af6e99ef4815889f61bab554bab
+Author: Chau Nguyen <minhchau.ng1028@gmail.com>
+Date:   Fri Oct 21 13:37:28 2022 -0400
+
+    Fix magic number (MAX_EXPERIENCE = 3)
+
+commit 9a5b7025a4492b1f3c5380abbed71a6fa752e37d
+Author: Boomboozled <rier1177@yahoo.com>
+Date:   Fri Oct 21 12:11:57 2022 -0400
+
+    testing
+
+commit a562baf18c71ff23e697c1b56426b5745f25747a
+Author: Chau Nguyen <minhchau.ng1028@gmail.com>
+Date:   Fri Oct 21 00:49:58 2022 -0400
+
+    Update searchFilter() since major and university are attributes in profile
+
+commit a95702e89d5266be9c902c42f0ba19498336292b
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Fri Oct 21 00:03:43 2022 -0400
+
+    Used Integer options instead of string options
+
+commit b47fcdf1c2ef033f6a4bd97ba9167f98ebf59477
+Author: Chau Nguyen <minhchau.ng1028@gmail.com>
+Date:   Thu Oct 20 22:15:18 2022 -0400
+
+    Epic 5 Backend (remove major and university implementation from epic 4)
+
 commit c7c2e8cf37c941a9a3ed71f8ae184c5500121651
 Merge: 474d888 5a1f005
 Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
