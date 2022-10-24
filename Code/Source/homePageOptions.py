@@ -341,9 +341,9 @@ def displayProfile(profile, name):
     for count, key in enumerate(PROFILE_KEYS, start=2):
         #For displaying elements of objects that the profile contains
         if(key == "experience" or key == "education"):
-            print(f"{count}. {key.title()}:\n")
+            print(f"{count}. {key.title()}:")
             for index, key2 in enumerate(profile[key], start=1):
-                print(f"   {key.title()} #{index}:")
+                print(f"\t{key.title()} #{index}:")
                 keyList = EXPERIENCE_KEYS if key == "experience" else EDUCATION_KEYS
                 for expKey in keyList:
                     print(f"\t{expKey.title()}: {key2[expKey]}")
