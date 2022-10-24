@@ -1,3 +1,15 @@
+commit 9e1a1937da369df0e93aee242bc805788299e0b2
+Author: Mayank Pandey <mp.pandey86@gmail.com>
+Date:   Sun Oct 23 20:13:25 2022 -0400
+
+    Renamed the function
+
+commit b7938c8ba743e31126ba7e09dfee066d1c732e90
+Author: Andy Nguyen <nguyena5@usf.edu>
+Date:   Sun Oct 23 20:05:40 2022 -0400
+
+    redid old test functions for friendslist in epic4
+
 commit 75b401f59452ca0d1964feda08dbf7cb4a5fb878
 Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
 Date:   Sun Oct 23 14:18:19 2022 -0400
