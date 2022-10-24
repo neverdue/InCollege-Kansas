@@ -24,10 +24,10 @@ def wJson(data, dataFile):
 def inputValidation(left, right):
     while True: 
         inputSelection = input("Selection: ")
+        if inputSelection == '-1':
+            endProgram()
         if inputSelection.isdigit(): 
             if int(inputSelection) in range(left, right): break
-            if int(inputSelection) == -1:
-                endProgram()
         print(f"Invalid input! Please enter a number from {left} to {right - 1}.")
     return int(inputSelection)
 
@@ -318,11 +318,14 @@ def isDigit(userInput):
 
 def continueInput(message):
     while True: 
+        # print(, end='')
         userInput = input(f"\nDo you want to {message} (y/n): ")
-        if userInput == "y":
+        if userInput == 'y':
             return True
-        elif userInput == "n":
+        elif userInput == 'n':
             return False
+        elif userInput == '-1':
+            endProgram()
             
 def terminateProgram():
     return 0

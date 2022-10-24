@@ -1,8 +1,10 @@
 from Code.Source.globalVariables import addPage, dataFileInit, getFirst, getUserProfile, stackInit, userInit
 from Code.Source.homePageOptions import createProfile, displayProfile, showHomePageGreeting, showProfile, showMyNetwork
 from Code.Source.mainPage import mainPage
+from Code.Source.menu import homePage
 from Code.Source.loginPrompt import register
 from Code.Source.utility import addToFriendsList, createRequest, terminateProgram,  wJson
+import io
 import pytest
 import json
 
@@ -14,6 +16,7 @@ DATAFILE = 'Code/Data/accounts-test.json'
 def setup():
     dataFileInit(TESTMODE)
     stackInit()
+    addPage(homePage)
     open(DATAFILE, 'w').close()
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
@@ -58,7 +61,7 @@ def setup():
         for account in data["accounts"]:
             temp = profile_template.copy()
             temp["about"] = temp["about"].format(account["username"])
-            account["profile"] = temp
+            account["profile"] = {"experience": [], "education": []} if account["username"] == "user1" else temp
     wJson(data, DATAFILE)
 
     with open(DATAFILE, 'r') as json_file:
@@ -70,12 +73,11 @@ def setup():
         pytest.incomingRequests = test_data["incomingRequests"]
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
-        pytest.profile = test_data["profile"]
+        pytest.profile = {"experience": [], "education": []}
     userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
 
 @pytest.mark.parametrize("testInputs, messages", 
 [
-    (['1', 'user1', 'Password123!', '10', '2'], "I am user1"),
     (['1', 'user2', 'Password123*', '10', '2'], "I am user2"),
     (['1', 'testuser1', 'Password123@', '10', '2'], "I am testuser1"),
     (['1', 'testuser2', 'Password123$', '10', '2'], "I am testuser2"),
@@ -181,9 +183,9 @@ def test_CreateProfileOption(capfd):
 
 @pytest.mark.parametrize("test_inputs, messages, outputs",
 [(['pytest Title', 'y', 'pytest Major', 'y', 'pytest University', 'y', 'pytest Paragraph', 'y', 'y', 'pytest Job', 'pytest Employer', '01/01/2020',
-'01/01/2022', 'pytest Location', 'pytest Description', 'n', 'y', 'pytest School', 'pytest Degree', '2', 'n', '^C'],
+'01/01/2022', 'pytest Location', 'pytest Description', 'n', 'y', 'pytest School', 'pytest Degree', '2', 'n'],
 ["Enter your title:", "Enter your major:", "Enter your university:", "Enter a paragraph about yourself:", "Do you want to add a past job (y/n):",
-"Enter title:", "Enter employer:", "Enter date started:", "Enter date ended:", "Enter location:", "Enter Description", "Enter school name:",
+"Enter title:", "Enter employer:", "Enter date started:", "Enter date ended:", "Enter location:", "Enter description", "Enter school name:",
 "Enter degree", "Enter years attended"], 
 ["pytest Title", "Pytest Major", "Pytest University", "pytest Paragraph", "pytest Job",
 "pytest Employer", "01/01/2020", "01/01/2022", "pytest Location", "pytest Description", "pytest School", "pytest Degree", "2"])])
@@ -191,23 +193,21 @@ def test_CreateProfile(capfd, monkeypatch, test_inputs, messages, outputs):
     #Tests creating profile
     try:
         addPage(terminateProgram)
-        monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+        monkeypatch.setattr('sys.stdin', io.StringIO('\n'.join(test_inputs)))
         createProfile()
-    except IndexError:
+    except EOFError:
         out, err = capfd.readouterr()
         for message in messages:
-            assert message in out
+            assert message in out 
 
     #Tests that profile is saved
-    try:
-        profile = getUserProfile()
-        name = getFirst()
-        displayProfile(profile, name)
-    except IndexError:
-        out, err = capfd.readouterr()
-        for output in outputs:
-            assert output in out 
- 
+    profile = getUserProfile()
+    name = getFirst()
+    displayProfile(profile, name)
+    out, err = capfd.readouterr()
+    for output in outputs:
+        assert output in out 
+
 @pytest.mark.parametrize("test_inputs, messages, outputs",
 [(['pytest Title', 'y', 'pytest Major', 'y', 'pytest University', 'y', 'pytest Paragraph', 'y', 'n', 'y', 
 'pytest School', 'pytest Degree', '2', 'n'],
@@ -216,22 +216,20 @@ def test_CreateProfile(capfd, monkeypatch, test_inputs, messages, outputs):
 def test_optionalExperience(capfd, monkeypatch, test_inputs, messages, outputs):
     try:
         addPage(terminateProgram)
-        monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+        monkeypatch.setattr('sys.stdin', io.StringIO('\n'.join(test_inputs)))
         createProfile()
-    except IndexError:
+    except EOFError:
         out, err = capfd.readouterr()
         for message in messages:
             assert message in out
 
     #Tests that no experience is showing
-    try:
-        profile = getUserProfile()
-        name = getFirst()
-        displayProfile(profile, name)
-    except IndexError:
-        out, err = capfd.readouterr()
-        for output in outputs:
-            assert output in out 
+    profile = getUserProfile()
+    name = getFirst()
+    displayProfile(profile, name)
+    out, err = capfd.readouterr()
+    for output in outputs:
+        assert output in out 
 
 @pytest.mark.parametrize("test_inputs, messages, outputs",
 [(['pytest Title', 'y', 'pytest Major', 'y', 'pytest University', 'y', 'pytest Paragraph', 'y', 'y', 'pytest Job1', 'pytest Employer1', '01/01/2020',
@@ -243,55 +241,58 @@ def test_optionalExperience(capfd, monkeypatch, test_inputs, messages, outputs):
 def test_maxExperience(capfd, monkeypatch, test_inputs, messages, outputs):
     try:
         addPage(terminateProgram)
-        monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+        monkeypatch.setattr('sys.stdin', io.StringIO('\n'.join(test_inputs)))
         createProfile()
-    except IndexError:
+    except EOFError:
         out, err = capfd.readouterr()
         for message in messages:
             assert message in out
 
     #Tests that all three jobs show
-    try:
-        profile = getUserProfile()
-        name = getFirst()
-        displayProfile(profile, name)
-    except IndexError:
-        out, err = capfd.readouterr()
-        for output in outputs:
-            assert output in out 
+    profile = getUserProfile()
+    name = getFirst()
+    displayProfile(profile, name)
+    out, err = capfd.readouterr()
+    for output in outputs:
+        assert output in out 
 
-@pytest.mark.parametrize("test_inputs, messages",
-[(['pytest Title', 'n', 'y', '10', 'y', 'pytest Major', 'y', 'pytest University', 'y', 'pytest Paragraph', 'n', 'y',
-'pytest School', 'pytest Degree', '2', 'n'],
-["Enter your title:", "Do you want to continue filling out your profile (y/n):", "Enter your major:"])])
-def test_returnToCreateProfile(capfd, monkeypatch, test_inputs, messages):
+@pytest.mark.parametrize("test_inputs, messages, outputs",
+[(['pytest Title', 'n', '10', '1', 'pytest Major', 'y', 'pytest University', 'y', 'pytest Paragraph', 'n', '10', '1', 'n', 'y', 'pytest School', 'pytest Degree', '2', 'n'],
+["Enter your title:", "Do you want to continue filling out your profile (y/n):", "Enter your major:"],
+['pytest Title', 'Pytest Major', 'Pytest University', 'pytest Paragraph', 'pytest School', 'pytest Degree', '2'])])
+def test_returnToCreateProfile(capfd, monkeypatch, test_inputs, messages, outputs):
     #Test that you can return to profile creation after leaving
     try:
-        addPage(terminateProgram)
-        addPage(terminateProgram)
-        monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+        addPage(homePage)
+        monkeypatch.setattr('sys.stdin', io.StringIO('\n'.join(test_inputs)))
         createProfile()
-        createProfile()
-    except IndexError:
+    except EOFError:
         out, err = capfd.readouterr()
         for message in messages:
             assert message in out
 
+    #Test profile is saved
+    profile = getUserProfile()
+    name = getFirst()
+    displayProfile(profile, name)
+    out, err = capfd.readouterr()
+    for output in outputs:
+        assert output in out 
 
 @pytest.mark.parametrize("test_inputs, messages, inputs2, messages2",
 [(['pytest Title', 'y', 'pytest Major', 'y', 'pytest University', 'y', 'pytest Paragraph', 'y', 'y', 'pytest Job', 'pytest Employer', '01/01/2020',
-'01/01/2022', 'pytest Location', 'pytest Description', 'n', 'y', 'pytest School', 'pytest Degree', '2', 'n', '^C'],
+'01/01/2022', 'pytest Location', 'pytest Description', 'n', 'y', 'pytest School', 'pytest Degree', '2', 'n'],
 ["Enter your title:", "Enter your major:", "Enter your university:", "Enter a paragraph about yourself:", "Do you want to add a past job (y/n):",
-"Enter title:", "Enter employer:", "Enter date started:", "Enter date ended:", "Enter location:", "Enter Description", "Enter school name:",
+"Enter title:", "Enter employer:", "Enter date started:", "Enter date ended:", "Enter location:", "Enter description", "Enter school name:",
 "Enter degree", "Enter years attended"], 
 ['2', 'Edited Pytest Title', '8'], ["Enter an option from 2-7 to replace your profile information", "Enter your title:", "Edited Pytest Title"])])
 def test_editProfile(capfd, monkeypatch, test_inputs, messages, inputs2, messages2):
     #Creates profile
     try:
         addPage(terminateProgram)
-        monkeypatch.setattr('builtins.input', lambda _: test_inputs.pop(0))
+        monkeypatch.setattr('sys.stdin', io.StringIO('\n'.join(test_inputs)))
         createProfile()
-    except IndexError:
+    except EOFError:
         out, err = capfd.readouterr()
         for message in messages:
             assert message in out
@@ -299,9 +300,9 @@ def test_editProfile(capfd, monkeypatch, test_inputs, messages, inputs2, message
     #Test editing profile
     try:
         addPage(terminateProgram)
-        monkeypatch.setattr('builtins.input', lambda _: inputs2.pop(0))
+        monkeypatch.setattr('sys.stdin', io.StringIO('\n'.join(inputs2)))
         showProfile()
-    except IndexError:
+    except EOFError:
         out, err = capfd.readouterr()
         for message in messages2:
             assert message in out

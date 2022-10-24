@@ -1,4 +1,4 @@
-from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, createProfile, showProfile, hasProfile, displayProfile, getProfile, profilePage
+from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, profilePage
 from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage, getUser
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider

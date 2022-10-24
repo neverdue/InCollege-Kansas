@@ -11,7 +11,7 @@ def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
     print("""Please choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users
-7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n{}\n11. Go to previously visited page\n""".format("10. Your profile" if hasProfile(getUser()) else "10. Your profile"))
+7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n10. Your profile\n11. Go to previously visited page\n""")
 
 def showSkillPageGreeting():
     printDivider()
@@ -200,6 +200,7 @@ def viewIncomingRequests():
         else:
             print("Invalid input.")
         IncomingRequests = getIncomingRequests()
+        length = len(IncomingRequests)
     printDivider()
     print("You have no incoming friend requests.")
     goBackOption()
@@ -303,8 +304,6 @@ def showMyNetwork():
 
 # PROFILE FUNCTIONS
 def createProfile():
-    addPage(createProfile)
-
     profile = getUserProfile()
     profileKeys = profile.keys()
 
@@ -313,60 +312,55 @@ def createProfile():
     for key in PROFILE_KEYS:
         if key == "experience" and getExperienceCount() < MAX_EXPERIENCE: 
             addExperience()
+            if not continueInput("continue filling out your profile"): back()
         elif key == "education":
             addEducation()
-            break
+            back()
         elif key not in profileKeys:
             updateProfile(key)
-        if not continueInput("continue filling out your profile"): break
-    back()
+            if not continueInput("continue filling out your profile"): back()
 
-def showProfile(): 
-    addPage(showProfile)
-
+def showProfile():
     while True:
         printDivider()
         print("Your profile:")
         displayProfile(getUserProfile(), getFirst() + " " + getLast())
 
-        print("\nEnter an option from 2-7 to replace your profile information.\nEnter 8 to go to previously visited page.")
+        print("Enter an option from 2-7 to replace your profile information.\nEnter 8 to go to previously visited page.")
         userInput = int(inputValidation(2, 9))
-        if userInput == 8: break
+        if userInput == 8: back()
         elif userInput in range(2, 6): 
             updateProfile(PROFILE_KEYS[userInput - 2])
         elif userInput == 6: 
             editProfile(PROFILE_KEYS[userInput - 2], EXPERIENCE_KEYS, getExperienceCount())
         else: 
             editProfile(PROFILE_KEYS[userInput - 2], EDUCATION_KEYS, getEducationCount())
-    back()
     
 def displayProfile(profile, name):
     print(f"1. Name: {name}")
     for count, key in enumerate(PROFILE_KEYS, start=2):
         #For displaying elements of objects that the profile contains
         if(key == "experience" or key == "education"):
-            print(f"{count}. {key.title()}:")
-            for key2 in profile[key]:
-                keyList = EXPERIENCE_KEYS
-                if(key == "education"):
-                    keyList = EDUCATION_KEYS
+            print(f"{count}. {key.title()}:\n")
+            for index, key2 in enumerate(profile[key], start=1):
+                print(f"   {key.title()} #{index}:")
+                keyList = EXPERIENCE_KEYS if key == "experience" else EDUCATION_KEYS
                 for expKey in keyList:
-                    print(f"\t {expKey.title()}: {key2[expKey]}")
-                    if expKey == "description":
-                        print("\n")
-        
+                    print(f"\t{expKey.title()}: {key2[expKey]}")
+                print()
         else:
             print(f"{count}. {key.title()}: {profile[key]}")
-
-
 
 # Use for profile's title, major, university, and about sections
 def updateProfile(key):
     while True: 
         if key == "about":
-            newInfo = input("\nEnter a paragraph about yourself: ")
+            # newInfo = input("\nEnter a paragraph about yourself: ")
+            print("\nEnter a paragraph about yourself: ", end='')
         else: 
-            newInfo = input(f"\nEnter your {key}: ")
+            # newInfo = input(f"\nEnter your {key}: ")
+            print(f"\nEnter your {key}: ", end='')
+        newInfo = input()
         if checkLength(newInfo, 200, True): break
     if key == "major" or key == "university":
         newInfo = newInfo.title()
@@ -380,7 +374,9 @@ def updateInfo(key, dict, keyword, helper):
     newInfo = {}
     for keyName in dict:
         while True:
-            userInput = input(f"Enter {keyName}: ")
+            print(f"Enter {keyName}: ", end='')
+            userInput = input()
+            # userInput = input(f"Enter {keyName}: ")
             if checkLength(userInput, 200, True):
                 # e.g. if asking for date, but user input is not in the date format "MM/DD/YYYY" keep asking again
                 if keyword in keyName and not helper(userInput): continue
@@ -390,7 +386,7 @@ def updateInfo(key, dict, keyword, helper):
 
 def addExperience():
     while getExperienceCount() < MAX_EXPERIENCE: 
-        if not continueInput("add a past job"): break
+        if not continueInput("add a past job"): return
         newInfo = updateInfo("experience", EXPERIENCE_KEYS, "date", isDate)
         setExperienceInfo(newInfo)
         updateProfileJson()
@@ -402,17 +398,17 @@ def addEducation():
         newInfo = updateInfo("education", EDUCATION_KEYS, "years", isDigit)
         setEducationInfo(newInfo)
         updateProfileJson()
-        if not continueInput("add another school"): break
+        if not continueInput("add another school"): return 
 
 # Use when replacing information from experience and education sections
 def editProfile(key, dict, count): 
-    print("\nEnter the number you want to replace. ")
-    index = int(inputValidation(1, count+1))
+    print(f"\nEnter the number of {key} you want to replace. ")
+    index = int(inputValidation(1, count+1)) - 1
     profile = getUserProfile()
     if key == "experience":
-        profile[key][index-1] = updateInfo(key, dict, "date", isDate)
+        profile[key][index] = updateInfo(key, dict, "date", isDate)
     else:
-        profile[key][index-1] = updateInfo(key, dict, "years", isDigit)
+        profile[key][index] = updateInfo(key, dict, "years", isDigit)
     updateProfileJson()
 
 def updateProfileJson():
@@ -426,30 +422,18 @@ def updateProfileJson():
 
 # Get profile from username 
 def getProfile(username): 
-    dataFile = getDataFile()
-    with open(dataFile) as jsonFile:
-        data = json.load(jsonFile)
-        for account in data["accounts"]:
-            if account["username"] == username:
-                return account["profile"]
+    return retrieveUser(username)["profile"]
 
 # Check is user has profile
 def hasProfile(username): 
-    dataFile = getDataFile()
-    with open(dataFile) as jsonFile:
-        data = json.load(jsonFile)
-        for account in data["accounts"]:
-            if account["username"] == username and account["profile"]["education"]:
-                return True
-    return False 
+    return True if getProfile(username)["education"] else False
 
-
-
-#Menu for user interactions with profile
+# Menu for user interactions with profile
 def profilePage():
     addPage(profilePage)
+    printDivider()
     print("Press 1 to create profile, 2 to view it")
-    user_choice = input("...")
+    user_choice = input("Selection: ")
     if(user_choice == '1'):
         showProfile() if hasProfile(getUser()) else createProfile()
     elif(user_choice == '2'):
