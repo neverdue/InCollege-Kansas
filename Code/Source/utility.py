@@ -1,6 +1,6 @@
 import json
 import datetime
-from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests, PROFILE_KEYS
+from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getJobFile, getLoggedUser, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests, PROFILE_KEYS
 
 #Checks all possible pages to call back to last page visited
 def checkPages(page, links):
@@ -329,3 +329,7 @@ def continueInput(message):
             
 def terminateProgram():
     return 0
+
+        
+        
+        
