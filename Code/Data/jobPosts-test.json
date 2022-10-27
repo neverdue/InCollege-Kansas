@@ -1,7 +1,9 @@
 {
     "numPosts": 5,
+    "currentIDs": 5,
     "jobPosts": [
         {
+            "id": "1",
             "Title": "Job1",
             "Description": "Work",
             "Employer": "Apple",
@@ -10,6 +12,7 @@
             "Name": "Andy Nguyen"
         },
         {
+            "id": "2",
             "Title": "Job2",
             "Description": "Work",
             "Employer": "Apple",
@@ -18,6 +21,7 @@
             "Name": "Andy Nguyen"
         },
         {
+            "id": "3",
             "Title": "Job3",
             "Description": "Work",
             "Employer": "Apple",
@@ -26,6 +30,7 @@
             "Name": "Andy Nguyen"
         },
         {
+            "id": "4",
             "Title": "Job4",
             "Description": "Work",
             "Employer": "Apple",
@@ -34,6 +39,7 @@
             "Name": "Andy Nguyen"
         },
         {
+            "id": "5",
             "Title": "Job5",
             "Description": "Work",
             "Employer": "Apple",

@@ -7,14 +7,17 @@ EDUCATION_KEYS = ["school name", "degree", "years attended"]
 def dataFileInit(TESTMODE = False):
     global dataFile
     global jobFile
+    global applicationsFile
     global timer
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
+        applicationsFile = "Code/Data/applications.json"
         timer = 0
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
+        applicationsFile = "Code/Data/applications-test.json"
         timer = 0
 
 def getDataFile():
@@ -146,5 +149,5 @@ def getExperienceCount():
 def getEducationCount():
     return len(loggedUser["profile"]["education"])
 
-
-#GetUserFriendList(getUser())
+def getApplicationsFile():
+    return applicationsFile

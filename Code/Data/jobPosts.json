@@ -1,14 +1,18 @@
 {
-    "numPosts": 5,
+    "numPosts": 10,
+    "currentIDs": 10,
     "jobPosts": [
         {
+            "id": "1",
             "Title": "Software Engineer",
             "Description": "kbueajncbuefh",
             "Employer": "USF",
             "Location": "Tampa",
-            "Salary": "$50,000"
+            "Salary": "$50,000",
+            "Name": "dabbing dan"
         },
         {
+            "id": "2",
             "Title": "GGGGGGGGGGGG",
             "Description": "G",
             "Employer": "G",
@@ -17,6 +21,7 @@
             "Name": "default default"
         },
         {
+            "id": "3",
             "Title": "Software Engineer",
             "Description": "Be a FAANG software developer",
             "Employer": "FAANG",
@@ -25,6 +30,7 @@
             "Name": "Andy Nguyen"
         },
         {
+            "id": "4",
             "Title": "SDE",
             "Description": "Software",
             "Employer": "FAANG",
@@ -33,12 +39,58 @@
             "Name": "Mayank Pandey"
         },
         {
+            "id": "5",
             "Title": "1",
             "Description": "t",
             "Employer": "t",
             "Location": "",
             "Salary": "tt",
             "Name": "Kevin Vu"
+        },
+        {
+            "id": "6",
+            "Title": "Professional cat washer",
+            "Description": "Washes cats professionally",
+            "Employer": "Publix enterprise",
+            "Location": "Brandon, FL",
+            "Salary": "$69,000",
+            "Name": "Andy Nguyen"
+        },
+        {
+            "id": "7",
+            "Title": "Part-time piano tuner",
+            "Description": "Tuning pianos part time",
+            "Employer": "Walmart enterprise",
+            "Location": "Havana, Cuba",
+            "Salary": "$700,000",
+            "Name": "Andy Nguyen"
+        },
+        {
+            "id": "8",
+            "Title": "Soundcloud rapper",
+            "Description": "Makes really bad music",
+            "Employer": "Self-employed",
+            "Location": "Mother's basement",
+            "Salary": "$0.00",
+            "Name": "Andy Nguyen"
+        },
+        {
+            "id": "9",
+            "Title": "Poop scooper",
+            "Description": "Professional pet waste extractor",
+            "Employer": "Petsmart",
+            "Location": "Tampa, FL",
+            "Salary": "$30,000",
+            "Name": "Andy Nguyen"
+        },
+        {
+            "id": "10",
+            "Title": "Example Job",
+            "Description": "7",
+            "Employer": "7",
+            "Location": "7",
+            "Salary": "7",
+            "Name": "Andy Nguyen"
         }
     ]
 }
