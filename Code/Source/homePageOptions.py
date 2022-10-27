@@ -452,32 +452,32 @@ def profilePage():
         else:
             print("Profile not found")
 
-#def showJobDetails(entry):
+# Compares ID from jobPosts to ID in applications. Used to find existing applicants
+def compareApplicationID(jsonObj):
+    count = 0
+    for items in jsonObj["jobPosts"]:
+        jobID = items["id"]
+        with open(getApplicationsFile()) as json_file2:
+            data2 = json.load(json_file2)
+            temp = data2
+            if getUser() not in temp:
+                count+=1
+                print(str(count) + ". " + items["Title"])
+            elif jobID in temp[getUser()]:
+                count+=1
+                print(str(count) + ". " + items["Title"] +  " (applied)")
+                continue
+            elif jobID not in temp[getUser()]:
+                count+=1
+                print(str(count) + ". " + items["Title"])
+    return count
 
 # Shows list of posted jobs from json jobs file
 def showAllJobs():
     filename = getJobFile()
     with open(filename, "r") as json_file:
         data = json.load(json_file)
-        count = 0
-        # Showing list of job titles
-        ############################################
-        for items in data["jobPosts"]:
-            jobID = data["jobPosts"][1]["id"]
-            with open(getApplicationsFile()) as json_file2:
-                data2 = json.load(json_file2)
-                temp = data2
-                if jobID in temp[getUser()]:
-                    count+=1
-                    print(jobID in temp[getUser()])
-                    print(str(count) + ". " + items["Title"] +  " (applied)")
-                    continue
-                elif jobID not in temp[getUser()]:
-                    count+=1
-                    print(jobID in temp[getUser()])
-                    print(str(count) + ". " + items["Title"])
-        ##############################################
-        print("\nEnter a value from {} to {} to view job posting or -1 to quit: ".format("1", str(count)))
+        print("\nEnter a value from {} to {} to view job posting or -1 to quit: ".format("1", str(compareApplicationID(data))))
         userInput = str(inputValidation(1,11))
 
         # Showing details of the job selected
@@ -535,7 +535,10 @@ def addApplicant(jobIDno):
                 "startDate": getStartDate(),
                 "paragraph": getParagraph()
             }
-        if jobIDno in temp[getUser()]:
+        if getUser() not in temp:
+            temp[getUser()] = {}
+            writeJson(data, applicationFile)
+        elif jobIDno in temp[getUser()]:
             print("You cannot apply to a job you've already applied to")
             return
         temp[getUser()][jobIDno] = applicationDictionary
