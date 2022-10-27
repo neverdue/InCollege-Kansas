@@ -1,6 +1,9 @@
+from getpass import getuser
 import json
+import datetime
+from socket import getnameinfo
 from webbrowser import get
-from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
+from Code.Source.globalVariables import addPage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, checkLength, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
@@ -43,7 +46,7 @@ def returnToHomePage():
 def jobPage():
     addPage(jobPage)
 
-    message = "\n1. Post a job\n2. Home page\n3. Previous Page\n"
+    message = "\n1. Post a job\n2. Home page\n3. See all job posts\n4. Previous Page\n"
     print(message)
     user_choice = input("Enter your option: ")
 
@@ -61,6 +64,8 @@ def jobPage():
     elif user_choice == '2':
         return "homePage"
     elif user_choice == '3':
+        showAllJobs()
+    elif user_choice == '4':
         back()
 
 def addJobPost():
@@ -70,8 +75,8 @@ def addJobPost():
     with open (fileName) as jsonFile:
         data = json.load(jsonFile)
         temp1 = data["numPosts"]
-        if temp1 >= 5:
-            print("There are already five job posts. Try again later.")
+        if temp1 >= 10:
+            print("There are already ten job posts. Try again later.")
             return
 
     print("Please input the following information about the job when prompted.\n")
@@ -102,7 +107,9 @@ def addJobPost():
             break
     print("\n")
 
+    tempID = data["currentIDs"]##
     jobDictionary = {
+        "id" : str(tempID + 1), ##
         "Title" : jobTitle,
         "Description" : jobDescription,
         "Employer" : jobEmployer,
@@ -121,6 +128,9 @@ def addJobPost():
         #increment number of job posts
         temp1 = data["numPosts"]
         data["numPosts"] = temp1 + 1
+
+        #increment job ID's to keep track of new jobs
+        data["currentIDs"] = tempID + 1 ##
     
     writeJson(data, fileName)
 
@@ -441,3 +451,92 @@ def profilePage():
             displayProfile(getProfile(getUser()) ,(getLoggedUser()["firstName"] + " " + getLoggedUser()["lastName"]))
         else:
             print("Profile not found")
+
+#def showJobDetails(entry):
+
+# Shows list of posted jobs from json jobs file
+def showAllJobs():
+    filename = getJobFile()
+    with open(filename, "r") as json_file:
+        data = json.load(json_file)
+        count = 0
+        # Showing list of job titles
+        ############################################
+        for items in data["jobPosts"]:
+            jobID = data["jobPosts"][1]["id"]
+            with open(getApplicationsFile()) as json_file2:
+                data2 = json.load(json_file2)
+                temp = data2
+                if jobID in temp[getUser()]:
+                    count+=1
+                    print(jobID in temp[getUser()])
+                    print(str(count) + ". " + items["Title"] +  " (applied)")
+                    continue
+                elif jobID not in temp[getUser()]:
+                    count+=1
+                    print(jobID in temp[getUser()])
+                    print(str(count) + ". " + items["Title"])
+        ##############################################
+        print("\nEnter a value from {} to {} to view job posting or -1 to quit: ".format("1", str(count)))
+        userInput = str(inputValidation(1,11))
+
+        # Showing details of the job selected
+        for i in data["jobPosts"][int(userInput)-1]:
+            # Don't show job ID
+            if(i == "id"): continue
+            print(i + " : " + data["jobPosts"][int(userInput)-1][i])
+        
+        print("\nWould you like to apply for this job? Enter 1 to apply or 2 to cancel.")
+        applyJob = str(inputValidation(1,3))
+        if applyJob == '1':
+            # Checking if the applicant is also the poster
+            fullName = getFirst() + " " + getLast()
+            if fullName == data["jobPosts"][int(userInput)-1]["Name"]:
+                print("You can't apply to a job you've posted")
+            # Writing info about applicant to applications json
+            else:
+                jobID = data["jobPosts"][int(userInput)-1]["id"]
+                addApplicant(jobID)
+
+        elif applyJob == '2':
+            print("Application cancelled\n")
+
+def getGradDate():
+    while True:
+        try:
+            gradDate = input("\nEnter your graduation date in mm/dd/yyyy format: ")
+            datetime.datetime.strptime(gradDate, '%m/%d/%Y')
+        except ValueError as e:
+            print("Please enter the date in mm/dd/yyyy format;", e)
+        else:
+            return gradDate
+
+def getStartDate():
+    while True:
+        try:
+            startDate = input("\nEnter the soonest date you can start working in mm/dd/yyyy: ")
+            datetime.datetime.strptime(startDate, '%m/%d/%Y')
+        except ValueError as e:
+            print("Please enter the date in mm/dd/yyyy format;", e)
+        else:
+            return startDate
+
+def getParagraph():
+    paragraph = input("\nPlease explain why you would be a good match for this job: ")
+    return paragraph
+
+def addApplicant(jobIDno):
+    applicationFile = getApplicationsFile()
+    with open(applicationFile) as jsonFile:
+        data = json.load(jsonFile)
+        temp = data
+        applicationDictionary = {  
+                "graduationDate": getGradDate(),
+                "startDate": getStartDate(),
+                "paragraph": getParagraph()
+            }
+        if jobIDno in temp[getUser()]:
+            print("You cannot apply to a job you've already applied to")
+            return
+        temp[getUser()][jobIDno] = applicationDictionary
+    writeJson(data, applicationFile)
