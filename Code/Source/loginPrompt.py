@@ -5,24 +5,6 @@ import time
 
 #Create a prompt that asks a user to input their username and password
 
-#Takes user input for username and password
-#Stores concatenated user and password separated by a space into a file
-
-#Dependent on other functions each imported from their own file
-
-#################################################################
-# 9/22/22 altered functions to also take first+last name
-# replaced account text file with json file
-
-# QUESTION: When we create an account, the system needs to check if there are 5 or more accounts.
-#           When it does check during account creation, it still requests first name and last name
-#           The issue that occurs that its wasted time if there are 5 accounts but on the 6th, the system still asks for first + last name
-#           The funtionality still works, but it doesn't make sense for it still to ask for first and last name during the 6th account checking
-#           Now this may be fine since Epic2 doesn't specify if this is an issue or not
-
-# QUESTION: Should we convert all user input to lower/upper case for ease of checking in other functions?
-#################################################################
-
 def signUpPage():
     if getLoggedUser() != None:
         raise Exception("You are already logged in.")
