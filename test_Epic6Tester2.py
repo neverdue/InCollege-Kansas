@@ -112,25 +112,6 @@ def setup():
         pytest.profile = {"experience": [], "education": []}
     userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
 
-        
-
-# @pytest.mark.parametrize("testInputs, messages", 
-# [
-#     (['1', '1'], ["Title : Job1", "You cannot apply to a job you've already applied to"]),
-#     (['2', '1'], ["Title : Job2", "You cannot apply to a job you've already applied to"]),
-#     (['3', '1', '-1'], ["Title : Job3", "Please enter the date in mm/dd/yyyy format"]),
-#     (['4', '1'], ["Title : Job4", "You cannot apply to a job you've already applied to"]),
-#     (['5', '1', '-1'], ["Title : Job5", "Please enter the date in mm/dd/yyyy format"]),
-# ])
-# def test_jobPage(capfd, monkeypatch, testInputs, messages):
-#     try:
-#         monkeypatch.setattr('builtins.input', lambda _: testInputs.pop(0))
-#         showAllJobs()
-#     except IndexError:
-#         out, err = capfd.readouterr()
-#         for message in messages:
-#             assert message in out
-
 def test_seeAllJobs(capfd, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: '1')
     showAllJobs()
