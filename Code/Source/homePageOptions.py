@@ -71,7 +71,7 @@ def jobPage():
 def addJobPost():
     fileName = getJobFile()
 
-    #Checks if already 5 job posts
+    #Checks if already 10 job posts
     with open (fileName) as jsonFile:
         data = json.load(jsonFile)
         temp1 = data["numPosts"]
@@ -530,16 +530,16 @@ def addApplicant(jobIDno):
     with open(applicationFile) as jsonFile:
         data = json.load(jsonFile)
         temp = data
-        applicationDictionary = {  
-                "graduationDate": getGradDate(),
-                "startDate": getStartDate(),
-                "paragraph": getParagraph()
-            }
         if getUser() not in temp:
             temp[getUser()] = {}
             writeJson(data, applicationFile)
         elif jobIDno in temp[getUser()]:
             print("You cannot apply to a job you've already applied to")
             return
+        applicationDictionary = {  
+                "graduationDate": getGradDate(),
+                "startDate": getStartDate(),
+                "paragraph": getParagraph()
+        }
         temp[getUser()][jobIDno] = applicationDictionary
     writeJson(data, applicationFile)

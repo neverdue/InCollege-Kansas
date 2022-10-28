@@ -97,13 +97,18 @@ def test_find_a_job(capsys, monkeypatch):
 # Test: Add 5 jobs
 def test_add_job_post(monkeypatch): 
     with open(FILENAME, 'w') as json_file:
-        json_file.write('{"numPosts": 0, "jobPosts": []}')
+        json_file.write('{"numPosts": 0, "currentIDs": 0, "jobPosts": []}')
 
     test_jobs = [["Job1", "Work", "Apple", "Silicon Valley", "$300,000"],
     ["Job2", "Work", "Apple", "Silicon Valley", "$300,000"],
     ["Job3", "Work", "Apple", "Silicon Valley", "$300,000"],
     ["Job4", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job5", "Work", "Apple", "Silicon Valley", "$300,000"]]
+    ["Job5", "Work", "Apple", "Silicon Valley", "$300,000"],
+    ["Job6", "Work", "Apple", "Silicon Valley", "$300,000"],
+    ["Job7", "Work", "Apple", "Silicon Valley", "$300,000"],
+    ["Job8", "Work", "Apple", "Silicon Valley", "$300,000"],
+    ["Job9", "Work", "Apple", "Silicon Valley", "$300,000"],
+    ["Job10", "Work", "Apple", "Silicon Valley", "$300,000"]]
     for job in test_jobs:
         test_input = '' 
         for value in job:
@@ -113,21 +118,21 @@ def test_add_job_post(monkeypatch):
 
     added_jobs = readJobPosts()
     for i in range(5):
-        assert list(added_jobs[i].values())[0:5] in test_jobs
+        assert list(added_jobs[i].values())[1:6] in test_jobs
     
-# Test: Maximum 5 posted jobs 
+# Test: Maximum 10 posted jobs 
 def test_max_num_jobs():
     with open(FILENAME, 'r') as json_file:
         data = json.load(json_file)
-        assert data["numPosts"] <= 5
+        assert data["numPosts"] <= 10
 
-# Test: Warning when try to add more than 5 jobs
+# Test: Warning when try to add more than 10 jobs
 def test_exceed_num_jobs(capsys, monkeypatch):
-    bad_input = ['a']*5
+    bad_input = ['a']*10
     monkeypatch.setattr('builtins.input', lambda _: bad_input.pop(0))
     addJobPost() 
     out, err = capsys.readouterr()
-    assert out == "There are already five job posts. Try again later.\n"
+    assert out == "There are already ten job posts. Try again later.\n"
 
 #testing that the creation of the stack as a global, add and removal works properly
 def test_pageStack_updates() -> None:
