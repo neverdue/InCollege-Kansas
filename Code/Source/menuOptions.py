@@ -156,8 +156,8 @@ def copyrightPolicy():
 def goBackOption():
     message = "Select 1 to go back\n"
     print(message)
-    inputSelection = inputValidation(1, 2)
-    if inputSelection == 1:
+    inputSelection = inputValidation(1, 1)
+    if inputSelection == '1':
         back()
 
 def back():
@@ -170,24 +170,24 @@ def general():
     message += "Select 1 for Sign Up\nSelect 2 for Help Center\nSelect 3 for About\nSelect 4 for Press\nSelect 5 for Blog\nSelect 6 for Careers\nSelect 7 for Developers\nSelect 8 to go back\n"
     printDivider()
     print(message)
-    inputSelection = inputValidation(1, 9)
+    inputSelection = inputValidation(1, 8)
     
-    if inputSelection == 1:
+    if inputSelection == '1':
         if signUpPage() == 1:
             return "homePage"
-    elif inputSelection == 2:
+    elif inputSelection == '2':
         helpCenter()
-    elif inputSelection == 3:
+    elif inputSelection == '3':
         about()
-    elif inputSelection == 4:
+    elif inputSelection == '4':
         press()
-    elif inputSelection == 5:
+    elif inputSelection == '5':
         blog()
-    elif inputSelection == 6:
+    elif inputSelection == '6':
         careers()
-    elif inputSelection == 7:
+    elif inputSelection == '7':
         developers()
-    elif inputSelection == 8:
+    elif inputSelection == '8':
         back()
 
 def privacyPolicy():
@@ -195,7 +195,7 @@ def privacyPolicy():
     printDivider()
     message = "Select 1 for Guest Controls\nSelect 2 to go back\n"
     print(message)
-    inputSelection = inputValidation(1, 3)
+    inputSelection = inputValidation(1, 2)
     if inputSelection == 1:
         guestControls()
     elif inputSelection == 2:

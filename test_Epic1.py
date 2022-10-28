@@ -132,7 +132,7 @@ def test_ConstructionMessageSkill(capfd):
 
 def test_routeFind(capfd):
     stackInit()
-    findPage = 2
+    findPage = '2'
     route(findPage)
     out, err = capfd.readouterr()
     message = "\n------------------------------------------------------------\n"
