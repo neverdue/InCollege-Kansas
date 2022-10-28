@@ -212,7 +212,7 @@ def test_CreateProfile(capfd, monkeypatch, test_inputs, messages, outputs):
 [(['pytest Title', 'y', 'pytest Major', 'y', 'pytest University', 'y', 'pytest Paragraph', 'y', 'n', 'y', 
 'pytest School', 'pytest Degree', '2', 'n'],
 ["Do you want to add a past job (y/n):", "Enter school name:", "Enter degree", "Enter years attended"], 
-["6. Experience:\n\n7. Education:"])])
+["6. Experience:\n7. Education:"])])
 def test_optionalExperience(capfd, monkeypatch, test_inputs, messages, outputs):
     try:
         addPage(terminateProgram)
