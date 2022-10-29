@@ -94,7 +94,7 @@ def test_find_a_job(capsys, monkeypatch):
         out, err = capsys.readouterr()
         assert "Post a job" in out 
 
-# Test: Add 5 jobs
+# Test: Add 10 jobs
 def test_add_job_post(monkeypatch): 
     with open(FILENAME, 'w') as json_file:
         json_file.write('{"numPosts": 0, "currentIDs": 0, "jobPosts": []}')
@@ -106,8 +106,9 @@ def test_add_job_post(monkeypatch):
             test_input += value + '\n'
         monkeypatch.setattr('sys.stdin', StringIO(test_input))
         addJobPost()
-
+    #remove magic numbers
     added_jobs = readJobPosts()
+    #should this be len(test_jobs) to avoid segmentation fault?
     for i in range(10):
         assert list(added_jobs[i].values())[1:6] in test_jobs
     
