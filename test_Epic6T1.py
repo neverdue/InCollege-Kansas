@@ -31,7 +31,11 @@ def setup():
 
     open(APPFILE)
     applicationJson = {
-        "deletedApplications": {},
+        "deletedApplications": {
+            "user2":[
+                '6'
+            ]
+        },
         "applications": {
             "testuser": {
                 "90": {
@@ -58,6 +62,11 @@ def setup():
                 }
             },
             "user2": {
+                            "8": {
+                "graduationDate": "01/23/2022",
+                "startDate": "01/06/2018",
+                "paragraph": "money"
+            }
 
             }
         },
@@ -114,6 +123,33 @@ def setup():
                 "id": "5",
                 "Title": "Job5",
                 "Description": "Work is okay",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "Andy Nguyen"
+            },
+                        {
+                "id": "6",
+                "Title": "Job6",
+                "Description": "Deletion pytest",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "Andy Nguyen"
+            },
+                                  {
+                "id": "7",
+                "Title": "Job7",
+                "Description": "app pytest",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "Andy Nguyen"
+            },
+                                  {
+                "id": "8",
+                "Title": "Job8",
+                "Description": "save pytest",
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
@@ -242,9 +278,81 @@ def test_unsaveJob(capfd, monkeypatch, userInputs, testJobIndex):
         assert testJobIndex not in savedJobs
 
 
+@pytest.mark.parametrize("userInputs, message",[
+
+    (
+        ['1','6'], "1. Job1 (saved)\n2. Job2\n3. Job3\n4. Job4\n5. Job5\n6. Job6\n7. Job7\n8. Job8 (applied)"
+    )   
+])
+def test_seeAllJobs(monkeypatch, capfd, userInputs, message):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: userInputs.pop(0))
+        homePage()
+    except IndexError:
+        out, err = capfd.readouterr()
+        assert message in out
 
 
+@pytest.mark.parametrize("userInputs, message",[
+
+    (
+        ['1','3'], "1. Job1"
+    )   
+])
+def test_seeSavedJobs(monkeypatch, capfd, userInputs, message):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: userInputs.pop(0))
+        homePage()
+    except IndexError:
+        out, err = capfd.readouterr()
+        assert message in out
+
+        
+@pytest.mark.parametrize("userInputs, message",[
+
+    (
+        ['1','2'], "1. Job3"
+    )   
+])
+def test_seeYourJobPosts(monkeypatch, capfd, userInputs, message):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: userInputs.pop(0))
+        homePage()
+    except IndexError:
+        out, err = capfd.readouterr()
+        assert message in out
+
+        
+@pytest.mark.parametrize("userInputs, message",[
+
+    (
+        ['1','4'], "1. Job8"
+    )   
+])
+
+def test_seeJobsYouAppliedFor(monkeypatch, capfd, userInputs, message):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: userInputs.pop(0))
+        homePage()
+    except IndexError:
+        out, err = capfd.readouterr()
+        assert message in out
+
+#note that your own jobs cant show up in the "not applied yet" section :)
+@pytest.mark.parametrize("userInputs, message",[
+
+    (
+        ['1','5'], "1. Job1 (saved)\n2. Job2\n3. Job4\n4. Job5\n5. Job6\n6. Job7"
+    )   
+])
+
+def test_seeJobsYouHaventAppliedFor(monkeypatch, capfd, userInputs, message):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: userInputs.pop(0))
+        homePage()
+    except IndexError:
+        out, err = capfd.readouterr()
+        assert message in out
 
 
-
-
+# def test_notifyDeleted():
