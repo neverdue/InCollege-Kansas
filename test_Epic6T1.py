@@ -33,7 +33,7 @@ def setup():
     applicationJson = {
         "deletedApplications": {
             "user2":[
-                '6'
+                'Job6'
             ]
         },
         "applications": {
@@ -346,6 +346,11 @@ def test_seeJobsYouAppliedFor(monkeypatch, capfd, userInputs, message):
     )   
 ])
 
+
+
+
+
+
 def test_seeJobsYouHaventAppliedFor(monkeypatch, capfd, userInputs, message):
     try:
         monkeypatch.setattr('builtins.input', lambda _: userInputs.pop(0))
@@ -355,4 +360,23 @@ def test_seeJobsYouHaventAppliedFor(monkeypatch, capfd, userInputs, message):
         assert message in out
 
 
-# def test_notifyDeleted():
+
+
+
+#        [print(f'Job titled "{title}" you have applied for was deleted!\n') for title in deletedJobTitles]
+
+
+@pytest.mark.parametrize("userInputs, message",[
+
+    (
+        ['1'], 'Job titled "Job6" you have applied for was deleted!\n' 
+    )   
+])
+
+def test_seeJobsYouAppliedForButWereDeleted(monkeypatch, capfd, userInputs, message):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: userInputs.pop(0))
+        homePage()
+    except IndexError:
+        out, err = capfd.readouterr()
+        assert message in out

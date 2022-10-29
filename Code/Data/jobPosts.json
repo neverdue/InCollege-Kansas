@@ -1,5 +1,5 @@
 {
-    "numPosts": 10,
+    "numPosts": 8,
     "jobPosts": [
         {
             "id": "1",
@@ -20,15 +20,6 @@
             "Name": "default default"
         },
         {
-            "id": "3",
-            "Title": "Software Engineer",
-            "Description": "Be a FAANG software developer",
-            "Employer": "FAANG",
-            "Location": "Silicon Valley",
-            "Salary": "200,000",
-            "Name": "Andy Nguyen"
-        },
-        {
             "id": "4",
             "Title": "SDE",
             "Description": "Software",
@@ -36,15 +27,6 @@
             "Location": "San Fran",
             "Salary": "300,000",
             "Name": "Mayank Pandey"
-        },
-        {
-            "id": "6",
-            "Title": "Professional cat washer",
-            "Description": "Washes cats professionally",
-            "Employer": "Publix enterprise",
-            "Location": "Brandon, FL",
-            "Salary": "$69,000",
-            "Name": "Andy Nguyen"
         },
         {
             "id": "7",
@@ -90,6 +72,15 @@
             "Location": "123",
             "Salary": "f",
             "Name": "Spoopy Ando"
+        },
+        {
+            "id": "3",
+            "Title": "r",
+            "Description": "rq",
+            "Employer": "we",
+            "Location": "q",
+            "Salary": "w",
+            "Name": "Kevin Vu"
         }
     ]
 }

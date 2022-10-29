@@ -1,5 +1,9 @@
 {
-    "deletedApplications": {},
+    "deletedApplications": {
+        "user2": [
+            "Software Engineer"
+        ]
+    },
     "applications": {
         "testuser": {
             "90": {
@@ -30,11 +34,6 @@
                 "graduationDate": "11/11/1111",
                 "startDate": "11/11/1111",
                 "paragraph": "money"
-            },
-            "3": {
-                "graduationDate": "11/11/1111",
-                "startDate": "11/11/1111",
-                "paragraph": "brown cup"
             },
             "1": {
                 "graduationDate": "01/01/2023",
