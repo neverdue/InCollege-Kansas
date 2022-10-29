@@ -1,5 +1,9 @@
 {
-    "deletedApplications": {},
+    "deletedApplications": {
+        "user2": [
+            "Job6"
+        ]
+    },
     "applications": {
         "testuser": {
             "90": {
