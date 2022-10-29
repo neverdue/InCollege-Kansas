@@ -1,9 +1,5 @@
 {
-    "deletedApplications": {
-        "user1": [
-            "1"
-        ]
-    },
+    "deletedApplications": {},
     "applications": {
         "testuser": {
             "90": {
@@ -39,6 +35,11 @@
                 "graduationDate": "11/11/1111",
                 "startDate": "11/11/1111",
                 "paragraph": "brown cup"
+            },
+            "1": {
+                "graduationDate": "01/01/2023",
+                "startDate": "01/11/2023",
+                "paragraph": "i dont know"
             }
         },
         "testuser3": {}
@@ -48,6 +49,10 @@
             "3",
             "2",
             "4"
+        ],
+        "user2": [
+            "4",
+            "9"
         ]
     }
 }

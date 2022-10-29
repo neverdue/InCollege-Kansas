@@ -94,20 +94,21 @@ def test_find_a_job(capsys, monkeypatch):
         out, err = capsys.readouterr()
         assert "Post a job" in out 
 
-# Test: Add 5 jobs
+# Test: Add 10 jobs
 def test_add_job_post(monkeypatch): 
     with open(FILENAME, 'w') as json_file:
         json_file.write('{"numPosts": 0, "jobPosts": []}')
-
-    test_jobs = [["Job1", "Work", "Apple", "Silicon Valley", "$300,000"]]*10
+    test_jobs = [["Job1", "Work", "Apple", "Silicon Valley", "$300,000"], ["Job1", "Work", "Apple", "Silicon Valley", "$300,000"], ["Job2", "Work", "Apple", "Silicon Valley", "$300,000"],
+     ["Job3", "Work", "Apple", "Silicon Valley", "$300,000"],["Job3", "Work", "Apple", "Silicon Valley", "$300,000"],["Job3", "Work", "Apple", "Silicon Valley", "$300,000"],["Job3", "Work", "Apple", "Silicon Valley", "$300,000"],["Job3", "Work", "Apple", "Silicon Valley", "$300,000"],["Job3", "Work", "Apple", "Silicon Valley", "$300,000"],["Job3", "Work", "Apple", "Silicon Valley", "$300,000"]]
     for job in test_jobs:
         test_input = '' 
         for value in job:
             test_input += value + '\n'
         monkeypatch.setattr('sys.stdin', StringIO(test_input))
         addJobPost()
-
+    #remove magic numbers
     added_jobs = readJobPosts()
+    #should this be len(test_jobs) to avoid segmentation fault?
     for i in range(10):
         assert list(added_jobs[i].values())[1:6] in test_jobs
     
