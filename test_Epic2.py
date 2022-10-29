@@ -88,27 +88,18 @@ def test_play_video(capsys, monkeypatch) -> None:
 
 # Test: Display 'Post a job' option when on 'Find a job' page
 def test_find_a_job(capsys, monkeypatch):
-    test_input = StringIO('2') # Go to homepage (for testing purpose)
-    monkeypatch.setattr('sys.stdin', test_input)
-    jobPage()
-    out, err = capsys.readouterr()
-    assert "Post a job" in out 
+    try: 
+        jobPage()
+    except OSError: 
+        out, err = capsys.readouterr()
+        assert "Post a job" in out 
 
 # Test: Add 5 jobs
 def test_add_job_post(monkeypatch): 
     with open(FILENAME, 'w') as json_file:
         json_file.write('{"numPosts": 0, "currentIDs": 0, "jobPosts": []}')
 
-    test_jobs = [["Job1", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job2", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job3", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job4", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job5", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job6", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job7", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job8", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job9", "Work", "Apple", "Silicon Valley", "$300,000"],
-    ["Job10", "Work", "Apple", "Silicon Valley", "$300,000"]]
+    test_jobs = [["Job1", "Work", "Apple", "Silicon Valley", "$300,000"]]*10
     for job in test_jobs:
         test_input = '' 
         for value in job:
@@ -117,7 +108,7 @@ def test_add_job_post(monkeypatch):
         addJobPost()
 
     added_jobs = readJobPosts()
-    for i in range(5):
+    for i in range(10):
         assert list(added_jobs[i].values())[1:6] in test_jobs
     
 # Test: Maximum 10 posted jobs 

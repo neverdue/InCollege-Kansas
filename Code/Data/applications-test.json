@@ -1,26 +1,30 @@
 {
-    "testuser": {
-        "90": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1998",
-            "paragraph": "gimme you money"
-        }
-    },
-    "user1": {
-        "4": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1997",
-            "paragraph": "MONEY"
+    "deletedApplications": {},
+    "applications": {
+        "testuser": {
+            "90": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1998",
+                "paragraph": "gimme you money"
+            }
         },
-        "2": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1997",
-            "paragraph": "fun"
-        },
-        "1": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1997",
-            "paragraph": "money"
+        "user1": {
+            "4": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "MONEY"
+            },
+            "2": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "fun"
+            },
+            "1": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "money"
+            }
         }
-    }
+    }, 
+    "saved": {} 
 }

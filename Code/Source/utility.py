@@ -27,9 +27,9 @@ def inputValidation(left, right):
         if inputSelection == '-1':
             endProgram()
         if inputSelection.isdigit(): 
-            if int(inputSelection) in range(left, right): break
-        print(f"Invalid input! Please enter a number from {left} to {right - 1}.")
-    return int(inputSelection)
+            if int(inputSelection) in range(left, right+1): break
+        print(f"Invalid input! Please enter a number from {left} to {right}.")
+    return inputSelection
 
 #Character Limiter Function (Security Measure)
 def checkLength(input, limit, required=False):
@@ -330,6 +330,5 @@ def continueInput(message):
 def terminateProgram():
     return 0
 
-        
-        
+
         

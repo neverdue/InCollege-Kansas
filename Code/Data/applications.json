@@ -1,43 +1,53 @@
 {
-    "testuser": {
-        "90": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1998",
-            "paragraph": "gimme you money"
-        }
+    "deletedApplications": {
+        "user1": [
+            "1"
+        ]
     },
-    "user1": {
-        "4": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1997",
-            "paragraph": "MONEY"
+    "applications": {
+        "testuser": {
+            "90": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1998",
+                "paragraph": "gimme you money"
+            }
         },
-        "2": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1997",
-            "paragraph": "fun"
+        "user1": {
+            "4": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "MONEY"
+            },
+            "2": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "fun"
+            },
+            "1": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "money"
+            }
         },
-        "1": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1997",
-            "paragraph": "money"
+        "user2": {
+            "2": {
+                "graduationDate": "11/11/1111",
+                "startDate": "11/11/1111",
+                "paragraph": "money"
+            },
+            "3": {
+                "graduationDate": "11/11/1111",
+                "startDate": "11/11/1111",
+                "paragraph": "brown cup"
+            }
         },
-        "5": {
-            "graduationDate": "02/25/1997",
-            "startDate": "02/25/1997",
-            "paragraph": "i like money"
-        }
+        "testuser3": {}
     },
-    "user2": {
-        "2": {
-            "graduationDate": "11/11/1111",
-            "startDate": "11/11/1111",
-            "paragraph": "money"
-        },
-        "3": {
-            "graduationDate": "11/11/1111",
-            "startDate": "11/11/1111",
-            "paragraph": "brown cup"
-        }
+    "saved": {
+        "testuser3": [
+            "3",
+            "2",
+            "4"
+        ]
     }
 }
