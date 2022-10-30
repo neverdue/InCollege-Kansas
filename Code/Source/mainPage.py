@@ -12,19 +12,19 @@ def mainPage():
     time.sleep(timer)
     
     print("Welcome to InCollege!\n\nSelect 1 to login to an existing account\nSelect 2 to register a new account\nSelect 3 to connect to an existing user\nSelect 4 to view introduction video\nSelect 5 to view Useful Links\nSelect 6 to view InCollege Important Links\n")
-    menuSelection = inputValidation(1, 7)
+    menuSelection = inputValidation(1, 6)
 
-    if menuSelection == 1 and accountLimit() != 0:
+    if menuSelection == '1' and accountLimit() != 0:
         username = input("Enter username: ")
         password = input("Enter password: ")
         if login(username, password) == 1:
             homePage()
 
-    elif menuSelection == 2:
+    elif menuSelection == '2':
         if signUpPage() == 1:
             homePage()
 
-    elif menuSelection == 3:
+    elif menuSelection == '3':
         firstname = input("Enter a first name: ")
         lastname = input("Enter a last name: ")
 
@@ -37,10 +37,10 @@ def mainPage():
             print(message)
             signUp = inputValidation(1, 3)
                 
-            if signUp == 1:
+            if signUp == '1':
                 if signUpPage() == 1:
                     homePage()
-            elif signUp == 2:
+            elif signUp == '2':
                 username = input("Enter username: ")
                 password = input("Enter password: ")
                 if login(username, password) == 1:
@@ -48,11 +48,11 @@ def mainPage():
         else:
             print("They are not yet a part of the InCollege system yet.")
 
-    elif menuSelection == 4:
+    elif menuSelection == '4':
         print("Video is now playing\n\n")
 
-    elif menuSelection == 5:
+    elif menuSelection == '5':
         usefulLinksMenu()
 
-    elif menuSelection == 6:
+    elif menuSelection == '6':
         incollegeImpLinks()
