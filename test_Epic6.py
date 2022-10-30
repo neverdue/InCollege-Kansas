@@ -62,7 +62,7 @@ def setup():
                 }
             },
             "user2": {
-                            "8": {
+                "8": {
                 "graduationDate": "01/23/2022",
                 "startDate": "01/06/2018",
                 "paragraph": "money"
