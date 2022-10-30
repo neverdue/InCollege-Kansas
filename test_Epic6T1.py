@@ -1,11 +1,11 @@
-import pytest
-import json
-import io
-from Code.Source.globalVariables import addPage, dataFileInit, getFirst, getUserProfile, stackInit, userInit, getDataFile, getUser 
-from Code.Source.homePageOptions import createProfile, displayProfile, addApplicant, getJobApplications, getSavedJobIDs, deleteJobMenu, getYourJobs, readJobPosts
+from Code.Source.globalVariables import addPage, dataFileInit, getFirst, getUser, getUserProfile, stackInit, userInit
+from Code.Source.homePageOptions import createProfile, displayProfile, getJobApplications, getSavedJobIDs, readJobPosts, showAllJobs, showHomePageGreeting, showProfile, showMyNetwork
 from Code.Source.mainPage import mainPage
 from Code.Source.menu import homePage
-from Code.Source.utility import writeJson
+from Code.Source.loginPrompt import register
+from Code.Source.utility import addToFriendsList, createRequest, terminateProgram,  writeJson
+import pytest
+import json
 
 TESTMODE = True
 JOBFILE = 'Code/Data/jobPosts-test.json'
@@ -128,7 +128,7 @@ def setup():
                 "Salary": "$300,000",
                 "Name": "Andy Nguyen"
             },
-                        {
+            {
                 "id": "6",
                 "Title": "Job6",
                 "Description": "Deletion pytest",
@@ -137,7 +137,7 @@ def setup():
                 "Salary": "$300,000",
                 "Name": "Andy Nguyen"
             },
-                                  {
+            {
                 "id": "7",
                 "Title": "Job7",
                 "Description": "app pytest",
@@ -146,7 +146,7 @@ def setup():
                 "Salary": "$300,000",
                 "Name": "Andy Nguyen"
             },
-                                  {
+            {
                 "id": "8",
                 "Title": "Job8",
                 "Description": "save pytest",
@@ -158,8 +158,6 @@ def setup():
         ]
     }
     writeJson(jobs, JOBFILE)
-
-
 
 #Testing the case where a user applies to a job.
 #not sure why applications-test.json isnt updating...
@@ -380,3 +378,55 @@ def test_seeJobsYouAppliedForButWereDeleted(monkeypatch, capfd, userInputs, mess
     except IndexError:
         out, err = capfd.readouterr()
         assert message in out
+
+def test_seeAllJobs(capfd):
+    try:
+        showAllJobs()
+    except OSError:
+        out, err = capfd.readouterr()
+        jobTitle = "Job{}"
+        for i in range(1, 9):
+            assert jobTitle.format(i) in out
+
+@pytest.mark.parametrize("testInputs, messages", 
+[
+    (['1'], ["Title: Job1", "Description: Work", "Employer: Apple", "Location: Silicon Valley", "Salary: $300,000"]),
+    (['2'], ["Title: Job2", "Description: Work", "Employer: Apple", "Location: Silicon Valley", "Salary: $300,000"]),
+    (['3'], ["Title: Job3", "Description: Work", "Employer: Apple", "Location: Silicon Valley", "Salary: $300,000"]),
+    (['4'], ["Title: Job4", "Description: Work", "Employer: Apple", "Location: Silicon Valley", "Salary: $300,000"]),
+    (['5'], ["Title: Job5", "Description: Work", "Employer: Apple", "Location: Silicon Valley", "Salary: $300,000"])
+])
+def test_seeJobInfo(capfd, monkeypatch, testInputs, messages):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: testInputs.pop(0))
+        showAllJobs()
+    except IndexError:
+        out, err = capfd.readouterr()
+        for message in messages:
+            assert message in out
+
+@pytest.mark.parametrize("testInputs, messages", 
+[
+    (['3', '1'], ["Title: Job3", "You can't apply to a job you've posted"])
+])
+def test_restrictApplyToOwnJob(capfd, monkeypatch, testInputs, messages):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: testInputs.pop(0))
+        showAllJobs()
+    except IndexError:
+        out, err = capfd.readouterr()
+        for message in messages:
+            assert message in out
+
+@pytest.mark.parametrize("testInputs, messages", 
+[
+    (['8', '1'], ["Title: Job8", "You cannot apply to a job you've already applied to"])
+])
+def test_restrictReApply(capfd, monkeypatch, testInputs, messages):
+    try:
+        monkeypatch.setattr('builtins.input', lambda _: testInputs.pop(0))
+        showAllJobs()
+    except IndexError:
+        out, err = capfd.readouterr()
+        for message in messages:
+            assert message in out

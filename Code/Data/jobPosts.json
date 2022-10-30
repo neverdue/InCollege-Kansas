@@ -1,6 +1,5 @@
 {
-    "numPosts": 10,
-    "currentIDs": 10,
+    "numPosts": 9,
     "jobPosts": [
         {
             "id": "1",
@@ -37,15 +36,6 @@
             "Location": "San Fran",
             "Salary": "300,000",
             "Name": "Mayank Pandey"
-        },
-        {
-            "id": "5",
-            "Title": "1",
-            "Description": "t",
-            "Employer": "t",
-            "Location": "",
-            "Salary": "tt",
-            "Name": "Kevin Vu"
         },
         {
             "id": "6",
@@ -90,7 +80,7 @@
             "Employer": "7",
             "Location": "7",
             "Salary": "7",
-            "Name": "Andy Nguyen"
+            "Name": "Chau Nguyen"
         }
     ]
 }
