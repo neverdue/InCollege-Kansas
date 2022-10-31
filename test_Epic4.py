@@ -51,13 +51,13 @@ def setup():
 def test_IncomingRequestOption(capfd):
     showHomePageGreeting()
     out, err = capfd.readouterr()
-    message = "See incoming friend requests"
+    message = "See Incoming Friend Requests"
     assert message in out
 
 def test_outgoingRequestOption(capfd):
     showHomePageGreeting()
     out, err = capfd.readouterr()
-    message = "See outgoing friend requests"
+    message = "See Outgoing Friend Requests"
     assert message in out
 
 @pytest.mark.parametrize("test_inputs, messages",

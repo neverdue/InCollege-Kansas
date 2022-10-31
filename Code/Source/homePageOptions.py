@@ -14,8 +14,8 @@ MAX_EXPERIENCE = 3
 def showHomePageGreeting():
     printDivider()
     print("Welcome to InCollege!")
-    print("""Please choose from one of the options below:\n1. Search for a job\n2. Find someone you know\n3. Learn a new skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users
-7. See incoming friend requests\n8. See outgoing friend requests\n9. Show my network\n10. Your profile\n11. Go to previously visited page\n""")
+    print("""Please choose from one of the options below:\n1. Search for a Job\n2. Find Someone You Know\n3. Learn a New Skill\n4. Useful Links\n5. InCollege Important Links\n6. Search Users
+7. See Incoming Friend Requests\n8. See Outgoing Friend Requests\n9. Show My Network\n10. Your Profile\n11. View Message Inbox\n12. Go to Previously Visited Page\n""")
 
 def showSkillPageGreeting():
     printDivider()
@@ -717,3 +717,18 @@ def previousOrHomePage():
     else: 
         removePage()
         return "homePage"
+
+#Implement message feature
+def messageInbox():
+    addPage(messageInbox)
+    printDivider()
+    print("-----I N B O X------\n\nUnder construction")
+
+    #ANDY - Allow users to message other users (and store messages)
+    #ANDY - Have users get notifs if they received a message next time they login
+    #ANDY - Allow users to reply to a message they have received (back and forth) or delete it
+
+    #ASHLEY - If student is standard, only have option to message friends
+    #ASHLEY - If student is plus, can message anyone. Can view all users of InCollege
+    #ASHLEY - Incorporate option at sign up for standard or plus
+    return
