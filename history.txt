@@ -1,1091 +1,347 @@
-commit 573b57bca81422e4e5cbc17568a2023240f0d2a3
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Mon Oct 24 01:28:30 2022 -0400
-
-    fix displayProfile()
-
-commit 69243c0b52b84b3e3d447222a9ed2b4a18d77498
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Mon Oct 24 01:18:54 2022 -0400
-
-    Fix viewIncomingRequests() and test_Epic5
-
-commit 8c763a8c7710ccae0bda2988a7c0e3423578f97e
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Sun Oct 23 20:14:53 2022 -0400
-
-    test epic 5 function rename (endProgram()->terminateProgram()
-
-commit 9e1a1937da369df0e93aee242bc805788299e0b2
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 20:13:25 2022 -0400
-
-    Renamed the function
-
-commit b7938c8ba743e31126ba7e09dfee066d1c732e90
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Sun Oct 23 20:05:40 2022 -0400
-
-    redid old test functions for friendslist in epic4
-
-commit 75b401f59452ca0d1964feda08dbf7cb4a5fb878
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 23 14:18:19 2022 -0400
-
-    merge tests
-
-commit fd489f79e681b7e1f72b8609845b5f6578992f82
-Merge: 07002bc c8a215c
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 23 14:12:28 2022 -0400
-
-    Merge pull request #26 from neverdue/Epic5-Ashley
-    
-    Added pytests, added a endProgram function utility for testing, added…
-
-commit 07002bc38d0714bf452961d4f70b49d6397fa4fd
-Merge: 06d152d e300408
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 13:49:39 2022 -0400
-
-    Merge pull request #25 from neverdue/Epic5-MayankTester1
-    
-    Epic5 mayank tester1
-
-commit e300408707bfc7cec67988bda6b7e1baf8d2d645
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 13:49:06 2022 -0400
-
-    Fixed Search User to work with current Epic
-
-commit f727571e2609c8f5e1456ad9456d0a992abd52fc
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 13:33:08 2022 -0400
-
-    Say Your profile instead of create your profile
-
-commit a03dfaf609d6663a73c069ac0454a40bc8c60b29
-Merge: 649a058 06d152d
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 13:30:35 2022 -0400
-
-    Merge branch 'main' into Epic5-MayankTester1
-
-commit 649a0587f4060a10ad397aca66efc509ac7fe77e
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 13:30:21 2022 -0400
-
-    Made changes to make tests work
-
-commit 06d152d82c62b70d98824f6c53a0aa8536f2b0c3
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sun Oct 23 13:29:42 2022 -0400
-
-    Changed option 10 to - Your profile
-
-commit 6284db59fecfbb0f238bd0272567a72ed1cbe95c
-Merge: 8d549f4 414042d
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 13:25:23 2022 -0400
-
-    Merge branch 'main' into Epic5-MayankTester1
-
-commit 414042dafcc6ba10b0c345825acd56bf172acec5
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sun Oct 23 13:24:22 2022 -0400
-
-    Bug fixes on friend request system and profile menu
-
-commit 8d549f4ef920fb5226df0f7eae3e1686d28534b3
-Merge: 3c29544 2291f8c
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 13:03:23 2022 -0400
-
-    Merge branch 'main' into Epic5-MayankTester1
-
-commit c8a215cef7b6b0ff41be4c096f5014a017afa016
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 23 12:50:52 2022 -0400
-
-    Added pytests, added a endProgram function utility for testing, added spacing when user has multiple job expierences
-
-commit 2291f8c92a9bcd96d291478c8d5b84d580a34b05
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sun Oct 23 12:42:22 2022 -0400
-
-    Bug fixes, menu updates
-
-commit fb503853a86a127e7d71b4dfd455f86ee1351b60
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sun Oct 23 12:27:07 2022 -0400
-
-    Fixed bugs, reorganized homepage, wip searchusers fix
-
-commit 3c29544fff70f21f07df0eab5516d50371d15e7b
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 23 07:25:37 2022 -0400
-
-    Added tests for viewing own profile and friends profiles
-
-commit 7352eef0fa62c87524aafbf4ce246bc6fafbf517
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sat Oct 22 11:57:36 2022 -0400
-
-    Fixed profile bug
-
-commit a27df0e77be0e32440c83b858d6f808ee06e4a3a
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sat Oct 22 11:49:32 2022 -0400
-
-    Fixed bug for option 10 of the homepage menu
-
-commit dcd5f3cf49d0e85427e3424b3d2d0d34b5e77c5e
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Fri Oct 21 22:59:01 2022 -0400
-
-    Epic5 Finishing touches
-
-commit 12bef39654b5b3463b123a54dc6a673fe41acb6f
-Merge: 849e20b 498e08c
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Fri Oct 21 20:38:39 2022 -0400
-
-    Merged Chau's code with mine
-
-commit 849e20b877757122ba32d1e856e1d45bd7f17134
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Fri Oct 21 20:34:55 2022 -0400
-
-    Preparing to merge
-
-commit e8a6c2df423efa12edc68185cf2ca456d7608518
-Merge: 9a5b702 b47fcdf
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Fri Oct 21 14:53:16 2022 -0400
-
-    Merge remote-tracking branch 'origin/Epic5-Backend' into Epic-5FrontEnd
-
-commit 498e08cc2275ada9549859ea40421bd7922610e9
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Fri Oct 21 14:33:12 2022 -0400
-
-    Add hasProfile for other users in homePageOptions.py
-
-commit 333e7532cafe91bea243a6fe57a59b10ac19664c
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Fri Oct 21 13:44:53 2022 -0400
-
-    Added comments
-
-commit 73babb1d95bc2af6e99ef4815889f61bab554bab
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Fri Oct 21 13:37:28 2022 -0400
-
-    Fix magic number (MAX_EXPERIENCE = 3)
-
-commit 9a5b7025a4492b1f3c5380abbed71a6fa752e37d
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Fri Oct 21 12:11:57 2022 -0400
-
-    testing
-
-commit a562baf18c71ff23e697c1b56426b5745f25747a
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Fri Oct 21 00:49:58 2022 -0400
-
-    Update searchFilter() since major and university are attributes in profile
-
-commit a95702e89d5266be9c902c42f0ba19498336292b
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Fri Oct 21 00:03:43 2022 -0400
-
-    Used Integer options instead of string options
-
-commit b47fcdf1c2ef033f6a4bd97ba9167f98ebf59477
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Thu Oct 20 22:15:18 2022 -0400
-
-    Epic 5 Backend (remove major and university implementation from epic 4)
-
-commit c7c2e8cf37c941a9a3ed71f8ae184c5500121651
-Merge: 474d888 5a1f005
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 16 20:25:55 2022 -0400
-
-    Merge pull request #24 from neverdue/Epic4-Ashley-Testing
-    
-    Finished testing
-
-commit 5a1f0055ea4b13e569438b3adb7636d4232e78a9
-Merge: 43d29e4 daaaca4
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 16 20:24:34 2022 -0400
-
-    Merge branch 'Epic4-Ashley-Testing' of https://github.com/neverdue/InCollege-Kansas into Epic4-Ashley-Testing
-
-commit 43d29e4845b845df9e1876f8b58b7279a90f6807
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 16 20:24:23 2022 -0400
-
-    Fixed last test
-
-commit 474d888678700b8c4aa4b9572d2266d68de0f1b9
-Merge: cbcd6bd daaaca4
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 16 19:00:56 2022 -0400
-
-    Merge pull request #23 from neverdue/Epic4-Ashley-Testing
-    
-    Add tests, grammar bug fix when showing how many requests a user has
-
-commit daaaca4c1401b60ea7a90925ef5e2289217f4f76
-Merge: 715dd59 cbcd6bd
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 16 19:00:21 2022 -0400
-
-    Merge branch 'main' into Epic4-Ashley-Testing
-
-commit 715dd593f572aad885708dd558c258e28adc398d
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Sun Oct 16 18:58:56 2022 -0400
-
-    Add tests, grammer bug fix
-
-commit cbcd6bd32880a12559bb3ed90d385f009d4b3b27
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Oct 15 22:51:15 2022 -0400
-
-    Added input validation for SearchUsers
-
-commit c9804b06c0070cf8f882e4da833aff28dcc07445
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Oct 15 19:38:29 2022 -0400
-
-    Added notification for incoming friend requests
-
-commit 23b82819e5d42abf7e5fa719ff11b6ca988fcb33
-Merge: 7034cec e1cd26f
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 13 10:45:47 2022 -0400
-
-    Merge pull request #22 from neverdue/Mayank-Epic4
-    
-    Epic 4 combined branch
-
-commit e1cd26f7434917796f54f483410266060de98b48
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 13 10:45:21 2022 -0400
-
-    Combined mayank and rier's code
-
-commit 88e57d65e64df93c644a07173f0cbd5c1006d1cc
-Merge: b91ecf5 79b30c5
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 13 00:51:57 2022 -0400
-
-    Merge branch 'Epic4-Backend' into Mayank-Epic4
-
-commit b91ecf5c8f9f66b84871ac87944a3644c76c8d9a
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 13 00:43:07 2022 -0400
-
-    Changes to outgoing requests
-
-commit 79b30c5bb924c812d06b60d321f1dd184428fdc3
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Thu Oct 13 00:39:01 2022 -0400
-
-    Created functionality for friend request system, and data retrieval helper functions
-
-commit a0ebbc349bb79b645254f86cd9d16d0b9847c7d4
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Oct 12 10:00:04 2022 -0400
-
-    Added the friend in the message
-
-commit 1c7224768f2e8d086a94d05489aedb336854b08b
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Oct 12 09:55:41 2022 -0400
-
-    Added new features
-
-commit f7d7475883aebcafc74fa9146793e2126a081b9e
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Tue Oct 11 20:34:58 2022 -0400
-
-    Made backend feature for managing requests
-
-commit b993b48ed9be9af3430547d07cc4611fdb718f05
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Tue Oct 11 10:37:45 2022 -0400
-
-    Made frontend part for Epic4
-
-commit 7034cecc9481a798f4c9205c4da0dec46c6f106a
-Merge: 8bbaa70 6c90223
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Mon Oct 10 21:38:26 2022 -0400
-
-    Merge pull request #21 from neverdue/IC-39-increase-account-limit
-    
-    Changed account limit to 10
-
-commit 6c90223dc91218ec806052e2b7e1ab465d42cf39
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Mon Oct 10 21:37:56 2022 -0400
-
-    Changed account limit to 10
-
-commit 8bbaa70326407ec7e01e64e292334861ff5f1d05
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 9 22:38:15 2022 -0400
-
-    Combined test cases for both Epic3 files into one
-
-commit 91d981d14862a141acdbdfe5a4b59d561de56a19
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Oct 9 22:22:24 2022 -0400
-
-    Fixed test case for guestControls
-
-commit 6c648a780d34b86e04eafd38cbb986280683fdf6
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sun Oct 9 21:42:13 2022 -0400
-
-    deleted useless file
-
-commit 9af47c527b0ff1d10e70168aaf20696f423f0fcc
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sun Oct 9 21:40:24 2022 -0400
-
-    testing changed test json
-
-commit dd50b23febee0c425b244e979bde5106d7be58d7
-Merge: a696fec 142cdc1
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sun Oct 9 21:38:31 2022 -0400
-
-    separate test files to be merged
-
-commit 142cdc1cd6aea9951c5552ca6d6bd9fa5aeefc7c
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sun Oct 9 20:06:50 2022 -0400
-
-    typo fix
-
-commit a984b0fafbc97887867af41008c1d6adfa9adb9d
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sun Oct 9 20:04:45 2022 -0400
-
-    renamed test file to resolve merge conflict
-
-commit a696fec64fa1f901d82bf0a9e01c4216d792bbcb
-Merge: 1d45f0e 62f31c4
-Author: ctrbl <99560228+ctrbl@users.noreply.github.com>
-Date:   Sat Oct 8 21:22:01 2022 -0400
-
-    Merge pull request #19 from neverdue/Epic3-Chau-test
-    
-    Epic 3 Test (Useful & Important links)
-
-commit 62f31c4d7a80f08a339cf86087db927eb9fc6ba6
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Sat Oct 8 21:21:29 2022 -0400
-
-    Epic 3 Test (Useful & Important links)
-
-commit 1d45f0e45f30f399867a746bcd4623a12ad8cb5b
-Merge: a939fd1 57d7d74
-Author: ctrbl <99560228+ctrbl@users.noreply.github.com>
-Date:   Sat Oct 8 21:01:59 2022 -0400
-
-    Merge pull request #18 from neverdue/Epic3-Chau-test
-    
-    Epic 3 Tests (Useful & Important links)
-
-commit 57d7d74f58553b1ad2142039a77a59894d780b2c
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Sat Oct 8 20:58:21 2022 -0400
-
-    Epic 3 Tests (useful & important links)
-
-commit 797d7c8af2f61f9d4f8d1b11d88b40624ce28ccc
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sat Oct 8 20:18:51 2022 -0400
-
-    tests for new links stack compatability, language localization changes, and guest control changes
-
-commit 976d311a01f1af4ee97317e4609691a3c6d19533
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sat Oct 8 20:17:37 2022 -0400
-
-    first account guestcontrol settings all changed to on/off for testing
-
-commit 2ed07ad78d96e87044bc7de09422b9c27e96077b
-Merge: ac42944 a939fd1
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sat Oct 8 10:51:09 2022 -0400
-
-    Merge branch 'main' into newbranchAN_epic3
-
-commit ac429442abec083e1dd0eb3199c3fbc5fc61f4fc
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sat Oct 8 10:35:40 2022 -0400
-
-    test file altered from testing language changes
-
-commit e9feadcaf9e571a45f2cc32b907239b81be33a8f
-Author: spoopyando <nguyena5@usf.edu>
-Date:   Sat Oct 8 10:34:33 2022 -0400
-
-    language localization finished
-
-commit a939fd1cc522a87821ec92f6e37425122cc5e81a
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Fri Oct 7 21:01:48 2022 -0400
-
-    Added checks for the input -1 (then we exit in that case)
-    
-    The function endProgram() exits our program and it also prints out a nice message to the user :)
-
-commit e5e9d4c1cb8d9798c345d7c29347aae23c354e09
-Merge: 359c03f 3359880
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Oct 7 12:03:57 2022 -0400
-
-    Merge remote-tracking branch 'refs/remotes/origin/main'
-    trying to make a new branch witih updated changes# the commit.
-
-commit 3359880675499b08fd3c57637b36ce5ab6aa4b9b
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 22:29:14 2022 -0400
-
-    Capitalized english to English in the code
-
-commit 0f596f9d426f9af83b474763b9dc248050e76c98
-Merge: 03a4826 490c8ae
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Thu Oct 6 20:19:57 2022 -0400
-
-    Merge pull request #17 from neverdue/Epic3-Ashley-part2
-    
-    misc
-
-commit 490c8ae76d3ddb34587aca1d87b59cf8835dd3fc
-Merge: 04eaf88 03a4826
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Thu Oct 6 20:19:49 2022 -0400
-
-    Merge branch 'main' into Epic3-Ashley-part2
-
-commit 04eaf88ddc7297f21078e7629e4787854ba4cfe2
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Thu Oct 6 20:18:43 2022 -0400
-
-    misc
-
-commit 03a4826e5396615a683d94e811ea7d4872f93a2a
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 16:05:19 2022 -0400
-
-    Removed unused imports from menu.py and menuOptions.py
-    
-    - We were using printStack() to test what is in the stack so removed it now.
-
-commit 806654b206e0ebfd917dfd6cc6f83018639b0c06
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 15:35:27 2022 -0400
-
-    Made changes to make the tests for Epic2 work
-    
-    - Some previous tests have been modified slightly to work with the new functionality.
-
-commit 5341d22b6df2acc878b264386dedd9dd04b4ffda
-Merge: b6c9248 94205c8
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Thu Oct 6 14:40:43 2022 -0400
-
-    Merge pull request #16 from neverdue/Epic3-Ashley-part2
-    
-    Epic3 ashley part2
-
-commit 94205c8648ede872a0079bb8c3c92513f1fcf267
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Thu Oct 6 14:38:43 2022 -0400
-
-    Implement language option and minor fixes
-    
-    - Updates how we store language in account file
-    - Implemented a timer option for testers to input a time of 0 for ease of testing
-    - Added some timers to allow users to see outputs easier
-    - Removed printStack() calls left from testing
-    - Implementing option to change language from English to Spanish and updates the users account file and global variables
-    - Added fix that updates global variable when updating guest control settings
-
-commit 3e2dd6b0e8b20c40df323bdb5da0bb19f5da6b57
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Thu Oct 6 13:40:27 2022 -0400
-
-    Change setting file structure
-    
-    Update guest controls to be stored in user json file for ease of testing
-
-commit 29e7b5b01fbeb4472fa80391f6f947a98883662b
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 12:28:01 2022 -0400
-
-    Removed unused imports
-
-commit 5ca35a6ef56b60da74973aac37dc7f4c874eca29
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 12:21:29 2022 -0400
-
-    Removed temp test file since integration is complete
-
-commit cf1957ed6a89a5d4a4daec95eb423b8b7d6f8b02
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 12:17:56 2022 -0400
-
-    Refactored the code
-
-commit 5c3755e73475e9a96e448f6d19fba5454c629a3d
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 10:59:31 2022 -0400
-
-    Added feature to show home page after sign up using general's signup
-
-commit 1b2fb091fb0630c6cfd6e4963fe736c3c1af49fa
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 02:00:30 2022 -0400
-
-    Fixed an issue with enabled features
-
-commit 4e4cb23b469624213468d8f148c389de20ab4c58
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 01:43:45 2022 -0400
-
-    Made the tests work
-
-commit 958e818a2b2f9b68969c6fa0525b143ff7263904
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Thu Oct 6 01:38:38 2022 -0400
-
-    More changes
-
-commit 495e769b5cf6ba4b6bf2cc3a09fa33c1801efdd7
-Merge: 39a1643 cdb9d81
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Oct 5 08:39:42 2022 -0400
-
-    Merge branch 'Epic3-AshleyM' into IC-23-creating-two-links-for-menu
-
-commit cdb9d81ccc8c34c51fbd667612069d4c89ab2660
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Tue Oct 4 21:53:55 2022 -0400
-
-    Implementation of Guest Controls
-    
-    Created a userSettings json file to store each users unique setting preferences (also accomidated for testers with test json file and update in global variable file). When a User logs in, their settings are now initialized in the user global variable, and when a user creates an account, all settings are default and stored in the userSettings json file. The guest control page is made where users can change their settings and is updated to their file. Currently it is not implemented in the InCollege app as Mayank is going to integrate it.
-
-commit 39a164302907331f140a4c02d5675af17f1c3c42
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Tue Oct 4 20:17:42 2022 -0400
-
-    Started working on the two menu groups
-
-commit b6c9248d117d75d43f080924e5d085fb8b273f23
-Merge: 013819c 4e48953
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Mon Oct 3 20:42:04 2022 -0400
-
-    Merge pull request #15 from neverdue/RefactoredCode
-    
-    Refactored the code
-
-commit 4e489532508a0e39ce5b42fbbf49f0027c9ad778
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Mon Oct 3 20:41:41 2022 -0400
-
-    Refactored the code
-
-commit 013819c329fd2fd52d7565683bb03bf02274c1df
-Merge: 09fff9a 0ab5f85
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Sep 25 22:09:07 2022 -0400
-
-    Merge pull request #14 from neverdue/CombinedTests
-    
-    Combined the test cases Epic wise
-
-commit 0ab5f85915b2e9582a6b8665aba0904ee760b1f8
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Sep 25 22:08:36 2022 -0400
-
-    Combined the test cases Epic wise
-
-commit 09fff9a6be1beddc6cd8e7cabe8583094ae6efe0
-Merge: a49d020 1b74143
-Author: ctrbl <99560228+ctrbl@users.noreply.github.com>
-Date:   Sun Sep 25 20:20:12 2022 -0400
-
-    Merge pull request #13 from neverdue/chau
-    
-    Epic 2 Tests
-
-commit a49d02022d0be53243b8be9930e44b2da97f595a
-Merge: 0afbdc7 f26b296
-Author: Boomboozled <103400445+Boomboozled@users.noreply.github.com>
-Date:   Sun Sep 25 20:19:59 2022 -0400
-
-    Merge pull request #12 from neverdue/tempBranch
-    
-    Epic2 Tester#2 Merge
-
-commit 1b741437d30c99f5b159a8593e183c98b92e15fc
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Sun Sep 25 17:49:26 2022 -0400
-
-    Epic 2 Tests
-
-commit f26b29607f3139a3fba858c58ead3ea2ec831f82
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sun Sep 25 00:29:58 2022 -0400
-
-    Implemented tests for StackChecking, Unique name checking. Login was already done.
-
-commit 88093a7b451c2fc0555e4fc14ffa1a4d8b639e7f
-Merge: 17b10bd 0afbdc7
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sat Sep 24 23:11:33 2022 -0400
-
-    Merge branch 'main' into tempBranch
-
-commit 17b10bdfa3975b187bb1eed110d04b18df526de6
-Author: Boomboozled <rier1177@yahoo.com>
-Date:   Sat Sep 24 22:53:25 2022 -0400
-
-    first commit
-
-commit 0afbdc7b15c945810e591675e2f9621bc39707c8
-Merge: 678a089 cd71a04
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 24 18:01:06 2022 -0400
-
-    Merge pull request #11 from neverdue/makeOldTestsWork
-    
-    Made the old tests work again
-
-commit cd71a0461cc4bef34f7d2cf208b013bfada590d6
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 24 17:45:26 2022 -0400
-
-    Made the old tests work again
-
-commit 678a08971401eeea658274868db145366ac89159
-Merge: 99ff082 dc40a25
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 20:29:53 2022 -0400
-
-    Merge pull request #10 from neverdue/Epic2-AshleyM
-    
-    Change imports for potentialConnection and successStory
-
-commit dc40a256c7983ed75fbc6cb30a1e3fe070a7c8f2
-Author: avolkert <ashley12521@gmail.com>
-Date:   Fri Sep 23 20:29:44 2022 -0400
-
-    Change imports for potentialConnection and successStory
-
-commit 99ff082cffa709bbac61d9f16ed4efed772e9189
-Merge: 56365ea 0d2e051
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 19:52:13 2022 -0400
-
-    Merge pull request #9 from neverdue/Epic2-AshleyM
-    
-    misc cleaning
-
-commit 0d2e05105240dfc5a62e25e47eb96055c0c93d93
-Author: avolkert <ashley12521@gmail.com>
-Date:   Fri Sep 23 19:52:02 2022 -0400
-
-    misc cleaning
-    
-    remove test print, remove some jobPosts from json file
-
-commit 56365ea35cf4182c154a4b0c0329dda4a19636c9
-Merge: a74e4b9 b790822
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 16:47:06 2022 -0400
-
-    Merge pull request #8 from neverdue/Epic2-AshleyM
-    
-    Implementing first and last name to job post
-
-commit b7908228deff5c7f390d6debc62422c922379f37
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 16:46:47 2022 -0400
-
-    Implementing first and last name to job post
-    
-    Made user a global variable and fixes job post name to include logged in user to have its name stored
-
-commit a74e4b9426645b364ba913b0c5626f9b25be2762
-Merge: e8d9de2 9d7171d
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 16:18:16 2022 -0400
-
-    Merge pull request #7 from neverdue/Epic2-AshleyM
-    
-    Restore Andi's code and bug fixes
-
-commit 9d7171daff090d0ac7ef98ab1c4e8a3e7adc555a
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 16:17:39 2022 -0400
-
-    Restore Andi's code
-
-commit 359c03ff3362b19eede172e45f021ba5399d76f3
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 23 15:49:01 2022 -0400
-
-    updating local
-
-commit 76390caf5b79dd8d9a753fa0e83e87ca08d96357
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 15:41:47 2022 -0400
-
-    Fix back button in main bug
-
-commit e8d9de292ae825064cffc1dc89468f89a27e2dff
-Merge: 9e6353f 26af952
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 15:20:41 2022 -0400
-
-    Merge pull request #6 from neverdue/newbranchAN
-    
-    Andi code implementation
-
-commit 26af952bd2ff88ba9bffdb992f3b5b7646332eed
-Merge: 6a3d31e 9e6353f
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 15:19:45 2022 -0400
-
-    Merge branch 'main' of https://github.com/neverdue/InCollege-Kansas into newbranchAN
-
-commit 9e6353f06610390faf6329d166910aef744a715f
-Merge: 07c0038 7022ece
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 15:09:22 2022 -0400
-
-    Merge pull request #5 from neverdue/Epic2-AshleyM
-    
-    Back Button Implementation (Still in progress)
-
-commit 7022ece64ab478d02bfc82e0c83b47e669ed8f61
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 14:46:39 2022 -0400
-
-    Back Button Implementation
-    
-    back button using stack global variable inside of all home page paths that give you options is functional. Initialization of stack is temporarily being done under homepage as login/Register is causing errors. Login/Register page for stack is still being worked on.
-
-commit 6a3d31e7b651784c8bad7ba7ec61749443de82e7
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 23 14:37:23 2022 -0400
-
-    function that displays success story
-
-commit 64d407a76216ddea36d389d1a25a3342384aac2b
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 23 14:37:02 2022 -0400
-
-    success story and video option
-
-commit cc772c2c701dcbbca7dc67cb48f0bf2eecc3f223
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 23 14:12:55 2022 -0400
-
-    removed useless comment
-
-commit cb3a3a5f65dc40093b1b0f3f70f907e8baa13716
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 23 14:10:06 2022 -0400
-
-    Function that checks if all names are unique combinations
-
-commit 07c0038c68e93a0d223801ae74d0a475b00dca93
-Merge: 5fa5834 ea7decd
-Author: ashmeredith <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 13:29:12 2022 -0400
-
-    Merge pull request #4 from neverdue/Epic2-AshleyM
-    
-    Create JobPost functionality
-
-commit ea7decdeb3812ef283bae4653276e5f301339acb
-Author: avolkert <56037157+ashmeredith@users.noreply.github.com>
-Date:   Fri Sep 23 13:28:07 2022 -0400
-
-    Create JobPost functionality
-    
-    Add job post is functional. Currently hard coded first and last name
-
-commit 64251560180f258aa23ae7c3585779ede56a2661
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 23 11:45:30 2022 -0400
-
-    function that looks through json for connections
-
-commit 8dadfed2163ed84cff195ca1182b7bbd8c2719ff
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 23 11:44:40 2022 -0400
-
-    new connect feature added
-
-commit 6bd3854cfb2d24a190b60f60a3fcafa7e78ef64d
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 22 20:36:33 2022 -0400
-
-    typo on line 42 fixed
-
-commit 3356000ef33a88ddb9ce1bdf0c68685b28b57f57
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 22 20:32:59 2022 -0400
-
-    used to append to json file
-
-commit 65e5bfae40ee7970826b58132b43565e0b2b420e
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 22 20:31:46 2022 -0400
-
-    replaced users text file with json file. System now also asks for first and last name
-
-commit cf448b1d57d4633080420f7802b81f16f9b2e8af
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 22 20:30:34 2022 -0400
-
-    replaced users.txt with this because its better for what we need it for
-
-commit 099a9389815fde55a651e8def33c53f19f10df65
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 22 20:30:11 2022 -0400
-
-    altered to work with json
-
-commit 3c04f8b711cce8f74def98a3b06cdbc43000ed50
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 22 20:29:51 2022 -0400
-
-    altered to work with json
-
-commit 5fa5834b3937958a8d7eb4f1a8848e8afc2e5f2d
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Sep 18 20:55:30 2022 -0400
-
-    Updated README.md
-
-commit 7da593e2edfcb30d98aebcd0e8e1ec7151acb9b8
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sun Sep 18 20:54:16 2022 -0400
-
-    Made a new users-test.txt file for pytests and updated code accordingly
-
-commit 1f812bc5ff4f029345cbf600cfe4109d2cf82f99
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 20:39:57 2022 -0400
-
-    Compiled all code
-
-commit 10d3e51261c6df55716b95bc8f2bbe48f0af90db
-Merge: aed41fa 63b6135
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 19:49:36 2022 -0400
-
-    Merge pull request #3 from neverdue/chau
-    
-    Functionality for InCollege
-
-commit 63b6135da1873249fe1acb6893649b44786b2663
-Merge: aeb4802 aed41fa
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 19:48:42 2022 -0400
-
-    Merge branch 'main' into chau
-
-commit aed41fa7cf8a9493eed03050da8242f722416f37
-Merge: 841cc06 474d94d
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 19:47:45 2022 -0400
-
-    Merge pull request #2 from neverdue/LoginFunctionality
-    
-    Login functionality
-
-commit 474d94dd7073e61297eb93654de485334d70c229
-Merge: 841cc06 0846366
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 19:46:56 2022 -0400
-
-    Merge branch 'newbranchAN' into LoginFunctionality
-
-commit aeb4802732e3b175a69edb8bc1e6efc814252e63
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 19:43:36 2022 -0400
-
-    Made test cases for inCollege functionality
-
-commit 08463666058a369120c25af811a1ad698fd4e998
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 17:12:35 2022 -0400
-
-    Added more test cases
-
-commit 6f17a9e49e870173303af18b8080d81d4dc4878b
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 00:21:10 2022 -0400
-
-    Updated README.md
-
-commit b354ee6407e8951eccd584f5a2618e792e4bf278
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Sat Sep 17 00:19:46 2022 -0400
-
-    Made the tests work lmao
-
-commit a2854bc0911e82e00e2de18c9f5a995252fd4911
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Fri Sep 16 23:54:47 2022 -0400
-
-    Added 7 tests and refactored the code for user authentication
-
-commit 1c0590c1322f64c8f35bc3893b2b10b8b37b5cf9
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 16 19:29:50 2022 -0400
-
-    new example accounts to test
-
-commit e049ad791f6f1c8caf0d973b0e731767006b34bc
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 16 19:14:04 2022 -0400
-
-    fixed existing user account checking function
-
-commit 78effa4f1d9c8c0286a8bc32c4bfa41f22c3afd2
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 16 15:51:14 2022 -0400
-
-    extra line added from personal testing
-
-commit 7a0b07a98593701965caed725a94ac0190963f52
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 16 15:50:37 2022 -0400
-
-    introduced smaller functions for username/password intake. helps with ease of testing
-
-commit 4372b5de69a19ddb5ca935efca908d533e5772f1
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Fri Sep 16 15:49:55 2022 -0400
-
-    imports smaller functions for username/password input
-
-commit 3843e79c7474cf288b8cabaf3c255d924458db32
-Author: spoopyando <113564178+spoopyando@users.noreply.github.com>
-Date:   Thu Sep 15 23:36:01 2022 -0400
-
-    Update README.md
-
-commit 914c7eeb7aeffbc2eef1ef2c4d567fcd1db52270
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 15 23:33:37 2022 -0400
-
-    added example username and password
-
-commit 2319cc081bc52794f7ce5033c293039f49dab7d2
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 15 23:33:06 2022 -0400
-
-    removed redundant line
-
-commit 058db7ca4b11c0af0bb38001ac6209989d50f73a
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 15 23:32:46 2022 -0400
-
-    new function for choosing existing user and new user
-
-commit e9d1127156be466f98965c8da1bc1de0a3d2beaa
-Merge: 6c93568 b247b24
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 15 23:22:35 2022 -0400
-
-    Merge branch 'newbranchAN' of https://github.com/neverdue/InCollege-Kansas into newbranchAN
-    Merging local files to repository files
-
-commit f391adda36e93b68969c62acc35da20893a41ebe
-Author: Chau Nguyen <minhchau.ng1028@gmail.com>
-Date:   Thu Sep 15 23:02:39 2022 -0400
-
-    UI feature part
-
-commit 6c9356896166214bbe736657884dfe0456b0e4a5
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 15 22:45:22 2022 -0400
-
-    New functionality for login to existing users +new
-
-commit b247b241f2db04cf1448c05794e9f0804ba0f31e
-Author: spoopyando <113564178+spoopyando@users.noreply.github.com>
-Date:   Thu Sep 15 15:08:16 2022 -0400
-
-    Create README.md
-
-commit caefa6f158bc539b2be2167cd5566bc1958b9f38
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 15 14:27:17 2022 -0400
-
-    Checks for duplicate usernames
-
-commit 14f884d6d9109fba2e3e5979337770aad64fd60e
-Author: Andy Nguyen <nguyena5@usf.edu>
-Date:   Thu Sep 15 14:17:19 2022 -0400
-
-    created login prompt, username validation, and password validation
-
-commit 841cc0631868a35f30992e4e45ced0ab9250cbd5
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Sep 14 20:32:36 2022 -0400
-
-    Deleting test files
-
-commit 4b4b433372773aa5208e5849d17fa08d36967d0d
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Sep 14 20:29:35 2022 -0400
-
-    Added a data file
-
-commit 94eb161bd2241fe27daeab47abfbdbf7186d3878
-Merge: 3de3423 da37c62
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Sep 14 20:22:10 2022 -0400
-
-    Merge pull request #1 from neverdue/testBranch
-    
-    Added a test file
-
-commit da37c622695f49b7fc29ab1593c492eab100210c
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Sep 14 20:20:23 2022 -0400
-
-    Added a test file
-
-commit 3de3423d7e2ee13ab79f389e7e4ed64b639f18fc
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Sep 14 20:16:59 2022 -0400
-
-    Test commit
-
-commit 03f804c996234a420b9e6cb2b9dfb3c30bdb77b7
-Author: Mayank Pandey <mp.pandey86@gmail.com>
-Date:   Wed Sep 14 20:12:42 2022 -0400
-
-    first commit
+* 0834b30 (HEAD -> ScrumMaster-Epic6, origin/ScrumMaster-Epic6) Fixed check for reApply
+* 536bf47 Mayank commit 10/29
+* dcc692a 10/29 Andy tests
+* ac99b2b Chau commit 10/28
+* 7970a7d Thursday 10/28/22 progress
+* e5aed11 10-26-22 Nightly Commit
+| * 781c083 (origin/Epic6-Mayank-Tester2) Combined mayank and rier's code
+| *   ded7a5d Merge branch 'Epic6-Tester1-Rier' into Epic6-Mayank-Tester2
+| |\  
+| | * d4fbb22 (origin/Epic6-Tester1-Rier) Added test for job applied to but deleted
+| | * b145f79 Added test for different job views/filters
+| | * 75dab12 Added save/unsave, job deletion, and application storage tests
+| * |   866e51a Merge branch 'Epic6-Chau' into Epic6-Mayank-Tester2
+| |\ \  
+| | |/  
+| | * 691adee (origin/Epic6-Chau) Epic6-Chau part
+| | *   9910970 Merge branch 'Epic6-AN' of https://github.com/neverdue/InCollege-Kansas into Epic6-Chau
+| | |\  
+| |/ /  
+|/| |   
+| * | 0f0f18a Removed commented test case
+| * | 0b1166e Fixed issue with reapplying to same job and wrote tests
+| * |   138bdbb (origin/Epic6-AN, Epic6-AN) Merge branch 'main' into Epic6-AN
+| |\ \  
+| |/ /  
+|/| /   
+| |/    
+* | 2c1f756 (origin/main, origin/HEAD, main) Edit test_Epic5.py
+| * f97bf09 applied jobs now shows and fixed adding applicant
+| * a096e7d new entries added from testing
+| * 6a2b89f holds job applicants
+| * 1d306cb holds job applicants
+| * c98ce4c i'm not sure what changed, i think i wanted to write a function but deleted it
+| * 644c5c4 removed uneeded comments
+| * 888db71 functions showing all jobs and sub functions
+| * 8716170 function for getting applications file
+| * c448dfc job limit increased: new jobs available
+| * 16b5316 job limit increased: new jobs available
+|/  
+* dff49db Edit test_Epic5 (previously did not test messages)
+* 573b57b fix displayProfile()
+* 69243c0 Fix viewIncomingRequests() and test_Epic5
+* 8c763a8 test epic 5 function rename (endProgram()->terminateProgram()
+* 9e1a193 Renamed the function
+* b7938c8 redid old test functions for friendslist in epic4
+* 75b401f merge tests
+*   fd489f7 Merge pull request #26 from neverdue/Epic5-Ashley
+|\  
+| * c8a215c (origin/Epic5-Ashley, Epic5-Ashley) Added pytests, added a endProgram function utility for testing, added spacing when user has multiple job expierences
+* |   07002bc Merge pull request #25 from neverdue/Epic5-MayankTester1
+|\ \  
+| * | e300408 (origin/Epic5-MayankTester1) Fixed Search User to work with current Epic
+| * | f727571 Say Your profile instead of create your profile
+| * |   a03dfaf Merge branch 'main' into Epic5-MayankTester1
+| |\ \  
+| |/ /  
+|/| |   
+* | | 06d152d Changed option 10 to - Your profile
+| * | 649a058 Made changes to make tests work
+| * |   6284db5 Merge branch 'main' into Epic5-MayankTester1
+| |\ \  
+| |/ /  
+|/| |   
+* | | 414042d Bug fixes on friend request system and profile menu
+| * |   8d549f4 Merge branch 'main' into Epic5-MayankTester1
+| |\ \  
+| |/ /  
+|/| |   
+* | | 2291f8c (origin/Epic-5FrontEnd) Bug fixes, menu updates
+* | | fb50385 Fixed bugs, reorganized homepage, wip searchusers fix
+| |/  
+|/|   
+| * 3c29544 Added tests for viewing own profile and friends profiles
+|/  
+| * 809310c (origin/practicebranchAN) reverted accidental changes
+| * 260cbd2 improved functions for friendslists
+| * 8349d15 improved test functions for friendslist
+| | *   81d82ab (origin/Epic5-Backend) Merge branch 'Epic-5FrontEnd' of https://github.com/neverdue/InCollege-Kansas into Epic5-Backend
+| | |\  
+| |_|/  
+|/| |   
+* | | 7352eef Fixed profile bug
+* | | a27df0e Fixed bug for option 10 of the homepage menu
+* | | dcd5f3c Epic5 Finishing touches
+* | |   12bef39 Merged Chau's code with mine
+|\ \ \  
+* | | | 849e20b Preparing to merge
+* | | |   e8a6c2d Merge remote-tracking branch 'origin/Epic5-Backend' into Epic-5FrontEnd
+|\ \ \ \  
+* | | | | 9a5b702 testing
+| |_|/ /  
+|/| | |   
+* | | | a95702e Used Integer options instead of string options
+| | | * 45114ae fix hasProfile()
+| | | * 167a5b5 fixed createProfile() bugs
+| | |/  
+| | * 498e08c Add hasProfile for other users in homePageOptions.py
+| | * 333e753 Added comments
+| | * 73babb1 Fix magic number (MAX_EXPERIENCE = 3)
+| | * a562baf Update searchFilter() since major and university are attributes in profile
+| |/  
+| * b47fcdf Epic 5 Backend (remove major and university implementation from epic 4)
+|/  
+*   c7c2e8c Merge pull request #24 from neverdue/Epic4-Ashley-Testing
+|\  
+| *   5a1f005 (origin/Epic4-Ashley-Testing, Epic4-Ashley-Testing) Merge branch 'Epic4-Ashley-Testing' of https://github.com/neverdue/InCollege-Kansas into Epic4-Ashley-Testing
+| |\  
+| * | 43d29e4 Fixed last test
+* | |   474d888 Merge pull request #23 from neverdue/Epic4-Ashley-Testing
+|\ \ \  
+| | |/  
+| |/|   
+| * |   daaaca4 Merge branch 'main' into Epic4-Ashley-Testing
+| |\ \  
+| |/ /  
+|/| /   
+| |/    
+* | cbcd6bd Added input validation for SearchUsers
+* | c9804b0 Added notification for incoming friend requests
+| * 715dd59 Add tests, grammer bug fix
+|/  
+| * c2080d6 (origin/epic4branchAN) fixed a typo
+| * 9b10e13 restored populated fields from testing
+| * f5ca2b7 added functions to disconnect connections
+| * 09da692 testing changed some stuff, but i reverted the changes and it should be the same from the repo
+| * e5f903b test functions for friend removal, friends list retrieval, seeing friend requests when sent
+| * 71c170f i have no idea why this file said it was modified, i even copied over the version from main and overwrote it
+| * d897a2b test functions may have altered this json
+| * 2d49aa5 destroy account function is a work in progress
+| * 15a8987 test remove friend function complete
+|/  
+*   23b8281 Merge pull request #22 from neverdue/Mayank-Epic4
+|\  
+| * e1cd26f (origin/Mayank-Epic4) Combined mayank and rier's code
+| *   88e57d6 Merge branch 'Epic4-Backend' into Mayank-Epic4
+| |\  
+| | * 79b30c5 (origin/Epic4-Backend) Created functionality for friend request system, and data retrieval helper functions
+| | * f7d7475 Made backend feature for managing requests
+| * | b91ecf5 Changes to outgoing requests
+| * | a0ebbc3 Added the friend in the message
+| * | 1c72247 Added new features
+| * | b993b48 Made frontend part for Epic4
+|/ /  
+* |   7034cec Merge pull request #21 from neverdue/IC-39-increase-account-limit
+|\ \  
+| |/  
+|/|   
+| * 6c90223 Changed account limit to 10
+|/  
+* 8bbaa70 Combined test cases for both Epic3 files into one
+* 91d981d Fixed test case for guestControls
+* 6c648a7 deleted useless file
+* 9af47c5 testing changed test json
+*   dd50b23 separate test files to be merged
+|\  
+| * 142cdc1 (origin/newbranchAN_epic3) typo fix
+| * a984b0f renamed test file to resolve merge conflict
+| * 797d7c8 tests for new links stack compatability, language localization changes, and guest control changes
+| * 976d311 first account guestcontrol settings all changed to on/off for testing
+| *   2ed07ad Merge branch 'main' into newbranchAN_epic3
+| |\  
+| * | ac42944 test file altered from testing language changes
+| * | e9feadc language localization finished
+| * |   e5e9d4c Merge remote-tracking branch 'refs/remotes/origin/main' trying to make a new branch witih updated changes# the commit.
+| |\ \  
+| * | | 359c03f updating local
+* | | |   a696fec Merge pull request #19 from neverdue/Epic3-Chau-test
+|\ \ \ \  
+| * | | | 62f31c4 (origin/Epic3-Chau-test) Epic 3 Test (Useful & Important links)
+* | | | |   1d45f0e Merge pull request #18 from neverdue/Epic3-Chau-test
+|\ \ \ \ \  
+| |/ / / /  
+| | | | /   
+| |_|_|/    
+|/| | |     
+| * | | 57d7d74 Epic 3 Tests (useful & important links)
+| | |/  
+| |/|   
+* | | a939fd1 Added checks for the input -1 (then we exit in that case)
+|/ /  
+* | 3359880 Capitalized english to English in the code
+* |   0f596f9 Merge pull request #17 from neverdue/Epic3-Ashley-part2
+|\ \  
+| * \   490c8ae (origin/Epic3-Ashley-part2, Epic3-Ashley-part2) Merge branch 'main' into Epic3-Ashley-part2
+| |\ \  
+| |/ /  
+|/| |   
+* | | 03a4826 Removed unused imports from menu.py and menuOptions.py
+* | | 806654b Made changes to make the tests for Epic2 work
+* | |   5341d22 Merge pull request #16 from neverdue/Epic3-Ashley-part2
+|\ \ \  
+| | * | 04eaf88 misc
+| |/ /  
+| * | 94205c8 Implement language option and minor fixes
+| * | 3e2dd6b Change setting file structure
+| * | 29e7b5b (origin/IC-23-creating-two-links-for-menu, IC-23-creating-two-links-for-menu) Removed unused imports
+| * | 5ca35a6 Removed temp test file since integration is complete
+| * | cf1957e Refactored the code
+| * | 5c3755e Added feature to show home page after sign up using general's signup
+| * | 1b2fb09 Fixed an issue with enabled features
+| * | 4e4cb23 Made the tests work
+| * | 958e818 More changes
+| * |   495e769 Merge branch 'Epic3-AshleyM' into IC-23-creating-two-links-for-menu
+| |\ \  
+| * | | 39a1643 Started working on the two menu groups
+|/ / /  
+| | | *   7bc88a2 (refs/stash) On Epic3-AshleyM: !!GitHub_Desktop<Epic3-AshleyM>
+| | | |\  
+| | |/ /  
+| |/| |   
+| | | * 75d6d05 index on Epic3-AshleyM: cdb9d81 Implementation of Guest Controls
+| | |/  
+| |/|   
+| * | cdb9d81 (origin/Epic3-AshleyM, Epic3-AshleyM) Implementation of Guest Controls
+|/ /  
+* |   b6c9248 Merge pull request #15 from neverdue/RefactoredCode
+|\ \  
+| * | 4e48953 Refactored the code
+|/ /  
+* |   013819c Merge pull request #14 from neverdue/CombinedTests
+|\ \  
+| * | 0ab5f85 Combined the test cases Epic wise
+|/ /  
+* |   09fff9a Merge pull request #13 from neverdue/chau
+|\ \  
+| * | 1b74143 (origin/chau) Epic 2 Tests
+* | |   a49d020 Merge pull request #12 from neverdue/tempBranch
+|\ \ \  
+| |/ /  
+|/| |   
+| * | f26b296 (origin/tempBranch) Implemented tests for StackChecking, Unique name checking. Login was already done.
+| * |   88093a7 Merge branch 'main' into tempBranch
+| |\ \  
+| |/ /  
+|/| |   
+* | |   0afbdc7 Merge pull request #11 from neverdue/makeOldTestsWork
+|\ \ \  
+| * | | cd71a04 (origin/makeOldTestsWork) Made the old tests work again
+|/ / /  
+| * | 17b10bd first commit
+|/ /  
+| | * 7289e36 (origin/rier-test) Had upload issues - WIP Testing
+| | * c255b4c push push push
+| | * f0f3868 Test commit
+| | | * 5ed9178 (origin/newbranchAN, newbranchAN) added dupNames.py that checks and prevents duplicate names
+| | | * f583254 function that checks duplicate names. doesn't enfore unique names. use dupNames.py instead
+| | | * 95ef74a altered main to work with unique names functions in dupNames.py
+| | | * 215611b example accounts rier was using to test duplicate names
+| |_|/  
+|/| |   
+* | |   678a089 Merge pull request #10 from neverdue/Epic2-AshleyM
+|\ \ \  
+| * | | dc40a25 (origin/Epic2-AshleyM, Epic2-AshleyM) Change imports for potentialConnection and successStory
+* | | |   99ff082 Merge pull request #9 from neverdue/Epic2-AshleyM
+|\ \ \ \  
+| |/ / /  
+| * | | 0d2e051 misc cleaning
+* | | |   56365ea Merge pull request #8 from neverdue/Epic2-AshleyM
+|\ \ \ \  
+| |/ / /  
+| * | | b790822 Implementing first and last name to job post
+* | | |   a74e4b9 Merge pull request #7 from neverdue/Epic2-AshleyM
+|\ \ \ \  
+| |/ / /  
+| | / /   
+| |/ /    
+|/| |     
+| * | 9d7171d Restore Andi's code
+| * | 76390ca Fix back button in main bug
+|/ /  
+* |   e8d9de2 Merge pull request #6 from neverdue/newbranchAN
+|\ \  
+| * \   26af952 Merge branch 'main' of https://github.com/neverdue/InCollege-Kansas into newbranchAN
+| |\ \  
+| |/ /  
+|/| |   
+* | |   9e6353f Merge pull request #5 from neverdue/Epic2-AshleyM
+|\ \ \  
+| * | | 7022ece Back Button Implementation
+* | | |   07c0038 Merge pull request #4 from neverdue/Epic2-AshleyM
+|\ \ \ \  
+| |/ / /  
+| * | | ea7decd Create JobPost functionality
+|/ / /  
+* | | 5fa5834 Updated README.md
+* | | 7da593e Made a new users-test.txt file for pytests and updated code accordingly
+* | | 1f812bc Compiled all code
+* | |   10d3e51 Merge pull request #3 from neverdue/chau
+|\ \ \  
+| * \ \   63b6135 Merge branch 'main' into chau
+| |\ \ \  
+| |/ / /  
+|/| | |   
+* | | |   aed41fa Merge pull request #2 from neverdue/LoginFunctionality
+|\ \ \ \  
+| |_|_|/  
+|/| | |   
+| * | |   474d94d (origin/LoginFunctionality, LoginFunctionality) Merge branch 'newbranchAN' into LoginFunctionality
+| |\ \ \  
+|/ / / /  
+| | * | aeb4802 Made test cases for inCollege functionality
+| | * | f391add UI feature part
+| |/ /  
+|/| |   
+* | | 841cc06 Deleting test files
+* | | 4b4b433 Added a data file
+* | |   94eb161 Merge pull request #1 from neverdue/testBranch
+|\ \ \  
+| | | * 6a3d31e function that displays success story
+| | | * 64d407a success story and video option
+| | | * cc772c2 removed useless comment
+| | | * cb3a3a5 Function that checks if all names are unique combinations
+| | | * 6425156 function that looks through json for connections
+| | | * 8dadfed new connect feature added
+| | | * 6bd3854 typo on line 42 fixed
+| | | * 3356000 used to append to json file
+| | | * 65e5bfa replaced users text file with json file. System now also asks for first and last name
+| | | * cf448b1 replaced users.txt with this because its better for what we need it for
+| | | * 099a938 altered to work with json
+| | | * 3c04f8b altered to work with json
+| | |/  
+| | * 0846366 Added more test cases
+| | * 6f17a9e Updated README.md
+| | * b354ee6 Made the tests work lmao
+| | * a2854bc Added 7 tests and refactored the code for user authentication
+| | * 1c0590c new example accounts to test
+| | * e049ad7 fixed existing user account checking function
+| | * 78effa4 extra line added from personal testing
+| | * 7a0b07a introduced smaller functions for username/password intake. helps with ease of testing
+| | * 4372b5d imports smaller functions for username/password input
+| | * 3843e79 Update README.md
+| | * 914c7ee added example username and password
+| | * 2319cc0 removed redundant line
+| | * 058db7c new function for choosing existing user and new user
+| | *   e9d1127 Merge branch 'newbranchAN' of https://github.com/neverdue/InCollege-Kansas into newbranchAN Merging local files to repository files
+| | |\  
+| | | * b247b24 Create README.md
+| | * | 6c93568 New functionality for login to existing users +new
+| | |/  
+| | * caefa6f Checks for duplicate usernames
+| | * 14f884d created login prompt, username validation, and password validation
+| | * 9506592 (origin/testBranch) Adding a data file
+| |/  
+| * da37c62 Added a test file
+|/  
+* 3de3423 Test commit
+* 03f804c first commit
