@@ -178,7 +178,7 @@ def test_viewMyFriendsProfile(capfd, monkeypatch, testInputs, friends, messages)
 def test_CreateProfileOption(capfd):
     showHomePageGreeting()
     out, err = capfd.readouterr()
-    message = "10. Your profile"
+    message = "10. Your Profile"
     assert message in out
 
 @pytest.mark.parametrize("test_inputs, messages, outputs",
