@@ -1,6 +1,6 @@
 import json
 import datetime
-from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getLoggedUser, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests, PROFILE_KEYS
+from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getJobFile, getLoggedUser, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests, PROFILE_KEYS
 
 #Checks all possible pages to call back to last page visited
 def checkPages(page, links):
@@ -27,9 +27,9 @@ def inputValidation(left, right):
         if inputSelection == '-1':
             endProgram()
         if inputSelection.isdigit(): 
-            if int(inputSelection) in range(left, right): break
-        print(f"Invalid input! Please enter a number from {left} to {right - 1}.")
-    return int(inputSelection)
+            if int(inputSelection) in range(left, right+1): break
+        print(f"Invalid input! Please enter a number from {left} to {right}.")
+    return inputSelection
 
 #Character Limiter Function (Security Measure)
 def checkLength(input, limit, required=False):
@@ -329,3 +329,6 @@ def continueInput(message):
             
 def terminateProgram():
     return 0
+
+
+        

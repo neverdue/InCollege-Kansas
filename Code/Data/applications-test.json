@@ -1,0 +1,45 @@
+{
+    "deletedApplications": {
+        "user2": [
+            "Job6"
+        ]
+    },
+    "applications": {
+        "testuser": {
+            "90": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1998",
+                "paragraph": "gimme you money"
+            }
+        },
+        "user1": {
+            "4": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "MONEY"
+            },
+            "2": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "fun"
+            },
+            "1": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "money"
+            }
+        },
+        "user2": {
+            "8": {
+                "graduationDate": "01/23/2022",
+                "startDate": "01/06/2018",
+                "paragraph": "money"
+            }
+        }
+    },
+    "saved": {
+        "user2": [
+            "1"
+        ]
+    }
+}

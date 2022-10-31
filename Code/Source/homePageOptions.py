@@ -1,10 +1,14 @@
+from getpass import getuser
 import json
+import datetime
+from socket import getnameinfo
 from webbrowser import get
-from Code.Source.globalVariables import addPage, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
+from Code.Source.globalVariables import addPage, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, checkLength, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
+MAX_JOBS = 10 
 MAX_EXPERIENCE = 3 
 
 def showHomePageGreeting():
@@ -42,36 +46,39 @@ def returnToHomePage():
 
 def jobPage():
     addPage(jobPage)
+    printDivider()
 
-    message = "\n1. Post a job\n2. Home page\n3. Previous Page\n"
-    print(message)
-    user_choice = input("Enter your option: ")
+    deletedJobTitles = getDeletedApplications(getUser())
+    if deletedJobTitles:
+        [print(f'Job titled "{title}" you have applied for was deleted!\n') for title in deletedJobTitles]
 
-    if user_choice == '-1':
-        endProgram()
-
-    while user_choice != '1' and user_choice != '2' and user_choice != '3':
-        print("\nInvalid input.\n" + message)
-        user_choice = input("Enter your option: ")
-        if user_choice == '-1':
-            endProgram()
+    print("1. Post a job\n2. See your job posts\n3. See saved jobs\n4. See applied jobs\n5. See unapplied jobs\n6. See all job posts\n7. Home page\n")
+    user_choice = inputValidation(1, 7)
 
     if user_choice == '1':
-        addJobPost()
+        return addJobPost()
     elif user_choice == '2':
-        return "homePage"
+        return getYourJobs()
     elif user_choice == '3':
+        return getSavedJobs()
+    elif user_choice == '4':
+        return getAppliedJobs()
+    elif user_choice == '5':
+        return getUnappliedJobs()
+    elif user_choice == '6':
+        return showAllJobs() 
+    elif user_choice == '7':
         back()
 
 def addJobPost():
     fileName = getJobFile()
 
-    #Checks if already 5 job posts
+    #Checks if already 10 job posts
     with open (fileName) as jsonFile:
         data = json.load(jsonFile)
         temp1 = data["numPosts"]
-        if temp1 >= 5:
-            print("There are already five job posts. Try again later.")
+        if temp1 >= MAX_JOBS:
+            print("There are already ten job posts. Try again later.")
             return
 
     print("Please input the following information about the job when prompted.\n")
@@ -102,7 +109,13 @@ def addJobPost():
             break
     print("\n")
 
+    id = 1
+    for item in data["jobPosts"]:
+        if id == int(item["id"]): 
+            id += 1
+    
     jobDictionary = {
+        "id" : str(id), ##
         "Title" : jobTitle,
         "Description" : jobDescription,
         "Employer" : jobEmployer,
@@ -144,15 +157,15 @@ def searchUsers():
     addPage(searchUsers)
     message = "\n1. Search by last name\n2. Search by major\n3. Search by university\n4. Previous Page\n"
     print(message)
-    user_choice = inputValidation(1, 5)
+    user_choice = inputValidation(1, 4)
     foundUsers = {}
-    if user_choice == 1:
+    if user_choice == '1':
         foundUsers = searchFilter("lastName")
-    elif user_choice == 2:
+    elif user_choice == '2':
         foundUsers = searchFilter("major")
-    elif user_choice == 3:
+    elif user_choice == '3':
         foundUsers = searchFilter("university")
-    elif user_choice == 4:
+    elif user_choice == '4':
         back()
 
     if foundUsers != -1:
@@ -327,7 +340,7 @@ def showProfile():
         displayProfile(getUserProfile(), getFirst() + " " + getLast())
 
         print("Enter an option from 2-7 to replace your profile information.\nEnter 8 to go to previously visited page.")
-        userInput = int(inputValidation(2, 9))
+        userInput = int(inputValidation(2, 8))
         if userInput == 8: back()
         elif userInput in range(2, 6): 
             updateProfile(PROFILE_KEYS[userInput - 2])
@@ -355,10 +368,8 @@ def displayProfile(profile, name):
 def updateProfile(key):
     while True: 
         if key == "about":
-            # newInfo = input("\nEnter a paragraph about yourself: ")
             print("\nEnter a paragraph about yourself: ", end='')
         else: 
-            # newInfo = input(f"\nEnter your {key}: ")
             print(f"\nEnter your {key}: ", end='')
         newInfo = input()
         if checkLength(newInfo, 200, True): break
@@ -376,7 +387,6 @@ def updateInfo(key, dict, keyword, helper):
         while True:
             print(f"Enter {keyName}: ", end='')
             userInput = input()
-            # userInput = input(f"Enter {keyName}: ")
             if checkLength(userInput, 200, True):
                 # e.g. if asking for date, but user input is not in the date format "MM/DD/YYYY" keep asking again
                 if keyword in keyName and not helper(userInput): continue
@@ -403,7 +413,7 @@ def addEducation():
 # Use when replacing information from experience and education sections
 def editProfile(key, dict, count): 
     print(f"\nEnter the number of {key} you want to replace. ")
-    index = int(inputValidation(1, count+1)) - 1
+    index = int(inputValidation(1, count)) - 1
     profile = getUserProfile()
     if key == "experience":
         profile[key][index] = updateInfo(key, dict, "date", isDate)
@@ -441,3 +451,269 @@ def profilePage():
             displayProfile(getProfile(getUser()) ,(getLoggedUser()["firstName"] + " " + getLoggedUser()["lastName"]))
         else:
             print("Profile not found")
+
+# Compares ID from jobPosts to ID in applications. Used to find existing applicants
+def compareApplicationID(jsonObj):
+    count = 0
+    for items in jsonObj["jobPosts"]:
+        jobID = items["id"]
+        with open(getApplicationsFile()) as json_file2:
+            data2 = json.load(json_file2)
+            temp = data2["applications"]
+            if jobID in temp[getUser()]:
+                count+=1
+                print(str(count) + ". " + items["Title"] +  " (applied)")
+                continue
+            elif jobID in getSavedJobIDs():
+                count+=1
+                print(str(count) + ". " + items["Title"] +  " (saved)")
+            elif getUser() not in temp or jobID not in temp[getUser()]:
+                count+=1
+                print(str(count) + ". " + items["Title"])
+    return count
+
+# Shows list of posted jobs from json jobs file
+def showAllJobs():
+    addPage(showAllJobs)
+    printDivider()
+    filename = getJobFile()
+    with open(filename, "r") as json_file:
+        data = json.load(json_file)
+        length = compareApplicationID(data)
+        print("\nSelect {}{} to view job posting.\nSelect {} to go to previous page.\n".format('1-' if length > 1 else '', length, length+1))
+        userInput = inputValidation(1, length+1)
+        if userInput == str(length+1): back()
+
+        # Showing details of the job selected
+        jobID = data["jobPosts"][int(userInput)-1]["id"]
+        for item in data["jobPosts"]:
+            if item["id"] == jobID:
+                displayJob(item)
+
+        jobActionMenu(jobID)
+        return previousOrHomePage()
+
+def jobActionMenu(jobID, jobMessage=''): 
+    unsave = True if jobID in getSavedJobIDs() else False
+    print("\n1. Apply for this job\n2. {} this job\n3. Go to previous page\n4. Home page\n".format("Unsave" if unsave else "Save"))
+    userInput = inputValidation(1, 4)
+    if userInput == '1':
+        # Checking if the applicant is also the poster
+        fullName = getFirst() + ' ' + getLast() 
+        jobPost = [jobPost for jobPost in readJobPosts() if jobID == jobPost["id"]][0]
+        if jobPost["Name"] == fullName:
+            print("\nYou can't apply to a job you've posted.")
+        # Writing info about applicant to applications json
+        else:
+            addApplicant(jobID)
+    elif userInput == '2':
+        unappliedJobIDs = [job["id"] for job in unappliedJobs()]
+        if jobID not in unappliedJobIDs:
+            print("\nYou can't save a job you've posted.")
+        else:
+            saveJobPost(jobID, unsave)
+    elif userInput == '3':
+        back()
+    else:
+        removePage()
+        return "homePage"
+    removePage()
+    if jobMessage != '':
+        return getSavedJobs() if "saved" in jobMessage else getUnappliedJobs()
+    showAllJobs()
+
+def getGradDate():
+    while True:
+        try:
+            gradDate = input("\nEnter your graduation date in mm/dd/yyyy format: ")
+            datetime.datetime.strptime(gradDate, '%m/%d/%Y')
+        except ValueError as e:
+            print("Please enter the date in mm/dd/yyyy format;", e)
+        else:
+            return gradDate
+
+def getStartDate():
+    while True:
+        try:
+            startDate = input("\nEnter the soonest date you can start working in mm/dd/yyyy: ")
+            datetime.datetime.strptime(startDate, '%m/%d/%Y')
+        except ValueError as e:
+            print("Please enter the date in mm/dd/yyyy format;", e)
+        else:
+            return startDate
+
+def getParagraph():
+    paragraph = input("\nPlease explain why you would be a good match for this job: ")
+    return paragraph
+
+def addApplicant(jobIDno):
+    applicationFile = getApplicationsFile()
+    with open(applicationFile) as jsonFile:
+        data = json.load(jsonFile)
+        temp = data["applications"]
+        if getUser() not in temp:
+            temp[getUser()] = {}
+            writeJson(data, applicationFile)
+        elif jobIDno in temp[getUser()]:
+            print("You cannot apply to a job you've already applied to")
+            return
+        applicationDictionary = {  
+            "graduationDate": getGradDate(),
+            "startDate": getStartDate(),
+            "paragraph": getParagraph()
+        }
+        temp[getUser()][jobIDno] = applicationDictionary
+    writeJson(data, applicationFile)
+
+def showFilteredJobs(jobPosts, jobMessage, errMessage):
+    printDivider()
+    if not jobPosts:
+        print(errMessage)
+        return previousOrHomePage()
+    try: 
+        userInput = displayJobPosts(jobPosts, jobMessage)
+        jobDict = jobPosts[userInput]
+    except IndexError:
+        return "homePage"
+    displayJob(jobDict)
+
+    if "Your posted jobs" in jobMessage:
+        return deleteJobMenu(jobDict)
+    elif "have applied" in jobMessage:
+        return previousOrHomePage()
+    elif "saved" in jobMessage:
+        return jobActionMenu(jobDict["id"], "saved")
+    else: return jobActionMenu(jobDict["id"], "unapplied")
+    
+def getYourJobs():
+    addPage(getYourJobs)
+    jobPosts = [jobPost for jobPost in readJobPosts() if jobPost["Name"] == getFirst() + ' ' + getLast()]
+    jobMessage, errMessage = "Your posted jobs:\n", "You don't have any job posted. Please post a job!"
+    return showFilteredJobs(jobPosts, jobMessage, errMessage)
+
+def getAppliedJobs():
+    addPage(getAppliedJobs)
+    appliedJobIDs = getJobApplications(getUser())
+    jobPosts = [jobPost for jobPost in readJobPosts() if jobPost["id"] in appliedJobIDs]
+    jobMessage, errMessage = "Jobs you have applied for:\n", "You haven't applied to any jobs yet!"
+    return showFilteredJobs(jobPosts, jobMessage, errMessage)
+
+def unappliedJobs():
+    appliedJobIDs = getJobApplications(getUser())
+    fullName = getFirst() + ' ' + getLast()
+    return [jobPost for jobPost in readJobPosts() if (not appliedJobIDs or jobPost["id"] not in appliedJobIDs) and jobPost["Name"] != fullName] 
+
+def getUnappliedJobs():
+    addPage(getUnappliedJobs)
+    jobPosts = unappliedJobs()
+    jobMessage, errMessage = "Jobs you have not applied for:\n", "You have applied to all applicable jobs!"
+    return showFilteredJobs(jobPosts, jobMessage, errMessage)
+
+def getSavedJobs():
+    addPage(getSavedJobs)
+    jobPosts = [jobPost for jobPost in readJobPosts() if jobPost["id"] in getSavedJobIDs()]
+    jobMessage, errMessage = "Jobs you have saved:\n", "You haven't saved any jobs yet!"
+    return showFilteredJobs(jobPosts, jobMessage, errMessage)
+
+def displayJob(jobDict):
+    addPage(displayJob)
+    printDivider()
+    [print(f"{key}: {jobDict[key]}") for key in jobDict if key != "id" and key != "Name"]
+
+def displayJobPosts(jobPosts, message=''):
+    print(message)
+    [print("{}. {}{}".format(count, job["Title"], mark(job["id"], message))) for count, job in enumerate(jobPosts, start=1)]
+    length = len(jobPosts)
+    print("\nSelect {}{} to view job posting.\nSelect {} to go to previous page.\n".format('1-' if length > 1 else '', length, length+1))
+    userInput = inputValidation(1, length+1)
+    if userInput == str(length+1):
+        back()
+    return int(userInput) - 1 # return the index to the list of jobPosts
+     
+def mark(jobID, message):
+    if "have not applied" in message:
+        return " (saved)" if jobID in getSavedJobIDs() else ""
+    return "" 
+
+def deleteJobMenu(jobDict): 
+    print("\nSelect 1 if you want to delete your job post.\nSelect 2 to go to previous page.\n")
+    userInput = inputValidation(1, 2)
+    if userInput == '1':
+        deleteJobPost(jobDict["id"])
+        deleteApplications(jobDict["id"], jobDict["Title"])
+        printDivider()
+        print("Your job post is successfully deleted!")
+    back()
+    
+def getJobApplications(username):
+    fileName = getApplicationsFile()
+    with open(fileName) as jsonFile:
+        data = json.load(jsonFile)
+        return data["applications"][username] if username in data["applications"] else [] 
+
+def saveJobPost(jobID, unsave=False):
+    fileName = getApplicationsFile()
+    with open(fileName) as jsonFile:
+        data = json.load(jsonFile)
+        if getUser() not in data["saved"]: data["saved"][getUser()] = [] 
+        savedData = data["saved"][getUser()] 
+        if unsave: 
+            savedData.remove(jobID)
+            if not savedData:
+                del data["saved"][getUser()]
+            print("\nThis job is unsaved!")
+        else:
+            savedData.append(jobID)
+            print("\nThis job is saved!")
+    writeJson(data, fileName)
+
+def getSavedJobIDs():
+    fileName = getApplicationsFile()
+    with open(fileName) as jsonFile:
+        data = json.load(jsonFile)
+        return data["saved"][getUser()] if getUser() in data["saved"] else [] 
+
+def deleteJobPost(jobID):
+    fileName = getJobFile()
+    with open(fileName) as jsonFile:
+        data = json.load(jsonFile)
+        jobPosts = data["jobPosts"]
+        jobPosts[:] = [jobPost for jobPost in jobPosts if jobPost["id"] != jobID] 
+        data["numPosts"] -= 1
+    writeJson(data, fileName)
+        
+def deleteApplications(jobID, jobTitle):
+    fileName = getApplicationsFile()
+    with open(fileName) as jsonFile:
+        data = json.load(jsonFile)
+        deletedApps = data["deletedApplications"]
+        applications = data["applications"]
+        for applicant, application in applications.items():
+            for id in list(application):
+                if id == jobID: 
+                    if applicant not in deletedApps:
+                        deletedApps[applicant] = [] 
+                    deletedApps[applicant].append(jobTitle)
+                    del application[id]
+    writeJson(data, fileName) 
+
+def getDeletedApplications(username):
+    fileName = getApplicationsFile()
+    with open(fileName) as jsonFile:
+        data = json.load(jsonFile)
+        if username in data["deletedApplications"]:
+            deletedJobTitles = data["deletedApplications"][username]
+            del data["deletedApplications"][username]
+            writeJson(data, fileName)
+        else:
+            deletedJobTitles = [] 
+    return deletedJobTitles
+
+def previousOrHomePage():
+    print("\n1. Previous page\n2. Home page\n")
+    userInput = inputValidation(1, 2)
+    if userInput == '1':
+        back()
+    else: 
+        removePage()
+        return "homePage"

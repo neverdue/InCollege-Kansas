@@ -1,0 +1,57 @@
+{
+    "deletedApplications": {
+        "user2": [
+            "Software Engineer"
+        ]
+    },
+    "applications": {
+        "testuser": {
+            "90": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1998",
+                "paragraph": "gimme you money"
+            }
+        },
+        "user1": {
+            "4": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "MONEY"
+            },
+            "2": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "fun"
+            },
+            "1": {
+                "graduationDate": "02/25/1997",
+                "startDate": "02/25/1997",
+                "paragraph": "money"
+            }
+        },
+        "user2": {
+            "2": {
+                "graduationDate": "11/11/1111",
+                "startDate": "11/11/1111",
+                "paragraph": "money"
+            },
+            "1": {
+                "graduationDate": "01/01/2023",
+                "startDate": "01/11/2023",
+                "paragraph": "i dont know"
+            }
+        },
+        "testuser3": {}
+    },
+    "saved": {
+        "testuser3": [
+            "3",
+            "2",
+            "4"
+        ],
+        "user2": [
+            "4",
+            "9"
+        ]
+    }
+}
