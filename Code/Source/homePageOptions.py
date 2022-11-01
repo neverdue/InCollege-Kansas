@@ -1,12 +1,9 @@
-from getpass import getuser
 import json
 import datetime
-from socket import getnameinfo
-from webbrowser import get
-from Code.Source.globalVariables import addPage, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
+from Code.Source.globalVariables import addPage, getIfSubcribed, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.utility import addToFriendsList, createRequest, endProgram, inputValidation, checkLength, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
+from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
 MAX_JOBS = 10 
 MAX_EXPERIENCE = 3 
@@ -722,7 +719,7 @@ def previousOrHomePage():
 def messageInbox():
     addPage(messageInbox)
     printDivider()
-    print("-----I N B O X------\n\nUnder construction")
+    print("-----I N B O X------\n\n")
 
     #ANDY - Allow users to message other users (and store messages)
     #ANDY - Have users get notifs if they received a message next time they login
@@ -731,4 +728,53 @@ def messageInbox():
     #ASHLEY - If student is standard, only have option to message friends
     #ASHLEY - If student is plus, can message anyone. Can view all users of InCollege
     #ASHLEY - Incorporate option at sign up for standard or plus
+
+    #If no other users in system
+    if accountLimit == 1:
+        print("There are no other users to message")
+        return
+
+    subStatus = getIfSubcribed()
+    userChoice = input("Would you like to message a new user (1) or view, send, or delete your current messages (2)?: ")
+
+    #If messaging user, check subscription status to see who they can send a message to
+    if userChoice == '1':
+        #If plus user
+        if subStatus == True:
+            print("\nBelow are the users in the system\n")
+            #Prints all users in system
+            dataFile = getDataFile()
+            with open(dataFile) as json_file:
+                data = json.load(json_file)
+                for users in data["accounts"]:
+                    print(users["username"])
+
+            mesUser = input("\nPlease input the username of the user you want to message: ")
+
+            #Loops until valid username
+            while accountExist(mesUser) == 0:
+                mesUser = input("Invalid username. Please input the username of the user you want to message: ")
+
+            #ANDY IMPLEMENT MESSAGE SENDING HERE
+            print("Under Construction")
+            
+
+        #Standard User
+        elif subStatus == False:
+            print(getUserFriendList)
+            mesUser = input("Please input the username of the user you want to message: ")
+            #Checks if user is in friends list OR if they have messages from them already
+            ifFriend = isInFriendslist(mesUser)
+
+            if ifFriend == True: #ANDY IMPLEMENT MESSAGE SENDING HERE
+                print("Under construction")
+
+        else: 
+            print("Error occurred")
+
+
+    elif userChoice == '2':
+        #PRINT OUT ALL USERS THAT USER HAS MESSAGES WITH, ALLOW THEM TO VIEW, RESPOND, OR DELETE
+        print("under construction")
+    
     return
