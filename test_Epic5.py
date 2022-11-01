@@ -21,16 +21,16 @@ def setup():
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
 
-    register("user1", "Password123!", "Andy", "Nguyen")
-    register("user2", "Password123*", "Spoopy", "Ando")
-    register("testuser1", "Password123@", "tommy", "truong")
-    register("testuser2", "Password123$", "kevin", "vu")
-    register("user3", "Password123$", "Michael", "vu")
-    register("user4", "Password123$", "Tommy", "vu")
-    register("user5", "Password123$", "Emily", "vu")
-    register("user6", "Password123$", "Michael", "Scott")
-    register("user7", "Password123$", "Alex", "vu")
-    register("user8", "Password123$", "Emma", "vu")
+    register("user1", "Password123!", "Andy", "Nguyen", False)
+    register("user2", "Password123*", "Spoopy", "Ando", False)
+    register("testuser1", "Password123@", "tommy", "truong", False)
+    register("testuser2", "Password123$", "kevin", "vu", False)
+    register("user3", "Password123$", "Michael", "vu", False)
+    register("user4", "Password123$", "Tommy", "vu", False)
+    register("user5", "Password123$", "Emily", "vu", False)
+    register("user6", "Password123$", "Michael", "Scott", False)
+    register("user7", "Password123$", "Alex", "vu", False)
+    register("user8", "Password123$", "Emma", "vu", False)
 
     profile_template = {
         "experience": [
@@ -74,7 +74,7 @@ def setup():
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
         pytest.profile = {"experience": [], "education": []}
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, False, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
 
 @pytest.mark.parametrize("testInputs, messages", 
 [

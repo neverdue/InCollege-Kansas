@@ -8,20 +8,33 @@ import time
 def signUpPage():
     if getLoggedUser() != None:
         raise Exception("You are already logged in.")
+
+    if accountLimit() >= 10:
+        print("All permitted accounts have been created, please come back and try later.")
+        return
+
     username = input("Enter username: ")
     password = input("Enter password: ")
     firstname = input("Enter your first name: ")
     lastname = input("Enter your last name: ")
+    subscription = input("Would you like to subscribe to become a plus member for $10 a month?\n\t*As a plus member you can send and recieve messages from anyone in the InCollege system*\n\t\t\t*rather than only users you are friends with*\n(yes/no): ")
+    
+    while subscription != "yes" and subscription != "no":
+        subscription = input("Invalid input. Please input 'yes' or 'no': ")
     while(uniqueNames(firstname, lastname) == 0):
         firstname = input("Enter your first name: ")
         lastname = input("Enter your last name: ")
 
+    if subscription == "yes":
+        subscription = True
+    else:
+        subscription = False
     # successful registration returns 1
-    registrationAttempt = register(username, password, firstname, lastname)
+    registrationAttempt = register(username, password, firstname, lastname, subscription)
 
     return registrationAttempt
 
-def register(username, password, first, last):
+def register(username, password, first, last, subscription):
     dataFile = getDataFile()
 
     if accountExist(username) == 1:
@@ -39,7 +52,7 @@ def register(username, password, first, last):
         data = json.load(json_file)
         temp = data["accounts"]
         newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last,
-         "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True),
+         "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True), "subscription": setting(subscription),
          "incomingRequests": [], "outgoingRequests": [], "friendsList": [], "profile": {"experience": [], "education": []}}
         temp.append(newData)
 
@@ -49,7 +62,7 @@ def register(username, password, first, last):
     timer = getTimer()
     time.sleep(timer)
 
-    userInit(username, first, last, "English", True, True, True, [], [], [], {"experience": [], "education": []})
+    userInit(username, first, last, "English", True, True, True, subscription, [], [], [], {"experience": [], "education": []})
 
     return 1
 
@@ -89,10 +102,11 @@ def login(username, password):
                 email = True if items["email"] == "True" else False
                 SMS = True if items["SMS"] == "True" else False 
                 ads = True if items["ads"] == "True" else False
+                subscription = True if items["subscription"] == "True" else False
                 profile = items["profile"]
 
     #set user variable
-    userInit(username, firstname, lastname, language, email, SMS, ads, incomingRequests, outgoingRequests, friendsList, profile)
+    userInit(username, firstname, lastname, language, email, SMS, ads, subscription, incomingRequests, outgoingRequests, friendsList, profile)
 
     return 1
 
