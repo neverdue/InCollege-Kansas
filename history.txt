@@ -1,11 +1,22 @@
-*   85724dc (HEAD -> ScrumMaster-Epic7, origin/main, origin/HEAD, main) Merge pull request #29 from neverdue/Epic7-Ashley
+*   77db6be (HEAD -> ScrumMaster-Epic7) Merge branch 'Epic7-AN' into ScrumMaster-Epic7
 |\  
-| * b82fc58 (origin/Epic7-Ashley) Added Message page for Andy and I to start working seperately
+| * bc4d30c (origin/Epic7-AN, Epic7-AN) inbox json for containing messages
+| * 62c691b added test json for inbox
+| * a9055e9 added functions for messaging feature
+| * ac301d8 added friends to some testusers for testing
+* | d3605ca Merge branch 'Epic7-Ashley' into ScrumMaster-Epic7
+|\| 
+| * 735d18e (origin/Epic7-Ashley, Epic7-Ashley) Implement message filtering depending on subscription type
+| * ac204da Added Subscription option, Fixed all previous tests
+* | 39b434f (origin/ScrumMaster-Epic7) 10-31-22 Nightly Commit
+* | 85724dc (origin/main, origin/HEAD, main) Merge pull request #29 from neverdue/Epic7-Ashley
+|\| 
+| * b82fc58 Added Message page for Andy and I to start working seperately
 |/  
 *   3c75ea1 Merge pull request #28 from neverdue/ScrumMaster-Epic6
 |\  
 | * ee25138 (origin/ScrumMaster-Epic6) Added history and burndown charts
-* | ebc7445 (origin/ScrumMaster-Epic7) Merge pull request #27 from neverdue/ScrumMaster-Epic6
+* | ebc7445 Merge pull request #27 from neverdue/ScrumMaster-Epic6
 |\| 
 | * 0834b30 (ScrumMaster-Epic6) Fixed check for reApply
 | * 536bf47 Mayank commit 10/29
