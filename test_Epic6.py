@@ -27,7 +27,7 @@ def setup():
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
         pytest.profile = {"experience": [], "education": []}
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, False, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
 
     open(APPFILE)
     applicationJson = {

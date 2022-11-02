@@ -55,7 +55,7 @@ def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friendsList = [], profile = {}):
+def userInit(user, first, last, language, email, sms, ads, subscription, incomingRequests = [], outgoingRequests = [], friendsList = [], profile = {}):
     global loggedUser
     loggedUser = {
         "username" : user,
@@ -65,6 +65,7 @@ def userInit(user, first, last, language, email, sms, ads, incomingRequests = []
         "emailPref" : email,
         "SMSPref" : sms,
         "adPref" : ads,
+        "subscription": subscription,
         "incomingRequests" : incomingRequests,
         "outgoingRequests" : outgoingRequests,
         "friendsList" : friendsList,
@@ -110,6 +111,12 @@ def getAdPref():
 
 def setAdPref(x):
     loggedUser["ads"] = x
+
+def getIfSubcribed():
+    return loggedUser.get("subscription")
+
+def setifSubscribed(x):
+    loggedUser["subscription"] = x
 
 def getIncomingRequests():
     return loggedUser.get("incomingRequests")
