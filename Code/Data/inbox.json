@@ -1,0 +1,26 @@
+{
+    "outgoing": {
+        "user1": {
+            "user2": [
+                "this is a message from user 1 to user2"
+            ]
+        },
+        "testuser1": {
+            "testuser2": [
+                "testing message from testuser1 to testuser2"
+            ]
+        }
+    },
+    "incoming": {
+        "user2": {
+            "user1": [
+                "this is a message from user 1 to user2"
+            ]
+        },
+        "testuser2": {
+            "testuser1": [
+                "testing message from testuser1 to testuser2"
+            ]
+        }
+    }
+}

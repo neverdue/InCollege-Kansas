@@ -1,6 +1,6 @@
 import json
 import datetime
-from Code.Source.globalVariables import addPage, getIfSubcribed, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
+from Code.Source.globalVariables import addPage, getIfSubcribed, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
@@ -756,18 +756,22 @@ def messageInbox():
                 mesUser = input("Invalid username. Please input the username of the user you want to message: ")
 
             #ANDY IMPLEMENT MESSAGE SENDING HERE
+            # Sends and receives messages at the same time
+            receiveMessage(sendMessage(mesUser), mesUser)
             print("Under Construction")
             
 
         #Standard User
         elif subStatus == False:
-            print(getUserFriendList)
+            print(getUserFriendList(getUser())) # Fixed; was missing (parameter)
             mesUser = input("Please input the username of the user you want to message: ")
             #Checks if user is in friends list OR if they have messages from them already
             ifFriend = isInFriendslist(mesUser)
 
             if ifFriend == True: #ANDY IMPLEMENT MESSAGE SENDING HERE
-                print("Under construction")
+                # Sends and receives messages at the same time
+                receiveMessage(sendMessage(mesUser), mesUser)
+                print("Done!")
 
         else: 
             print("Error occurred")
@@ -777,4 +781,39 @@ def messageInbox():
         #PRINT OUT ALL USERS THAT USER HAS MESSAGES WITH, ALLOW THEM TO VIEW, RESPOND, OR DELETE
         print("under construction")
     
+    return
+
+# Adds to outgoing field in inbox json
+def sendMessage(recipient):
+    msg = input("Enter the message you want to send to {}: ".format(recipient))
+    messageFile = getMessageFile()
+    with open(messageFile) as json_file:
+        data = json.load(json_file)
+        temp = data["outgoing"]
+        if getUser() not in temp:
+            temp[getUser()] = {}
+            writeJson(data, messageFile)
+
+            # I know, this looks ugly but the json file needs to have
+            # the structures written first before inner structure and contents
+            # Otherwise i get a nasty error (or i am doing it wrong) -andy
+            temp[getUser()][recipient] = []
+            writeJson(data, messageFile)
+        temp[getUser()][recipient].append(msg)
+    writeJson(data, messageFile)
+    return msg
+
+#adds to incoming field in inbox json
+def receiveMessage(sentMsg, recipient):
+    messageFile = getMessageFile()
+    with open(messageFile) as json_file:
+        data = json.load(json_file)
+        temp = data["incoming"]
+        if recipient not in temp:
+            temp[recipient] = {}
+            writeJson(data, messageFile)
+            temp[recipient][getUser()] = []
+            writeJson(data, messageFile)
+        temp[recipient][getUser()].append(sentMsg)
+    writeJson(data, messageFile)
     return
