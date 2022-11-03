@@ -11,11 +11,6 @@
             "user1": [
                 "i am sending a message to user1 as user2"
             ]
-        },
-        "testuser1": {
-            "user1": [
-                "hey stinky"
-            ]
         }
     },
     "incoming": {
