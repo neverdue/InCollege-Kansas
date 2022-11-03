@@ -759,6 +759,7 @@ def messageInbox():
 
             #ANDY IMPLEMENT MESSAGE SENDING HERE
             # Sends and receives messages at the same time
+            print("mesUser: ", mesUser)############
             receiveMessage(sendMessage(mesUser), mesUser)
             
 
@@ -805,6 +806,7 @@ def sendMessage(recipient):
     with open(messageFile) as json_file:
         data = json.load(json_file)
         temp = data["outgoing"]
+        # If sender not in json, add them and the recipient
         if getUser() not in temp:
             temp[getUser()] = {}
             writeJson(data, messageFile)
@@ -814,6 +816,11 @@ def sendMessage(recipient):
             # Otherwise i get a nasty error (or i am doing it wrong) -andy
             temp[getUser()][recipient] = []
             writeJson(data, messageFile)
+        # If recipient is in json, add a sender
+        else:
+            temp[getUser()][recipient] = []
+            writeJson(data, messageFile)
+        # Add message to list of messages
         temp[getUser()][recipient].append(msg)
     writeJson(data, messageFile)
     return msg
@@ -824,12 +831,17 @@ def receiveMessage(sentMsg, recipient):
     with open(messageFile) as json_file:
         data = json.load(json_file)
         temp = data["incoming"]
+        # If recipient not in json, add them and the sender
         if recipient not in temp:
             temp[recipient] = {}
             writeJson(data, messageFile)
             temp[recipient][getUser()] = []
             writeJson(data, messageFile)
-        print("TESTING getuser(): ", getUser(), " recipient: ", recipient)###
+        # If there already recipient, add a sender field
+        else:
+            temp[recipient][getUser()] = []
+            writeJson(data, messageFile)
+        # Add message to list of messages
         temp[recipient][getUser()].append(sentMsg)
     writeJson(data, messageFile)
     return
