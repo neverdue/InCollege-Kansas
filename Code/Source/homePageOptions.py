@@ -759,14 +759,16 @@ def messageInbox():
 
             #ANDY IMPLEMENT MESSAGE SENDING HERE
             # Sends and receives messages at the same time
-            print("mesUser: ", mesUser)############
             receiveMessage(sendMessage(mesUser), mesUser)
             
 
         #Standard User
         elif subStatus == False:
-            print(getUserFriendList(getUser()))
-            mesUser = input("Please input the username of the user you want to message: ")
+            friendCount = 1
+            for friends in getFriendsList():
+                print(str(friendCount) + ") " + friends)
+                friendCount+=1
+            mesUser = input("\nPlease input the username of the user you want to message: ")
             #Checks if user is in friends list OR if they have messages from them already
             ifFriend = isInFriendslist(mesUser)
 
@@ -816,8 +818,8 @@ def sendMessage(recipient):
             # Otherwise i get a nasty error (or i am doing it wrong) -andy
             temp[getUser()][recipient] = []
             writeJson(data, messageFile)
-        # If recipient is in json, add a sender
-        else:
+        # If sender is in json, add a new recipient to outgoing
+        elif recipient not in temp[getUser()]:
             temp[getUser()][recipient] = []
             writeJson(data, messageFile)
         # Add message to list of messages
@@ -837,8 +839,8 @@ def receiveMessage(sentMsg, recipient):
             writeJson(data, messageFile)
             temp[recipient][getUser()] = []
             writeJson(data, messageFile)
-        # If there already recipient, add a sender field
-        else:
+        # If there already recipient, add a new sender field to incoming
+        elif getUser() not in temp[recipient]:
             temp[recipient][getUser()] = []
             writeJson(data, messageFile)
         # Add message to list of messages
