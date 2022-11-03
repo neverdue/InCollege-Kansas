@@ -1,12 +1,18 @@
-*   25518c9 (HEAD -> ScrumMaster-Epic7) Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+*   c170f8f (HEAD -> ScrumMaster-Epic7) Merge branch 'Epic7-AN' into ScrumMaster-Epic7
 |\  
-| * 9666a56 (origin/Epic7-AN, Epic7-AN) called function to display message notifications to user
+| * c790bb8 (origin/Epic7-AN, Epic7-AN) file changed from using messaging functions
+| * c7a69b2 fixed bugs for sending messages and replying to messages
+| * 078a87a changed testuser3's premium status to True
+* | b864665 (origin/ScrumMaster-Epic7) 11-02-2022 Nightly Commit
+* | 25518c9 Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\| 
+| * 9666a56 called function to display message notifications to user
 | * 12b8f2e functions to send message, delete messages, reply, and back. There's a bug with sending messages as a premium user
 | * a8d5862 file modified from testing
 | * ccf2a9f copied data from inbox json
 | * 2e62d51 file altered from testing
 * | fecc635 Updated test file
-* | 0983f22 (origin/ScrumMaster-Epic7) 11-01-2022 Nightly Commit
+* | 0983f22 11-01-2022 Nightly Commit
 * | 77db6be Merge branch 'Epic7-AN' into ScrumMaster-Epic7
 |\| 
 | * bc4d30c inbox json for containing messages
