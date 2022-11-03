@@ -1,6 +1,15 @@
-*   77db6be (HEAD -> ScrumMaster-Epic7) Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+*   25518c9 (HEAD -> ScrumMaster-Epic7) Merge branch 'Epic7-AN' into ScrumMaster-Epic7
 |\  
-| * bc4d30c (origin/Epic7-AN, Epic7-AN) inbox json for containing messages
+| * 9666a56 (origin/Epic7-AN, Epic7-AN) called function to display message notifications to user
+| * 12b8f2e functions to send message, delete messages, reply, and back. There's a bug with sending messages as a premium user
+| * a8d5862 file modified from testing
+| * ccf2a9f copied data from inbox json
+| * 2e62d51 file altered from testing
+* | fecc635 Updated test file
+* | 0983f22 (origin/ScrumMaster-Epic7) 11-01-2022 Nightly Commit
+* | 77db6be Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\| 
+| * bc4d30c inbox json for containing messages
 | * 62c691b added test json for inbox
 | * a9055e9 added functions for messaging feature
 | * ac301d8 added friends to some testusers for testing
@@ -8,7 +17,7 @@
 |\| 
 | * 735d18e (origin/Epic7-Ashley, Epic7-Ashley) Implement message filtering depending on subscription type
 | * ac204da Added Subscription option, Fixed all previous tests
-* | 39b434f (origin/ScrumMaster-Epic7) 10-31-22 Nightly Commit
+* | 39b434f 10-31-22 Nightly Commit
 * | 85724dc (origin/main, origin/HEAD, main) Merge pull request #29 from neverdue/Epic7-Ashley
 |\| 
 | * b82fc58 Added Message page for Andy and I to start working seperately
