@@ -37,7 +37,8 @@
         "testuser2"
       ],
       "friendsList": [
-        "user1"
+        "user1",
+        "testuser3"
       ],
       "profile": {
         "experience": [],
@@ -108,7 +109,9 @@
       "subscription": "False",
       "incomingRequests": [],
       "outgoingRequests": [],
-      "friendsList": [],
+      "friendsList": [
+        "user2"
+      ],
       "profile": {
         "experience": [],
         "education": []
