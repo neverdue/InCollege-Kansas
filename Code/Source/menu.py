@@ -1,4 +1,4 @@
-from Code.Source.homePageOptions import messageInbox, findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, profilePage
+from Code.Source.homePageOptions import messageInbox, findSomeonePage, jobPage, messageNotification, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, profilePage
 from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage, getUser
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider
@@ -63,6 +63,9 @@ def homePage():
             print("You have " + str(len(incomingRequests)) + " incoming friend request!")
         else:
             print("You have " + str(len(incomingRequests)) + " incoming friend requests!")
+
+    # Notify user has messages from x users in inbox
+    messageNotification()
 
     #Print home page options
     showHomePageGreeting()

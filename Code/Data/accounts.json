@@ -63,7 +63,7 @@
       "email": "True",
       "SMS": "True",
       "ads": "True",
-      "subscription": "False",
+      "subscription": "True",
       "incomingRequests": [],
       "outgoingRequests": [],
       "friendsList": [

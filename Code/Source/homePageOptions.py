@@ -1,5 +1,7 @@
 import json
 import datetime
+
+from pyparsing import empty
 from Code.Source.globalVariables import addPage, getIfSubcribed, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
@@ -721,9 +723,9 @@ def messageInbox():
     printDivider()
     print("-----I N B O X------\n\n")
 
-    #ANDY - Allow users to message other users (and store messages)
-    #ANDY - Have users get notifs if they received a message next time they login
-    #ANDY - Allow users to reply to a message they have received (back and forth) or delete it
+    #ANDY - Allow users to message other users (and store messages) -----DONE-----
+    #ANDY - Have users get notifs if they received a message next time they login -----DONE-----
+    #ANDY - Allow users to reply to a message they have received (back and forth) or delete it -----DONE-----
 
     #ASHLEY - If student is standard, only have option to message friends
     #ASHLEY - If student is plus, can message anyone. Can view all users of InCollege
@@ -758,12 +760,11 @@ def messageInbox():
             #ANDY IMPLEMENT MESSAGE SENDING HERE
             # Sends and receives messages at the same time
             receiveMessage(sendMessage(mesUser), mesUser)
-            print("Under Construction")
             
 
         #Standard User
         elif subStatus == False:
-            print(getUserFriendList(getUser())) # Fixed; was missing (parameter)
+            print(getUserFriendList(getUser()))
             mesUser = input("Please input the username of the user you want to message: ")
             #Checks if user is in friends list OR if they have messages from them already
             ifFriend = isInFriendslist(mesUser)
@@ -776,10 +777,24 @@ def messageInbox():
         else: 
             print("Error occurred")
 
-
+    # Make user choose messages to view then decide to reply, delete, or go back
     elif userChoice == '2':
-        #PRINT OUT ALL USERS THAT USER HAS MESSAGES WITH, ALLOW THEM TO VIEW, RESPOND, OR DELETE
-        print("under construction")
+        recipient = showSendersSelection()
+        if recipient == 0:
+            return
+
+        print("Enter (1) to reply to this user, (2) to delete a specific message, or (3) to go back:\n")
+        userAction = inputValidation(1, 3)
+
+        if userAction == '1':
+            # Fill outgoing inbox and incoming inbox at the same time
+            receiveMessage(sendMessage(recipient), recipient)
+        elif userAction == '2':
+            # Check if there are entries in the inbox
+            if messageCount(recipient) >= 1:
+                print("Which message would you like to delete?")
+                messageIndexDelete = inputValidation(1, messageCount(recipient))
+                deleteMessage(recipient, messageIndexDelete)
     
     return
 
@@ -803,7 +818,7 @@ def sendMessage(recipient):
     writeJson(data, messageFile)
     return msg
 
-#adds to incoming field in inbox json
+# Adds to incoming field in inbox json
 def receiveMessage(sentMsg, recipient):
     messageFile = getMessageFile()
     with open(messageFile) as json_file:
@@ -814,6 +829,109 @@ def receiveMessage(sentMsg, recipient):
             writeJson(data, messageFile)
             temp[recipient][getUser()] = []
             writeJson(data, messageFile)
+        print("TESTING getuser(): ", getUser(), " recipient: ", recipient)###
         temp[recipient][getUser()].append(sentMsg)
     writeJson(data, messageFile)
     return
+
+# Returns a list of people who are sending the user a message
+def getIncoming():
+    senders = []
+    messageFile = getMessageFile()
+    with open(messageFile) as json_file:
+        data = json.load(json_file)
+        temp = data["incoming"]
+        if getUser() in temp:
+            for items in temp[getUser()]:
+                senders.append(items)
+    return senders
+
+# Return 1 if there are awaiting messages otherwise return 0
+def messageNotification():
+    if getIncoming():
+        printDivider()
+        senders = getIncoming()
+        x = "You have messages from "
+        # Only 1 sender
+        if len(senders) == 1:
+            print(x + senders[0] + "!")
+        # Multiple senders
+        else:
+            for items in range(0,len(senders)-1):
+                x += senders[items] + ", "
+            print(x + "and " + senders[-1] + "!")
+        return 1
+    else:
+        return 0
+
+# Almost the same exact function as displayIncomingMessages() but does not print. Returns number of messages from a user
+# Used to find how many messages there are from a certain sender
+def messageCount(sender):
+    messageFile = getMessageFile()
+    count = 1
+    with open(messageFile) as json_file:
+        data = json.load(json_file)
+        # First if branch shouldn't ever be reached since there's another safe check in the main messageBox() function
+        if getUser() not in data["incoming"]:
+            print("Error: You have no messages")
+            return 0
+        for items in data["incoming"][getUser()][sender]:
+            count+=1
+    return count
+
+# Used in conjunction with showSenderSelection to show senders AND their messages
+def displayIncomingMessages(sender):
+    messageFile = getMessageFile()
+    count = 1
+    with open(messageFile) as json_file:
+        data = json.load(json_file)
+        for items in data["incoming"][getUser()][sender]:
+            print(str(count) + ") ", items)
+            count+=1
+    print("\n")
+
+# Shows list of people trying to send to the user and inquires user who they want to interact with
+# Then shows list of messages from that user they want to interact with
+# Uses displayIncomingMessages() to accomplish ^
+# Returns the user they interacted with
+def showSendersSelection():
+    if len(getIncoming()) >= 1:
+        # Choosing which user to read messages from
+        print("Which user's messages would you like to view?")
+        printDivider()
+        senderChoices = getIncoming()
+        for items in senderChoices:
+            print(items)
+        senderSelection = input("\nSelect a username: ")
+        if senderSelection == -1:
+            endProgram()
+        printDivider()
+
+        # Validating input 
+        while senderSelection not in senderChoices:
+            printDivider()
+            print("Invalid input!")
+            print("Which user's messages would you like to view?")
+            for items in senderChoices:
+                print(items)
+            senderSelection = input("\nSelect a username: ")
+            if senderSelection == -1:
+                endProgram()
+        
+        displayIncomingMessages(senderSelection)
+        return senderSelection
+    else:
+        print("You have no incoming messages.")
+        return 0
+        
+# Deletes from incoming, but does not delete from outgoing
+def deleteMessage(senderName, msgIndex):
+    if len(getIncoming()) <= 0:
+        print("Error: Can't delete non-existent messages")
+        return
+    messageFile = getMessageFile()
+    with open(messageFile) as json_file:
+        data = json.load(json_file)
+        data["incoming"][getUser()][senderName].pop(int(msgIndex)-1)
+    writeJson(data, messageFile)
+        
