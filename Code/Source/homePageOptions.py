@@ -723,14 +723,6 @@ def messageInbox():
     printDivider()
     print("-----I N B O X------\n\n")
 
-    #ANDY - Allow users to message other users (and store messages) -----DONE-----
-    #ANDY - Have users get notifs if they received a message next time they login -----DONE-----
-    #ANDY - Allow users to reply to a message they have received (back and forth) or delete it -----DONE-----
-
-    #ASHLEY - If student is standard, only have option to message friends
-    #ASHLEY - If student is plus, can message anyone. Can view all users of InCollege
-    #ASHLEY - Incorporate option at sign up for standard or plus
-
     #If no other users in system
     if accountLimit == 1:
         print("There are no other users to message")
@@ -749,7 +741,10 @@ def messageInbox():
             with open(dataFile) as json_file:
                 data = json.load(json_file)
                 for users in data["accounts"]:
-                    print(users["username"])
+                    if getUser() == users["username"]:
+                        continue
+                    else:
+                        print(users["username"])
 
             mesUser = input("\nPlease input the username of the user you want to message: ")
 
@@ -757,9 +752,8 @@ def messageInbox():
             while accountExist(mesUser) == 0:
                 mesUser = input("Invalid username. Please input the username of the user you want to message: ")
 
-            #ANDY IMPLEMENT MESSAGE SENDING HERE
             # Sends and receives messages at the same time
-            receiveMessage(sendMessage(mesUser), mesUser)
+            receiveMessage(sendMessage(mesUser, subStatus), mesUser)
             
 
         #Standard User
@@ -769,13 +763,18 @@ def messageInbox():
                 print(str(friendCount) + ") " + friends)
                 friendCount+=1
             mesUser = input("\nPlease input the username of the user you want to message: ")
+
+            while accountExist(mesUser) == 0:
+                mesUser = input("Invalid username. Please input the username of the user you want to message: ")
             #Checks if user is in friends list OR if they have messages from them already
             ifFriend = isInFriendslist(mesUser)
 
-            if ifFriend == True: #ANDY IMPLEMENT MESSAGE SENDING HERE
+            if ifFriend == True: 
                 # Sends and receives messages at the same time
-                receiveMessage(sendMessage(mesUser), mesUser)
+                receiveMessage(sendMessage(mesUser, subStatus), mesUser)
                 print("Done!")
+            else:
+                print("I'm sorry, you are not friends with that person")
 
         else: 
             print("Error occurred")
@@ -791,7 +790,7 @@ def messageInbox():
 
         if userAction == '1':
             # Fill outgoing inbox and incoming inbox at the same time
-            receiveMessage(sendMessage(recipient), recipient)
+            receiveMessage(sendMessage(recipient, subStatus), recipient)
         elif userAction == '2':
             # Check if there are entries in the inbox
             if messageCount(recipient) >= 1:
@@ -802,7 +801,11 @@ def messageInbox():
     return
 
 # Adds to outgoing field in inbox json
-def sendMessage(recipient):
+def sendMessage(recipient, subStatus):
+    # Sanity check for testing and epic requirements (shouldn't ever be reached)
+    if (recipient not in getFriendsList() and subStatus != True) or (recipient == getUser()):
+        print("I'm sorry, you are not friends with that person")
+        return 0
     msg = input("Enter the message you want to send to {}: ".format(recipient))
     messageFile = getMessageFile()
     with open(messageFile) as json_file:
@@ -812,10 +815,6 @@ def sendMessage(recipient):
         if getUser() not in temp:
             temp[getUser()] = {}
             writeJson(data, messageFile)
-
-            # I know, this looks ugly but the json file needs to have
-            # the structures written first before inner structure and contents
-            # Otherwise i get a nasty error (or i am doing it wrong) -andy
             temp[getUser()][recipient] = []
             writeJson(data, messageFile)
         # If sender is in json, add a new recipient to outgoing
@@ -829,6 +828,9 @@ def sendMessage(recipient):
 
 # Adds to incoming field in inbox json
 def receiveMessage(sentMsg, recipient):
+    # sentMsg is the return value of sendMessage(). Returned 0 if the person they want to send to
+    # is not in their friend list or if the subbed user tries to send to themselves
+    if sentMsg == 0: return
     messageFile = getMessageFile()
     with open(messageFile) as json_file:
         data = json.load(json_file)
