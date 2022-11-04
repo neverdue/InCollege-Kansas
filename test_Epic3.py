@@ -16,7 +16,7 @@ NO_INPUT = OSError
 def setup():
     dataFileInit(TESTMODE)
     stackInit()
-    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True)
+    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True, False)
 
 # # Test: Link options available before and after user signed in 
 @pytest.mark.parametrize('login', [0, 1])
@@ -175,7 +175,7 @@ def test_language_localization():
 def getStatus():
     #We have no idea why, but i need to either have userInity as a global or contained in here
     #Otherwise it doesn't work
-    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True)
+    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True, False)
     #Email, SMS, ads are either all on or off. Function helps decide which pytest to test for
     if(getEmailPref() == True):
         return "True"
@@ -206,7 +206,7 @@ def test_guestControls(capsys, monkeypatch, test_inputs, messages):
 
 def test_guestControls2(capsys, monkeypatch, test_inputs2, messages):
     try:
-        userInit('user1', 'Andy', 'Nguyen', 'English', False, False, False)
+        userInit('user1', 'Andy', 'Nguyen', 'English', False, False, False, False)
         monkeypatch.setattr('builtins.input', lambda _: test_inputs2.pop(0))
         guestControls()
     except IndexError:

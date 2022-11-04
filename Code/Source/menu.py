@@ -1,4 +1,4 @@
-from Code.Source.homePageOptions import findSomeonePage, jobPage, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, profilePage
+from Code.Source.homePageOptions import messageInbox, findSomeonePage, jobPage, messageNotification, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, profilePage
 from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage, getUser
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider
@@ -53,9 +53,9 @@ def usefulLinksMenu():
 # HOME PAGE
 def homePage(): 
     #Add home page to page stack
-
     addPage(homePage)
 
+    #Print incoming friend requests
     incomingRequests = getIncomingRequests()
     if len(incomingRequests) > 0:
         printDivider()
@@ -64,9 +64,13 @@ def homePage():
         else:
             print("You have " + str(len(incomingRequests)) + " incoming friend requests!")
 
+    # Notify user has messages from x users in inbox
+    messageNotification()
+
+    #Print home page options
     showHomePageGreeting()
-    print("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, or 11).")
-    user_choice = inputValidation(1, 11)
+    print("Enter your option (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, or 12).")
+    user_choice = inputValidation(1, 12)
 
     if route(user_choice) == "homePage":
         homePage()
@@ -108,4 +112,6 @@ def route(user_choice):
     elif user_choice == '10':
         profilePage()
     elif user_choice == '11':
+        messageInbox()
+    elif user_choice == '12':
         back()

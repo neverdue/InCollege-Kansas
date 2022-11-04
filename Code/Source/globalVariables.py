@@ -8,16 +8,19 @@ def dataFileInit(TESTMODE = False):
     global dataFile
     global jobFile
     global applicationsFile
+    global messageFile
     global timer
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
         applicationsFile = "Code/Data/applications.json"
+        messageFile = "Code/Data/inbox.json"
         timer = 0
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
         applicationsFile = "Code/Data/applications-test.json"
+        messageFile = "Code/Data/inbox-test.json"
         timer = 0
 
 def getDataFile():
@@ -25,6 +28,12 @@ def getDataFile():
 
 def getJobFile():
     return jobFile
+
+def getApplicationsFile():
+    return applicationsFile
+
+def getMessageFile():
+    return messageFile
 
 def getTimer():
     return timer
@@ -55,7 +64,7 @@ def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last, language, email, sms, ads, incomingRequests = [], outgoingRequests = [], friendsList = [], profile = {}):
+def userInit(user, first, last, language, email, sms, ads, subscription, incomingRequests = [], outgoingRequests = [], friendsList = [], profile = {}):
     global loggedUser
     loggedUser = {
         "username" : user,
@@ -65,6 +74,7 @@ def userInit(user, first, last, language, email, sms, ads, incomingRequests = []
         "emailPref" : email,
         "SMSPref" : sms,
         "adPref" : ads,
+        "subscription": subscription,
         "incomingRequests" : incomingRequests,
         "outgoingRequests" : outgoingRequests,
         "friendsList" : friendsList,
@@ -111,6 +121,12 @@ def getAdPref():
 def setAdPref(x):
     loggedUser["ads"] = x
 
+def getIfSubcribed():
+    return loggedUser.get("subscription")
+
+def setifSubscribed(x):
+    loggedUser["subscription"] = x
+
 def getIncomingRequests():
     return loggedUser.get("incomingRequests")
 
@@ -148,6 +164,3 @@ def getExperienceCount():
     
 def getEducationCount():
     return len(loggedUser["profile"]["education"])
-
-def getApplicationsFile():
-    return applicationsFile

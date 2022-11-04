@@ -21,10 +21,10 @@ def setup():
     open(DATAFILE, 'w').close()
     with open(DATAFILE, 'w') as json_file:
         json_file.write('{"accounts": []}')
-    register("user1", "Password123!", "Andy", "Nguyen")
-    register("user2", "Password123*", "Spoopy", "Ando")
-    register("testuser1", "Password123@", "tommy", "truong")
-    register("testuser2", "Password123$", "kevin", "vu")
+    register("user1", "Password123!", "Andy", "Nguyen", False)
+    register("user2", "Password123*", "Spoopy", "Ando", False)
+    register("testuser1", "Password123@", "tommy", "truong", False)
+    register("testuser2", "Password123$", "kevin", "vu", False)
 
     with open(DATAFILE, 'r') as json_file:
         data = json.load(json_file)
@@ -35,7 +35,7 @@ def setup():
         pytest.incomingRequests = test_data["incomingRequests"]
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList)
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, False, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList)
 
 # Test: Check if potential connection is an existing user 
 def test_find_connection():
@@ -157,7 +157,7 @@ def test_findSomeonePage() -> None:
     assert globalVariables.pageStack == [findSomeonePage]
 
 def test_uniqueNames_good():
-    register("test", "Test123@", "Test", "User")
+    register("test", "Test123@", "Test", "User", False)
     assert uniqueNames("Test","User") == 0
 
 def test_uniqueNames_bad():

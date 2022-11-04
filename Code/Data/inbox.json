@@ -1,0 +1,30 @@
+{
+    "outgoing": {
+        "user1": {
+            "user2": [
+                "this is a message from user 1 to user2",
+                "i am sending a message to user2 as user1. this message should be contained in an already created list",
+                "This is a reply message from user1 to user2"
+            ]
+        },
+        "user2": {
+            "user1": [
+                "i am sending a message to user1 as user2"
+            ]
+        }
+    },
+    "incoming": {
+        "user2": {
+            "user1": [
+                "this is a message from user 1 to user2",
+                "i am sending a message to user2 as user1. this message should be contained in an already created list",
+                "This is a reply message from user1 to user2"
+            ]
+        },
+        "user1": {
+            "user2": [
+                "i am sending a message to user1 as user2"
+            ]
+        }
+    }
+}
