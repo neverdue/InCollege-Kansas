@@ -9,7 +9,16 @@
         },
         "user2": {
             "user1": [
-                "i am sending a message to user1 as user2"
+                "i am sending a message to user1 as user2",
+                "tetset",
+                "tomato",
+                "pytest messagr from user2 to user 1",
+                "2",
+                "user1"
+            ],
+            "testuser3": [
+                "Hello!!!",
+                "3"
             ]
         }
     },
@@ -17,13 +26,23 @@
         "user2": {
             "user1": [
                 "this is a message from user 1 to user2",
-                "i am sending a message to user2 as user1. this message should be contained in an already created list",
-                "This is a reply message from user1 to user2"
+                "i am sending a message to user2 as user1. this message should be contained in an already created list"
             ]
         },
         "user1": {
             "user2": [
-                "i am sending a message to user1 as user2"
+                "i am sending a message to user1 as user2",
+                "tetset",
+                "tomato",
+                "pytest messagr from user2 to user 1",
+                "2",
+                "user1"
+            ]
+        },
+        "testuser3": {
+            "user2": [
+                "Hello!!!",
+                "3"
             ]
         }
     }
