@@ -1,9 +1,16 @@
-*   c170f8f (HEAD -> ScrumMaster-Epic7) Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+*   2aec8b5 (HEAD -> ScrumMaster-Epic7, origin/ScrumMaster-Epic7) Merge branch 'Epic7-AN' into ScrumMaster-Epic7
 |\  
-| * c790bb8 (origin/Epic7-AN, Epic7-AN) file changed from using messaging functions
+| * a0b631b (origin/Epic7-AN, Epic7-AN) disables users from sending messages to themselves and hides their own name from being displayed under list of people displayed in messageInbox()
+* | c19cc52 Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\| 
+| * 85f0b45 fixed bug where messages would overwrite message lists in json and clarified comments for incoming and receing message functions
+* | 19c9114 11-02-2022 Nightly Commit (2)
+* | c170f8f Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\| 
+| * c790bb8 file changed from using messaging functions
 | * c7a69b2 fixed bugs for sending messages and replying to messages
 | * 078a87a changed testuser3's premium status to True
-* | b864665 (origin/ScrumMaster-Epic7) 11-02-2022 Nightly Commit
+* | b864665 11-02-2022 Nightly Commit
 * | 25518c9 Merge branch 'Epic7-AN' into ScrumMaster-Epic7
 |\| 
 | * 9666a56 called function to display message notifications to user
