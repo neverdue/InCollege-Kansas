@@ -35,7 +35,7 @@ def mainPage():
             print("They are a part of the InCollege system.\nWould you like to sign up for an existing account?\n")
             message = "Select 1 to sign up for a new InCollege account\nSelect 2 to log in to an existing account\n"
             print(message)
-            signUp = inputValidation(1, 3)
+            signUp = inputValidation(1, 2)
                 
             if signUp == '1':
                 if signUpPage() == 1:

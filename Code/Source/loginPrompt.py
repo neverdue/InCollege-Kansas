@@ -17,7 +17,7 @@ def signUpPage():
     password = input("Enter password: ")
     firstname = input("Enter your first name: ")
     lastname = input("Enter your last name: ")
-    subscription = input("Would you like to subscribe to become a plus member for $10 a month?\n\t*As a plus member you can send and recieve messages from anyone in the InCollege system*\n\t\t\t*rather than only users you are friends with*\n(yes/no): ")
+    subscription = input("Would you like to subscribe to become a plus member for $10 a month?\n\t*As a plus member you can send and receive messages from anyone in the InCollege system*\n\t\t\t*rather than only users you are friends with*\n(yes/no): ")
     
     while subscription != "yes" and subscription != "no":
         subscription = input("Invalid input. Please input 'yes' or 'no': ")
