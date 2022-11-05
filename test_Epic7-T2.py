@@ -13,6 +13,11 @@ MESSAGEFILE = 'Code/Data/inbox-test.json'
 def setup():
     dataFileInit(TESTMODE)
     stackInit()
+    email = True
+    sms = True
+    ads = True
+    subscription = False
+
     with open(DATAFILE, 'r') as json_file:
         data = json.load(json_file)
         #using index1
@@ -25,7 +30,7 @@ def setup():
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
         pytest.profile = {"experience": [], "education": []}
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, False, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
+    userInit(pytest.username, pytest.first, pytest.last, "English", email, sms, ads, subscription, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
 
     open(MESSAGEFILE)
     messageJson = {
@@ -581,5 +586,53 @@ def test_subscriptionMessagePermissions(monkeypatch, capfd, userInputs, messageI
         homePage()
     except IndexError:
         out, err = capfd.readouterr()
-        print(out)
+        # print(out)
     assert "I'm sorry, you are not friends with that person" in out
+
+
+#TODO test_plusUsersSendEveryone - if not frien
+# 
+#d
+
+
+@pytest.mark.parametrize("userInputs",
+[
+    (
+    ['11','1', 'user2', 'Pytest: I am a recruiter(plus member) messaging a standard user named user2']
+    )
+]
+
+)
+def test_plusUsersSendEveryone(monkeypatch, capfd, userInputs):
+    email = True
+    sms = True
+    ads = True
+    subscription = True
+    with open(DATAFILE, 'r') as json_file:
+        data = json.load(json_file)
+        #using index1
+        indexForTestuser1 = 2
+        test_data = data["accounts"][indexForTestuser1]
+        pytest.username = test_data["username"]
+        pytest.first = test_data["firstName"]
+        pytest.last = test_data["lastName"]
+        pytest.incomingRequests = test_data["incomingRequests"]
+        pytest.outgoingRequests = test_data["outgoingRequests"]
+        pytest.friendsList = test_data["friendsList"]
+        pytest.profile = {"experience": [], "education": []}
+        userInit(pytest.username, pytest.first, pytest.last, "English", email, sms, ads, subscription, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
+    try:
+        standardAccountReceiver = userInputs[2]
+        messageSent = userInputs[3]
+        monkeypatch.setattr('builtins.input', lambda _: userInputs.pop(0))
+        homePage()
+    except IndexError:
+        out, err = capfd.readouterr()
+        print(out)
+    with open(MESSAGEFILE) as message_file:
+            data = json.load(message_file)
+            print(messageSent)
+            print(getUser())
+            print(data["incoming"][standardAccountReceiver][getUser()])
+            assert messageSent in data["incoming"][standardAccountReceiver][getUser()]
+
