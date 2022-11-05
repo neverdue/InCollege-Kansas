@@ -20,6 +20,11 @@
                 "Hello!!!",
                 "3"
             ]
+        },
+        "testuser1": {
+            "user2": [
+                "f"
+            ]
         }
     },
     "incoming": {
@@ -27,6 +32,9 @@
             "user1": [
                 "this is a message from user 1 to user2",
                 "i am sending a message to user2 as user1. this message should be contained in an already created list"
+            ],
+            "testuser1": [
+                "f"
             ]
         },
         "user1": {

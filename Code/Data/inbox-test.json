@@ -11,7 +11,8 @@
                 "testing message from testuser1 to testuser2"
             ],
             "user2": [
-                "this is a message from testuser1, a subscribed person to user2"
+                "this is a message from testuser1, a subscribed person to user2",
+                "Pytest: I am a recruiter(plus member) messaging a standard user named user2"
             ]
         }
     },
@@ -22,7 +23,8 @@
                 "pytest user2 and user1"
             ],
             "testuser1": [
-                "this is a message from testuser1, a subscribed person to user2"
+                "this is a message from testuser1, a subscribed person to user2",
+                "Pytest: I am a recruiter(plus member) messaging a standard user named user2"
             ]
         },
         "testuser2": {
