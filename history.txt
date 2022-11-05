@@ -1,71 +1,84 @@
-*   2aec8b5 (HEAD -> ScrumMaster-Epic7, origin/ScrumMaster-Epic7) Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+*   e83e847 (HEAD -> ScrumMaster-Epic7) Merge branch 'Epic7-Chau' into ScrumMaster-Epic7
 |\  
-| * a0b631b (origin/Epic7-AN, Epic7-AN) disables users from sending messages to themselves and hides their own name from being displayed under list of people displayed in messageInbox()
-* | c19cc52 Merge branch 'Epic7-AN' into ScrumMaster-Epic7
-|\| 
-| * 85f0b45 fixed bug where messages would overwrite message lists in json and clarified comments for incoming and receing message functions
-* | 19c9114 11-02-2022 Nightly Commit (2)
-* | c170f8f Merge branch 'Epic7-AN' into ScrumMaster-Epic7
-|\| 
-| * c790bb8 file changed from using messaging functions
-| * c7a69b2 fixed bugs for sending messages and replying to messages
-| * 078a87a changed testuser3's premium status to True
-* | b864665 11-02-2022 Nightly Commit
-* | 25518c9 Merge branch 'Epic7-AN' into ScrumMaster-Epic7
-|\| 
-| * 9666a56 called function to display message notifications to user
-| * 12b8f2e functions to send message, delete messages, reply, and back. There's a bug with sending messages as a premium user
-| * a8d5862 file modified from testing
-| * ccf2a9f copied data from inbox json
-| * 2e62d51 file altered from testing
-* | fecc635 Updated test file
-* | 0983f22 11-01-2022 Nightly Commit
-* | 77db6be Merge branch 'Epic7-AN' into ScrumMaster-Epic7
-|\| 
-| * bc4d30c inbox json for containing messages
-| * 62c691b added test json for inbox
-| * a9055e9 added functions for messaging feature
-| * ac301d8 added friends to some testusers for testing
-* | d3605ca Merge branch 'Epic7-Ashley' into ScrumMaster-Epic7
-|\| 
-| * 735d18e (origin/Epic7-Ashley, Epic7-Ashley) Implement message filtering depending on subscription type
-| * ac204da Added Subscription option, Fixed all previous tests
-* | 39b434f 10-31-22 Nightly Commit
-* | 85724dc (origin/main, origin/HEAD, main) Merge pull request #29 from neverdue/Epic7-Ashley
-|\| 
-| * b82fc58 Added Message page for Andy and I to start working seperately
-|/  
-*   3c75ea1 Merge pull request #28 from neverdue/ScrumMaster-Epic6
-|\  
-| * ee25138 (origin/ScrumMaster-Epic6) Added history and burndown charts
-* | ebc7445 Merge pull request #27 from neverdue/ScrumMaster-Epic6
-|\| 
-| * 0834b30 (ScrumMaster-Epic6) Fixed check for reApply
-| * 536bf47 Mayank commit 10/29
-| * dcc692a 10/29 Andy tests
-| * ac99b2b Chau commit 10/28
-| * 7970a7d Thursday 10/28/22 progress
-| * e5aed11 10-26-22 Nightly Commit
-|/  
-| * 781c083 (origin/Epic6-Mayank-Tester2, Epic6-Mayank-Tester2) Combined mayank and rier's code
-| *   ded7a5d Merge branch 'Epic6-Tester1-Rier' into Epic6-Mayank-Tester2
+| * 11c1f42 (origin/Epic7-Chau, Epic7-Chau) Epic7 Test for subscription option
+| * afc5b4b Merge
+| *   f3a641c Merge branch 'ScrumMaster-Epic7' of https://github.com/neverdue/InCollege-Kansas into Epic7-Chau
 | |\  
-| | * d4fbb22 (origin/Epic6-Tester1-Rier, Epic6-Tester1-Rier) Added test for job applied to but deleted
-| | * b145f79 Added test for different job views/filters
-| | * 75dab12 Added save/unsave, job deletion, and application storage tests
-| * | 866e51a Merge branch 'Epic6-Chau' into Epic6-Mayank-Tester2
-| |\| 
-| | * 691adee (origin/Epic6-Chau, Epic6-Chau) Epic6-Chau part
-| | * 9910970 Merge branch 'Epic6-AN' of https://github.com/neverdue/InCollege-Kansas into Epic6-Chau
-| |/| 
+* | | 4f5e17a (origin/ScrumMaster-Epic7) 11-04-2022 Nightly Commit
+* | | 0d9de16 (origin/Epic7-Rier, Epic7-Rier) Finished test related to messaging system
+| |/  
+|/|   
+* | 96f879d 11-03-2022 Nightly Commit
+* |   2aec8b5 Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\ \  
+| * | a0b631b (origin/Epic7-AN, Epic7-AN) disables users from sending messages to themselves and hides their own name from being displayed under list of people displayed in messageInbox()
+* | | c19cc52 Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\| | 
+| * | 85f0b45 fixed bug where messages would overwrite message lists in json and clarified comments for incoming and receing message functions
+* | | 19c9114 11-02-2022 Nightly Commit (2)
+* | | c170f8f Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\| | 
+| * | c790bb8 file changed from using messaging functions
+| * | c7a69b2 fixed bugs for sending messages and replying to messages
+| * | 078a87a changed testuser3's premium status to True
+* | | b864665 11-02-2022 Nightly Commit
+* | | 25518c9 Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\| | 
+| * | 9666a56 called function to display message notifications to user
+| * | 12b8f2e functions to send message, delete messages, reply, and back. There's a bug with sending messages as a premium user
+| * | a8d5862 file modified from testing
+| * | ccf2a9f copied data from inbox json
+| * | 2e62d51 file altered from testing
+* | | fecc635 Updated test file
+* | | 0983f22 11-01-2022 Nightly Commit
+* | | 77db6be Merge branch 'Epic7-AN' into ScrumMaster-Epic7
+|\| | 
+| * | bc4d30c inbox json for containing messages
+| * | 62c691b added test json for inbox
+| * | a9055e9 added functions for messaging feature
+| * | ac301d8 added friends to some testusers for testing
+* | | d3605ca Merge branch 'Epic7-Ashley' into ScrumMaster-Epic7
+|\| | 
+| * | 735d18e (origin/Epic7-Ashley, Epic7-Ashley) Implement message filtering depending on subscription type
+| * | ac204da Added Subscription option, Fixed all previous tests
+* | | 39b434f 10-31-22 Nightly Commit
+* | | 85724dc (origin/main, origin/HEAD, main) Merge pull request #29 from neverdue/Epic7-Ashley
+|\| | 
+| * | b82fc58 Added Message page for Andy and I to start working seperately
+|/ /  
+* |   3c75ea1 Merge pull request #28 from neverdue/ScrumMaster-Epic6
+|\ \  
+| * | ee25138 (origin/ScrumMaster-Epic6) Added history and burndown charts
+* | | ebc7445 Merge pull request #27 from neverdue/ScrumMaster-Epic6
+|\| | 
+| * | 0834b30 (ScrumMaster-Epic6) Fixed check for reApply
+| * | 536bf47 Mayank commit 10/29
+| * | dcc692a 10/29 Andy tests
+| * | ac99b2b Chau commit 10/28
+| * | 7970a7d Thursday 10/28/22 progress
+| * | e5aed11 10-26-22 Nightly Commit
+|/ /  
+| | * 781c083 (origin/Epic6-Mayank-Tester2, Epic6-Mayank-Tester2) Combined mayank and rier's code
+| | *   ded7a5d Merge branch 'Epic6-Tester1-Rier' into Epic6-Mayank-Tester2
+| | |\  
+| | | * d4fbb22 (origin/Epic6-Tester1-Rier, Epic6-Tester1-Rier) Added test for job applied to but deleted
+| | | * b145f79 Added test for different job views/filters
+| | | * 75dab12 Added save/unsave, job deletion, and application storage tests
+| | |/  
+| |/|   
+| | *   866e51a Merge branch 'Epic6-Chau' into Epic6-Mayank-Tester2
+| | |\  
+| | |/  
+| |/|   
+| * | 691adee (origin/Epic6-Chau, Epic6-Chau) Epic6-Chau part
+| * | 9910970 Merge branch 'Epic6-AN' of https://github.com/neverdue/InCollege-Kansas into Epic6-Chau
 |/| | 
-| * | 0f0f18a Removed commented test case
-| * | 0b1166e Fixed issue with reapplying to same job and wrote tests
-| * |   138bdbb (origin/Epic6-AN, Epic6-AN) Merge branch 'main' into Epic6-AN
-| |\ \  
-| |/ /  
-|/| /   
-| |/    
+| | * 0f0f18a Removed commented test case
+| | * 0b1166e Fixed issue with reapplying to same job and wrote tests
+| | * 138bdbb (origin/Epic6-AN, Epic6-AN) Merge branch 'main' into Epic6-AN
+| |/| 
+| |/  
+|/|   
 * | 2c1f756 Edit test_Epic5.py
 | * f97bf09 applied jobs now shows and fixed adding applicant
 | * a096e7d new entries added from testing
