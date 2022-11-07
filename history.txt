@@ -1,29 +1,31 @@
-* e4355ed (HEAD -> ScrumMaster-Epic7, origin/ScrumMaster-Epic7) Removed the two test files
+* a81c605 (HEAD -> main, origin/ScrumMaster-Epic7, ScrumMaster-Epic7) Added the burndown charts and the history.txt file
+* e4355ed Removed the two test files
 *   fff79d4 Merge branch 'Epic7-Chau' into ScrumMaster-Epic7
 |\  
-| * d21179d (origin/Epic7-Chau, Epic7-Chau) Merge test files
-| *   a3dc843 Merge branch 'Epic7-Rier' of https://github.com/neverdue/InCollege-Kansas into Epic7-Chau
-| |\  
-| * | 71b943d Fix test case
-| * | 40e43bc Added billing message
-* | |   f957d9e Merge branch 'Epic7-Rier' into ScrumMaster-Epic7
-|\ \ \  
-| | |/  
-| |/|   
-| * | 39d6592 (origin/Epic7-Rier, Epic7-Rier) Finished messaging system testing
+* \   f957d9e Merge branch 'Epic7-Rier' into ScrumMaster-Epic7
+|\ \  
 * | | 9728611 11-05-2022 Commit
 * | |   e83e847 Merge branch 'Epic7-Chau' into ScrumMaster-Epic7
 |\ \ \  
-| | |/  
-| |/|   
-| * | 11c1f42 Epic7 Test for subscription option
-| * | afc5b4b Merge
-| * |   f3a641c Merge branch 'ScrumMaster-Epic7' of https://github.com/neverdue/InCollege-Kansas into Epic7-Chau
-| |\ \  
 * | | | 4f5e17a 11-04-2022 Nightly Commit
-| |_|/  
+| | | | * c08533d (origin/Epic7-Chau) Add test_Epic7.py
+| | | |/  
+| | | * d21179d (Epic7-Chau) Merge test files
+| | | *   a3dc843 Merge branch 'Epic7-Rier' of https://github.com/neverdue/InCollege-Kansas into Epic7-Chau
+| | | |\  
+| | | |/  
+| | |/|   
+| | * | 39d6592 (origin/Epic7-Rier, Epic7-Rier) Finished messaging system testing
+| |/ /  
 |/| |   
 * | | 0d9de16 Finished test related to messaging system
+| | * 71b943d Fix test case
+| | * 40e43bc Added billing message
+| |/  
+| * 11c1f42 Epic7 Test for subscription option
+| * afc5b4b Merge
+| *   f3a641c Merge branch 'ScrumMaster-Epic7' of https://github.com/neverdue/InCollege-Kansas into Epic7-Chau
+| |\  
 | |/  
 |/|   
 * | 96f879d 11-03-2022 Nightly Commit
@@ -60,7 +62,7 @@
 | * | 735d18e (origin/Epic7-Ashley, Epic7-Ashley) Implement message filtering depending on subscription type
 | * | ac204da Added Subscription option, Fixed all previous tests
 * | | 39b434f 10-31-22 Nightly Commit
-* | | 85724dc (origin/main, origin/HEAD, main) Merge pull request #29 from neverdue/Epic7-Ashley
+* | | 85724dc (origin/main, origin/HEAD) Merge pull request #29 from neverdue/Epic7-Ashley
 |\| | 
 | * | b82fc58 Added Message page for Andy and I to start working seperately
 |/ /  
