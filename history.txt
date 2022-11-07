@@ -1,11 +1,29 @@
-*   e83e847 (HEAD -> ScrumMaster-Epic7) Merge branch 'Epic7-Chau' into ScrumMaster-Epic7
+* e4355ed (HEAD -> ScrumMaster-Epic7, origin/ScrumMaster-Epic7) Removed the two test files
+*   fff79d4 Merge branch 'Epic7-Chau' into ScrumMaster-Epic7
 |\  
-| * 11c1f42 (origin/Epic7-Chau, Epic7-Chau) Epic7 Test for subscription option
-| * afc5b4b Merge
-| *   f3a641c Merge branch 'ScrumMaster-Epic7' of https://github.com/neverdue/InCollege-Kansas into Epic7-Chau
+| * d21179d (origin/Epic7-Chau, Epic7-Chau) Merge test files
+| *   a3dc843 Merge branch 'Epic7-Rier' of https://github.com/neverdue/InCollege-Kansas into Epic7-Chau
 | |\  
-* | | 4f5e17a (origin/ScrumMaster-Epic7) 11-04-2022 Nightly Commit
-* | | 0d9de16 (origin/Epic7-Rier, Epic7-Rier) Finished test related to messaging system
+| * | 71b943d Fix test case
+| * | 40e43bc Added billing message
+* | |   f957d9e Merge branch 'Epic7-Rier' into ScrumMaster-Epic7
+|\ \ \  
+| | |/  
+| |/|   
+| * | 39d6592 (origin/Epic7-Rier, Epic7-Rier) Finished messaging system testing
+* | | 9728611 11-05-2022 Commit
+* | |   e83e847 Merge branch 'Epic7-Chau' into ScrumMaster-Epic7
+|\ \ \  
+| | |/  
+| |/|   
+| * | 11c1f42 Epic7 Test for subscription option
+| * | afc5b4b Merge
+| * |   f3a641c Merge branch 'ScrumMaster-Epic7' of https://github.com/neverdue/InCollege-Kansas into Epic7-Chau
+| |\ \  
+* | | | 4f5e17a 11-04-2022 Nightly Commit
+| |_|/  
+|/| |   
+* | | 0d9de16 Finished test related to messaging system
 | |/  
 |/|   
 * | 96f879d 11-03-2022 Nightly Commit
