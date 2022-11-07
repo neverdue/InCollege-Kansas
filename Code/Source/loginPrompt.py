@@ -27,6 +27,7 @@ def signUpPage():
 
     if subscription == "yes":
         subscription = True
+        print("We will start to bill you $10 monthly. Thank you for becoming a PLUS member!")
     else:
         subscription = False
     # successful registration returns 1
