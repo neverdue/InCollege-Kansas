@@ -13,7 +13,7 @@ def setup():
     dataFileInit(TESTMODE)
     stackInit()
 
-@pytest.mark.parametrize("sub_inputs, sub_info, billing_message", 
+@pytest.mark.parametrize("subscription_inputs, subscription_info, billing_message", 
 [("yes\n", "True", "We will start to bill you $10 monthly. Thank you for becoming a PLUS member!"), 
 ("no\n", "False", "")])
 def test_subscriptionOption(capsys, monkeypatch, subscription_inputs, subscription_info, billing_message):
