@@ -3,10 +3,10 @@ import json
 import datetime
 
 from pyparsing import empty
-from Code.Source.globalVariables import addPage, getIfSubcribed, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
+from Code.Source.globalVariables import addPage, getIfSubcribed, getLastLogin, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
+from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getJobDict, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
 MAX_JOBS = 10 
 MAX_EXPERIENCE = 3 
@@ -558,9 +558,11 @@ def addApplicant(jobIDno):
             print("You cannot apply to a job you've already applied to")
             return
         applicationDictionary = {  
+            "Title": getJobDict(jobIDno)["Title"],
             "graduationDate": getGradDate(),
             "startDate": getStartDate(),
-            "paragraph": getParagraph()
+            "paragraph": getParagraph(),
+            "WhenApplied": datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
         }
         temp[getUser()][jobIDno] = applicationDictionary
     writeJson(data, applicationFile)
@@ -951,4 +953,46 @@ def deleteMessage(senderName, msgIndex):
         data = json.load(json_file)
         data["incoming"][getUser()][senderName].pop(int(msgIndex)-1)
     writeJson(data, messageFile)
-        
+
+def deletedJobNotification():
+    myApplications = getJobApplications(getUser())
+    if len(myApplications) == 0:
+        return
+    allJobs = [job["id"] for job in readJobPosts()]
+    for jobID, application in myApplications.items():
+        if jobID not in allJobs:
+            printDivider()
+            print("A job that you applied for has been deleted, Job Title: " + application["Title"])
+            printDivider()
+
+def reminderToApplyNotification():
+    if len(getJobApplications(getUser())) == 0:
+        return
+    lastApplicationTime = max([datetime.datetime.strptime(application["WhenApplied"], "%m/%d/%Y %H:%M:%S") for application in getJobApplications(getUser()).values()])
+    if (datetime.datetime.now() - lastApplicationTime).days > 7:
+        printDivider()
+        print("Remember - you're going to want to have a job when you graduate. Make sure that you start to apply for jobs today!")
+        printDivider()
+
+def newStudentsNotification():
+    newStudents = []
+    with open(getDataFile()) as json_file:
+        data = json.load(json_file)
+        for items in data["accounts"]:
+            if datetime.datetime.strptime(items["registrationTime"], "%m/%d/%Y %H:%M:%S")  > datetime.datetime.strptime(getLastLogin(), "%m/%d/%Y %H:%M:%S"):
+                newStudents.append(items)
+    if len(newStudents) > 0:
+        printDivider()
+        for student in newStudents:
+            print("{} {} has joined InCollege".format(student["firstName"], student["lastName"]))
+        printDivider()
+    
+    # set the lastLogin time to now
+    with open(getDataFile(), "r") as json_file:
+        data = json.load(json_file)
+        for items in data["accounts"]:
+            tempUser = items["username"]
+            if getUser() == tempUser:
+                items["lastLogin"] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+
+    wJson(data, getDataFile())

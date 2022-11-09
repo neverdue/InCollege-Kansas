@@ -27,7 +27,7 @@ def setup():
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
         pytest.profile = {"experience": [], "education": []}
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, False, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, False, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile, "11/01/2022 23:59:59", "11/01/2022 23:59:59")
 
     open(APPFILE)
     applicationJson = {
@@ -39,33 +39,43 @@ def setup():
         "applications": {
             "testuser": {
                 "90": {
+                    "Title": "Job90",
                     "graduationDate": "02/25/1997",
                     "startDate": "02/25/1998",
-                    "paragraph": "gimme you money"
+                    "paragraph": "gimme you money",
+                    "WhenApplied": "11/01/2022 10:50:30"
                 }
             },
             "user1": {
                 "4": {
+                    "Title": "Job4",
                     "graduationDate": "02/25/1997",
                     "startDate": "02/25/1997",
-                    "paragraph": "MONEY"
+                    "paragraph": "MONEY",
+                    "WhenApplied": "11/01/2022 10:50:30"
                 },
                 "2": {
+                    "Title": "Job2",
                     "graduationDate": "02/25/1997",
                     "startDate": "02/25/1997",
-                    "paragraph": "fun"
+                    "paragraph": "fun",
+                    "WhenApplied": "11/01/2022 10:50:30"
                 },
                 "1": {
+                    "Title": "Job1",
                     "graduationDate": "02/25/1997",
                     "startDate": "02/25/1997",
-                    "paragraph": "money"
+                    "paragraph": "money",
+                    "WhenApplied": "11/01/2022 10:50:30"
                 }
             },
             "user2": {
                 "8": {
+                "Title": "Job8",
                 "graduationDate": "01/23/2022",
                 "startDate": "01/06/2018",
-                "paragraph": "money"
+                "paragraph": "money",
+                "WhenApplied": "11/01/2022 10:50:30"
             }
 
             }

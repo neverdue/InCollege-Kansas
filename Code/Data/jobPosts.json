@@ -2,16 +2,8 @@
     "numPosts": 9,
     "jobPosts": [
         {
-            "id": "1",
-            "Title": "Software Engineer",
-            "Description": "kbueajncbuefh",
-            "Employer": "USF",
-            "Location": "Tampa",
-            "Salary": "$50,000",
-            "Name": "dabbing dan"
-        },
-        {
             "id": "2",
+            "posted": "2019-10-01T00:00:00.000Z",
             "Title": "GGGGGGGGGGGG",
             "Description": "G",
             "Employer": "G",
@@ -27,15 +19,6 @@
             "Location": "Silicon Valley",
             "Salary": "200,000",
             "Name": "Andy Nguyen"
-        },
-        {
-            "id": "4",
-            "Title": "SDE",
-            "Description": "Software",
-            "Employer": "FAANG",
-            "Location": "San Fran",
-            "Salary": "300,000",
-            "Name": "Mayank Pandey"
         },
         {
             "id": "6",

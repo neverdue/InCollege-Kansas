@@ -326,6 +326,16 @@ def continueInput(message):
             return False
         elif userInput == '-1':
             endProgram()
+
+# Shows list of posted jobs from json jobs file
+def getJobDict(jobID):
+    jobFile = getJobFile()
+    with open(jobFile, "r") as json_file:
+        data = json.load(json_file)
+        for job in data["jobPosts"]:
+            if jobID == job["id"]:
+                return job
+        
             
 def terminateProgram():
     return 0

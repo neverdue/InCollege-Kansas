@@ -1,57 +1,38 @@
 {
-    "deletedApplications": {
-        "user2": [
-            "Software Engineer"
-        ]
-    },
+    "deletedApplications": {},
     "applications": {
-        "testuser": {
-            "90": {
-                "graduationDate": "02/25/1997",
-                "startDate": "02/25/1998",
-                "paragraph": "gimme you money"
-            }
-        },
         "user1": {
-            "4": {
-                "graduationDate": "02/25/1997",
-                "startDate": "02/25/1997",
-                "paragraph": "MONEY"
-            },
-            "2": {
-                "graduationDate": "02/25/1997",
-                "startDate": "02/25/1997",
-                "paragraph": "fun"
-            },
             "1": {
-                "graduationDate": "02/25/1997",
-                "startDate": "02/25/1997",
-                "paragraph": "money"
+                "Title": "Software Engineer",
+                "graduationDate": "01/01/2023",
+                "startDate": "01/01/2023",
+                "paragraph": "money",
+                "WhenApplied": "11/01/2022 10:50:30"
+            },
+            "4": {
+                "Title": "SDE",
+                "graduationDate": "01/01/2023",
+                "startDate": "01/01/2023",
+                "paragraph": "money",
+                "WhenApplied": "11/01/2022 10:51:03"
             }
         },
         "user2": {
-            "2": {
-                "graduationDate": "11/11/1111",
-                "startDate": "11/11/1111",
-                "paragraph": "money"
-            },
-            "1": {
+            "9": {
+                "Title": "Poop scooper",
                 "graduationDate": "01/01/2023",
-                "startDate": "01/11/2023",
-                "paragraph": "i dont know"
+                "startDate": "01/01/2023",
+                "paragraph": "money",
+                "WhenApplied": "11/09/2022 10:52:35"
             }
-        },
-        "testuser3": {}
+        }
     },
     "saved": {
-        "testuser3": [
-            "3",
-            "2",
-            "4"
+        "user1": [
+            "2"
         ],
         "user2": [
-            "4",
-            "9"
+            "4"
         ]
     }
 }

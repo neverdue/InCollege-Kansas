@@ -93,7 +93,7 @@ def test_searchUniversity(capfd, monkeypatch, test_inputs, messages):
         assert messages in out 
 
 def test_RequestNotification(capfd):
-    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True, False, ["user2"], [], [], {"experience": {}, "education": {}})
+    userInit('user1', 'Andy', 'Nguyen', 'English', True, True, True, False, ["user2"], [], [], {"experience": {}, "education": {}}, "11/01/2022 23:59:59", "11/01/2022 23:59:59")
     try:
         homePage()
     except OSError:

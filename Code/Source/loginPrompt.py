@@ -2,6 +2,7 @@ import json
 from Code.Source.utility import accountLimit, accountExist, securePassword, wJson, uniqueNames
 from Code.Source.globalVariables import getDataFile, getLoggedUser, userInit, getTimer
 import time
+import datetime
 
 #Create a prompt that asks a user to input their username and password
 
@@ -47,6 +48,8 @@ def register(username, password, first, last, subscription):
 
     while securePassword(password) != 1:
         password = input("Enter password: ")
+
+    registrationTime = datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
     
     #Adding credentials, names, and default settings to json
     with open(dataFile) as json_file:
@@ -54,7 +57,8 @@ def register(username, password, first, last, subscription):
         temp = data["accounts"]
         newData = {"username": username, "password" : password, "firstName" : first, "lastName" : last,
          "language": "English", "email": setting(True), "SMS": setting(True), "ads": setting(True), "subscription": setting(subscription),
-         "incomingRequests": [], "outgoingRequests": [], "friendsList": [], "profile": {"experience": [], "education": []}}
+         "incomingRequests": [], "outgoingRequests": [], "friendsList": [], "profile": {"experience": [], "education": []},
+         "registrationTime": registrationTime, "lastLogin": registrationTime}
         temp.append(newData)
 
     wJson(data, dataFile)
@@ -63,7 +67,7 @@ def register(username, password, first, last, subscription):
     timer = getTimer()
     time.sleep(timer)
 
-    userInit(username, first, last, "English", True, True, True, subscription, [], [], [], {"experience": [], "education": []})
+    userInit(username, first, last, "English", True, True, True, subscription, [], [], [], {"experience": [], "education": []}, registrationTime, registrationTime)
 
     return 1
 
@@ -105,9 +109,11 @@ def login(username, password):
                 ads = True if items["ads"] == "True" else False
                 subscription = True if items["subscription"] == "True" else False
                 profile = items["profile"]
+                registrationTime = items["registrationTime"]
+                lastLogin = items["lastLogin"]
 
     #set user variable
-    userInit(username, firstname, lastname, language, email, SMS, ads, subscription, incomingRequests, outgoingRequests, friendsList, profile)
+    userInit(username, firstname, lastname, language, email, SMS, ads, subscription, incomingRequests, outgoingRequests, friendsList, profile, registrationTime, lastLogin)
 
     return 1
 

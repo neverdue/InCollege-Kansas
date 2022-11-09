@@ -1,4 +1,4 @@
-from Code.Source.homePageOptions import messageInbox, findSomeonePage, jobPage, messageNotification, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, profilePage
+from Code.Source.homePageOptions import deletedJobNotification, messageInbox, findSomeonePage, jobPage, messageNotification, newStudentsNotification, reminderToApplyNotification, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, profilePage
 from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage, getUser
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider
@@ -54,6 +54,12 @@ def usefulLinksMenu():
 def homePage(): 
     #Add home page to page stack
     addPage(homePage)
+
+    newStudentsNotification()
+
+    deletedJobNotification()
+
+    reminderToApplyNotification()
 
     #Print incoming friend requests
     incomingRequests = getIncomingRequests()
