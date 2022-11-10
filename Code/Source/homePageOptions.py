@@ -979,7 +979,7 @@ def newStudentsNotification():
     with open(getDataFile()) as json_file:
         data = json.load(json_file)
         for items in data["accounts"]:
-            if datetime.datetime.strptime(items["registrationTime"], "%m/%d/%Y %H:%M:%S")  > datetime.datetime.strptime(getLastLogin(), "%m/%d/%Y %H:%M:%S"):
+            if datetime.datetime.strptime(items["registrationTime"], "%m/%d/%Y %H:%M:%S")  > datetime.datetime.strptime(getLastLogin(), "%m/%d/%Y %H:%M:%S") and items["username"] != getUser():
                 newStudents.append(items)
     if len(newStudents) > 0:
         printDivider()
