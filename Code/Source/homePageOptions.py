@@ -1,8 +1,6 @@
 from getpass import getuser
 import json
 import datetime
-
-from pyparsing import empty
 from Code.Source.globalVariables import addPage, getIfSubcribed, getLastLogin, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
@@ -51,6 +49,19 @@ def jobPage():
     deletedJobTitles = getDeletedApplications(getUser())
     if deletedJobTitles:
         [print(f'Job titled "{title}" you have applied for was deleted!\n') for title in deletedJobTitles]
+
+    username = getUser()
+    appCount = 0
+    fileName = getApplicationsFile()
+    with open(fileName) as jsonFile:
+        data = json.load(jsonFile)
+        for user in data["applications"][username]:
+            appCount += 1
+
+    if appCount == 1:
+        print("You have currently applied for 1 job\n\n")
+    elif appCount > 1:
+        print("You have currently applied for", appCount, "Jobs\n\n")
 
     print("1. Post a job\n2. See your job posts\n3. See saved jobs\n4. See applied jobs\n5. See unapplied jobs\n6. See all job posts\n7. Home page\n")
     user_choice = inputValidation(1, 7)
@@ -114,6 +125,8 @@ def addJobPost():
         if id == int(item["id"]): 
             id += 1
     
+    creationTime = datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+
     jobDictionary = {
         "id" : str(id), ##
         "Title" : jobTitle,
@@ -121,7 +134,8 @@ def addJobPost():
         "Employer" : jobEmployer,
         "Location" : jobLocation,
         "Salary" : jobSalary,
-        "Name" : getFirst() + ' ' + getLast()
+        "Name" : getFirst() + ' ' + getLast(),
+        "TimeCreated" : creationTime
     }
 
     #Appends new post to json file, Increase post count if < 5
@@ -868,17 +882,17 @@ def getIncoming():
 # Return 1 if there are awaiting messages otherwise return 0
 def messageNotification():
     if getIncoming():
-        printDivider()
+        #printDivider()
         senders = getIncoming()
-        x = "You have messages from "
+        x = "\t*You have messages from "
         # Only 1 sender
         if len(senders) == 1:
-            print(x + senders[0] + "!")
+            print(x + senders[0] + "!*\n")
         # Multiple senders
         else:
             for items in range(0,len(senders)-1):
                 x += senders[items] + ", "
-            print(x + "and " + senders[-1] + "!")
+            print(x + "and " + senders[-1] + "!*\n")
         return 1
     else:
         return 0
@@ -961,18 +975,14 @@ def deletedJobNotification():
     allJobs = [job["id"] for job in readJobPosts()]
     for jobID, application in myApplications.items():
         if jobID not in allJobs:
-            printDivider()
-            print("A job that you applied for has been deleted, Job Title: " + application["Title"])
-            printDivider()
+            print("\t*A job that you applied for has been deleted, Job Title: " + application["Title"] + "*\n")
 
 def reminderToApplyNotification():
     if len(getJobApplications(getUser())) == 0:
         return
     lastApplicationTime = max([datetime.datetime.strptime(application["WhenApplied"], "%m/%d/%Y %H:%M:%S") for application in getJobApplications(getUser()).values()])
     if (datetime.datetime.now() - lastApplicationTime).days > 7:
-        printDivider()
-        print("Remember - you're going to want to have a job when you graduate. Make sure that you start to apply for jobs today!")
-        printDivider()
+        print("\t*Remember - you're going to want to have a job when you graduate. Make sure that you start to apply for jobs today!*\n")
 
 def newStudentsNotification():
     newStudents = []
@@ -982,11 +992,10 @@ def newStudentsNotification():
             if datetime.datetime.strptime(items["registrationTime"], "%m/%d/%Y %H:%M:%S")  > datetime.datetime.strptime(getLastLogin(), "%m/%d/%Y %H:%M:%S") and items["username"] != getUser():
                 newStudents.append(items)
     if len(newStudents) > 0:
-        printDivider()
         for student in newStudents:
-            print("{} {} has joined InCollege".format(student["firstName"], student["lastName"]))
-        printDivider()
+            print("\t*{} {} has joined InCollege*\n".format(student["firstName"], student["lastName"]))
     
+def updateLastLogin():
     # set the lastLogin time to now
     with open(getDataFile(), "r") as json_file:
         data = json.load(json_file)
@@ -996,3 +1005,18 @@ def newStudentsNotification():
                 items["lastLogin"] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
 
     wJson(data, getDataFile())
+
+def createProfileReminder():
+    if hasProfile(getUser()) == False:
+            print("\t*Don't forget to create a profile!*\n")
+
+def newJobNotification():
+    newJobs = []
+    with open(getJobFile()) as json_file:
+        jobs = json.load(json_file)
+        for job in jobs["jobPosts"]:
+            if datetime.datetime.strptime(job["TimeCreated"], "%m/%d/%Y %H:%M:%S") > datetime.datetime.strptime(getLastLogin(), "%m/%d/%Y %H:%M:%S"):
+                newJobs.append(job)
+    if len(newJobs) > 0:
+        for jobs in newJobs:
+            print("\t*A new job {} has been posted*\n".format(jobs["Title"]))

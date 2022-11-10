@@ -1,5 +1,5 @@
 {
-    "numPosts": 9,
+    "numPosts": 7,
     "jobPosts": [
         {
             "id": "2",
@@ -9,7 +9,8 @@
             "Employer": "G",
             "Location": "G",
             "Salary": "G",
-            "Name": "default default"
+            "Name": "default default",
+            "TimeCreated" :  "11/10/2022 14:35:44"
         },
         {
             "id": "3",
@@ -18,7 +19,8 @@
             "Employer": "FAANG",
             "Location": "Silicon Valley",
             "Salary": "200,000",
-            "Name": "Andy Nguyen"
+            "Name": "Andy Nguyen",
+            "TimeCreated" : "11/10/2022 14:35:44"
         },
         {
             "id": "6",
@@ -27,7 +29,8 @@
             "Employer": "Publix enterprise",
             "Location": "Brandon, FL",
             "Salary": "$69,000",
-            "Name": "Andy Nguyen"
+            "Name": "Andy Nguyen",
+            "TimeCreated" :  "11/10/2022 14:31:40"
         },
         {
             "id": "7",
@@ -36,7 +39,8 @@
             "Employer": "Walmart enterprise",
             "Location": "Havana, Cuba",
             "Salary": "$700,000",
-            "Name": "Andy Nguyen"
+            "Name": "Andy Nguyen",
+            "TimeCreated" :  "11/01/2022 23:59:59"
         },
         {
             "id": "8",
@@ -45,7 +49,8 @@
             "Employer": "Self-employed",
             "Location": "Mother's basement",
             "Salary": "$0.00",
-            "Name": "Andy Nguyen"
+            "Name": "Andy Nguyen",
+            "TimeCreated" :  "11/01/2022 23:59:59"
         },
         {
             "id": "9",
@@ -54,7 +59,8 @@
             "Employer": "Petsmart",
             "Location": "Tampa, FL",
             "Salary": "$30,000",
-            "Name": "Andy Nguyen"
+            "Name": "Andy Nguyen",
+            "TimeCreated" :  "11/01/2022 23:59:59"
         },
         {
             "id": "10",
@@ -63,7 +69,8 @@
             "Employer": "7",
             "Location": "7",
             "Salary": "7",
-            "Name": "Chau Nguyen"
+            "Name": "Chau Nguyen",
+            "TimeCreated" :  "11/01/2022 23:59:59"
         }
     ]
 }

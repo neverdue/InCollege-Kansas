@@ -1,4 +1,4 @@
-from Code.Source.homePageOptions import deletedJobNotification, messageInbox, findSomeonePage, jobPage, messageNotification, newStudentsNotification, reminderToApplyNotification, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, viewIncomingRequests, viewOutgoingRequests, profilePage
+from Code.Source.homePageOptions import createProfileReminder, deletedJobNotification, messageInbox, findSomeonePage, jobPage, messageNotification, newJobNotification, newStudentsNotification, reminderToApplyNotification, returnToHomePage, searchUsers, showHomePageGreeting, showMyNetwork, showSkillPageGreeting, skillPage, updateLastLogin, viewIncomingRequests, viewOutgoingRequests, profilePage
 from Code.Source.globalVariables import addPage, getIncomingRequests, getLoggedUser, removePage, getUser
 from Code.Source.menuOptions import about, accessibility, back, brandPolicy, browseInCollege, businessSolutions, cookiePolicy, copyrightNotice, copyrightPolicy, directories, general, languages, privacyPolicy, userAgreement
 from Code.Source.utility import endProgram, inputValidation, printDivider
@@ -55,20 +55,28 @@ def homePage():
     #Add home page to page stack
     addPage(homePage)
 
+    print("\n----Your Notifications-------------------------------------\n")
+    
     newStudentsNotification()
+    
+    newJobNotification()
 
     deletedJobNotification()
-
+    
     reminderToApplyNotification()
+
+    createProfileReminder()
+
+    updateLastLogin()
 
     #Print incoming friend requests
     incomingRequests = getIncomingRequests()
     if len(incomingRequests) > 0:
-        printDivider()
+        #printDivider()
         if len(incomingRequests) == 1:
-            print("You have " + str(len(incomingRequests)) + " incoming friend request!")
+            print("\t*You have " + str(len(incomingRequests)) + " incoming friend request!*\n")
         else:
-            print("You have " + str(len(incomingRequests)) + " incoming friend requests!")
+            print("\t*You have " + str(len(incomingRequests)) + " incoming friend requests!\n")
 
     # Notify user has messages from x users in inbox
     messageNotification()
