@@ -10,7 +10,7 @@
             "Location": "Silicon Valley",
             "Salary": "$300,000",
             "Name": "John Smith",
-            "TimeCreated" :  "11/01/2022 23:59:59"
+            "TimeCreated": "11/01/2022 23:59:59"
         },
         {
             "id": "2",
@@ -20,7 +20,7 @@
             "Location": "Silicon Valley",
             "Salary": "$300,000",
             "Name": "John Smith",
-            "TimeCreated" :  "11/01/2022 23:59:59"
+            "TimeCreated": "11/01/2022 23:59:59"
         },
         {
             "id": "3",
@@ -30,7 +30,7 @@
             "Location": "Silicon Valley",
             "Salary": "$300,000",
             "Name": "Spoopy Ando",
-            "TimeCreated" :  "11/01/2022 23:59:59"
+            "TimeCreated": "11/01/2022 23:59:59"
         },
         {
             "id": "4",
@@ -40,7 +40,7 @@
             "Location": "Silicon Valley",
             "Salary": "$300,000",
             "Name": "John Smith",
-            "TimeCreated" :  "11/01/2022 23:59:59"
+            "TimeCreated": "11/01/2022 23:59:59"
         },
         {
             "id": "5",
@@ -50,7 +50,7 @@
             "Location": "Silicon Valley",
             "Salary": "$300,000",
             "Name": "Andy Nguyen",
-            "TimeCreated" :  "11/01/2022 23:59:59"
+            "TimeCreated": "11/01/2022 23:59:59"
         },
         {
             "id": "6",
@@ -60,7 +60,7 @@
             "Location": "Silicon Valley",
             "Salary": "$300,000",
             "Name": "Andy Nguyen",
-            "TimeCreated" :  "11/01/2022 23:59:59"
+            "TimeCreated": "11/01/2022 23:59:59"
         },
         {
             "id": "7",
@@ -70,7 +70,7 @@
             "Location": "Silicon Valley",
             "Salary": "$300,000",
             "Name": "Andy Nguyen",
-            "TimeCreated" :  "11/01/2022 23:59:59"
+            "TimeCreated": "11/01/2022 23:59:59"
         },
         {
             "id": "8",
@@ -80,7 +80,7 @@
             "Location": "Silicon Valley",
             "Salary": "$300,000",
             "Name": "Andy Nguyen",
-            "TimeCreated" :  "11/01/2022 23:59:59"
+            "TimeCreated": "11/01/2022 23:59:59"
         }
     ]
 }

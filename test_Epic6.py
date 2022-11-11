@@ -90,7 +90,7 @@ def setup():
     writeJson(applicationJson, APPFILE)
     open(JOBFILE)
     jobs = {
-        "numPosts": 10,
+        "numPosts": 8,
         "currentIDs": 5,
         "jobPosts": [
             {
@@ -100,7 +100,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "John Smith"
+                "Name": "John Smith",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "2",
@@ -109,7 +110,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "John Smith"
+                "Name": "John Smith",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "3",
@@ -118,7 +120,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Spoopy Ando"
+                "Name": "Spoopy Ando",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "4",
@@ -127,7 +130,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "John Smith"
+                "Name": "John Smith",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "5",
@@ -136,7 +140,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Andy Nguyen"
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "6",
@@ -145,7 +150,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Andy Nguyen"
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "7",
@@ -154,7 +160,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Andy Nguyen"
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "8",
@@ -163,7 +170,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Andy Nguyen"
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
             }
         ]
     }
