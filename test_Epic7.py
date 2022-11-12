@@ -31,7 +31,7 @@ def setup():
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
         pytest.profile = {"experience": [], "education": []}
-    userInit(pytest.username, pytest.first, pytest.last, "English", email, sms, ads, subscription, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
+    userInit(pytest.username, pytest.first, pytest.last, "English", email, sms, ads, subscription, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile, "11/01/2022 23:59:59", "11/01/2022 23:59:59")
 
     open(MESSAGEFILE)
     messageJson = {
@@ -76,380 +76,180 @@ def setup():
 
     open(DATAFILE)
     accounts = {
-            
-    "accounts": [
-        {
-        "username": "user1",
-        "password": "Password123!",
-        "firstName": "Andy",
-        "lastName": "Nguyen",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": ["user2"],
-        "profile": {
-            "experience": [
+        "accounts": [
             {
-                "title": "pytest Job",
-                "employer": "pytest Employer",
-                "date started": "01/01/2020",
-                "date ended": "01/01/2022",
-                "location": "pytest Location",
-                "description": "pytest Description"
-            }
+            "username": "user1",
+            "password": "Password123!",
+            "firstName": "Andy",
+            "lastName": "Nguyen",
+            "language": "Spanish",
+            "email": "False",
+            "SMS": "False",
+            "ads": "True",
+            "subscription": "False",
+            "incomingRequests": [
+                "user2"
             ],
-            "education": [
+            "outgoingRequests": [],
+            "friendsList": [
+                "user2"
+            ],
+            "profile": {
+                "experience": [],
+                "education": []
+            },
+            "registrationTime": "11/01/2022 23:59:59",
+            "lastLogin": "11/09/2022 13:59:15"
+            },
             {
-                "school name": "pytest School",
-                "degree": "pytest Degree",
-                "years attended": "2"
-            }
+            "username": "user2",
+            "password": "Password123*",
+            "firstName": "Spoopy",
+            "lastName": "Ando",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "subscription": "False",
+            "incomingRequests": [
+                "testuser1"
             ],
-            "title": "Edited Pytest Title",
-            "major": "Pytest Major",
-            "university": "Pytest University",
-            "about": "pytest Paragraph"
+            "outgoingRequests": [
+                "testuser2"
+            ],
+            "friendsList": [
+                "user1",
+                "testuser3"
+            ],
+            "profile": {
+                "experience": [],
+                "education": [
+                {
+                    "school name": "usf",
+                    "degree": "cs",
+                    "years attended": "4"
+                }
+                ],
+                "title": "Title Example",
+                "major": "Computer Science",
+                "university": "Universitytest",
+                "about": "Paragraph about myself!!!"
+            },
+            "registrationTime": "11/02/2022 23:59:59",
+            "lastLogin": "11/02/2022 23:59:59"
+            },
+            {
+            "username": "testuser1",
+            "password": "Password123@",
+            "firstName": "tommy",
+            "lastName": "truong",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "subscription": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [
+                "user2"
+            ],
+            "friendsList": [
+                "testuser2"
+            ],
+            "profile": {
+                "experience": [],
+                "education": []
+            },
+            "registrationTime": "11/03/2022 23:59:59",
+            "lastLogin": "11/03/2022 23:59:59"
+            },
+            {
+            "username": "testuser2",
+            "password": "Password123$",
+            "firstName": "kevin",
+            "lastName": "vu",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "subscription": "False",
+            "incomingRequests": [
+                "user2"
+            ],
+            "outgoingRequests": [],
+            "friendsList": [
+                "testuser1"
+            ],
+            "profile": {
+                "experience": [],
+                "education": []
+            },
+            "registrationTime": "11/04/2022 23:59:59",
+            "lastLogin": "11/04/2022 23:59:59"
+            },
+            {
+            "username": "testuser3",
+            "password": "Password123@",
+            "firstName": "Testyy",
+            "lastName": "Pythony",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "subscription": "False",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": [
+                "user2"
+            ],
+            "profile": {
+                "experience": [],
+                "education": []
+            },
+            "registrationTime": "11/05/2022 23:59:59",
+            "lastLogin": "11/05/2022 23:59:59"
+            },
+            {
+            "username": "subTest",
+            "password": "Password123!",
+            "firstName": "ash",
+            "lastName": "mer",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "subscription": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": [],
+            "profile": {
+                "experience": [],
+                "education": []
+            },
+            "registrationTime": "11/06/2022 23:59:59",
+            "lastLogin": "11/06/2022 23:59:59"
+            },
+            {
+            "username": "user7",
+            "password": "Password123!",
+            "firstName": "Mayank",
+            "lastName": "Pandey",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "subscription": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": [],
+            "profile": {
+                "experience": [],
+                "education": []
+            },
+            "registrationTime": "11/09/2022 13:58:30",
+            "lastLogin": "11/09/2022 14:01:16"
+            }
+        ]
         }
-        },
-        {
-        "username": "user2",
-        "password": "Password123*",
-        "firstName": "Spoopy",
-        "lastName": "Ando",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": ["user1"],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am user2"
-        }
-        },
-        {
-        "username": "testuser1",
-        "password": "Password123@",
-        "firstName": "tommy",
-        "lastName": "truong",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "True",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": [],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am testuser1"
-        }
-        },
-        {
-        "username": "testuser2",
-        "password": "Password123$",
-        "firstName": "kevin",
-        "lastName": "vu",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": [],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am testuser2"
-        }
-        },
-        {
-        "username": "user3",
-        "password": "Password123$",
-        "firstName": "Michael",
-        "lastName": "vu",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": [],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am user3"
-        }
-        },
-        {
-        "username": "user4",
-        "password": "Password123$",
-        "firstName": "Tommy",
-        "lastName": "vu",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": [],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am user4"
-        }
-        },
-        {
-        "username": "user5",
-        "password": "Password123$",
-        "firstName": "Emily",
-        "lastName": "vu",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": [],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am user5"
-        }
-        },
-        {
-        "username": "user6",
-        "password": "Password123$",
-        "firstName": "Michael",
-        "lastName": "Scott",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": [],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am user6"
-        }
-        },
-        {
-        "username": "user7",
-        "password": "Password123$",
-        "firstName": "Alex",
-        "lastName": "vu",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": [],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am user7"
-        }
-        },
-        {
-        "username": "user8",
-        "password": "Password123$",
-        "firstName": "Emma",
-        "lastName": "vu",
-        "language": "English",
-        "email": "True",
-        "SMS": "True",
-        "ads": "True",
-        "subscription": "False",
-        "incomingRequests": [],
-        "outgoingRequests": [],
-        "friendsList": [],
-        "profile": {
-            "experience": [
-            {
-                "title": "SWE",
-                "employer": "Apple",
-                "date started": "01/01/2022",
-                "date ended": "12/31/2022",
-                "location": "California",
-                "description": "Software Engineer"
-            }
-            ],
-            "education": [
-            {
-                "school name": "University of South Florida",
-                "degree": "B.S. Computer Science",
-                "years attended": "3"
-            }
-            ],
-            "title": "3rd year CS Student ",
-            "major": "Computer Science",
-            "university": "University Of South Florida",
-            "about": "I am user8"
-        }
-        }
-    ]
-    }
     writeJson(accounts, DATAFILE)
 
 @pytest.mark.parametrize("subscription_inputs, subscription_info, billing_message", 
@@ -642,7 +442,7 @@ def test_plusUsersSendEveryone(monkeypatch, capfd, userInputs):
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
         pytest.profile = {"experience": [], "education": []}
-        userInit(pytest.username, pytest.first, pytest.last, "English", email, sms, ads, subscription, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
+        userInit(pytest.username, pytest.first, pytest.last, "English", email, sms, ads, subscription, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile, "11/01/2022 23:59:59", "11/01/2022 23:59:59")
     try:
         standardAccountReceiver = userInputs[2]
         messageSent = userInputs[3]

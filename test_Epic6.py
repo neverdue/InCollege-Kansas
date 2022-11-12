@@ -27,7 +27,7 @@ def setup():
         pytest.outgoingRequests = test_data["outgoingRequests"]
         pytest.friendsList = test_data["friendsList"]
         pytest.profile = {"experience": [], "education": []}
-    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, False, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile)
+    userInit(pytest.username, pytest.first, pytest.last, "English", True, True, True, False, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile, "11/01/2022 23:59:59", "11/01/2022 23:59:59")
 
     open(APPFILE)
     applicationJson = {
@@ -39,33 +39,43 @@ def setup():
         "applications": {
             "testuser": {
                 "90": {
+                    "Title": "Job90",
                     "graduationDate": "02/25/1997",
                     "startDate": "02/25/1998",
-                    "paragraph": "gimme you money"
+                    "paragraph": "gimme you money",
+                    "WhenApplied": "11/01/2022 10:50:30"
                 }
             },
             "user1": {
                 "4": {
+                    "Title": "Job4",
                     "graduationDate": "02/25/1997",
                     "startDate": "02/25/1997",
-                    "paragraph": "MONEY"
+                    "paragraph": "MONEY",
+                    "WhenApplied": "11/01/2022 10:50:30"
                 },
                 "2": {
+                    "Title": "Job2",
                     "graduationDate": "02/25/1997",
                     "startDate": "02/25/1997",
-                    "paragraph": "fun"
+                    "paragraph": "fun",
+                    "WhenApplied": "11/01/2022 10:50:30"
                 },
                 "1": {
+                    "Title": "Job1",
                     "graduationDate": "02/25/1997",
                     "startDate": "02/25/1997",
-                    "paragraph": "money"
+                    "paragraph": "money",
+                    "WhenApplied": "11/01/2022 10:50:30"
                 }
             },
             "user2": {
                 "8": {
+                "Title": "Job8",
                 "graduationDate": "01/23/2022",
                 "startDate": "01/06/2018",
-                "paragraph": "money"
+                "paragraph": "money",
+                "WhenApplied": "11/01/2022 10:50:30"
             }
 
             }
@@ -80,7 +90,7 @@ def setup():
     writeJson(applicationJson, APPFILE)
     open(JOBFILE)
     jobs = {
-        "numPosts": 10,
+        "numPosts": 8,
         "currentIDs": 5,
         "jobPosts": [
             {
@@ -90,7 +100,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "John Smith"
+                "Name": "John Smith",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "2",
@@ -99,7 +110,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "John Smith"
+                "Name": "John Smith",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "3",
@@ -108,7 +120,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Spoopy Ando"
+                "Name": "Spoopy Ando",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "4",
@@ -117,7 +130,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "John Smith"
+                "Name": "John Smith",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "5",
@@ -126,7 +140,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Andy Nguyen"
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "6",
@@ -135,7 +150,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Andy Nguyen"
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "7",
@@ -144,7 +160,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Andy Nguyen"
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
             },
             {
                 "id": "8",
@@ -153,7 +170,8 @@ def setup():
                 "Employer": "Apple",
                 "Location": "Silicon Valley",
                 "Salary": "$300,000",
-                "Name": "Andy Nguyen"
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
             }
         ]
     }

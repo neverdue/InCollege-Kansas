@@ -64,7 +64,7 @@ def printStack():
     print(pageStack)
 
 #User variable stores username, firstname, lastname
-def userInit(user, first, last, language, email, sms, ads, subscription, incomingRequests = [], outgoingRequests = [], friendsList = [], profile = {}):
+def userInit(user, first, last, language, email, sms, ads, subscription, incomingRequests = [], outgoingRequests = [], friendsList = [], profile = {}, registrationTime = "", lastLogin = ""):
     global loggedUser
     loggedUser = {
         "username" : user,
@@ -78,7 +78,9 @@ def userInit(user, first, last, language, email, sms, ads, subscription, incomin
         "incomingRequests" : incomingRequests,
         "outgoingRequests" : outgoingRequests,
         "friendsList" : friendsList,
-        "profile": profile
+        "profile": profile,
+        "registrationTime": registrationTime,
+        "lastLogin": lastLogin
     }
 
 def logout():
@@ -145,8 +147,6 @@ def getFriendsList():
 def setFriendsList(x):
     loggedUser["friendsList"] = x
 
-
-
 def getUserProfile():
     return loggedUser["profile"]
 
@@ -164,3 +164,10 @@ def getExperienceCount():
     
 def getEducationCount():
     return len(loggedUser["profile"]["education"])
+
+def getRegistrationTime():
+    return loggedUser.get("registrationTime")
+
+def getLastLogin():
+    return loggedUser.get("lastLogin")
+
