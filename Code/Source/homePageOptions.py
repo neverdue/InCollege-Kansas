@@ -876,7 +876,10 @@ def getIncoming():
         temp = data["incoming"]
         if getUser() in temp:
             for items in temp[getUser()]:
-                senders.append(items)
+                if temp[getUser()][items] == []:
+                    continue
+                else:
+                    senders.append(items)
     return senders
 
 # Return 1 if there are awaiting messages otherwise return 0
