@@ -2,19 +2,12 @@
     "deletedApplications": {},
     "applications": {
         "user1": {
-            "1": {
-                "Title": "Software Engineer",
-                "graduationDate": "01/01/2023",
-                "startDate": "01/01/2023",
-                "paragraph": "money",
-                "WhenApplied": "11/01/2022 10:50:30"
-            },
-            "4": {
-                "Title": "SDE",
-                "graduationDate": "01/01/2023",
-                "startDate": "01/01/2023",
-                "paragraph": "money",
-                "WhenApplied": "11/01/2022 10:51:03"
+            "2": {
+                "Title": "GGGGGGGGGGGG",
+                "graduationDate": "11/22/3333",
+                "startDate": "11/22/3333",
+                "paragraph": "job",
+                "WhenApplied": "11/13/2022 16:06:46"
             }
         },
         "user2": {
