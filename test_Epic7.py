@@ -1,10 +1,9 @@
 import pytest
 import json
 from io import StringIO
-from Code.Source.globalVariables import addPage, dataFileInit, getFirst, getUser, getUserProfile, stackInit, userInit, logout
+from Code.Source.globalVariables import dataFileInit, getUser, stackInit, userInit, logout
 from Code.Source.loginPrompt import signUpPage
 from Code.Source.utility import writeJson, wJson
-from Code.Source.mainPage import mainPage
 from Code.Source.menu import homePage
 
 TESTMODE = True
