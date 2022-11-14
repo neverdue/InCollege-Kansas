@@ -9,18 +9,21 @@ def dataFileInit(TESTMODE = False):
     global jobFile
     global applicationsFile
     global messageFile
+    global accountsFile
     global timer
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
         applicationsFile = "Code/Data/applications.json"
         messageFile = "Code/Data/inbox.json"
+        accountsFile = "Code/Data/accounts-test.json"
         timer = 0
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
         applicationsFile = "Code/Data/applications-test.json"
         messageFile = "Code/Data/inbox-test.json"
+        accountsFile = "Code/Data/accounts.json"
         timer = 0
 
 def getDataFile():
@@ -34,6 +37,9 @@ def getApplicationsFile():
 
 def getMessageFile():
     return messageFile
+
+def getAccountsFile():
+    return accountsFile
 
 def getTimer():
     return timer
