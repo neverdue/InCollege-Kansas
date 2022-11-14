@@ -1,7 +1,7 @@
 from getpass import getuser
 import json
 import datetime
-from Code.Source.globalVariables import addPage, getIfSubcribed, getLastLogin, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
+from Code.Source.globalVariables import addPage, getIfSubcribed, getLastLogin, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser, getAccountsFile
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getJobDict, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
@@ -876,10 +876,7 @@ def getIncoming():
         temp = data["incoming"]
         if getUser() in temp:
             for items in temp[getUser()]:
-                if temp[getUser()][items] == []:
-                    continue
-                else:
-                    senders.append(items)
+                senders.append(items)
     return senders
 
 # Return 1 if there are awaiting messages otherwise return 0
@@ -887,6 +884,11 @@ def messageNotification():
     if getIncoming():
         #printDivider()
         senders = getIncoming()
+        with open(getAccountsFile()) as json_file:
+            data = json.load(json_file)
+            for items in data["accounts"]:
+                if items["username"]== senders:
+                    return
         x = "\t*You have messages from "
         # Only 1 sender
         if len(senders) == 1:
