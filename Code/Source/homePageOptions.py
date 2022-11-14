@@ -1,7 +1,7 @@
 from getpass import getuser
 import json
 import datetime
-from Code.Source.globalVariables import addPage, getIfSubcribed, getLastLogin, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser
+from Code.Source.globalVariables import addPage, getIfSubcribed, getLastLogin, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser, getAccountsFile
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
 from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getJobDict, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
@@ -884,6 +884,11 @@ def messageNotification():
     if getIncoming():
         #printDivider()
         senders = getIncoming()
+        with open(getAccountsFile()) as json_file:
+            data = json.load(json_file)
+            for items in data["accounts"]:
+                if items["username"]== senders:
+                    return
         x = "\t*You have messages from "
         # Only 1 sender
         if len(senders) == 1:
@@ -989,7 +994,7 @@ def newStudentsNotification():
     with open(getDataFile()) as json_file:
         data = json.load(json_file)
         for items in data["accounts"]:
-            if datetime.datetime.strptime(items["registrationTime"], "%m/%d/%Y %H:%M:%S")  > datetime.datetime.strptime(getLastLogin(), "%m/%d/%Y %H:%M:%S") and items["username"] != getUser():
+            if datetime.datetime.strptime(items["registrationTime"], "%m/%d/%Y %H:%M:%S") > datetime.datetime.strptime(getLastLogin(), "%m/%d/%Y %H:%M:%S") and items["username"] != getUser():
                 newStudents.append(items)
     if len(newStudents) > 0:
         for student in newStudents:
