@@ -7,6 +7,7 @@ from Code.Source.loginPrompt import signUpPage
 from Code.Source.utility import writeJson, wJson
 from Code.Source.mainPage import mainPage
 from Code.Source.menu import homePage, jobPage, newJobNotification
+from Code.Source.homePageOptions import messageNotification
 
 
 TESTMODE = True
@@ -304,6 +305,48 @@ def setup():
     }
     writeJson(jobs, JOBFILE)
 
+    open(MESSAGEFILE)
+    mess = {
+        "outgoing": {
+            "user1": {
+                "user2": [
+                    "this is a message from user 1 to user2",
+                    "pytest user2 and user1"
+                ]
+            },
+            "testuser1": {
+                "testuser2": [
+                    "testing message from testuser1 to testuser2"
+                ],
+                "user2": [
+                    "this is a message from testuser1, a subscribed person to user2",
+                    "Pytest: I am a recruiter(plus member) messaging a standard user named user2"
+                ]
+            }
+        },
+        "incoming": {
+            "user2": {
+                "user1": [
+                    "this is a message from user 1 to user2",
+                    "pytest user2 and user1"
+                ],
+                "testuser1": [
+                    "this is a message from testuser1, a subscribed person to user2",
+                    "Pytest: I am a recruiter(plus member) messaging a standard user named user2"
+                ]
+            },
+            "testuser2": {
+                "testuser1": [
+                    "testing message from testuser1 to testuser2"
+                ]
+            },
+            "user1": {
+                "user2": []
+            }
+        }
+    }
+    writeJson(mess, MESSAGEFILE)
+
 
 #Rewrites job creation time in line 261 so you can test whenever and it wouldn't be using an old date
 def test_newJobNotif(capfd):
@@ -327,8 +370,10 @@ def test_createProfileNotif(capfd):
         assert "Don't forget to create a profile!" in out
 
 def test_newMessageNotif(capfd):
-    try:
-        homePage()
-    except OSError:
-        out, err = capfd.readouterr()
-        assert "You have messages" in out
+        try:
+            homePage()
+        except OSError:
+            out, err = capfd.readouterr()
+            assert "You have messages" in out
+
+#pytest test_Epic8_AN.py -rP
