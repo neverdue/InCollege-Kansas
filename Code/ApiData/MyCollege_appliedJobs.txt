@@ -1,0 +1,26 @@
+Job90
+testuser,gimme you money
+=====
+Job4
+user1,MONEY
+=====
+Job2
+user1,fun
+=====
+Job1
+user1,money
+=====
+Job8
+user2,money
+=====
+Job2
+user2,Because it seems like a great place
+=====
+Job5
+=====
+Job3
+=====
+Job7
+=====
+Job6
+=====

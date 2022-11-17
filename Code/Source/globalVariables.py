@@ -10,7 +10,15 @@ def dataFileInit(TESTMODE = False):
     global applicationsFile
     global messageFile
     global accountsFile
+    global MyCollege_jobs
+    global MyCollege_appliedJobs
+    global MyCollege_savedJobs
+    global newJobs
     global timer
+    newJobs = 'Code/ApiData/newJobs.txt'
+    MyCollege_jobs = 'Code/ApiData/MyCollege_jobs.txt'
+    MyCollege_appliedJobs = 'Code/ApiData/MyCollege_appliedJobs.txt'
+    MyCollege_savedJobs = 'Code/ApiData/MyCollege_savedJobs.txt'
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
@@ -40,6 +48,18 @@ def getMessageFile():
 
 def getAccountsFile():
     return accountsFile
+
+def getMyCollege_jobs():
+    return MyCollege_jobs
+
+def getMyCollege_appliedJobs():
+    return MyCollege_appliedJobs
+
+def getMyCollege_savedJobs():
+    return MyCollege_savedJobs
+
+def getNewJobs():
+    return newJobs
 
 def getTimer():
     return timer

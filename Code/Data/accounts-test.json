@@ -22,7 +22,7 @@
         "education": []
       },
       "registrationTime": "11/01/2022 23:59:59",
-      "lastLogin": "11/13/2022 21:57:48"
+      "lastLogin": "11/16/2022 21:50:59"
     },
     {
       "username": "user2",
@@ -169,7 +169,11 @@
         "education": []
       },
       "registrationTime": "11/09/2022 13:58:30",
+<<<<<<< HEAD
       "lastLogin": "11/13/2022 21:57:48"
+=======
+      "lastLogin": "11/16/2022 21:50:59"
+>>>>>>> 5b6c582249ed838b6cff49e35045b0d349e06d18
     }
   ]
 }
