@@ -59,7 +59,7 @@
         "about": "Paragraph about myself!!!"
       },
       "registrationTime": "11/02/2022 23:59:59",
-      "lastLogin": "11/10/2022 14:17:15"
+      "lastLogin": "11/17/2022 00:29:32"
     },
     {
       "username": "testuser1",
@@ -150,6 +150,66 @@
       },
       "registrationTime": "11/16/2022 21:30:49",
       "lastLogin": "11/16/2022 21:30:49"
+    },
+    {
+      "username": "user69",
+      "password": "Password123*",
+      "firstName": "inputFirstName",
+      "lastName": "inputLastName",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "False",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      },
+      "registrationTime": "11/17/2022 00:26:49",
+      "lastLogin": "11/17/2022 00:26:49"
+    },
+    {
+      "username": "user72",
+      "password": "Password123!",
+      "firstName": "user72first",
+      "lastName": "user72last",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "False",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      },
+      "registrationTime": "11/17/2022 00:26:49",
+      "lastLogin": "11/17/2022 00:26:49"
+    },
+    {
+      "username": "user743423413412",
+      "password": "Password123!",
+      "firstName": "user72first",
+      "lastName": "user72last",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "False",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      },
+      "registrationTime": "11/17/2022 00:26:49",
+      "lastLogin": "11/17/2022 00:26:49"
     }
   ]
 }
