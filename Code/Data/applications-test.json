@@ -15,38 +15,6 @@
             }
         },
         "user1": {
-            "4": {
-                "Title": "Job4",
-                "graduationDate": "02/25/1997",
-                "startDate": "02/25/1997",
-                "paragraph": "MONEY",
-                "WhenApplied": "11/01/2022 10:50:30"
-            },
-            "2": {
-                "Title": "Job2",
-                "graduationDate": "02/25/1997",
-                "startDate": "02/25/1997",
-                "paragraph": "fun",
-                "WhenApplied": "11/01/2022 10:50:30"
-            },
-            "1": {
-                "Title": "Job1",
-                "graduationDate": "02/25/1997",
-                "startDate": "02/25/1997",
-                "paragraph": "money",
-                "WhenApplied": "11/01/2022 10:50:30"
-            }
-        },
-        "user2": {
-            "8": {
-                "Title": "Job8",
-                "graduationDate": "01/23/2022",
-                "startDate": "01/06/2018",
-                "paragraph": "money",
-                "WhenApplied": "11/01/2022 10:50:30"
-            }
-        },
-        "testuser2": {
             "1": {
                 "Title": "Job1",
                 "graduationDate": "01/01/2025",
@@ -60,6 +28,15 @@
                 "startDate": "01/01/2025",
                 "paragraph": "A",
                 "WhenApplied": "11/10/2022 00:00:00"
+            }
+        },
+        "user2": {
+            "8": {
+                "Title": "Job8",
+                "graduationDate": "01/23/2022",
+                "startDate": "01/06/2018",
+                "paragraph": "money",
+                "WhenApplied": "11/01/2022 10:50:30"
             }
         }
     },
