@@ -22,7 +22,7 @@
         "education": []
       },
       "registrationTime": "11/01/2022 23:59:59",
-      "lastLogin": "11/16/2022 21:48:52"
+      "lastLogin": "11/10/2022 14:44:05"
     },
     {
       "username": "user2",
@@ -130,6 +130,26 @@
       },
       "registrationTime": "11/05/2022 23:59:59",
       "lastLogin": "11/05/2022 23:59:59"
+    },
+    {
+      "username": "potatoes",
+      "password": "Potatoes123@",
+      "firstName": "t",
+      "lastName": "t",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "False",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      },
+      "registrationTime": "11/16/2022 21:30:49",
+      "lastLogin": "11/16/2022 21:30:49"
     }
   ]
 }
