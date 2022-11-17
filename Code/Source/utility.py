@@ -1,6 +1,6 @@
 import json
 import datetime
-from Code.Source.globalVariables import getDataFile, getFriendsList, getIncomingRequests, getJobFile, getLoggedUser, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests, PROFILE_KEYS
+from Code.Source.globalVariables import getApplicationsFile, getDataFile, getFriendsList, getIncomingRequests, getJobFile, getLoggedUser, getNewJobs, getOutgoingRequests, getUser, getUserProfile, setFriendsList, setIncomingRequests, setOutgoingRequests, PROFILE_KEYS
 
 #Checks all possible pages to call back to last page visited
 def checkPages(page, links):
@@ -335,6 +335,61 @@ def getJobDict(jobID):
         for job in data["jobPosts"]:
             if jobID == job["id"]:
                 return job
+
+def parseData_newJobs():
+    with open(getNewJobs(), 'r') as f:
+        lines = f.readlines()
+    jobs = []
+    job = []
+    for line in lines:
+        if line == "=====\n":
+            jobs.append(job)
+            job = []
+        else:
+            job.append(line)
+    parsedData_newJobs = []
+    if len(getJobsDataBase()) == 0:
+        jobID = 1
+    else:
+        jobID = max([int(job["id"]) for job in getJobsDataBase()]) + 1
+    for job in jobs:
+        index = job.index("&&&\n")
+        temp = {}
+        temp["id"] = str(jobID)
+        temp["Title"] = job[0].strip()
+        temp["Description"] = ''.join(job[1:index]).strip()
+        temp["Name"] = job[index + 1].strip()
+        temp["Employer"] = job[index + 2].strip()
+        temp["Location"] = job[index + 3].strip()
+        temp["Salary"] = job[index + 4].strip()
+        temp["TimeCreated"] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
+        parsedData_newJobs.append(temp)
+        jobID += 1
+    return parsedData_newJobs
+
+def updateJobsDataBase(jobsDataBase, newJobs):
+    jobTitlesDataBase = [job["Title"] for job in jobsDataBase]
+    newJobsTitles = [job["Title"] for job in newJobs]
+    for title in newJobsTitles:
+        if title not in jobTitlesDataBase and len(jobsDataBase) < 10:
+            jobsDataBase.append(newJobs[newJobsTitles.index(title)])
+    
+    with open (getJobFile()) as jsonFile:
+        data = json.load(jsonFile)
+        data["jobPosts"] = jobsDataBase
+        data["numPosts"] = len(jobsDataBase)
+    
+    writeJson(data, getJobFile())
+
+def getJobsDataBase():
+    with open(getJobFile(), 'r') as json_file:
+        jobsDataBase = json.load(json_file)["jobPosts"]
+    return jobsDataBase
+
+def getApplicationsDataBase():
+    with open(getApplicationsFile(), 'r') as json_file:
+        data = json.load(json_file)
+    return data
         
             
 def terminateProgram():

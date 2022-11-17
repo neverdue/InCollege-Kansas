@@ -4,7 +4,8 @@ import datetime
 from Code.Source.globalVariables import addPage, getIfSubcribed, getLastLogin, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser, getAccountsFile
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getJobDict, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
+from Code.Source.outputAPI import outputToMyCollege_appliedJobs, outputToMyCollege_jobs, outputToMyCollege_savedJobs
+from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getApplicationsDataBase, getJobDict, getJobsDataBase, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
 MAX_JOBS = 10 
 MAX_EXPERIENCE = 3 
@@ -120,10 +121,10 @@ def addJobPost():
             break
     print("\n")
 
-    id = 1
-    for item in data["jobPosts"]:
-        if id == int(item["id"]): 
-            id += 1
+    if len(getJobsDataBase()) == 0:
+        id = 1
+    else:
+        id = max([int(job["id"]) for job in getJobsDataBase()]) + 1
     
     creationTime = datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
 
@@ -150,6 +151,8 @@ def addJobPost():
         data["numPosts"] = temp1 + 1
     
     writeJson(data, fileName)
+
+    outputToMyCollege_jobs(getJobsDataBase())
 
 #Read in job posts at application start upclear
 def readJobPosts():
@@ -581,6 +584,9 @@ def addApplicant(jobIDno):
         temp[getUser()][jobIDno] = applicationDictionary
     writeJson(data, applicationFile)
 
+    applications = getApplicationsDataBase()["applications"]
+    outputToMyCollege_appliedJobs(applications, getJobsDataBase())
+
 def showFilteredJobs(jobPosts, jobMessage, errMessage):
     printDivider()
     if not jobPosts:
@@ -682,6 +688,9 @@ def saveJobPost(jobID, unsave=False):
             savedData.append(jobID)
             print("\nThis job is saved!")
     writeJson(data, fileName)
+
+    saved = getApplicationsDataBase()["saved"]
+    outputToMyCollege_savedJobs(saved, getJobsDataBase())
 
 def getSavedJobIDs():
     fileName = getApplicationsFile()
