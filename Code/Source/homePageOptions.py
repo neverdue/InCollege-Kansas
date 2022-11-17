@@ -706,6 +706,8 @@ def deleteJobPost(jobID):
         jobPosts[:] = [jobPost for jobPost in jobPosts if jobPost["id"] != jobID] 
         data["numPosts"] -= 1
     writeJson(data, fileName)
+
+    outputToMyCollege_jobs(getJobsDataBase())
         
 def deleteApplications(jobID, jobTitle):
     fileName = getApplicationsFile()
