@@ -1,5 +1,5 @@
 from Code.Source.globalVariables import getMyCollege_appliedJobs, getMyCollege_jobs, getMyCollege_savedJobs
-
+from Code.Source.utility import getApplicationsDataBase, getJobsDataBase
 
 def outputToMyCollege_jobs(jobsDataBase):
     with open(getMyCollege_jobs(), 'w') as f:
@@ -38,3 +38,11 @@ def outputToMyCollege_savedJobs(saved, jobs):
                 f.write(jobs_dict[savedList[i]]["Title"] + ',')
             f.write(jobs_dict[savedList[-1]]["Title"] + '\n')
             f.write('=====' + '\n')
+
+def outputAPIs():
+    jobsDataBase = getJobsDataBase()
+    applications = getApplicationsDataBase()["applications"]
+    saved = getApplicationsDataBase()["saved"]
+    outputToMyCollege_jobs(jobsDataBase)
+    outputToMyCollege_appliedJobs(applications, jobsDataBase)
+    outputToMyCollege_savedJobs(saved, jobsDataBase)
