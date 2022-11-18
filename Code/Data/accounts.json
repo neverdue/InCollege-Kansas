@@ -103,7 +103,7 @@
         "about": "paragraph about myself"
       },
       "registrationTime": "11/02/2022 23:59:59",
-      "lastLogin": "11/17/2022 23:58:56"
+      "lastLogin": "11/18/2022 00:54:40"
     },
     {
       "username": "testuser1",
@@ -228,66 +228,6 @@
       "lastLogin": "11/17/2022 22:15:33"
     },
     {
-      "username": "user69",
-      "password": "Password123*",
-      "firstName": "inputFirstName",
-      "lastName": "inputLastName",
-      "language": "English",
-      "email": "True",
-      "SMS": "True",
-      "ads": "True",
-      "subscription": "True",
-      "incomingRequests": [],
-      "outgoingRequests": [],
-      "friendsList": [],
-      "profile": {
-        "experience": [],
-        "education": []
-      },
-      "registrationTime": "11/17/2022 21:07:40",
-      "lastLogin": "11/17/2022 21:07:40"
-    },
-    {
-      "username": "user72",
-      "password": "Password123!",
-      "firstName": "user72first",
-      "lastName": "user72last",
-      "language": "English",
-      "email": "True",
-      "SMS": "True",
-      "ads": "True",
-      "subscription": "False",
-      "incomingRequests": [],
-      "outgoingRequests": [],
-      "friendsList": [],
-      "profile": {
-        "experience": [],
-        "education": []
-      },
-      "registrationTime": "11/17/2022 21:07:40",
-      "lastLogin": "11/17/2022 21:07:40"
-    },
-    {
-      "username": "user743423413412",
-      "password": "Password123!",
-      "firstName": "user72first",
-      "lastName": "user72last",
-      "language": "English",
-      "email": "True",
-      "SMS": "True",
-      "ads": "True",
-      "subscription": "True",
-      "incomingRequests": [],
-      "outgoingRequests": [],
-      "friendsList": [],
-      "profile": {
-        "experience": [],
-        "education": []
-      },
-      "registrationTime": "11/18/2022 00:02:36",
-      "lastLogin": "11/18/2022 00:02:36"
-    },
-    {
       "username": "Boom",
       "password": "Password123!",
       "firstName": "Rier",
@@ -321,6 +261,66 @@
       },
       "registrationTime": "11/18/2022 00:02:36",
       "lastLogin": "11/18/2022 00:06:00"
+    },
+    {
+      "username": "user69",
+      "password": "Password123*",
+      "firstName": "inputFirstName",
+      "lastName": "inputLastName",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      },
+      "registrationTime": "11/18/2022 15:45:07",
+      "lastLogin": "11/18/2022 15:45:07"
+    },
+    {
+      "username": "user72",
+      "password": "Password123!",
+      "firstName": "user72first",
+      "lastName": "user72last",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "False",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      },
+      "registrationTime": "11/18/2022 15:45:07",
+      "lastLogin": "11/18/2022 15:45:07"
+    },
+    {
+      "username": "user743423413412",
+      "password": "Password123!",
+      "firstName": "user72first",
+      "lastName": "user72last",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      },
+      "registrationTime": "11/18/2022 15:45:07",
+      "lastLogin": "11/18/2022 15:45:07"
     }
   ]
 }

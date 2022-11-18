@@ -1,6 +1,6 @@
 import json
 from Code.Source.globalVariables import getJobFile, getStudentAccounts
-from Code.Source.utility import getJobsDataBase, parseData_newJobs, writeJson, retrieveAllUsers
+from Code.Source.utility import getJobsDataBase, parseData_newJobs, writeJson, retrieveAllUsers, accountLimit
 from Code.Source.loginPrompt import register
 
 def inputMyCollege_jobs(newJobs):
@@ -65,7 +65,7 @@ def parseStudentAccountInput():
 def runStudentInputAPI():
     accounts = retrieveAllUsers()
     for student in parseStudentAccountInput():
-        if student["username"] not in accounts:
+        if student["username"] not in accounts and accountLimit() < 10:
             register(student["username"], student["password"], student["firstname"], student["lastname"], student["subscription"])
     return
 

@@ -10,17 +10,17 @@ user1,monesssyyy
 Poop scooper
 user2,money
 =====
+Software Engineer
+=====
 Professional cat washer
 =====
-Part-time piano tuner
-=====
-Software Engineer
+Electrician
 =====
 Honey badger
 =====
-Soundcloud rapper
+Part-time piano tuner
 =====
 Professional monkey trainer
 =====
-Electrician
+Soundcloud rapper
 =====
