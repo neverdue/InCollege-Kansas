@@ -1,0 +1,27 @@
+Professional monkey trainer
+Trains monkeys to do tricks
+&&&
+Chau Nguyen
+Circus
+Tampa, FL
+$30000
+=====
+Professional dog trainer
+Trains dogs to do tricks
+&&&
+tommy truong
+Circus
+Tampa, FL
+$30000
+=====
+Honey badger
+Honey badger don't care
+For some reason this description is long
+Actually it's not that long
+I'm kidding it's long
+&&&
+tommy truong
+Self-employed
+Somewhere
+$40000
+=====

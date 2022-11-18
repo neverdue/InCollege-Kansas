@@ -1,0 +1,26 @@
+GGGGGGGGGGGG
+user1,job
+=====
+Honey badger
+user1,Moneyyyy
+=====
+Professional dog trainer
+user1,monesssyyy
+=====
+Poop scooper
+user2,money
+=====
+Soundcloud rapper
+=====
+Software Engineer
+=====
+Professional monkey trainer
+=====
+Professional cat washer
+=====
+Part-time piano tuner
+=====
+Honey badger
+=====
+Electrician
+=====
