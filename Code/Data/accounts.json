@@ -94,16 +94,16 @@
           {
             "school name": "usf",
             "degree": "cs",
-            "years attended": "2020"
+            "years attended": "400"
           }
         ],
-        "title": "new title",
+        "title": "new title for user 2 that should be updating",
         "major": "Major",
         "university": "University For Profile",
         "about": "paragraph about myself"
       },
       "registrationTime": "11/02/2022 23:59:59",
-      "lastLogin": "11/17/2022 21:43:25"
+      "lastLogin": "11/17/2022 23:58:56"
     },
     {
       "username": "testuser1",
@@ -284,8 +284,43 @@
         "experience": [],
         "education": []
       },
-      "registrationTime": "11/17/2022 21:07:40",
-      "lastLogin": "11/17/2022 21:07:40"
+      "registrationTime": "11/18/2022 00:02:36",
+      "lastLogin": "11/18/2022 00:02:36"
+    },
+    {
+      "username": "Boom",
+      "password": "Password123!",
+      "firstName": "Rier",
+      "lastName": "Nymoen",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": [
+          {
+            "school name": "USF",
+            "degree": "Computer Science",
+            "years attended": "2020"
+          },
+          {
+            "school name": "usf",
+            "degree": "sf",
+            "years attended": "2"
+          }
+        ],
+        "title": "Developer 1",
+        "major": "Major For Boom",
+        "university": "Usf",
+        "about": "i like memes"
+      },
+      "registrationTime": "11/18/2022 00:02:36",
+      "lastLogin": "11/18/2022 00:06:00"
     }
   ]
 }

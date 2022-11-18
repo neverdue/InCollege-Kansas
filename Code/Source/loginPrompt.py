@@ -3,6 +3,7 @@ from Code.Source.utility import accountLimit, accountExist, securePassword, wJso
 from Code.Source.globalVariables import getDataFile, getLoggedUser, userInit, getTimer
 import time
 import datetime
+from Code.Source.outputAPI import createMyCollege_usersOutput
 
 #Create a prompt that asks a user to input their username and password
 
@@ -64,6 +65,7 @@ def register(username, password, first, last, subscription):
     wJson(data, dataFile)
 
     print("You have successfully registered.")
+    createMyCollege_usersOutput()
     timer = getTimer()
     time.sleep(timer)
 

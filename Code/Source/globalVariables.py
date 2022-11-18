@@ -15,10 +15,16 @@ def dataFileInit(TESTMODE = False):
     global MyCollege_savedJobs
     global newJobs
     global timer
+    global studentAccounts
+    global MyCollege_user
+    global MyCollege_profiles
     newJobs = 'Code/ApiData/newJobs.txt'
     MyCollege_jobs = 'Code/ApiData/MyCollege_jobs.txt'
     MyCollege_appliedJobs = 'Code/ApiData/MyCollege_appliedJobs.txt'
     MyCollege_savedJobs = 'Code/ApiData/MyCollege_savedJobs.txt'
+    studentAccounts = 'Code/ApiData/studentAccounts.txt'
+    MyCollege_user =  'Code/ApiData/MyCollege_user.txt'
+    MyCollege_profiles =  'Code/ApiData/MyCollege_profiles.txt'
     if TESTMODE == False:
         dataFile = "Code/Data/accounts.json"
         jobFile = "Code/Data/jobPosts.json"
@@ -64,6 +70,14 @@ def getNewJobs():
 def getTimer():
     return timer
 
+def getStudentAccounts():
+    return studentAccounts
+
+def getMyCollege_profiles():
+    return MyCollege_profiles
+
+def getMyCollege_user():
+    return MyCollege_user
 
 #Initializes stack as global variable
 def stackInit():

@@ -4,7 +4,7 @@ import datetime
 from Code.Source.globalVariables import addPage, getIfSubcribed, getLastLogin, getMessageFile, removePage, getApplicationsFile, getFirst, getFriendsList, getIncomingRequests, getDataFile, getJobFile, getLast, getOutgoingRequests, getUser, getUserProfile, setProfileInfo, setExperienceInfo, getExperienceCount, setEducationInfo, getEducationCount, getLoggedUser, getAccountsFile
 from Code.Source.globalVariables import PROFILE_KEYS, EXPERIENCE_KEYS, EDUCATION_KEYS
 from Code.Source.menuOptions import back, goBackOption
-from Code.Source.outputAPI import outputToMyCollege_appliedJobs, outputToMyCollege_jobs, outputToMyCollege_savedJobs
+from Code.Source.outputAPI import outputToMyCollege_appliedJobs, outputToMyCollege_jobs, outputToMyCollege_savedJobs, createMyCollege_profilesOutput
 from Code.Source.utility import accountExist, accountLimit, addToFriendsList, createRequest, endProgram, getApplicationsDataBase, getJobDict, getJobsDataBase, getUserFriendList, inputValidation, checkLength, isInFriendslist, retrieveUser, printDivider, removeFromFriendsList, removeRequest, searchFilter, viewUser, writeJson, wJson, isDate, isDigit, continueInput
 
 MAX_JOBS = 10 
@@ -446,6 +446,7 @@ def updateProfileJson():
             if account["username"] == getUser():
                 account["profile"] = getUserProfile() 
     wJson(data, dataFile)
+    createMyCollege_profilesOutput()
 
 # Get profile from username 
 def getProfile(username): 
