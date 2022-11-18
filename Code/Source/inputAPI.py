@@ -59,7 +59,6 @@ def parseStudentAccountInput():
         print("No API Input: studentsAccounts.txt was not found")
 
     # print("List of students to be added: ",students)
-    print(students)
     return students
 
 #registers users from Input API data
