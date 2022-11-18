@@ -10,9 +10,9 @@ testuser3 standard
 =====
 potatoes standard
 =====
-user69 standard
+user69 plus
 =====
 user72 standard
 =====
-user743423413412 standard
+user743423413412 plus
 =====

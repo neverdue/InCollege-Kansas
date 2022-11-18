@@ -18,11 +18,38 @@
         "user2"
       ],
       "profile": {
-        "experience": [],
-        "education": []
+        "experience": [
+          {
+            "title": "tomatoes",
+            "employer": "y",
+            "date started": "01/01/2020",
+            "date ended": "01/02/2022",
+            "location": "Location test",
+            "description": "description!!#!#!"
+          },
+          {
+            "title": "y",
+            "employer": "y",
+            "date started": "04/20/2069",
+            "date ended": "01/04/2070",
+            "location": "location!#@#",
+            "description": "f"
+          }
+        ],
+        "education": [
+          {
+            "school name": "usf",
+            "degree": "cs",
+            "years attended": "2020"
+          }
+        ],
+        "title": "new title",
+        "major": "Major",
+        "university": "University For Profile",
+        "about": "paragraph about myself"
       },
       "registrationTime": "11/01/2022 23:59:59",
-      "lastLogin": "11/10/2022 14:44:05"
+      "lastLogin": "11/17/2022 21:40:06"
     },
     {
       "username": "user2",
@@ -45,21 +72,38 @@
         "testuser3"
       ],
       "profile": {
-        "experience": [],
+        "experience": [
+          {
+            "title": "tomatoes",
+            "employer": "y",
+            "date started": "01/01/2020",
+            "date ended": "01/02/2022",
+            "location": "Location test",
+            "description": "description!!#!#!"
+          },
+          {
+            "title": "y",
+            "employer": "y",
+            "date started": "04/20/2069",
+            "date ended": "01/04/2070",
+            "location": "location!#@#",
+            "description": "f"
+          }
+        ],
         "education": [
           {
             "school name": "usf",
             "degree": "cs",
-            "years attended": "4"
+            "years attended": "2020"
           }
         ],
-        "title": "Title Example",
-        "major": "Computer Science",
-        "university": "Universitytest",
-        "about": "Paragraph about myself!!!"
+        "title": "new title",
+        "major": "Major",
+        "university": "University For Profile",
+        "about": "paragraph about myself"
       },
       "registrationTime": "11/02/2022 23:59:59",
-      "lastLogin": "11/17/2022 00:29:32"
+      "lastLogin": "11/17/2022 21:43:25"
     },
     {
       "username": "testuser1",
@@ -145,11 +189,43 @@
       "outgoingRequests": [],
       "friendsList": [],
       "profile": {
-        "experience": [],
-        "education": []
+        "experience": [
+          {
+            "title": "past job title for user potato",
+            "employer": "employer for past job for user potato",
+            "date started": "11/17/2022",
+            "date ended": "6/12/2023",
+            "location": "past job location for user potato",
+            "description": "past job description for user potato"
+          },
+          {
+            "title": "second past job title for user potato",
+            "employer": "second employer thing for user potato",
+            "date started": "01/11/2002",
+            "date ended": "01/12/2005",
+            "location": "location for second job of user potato",
+            "description": "desc"
+          }
+        ],
+        "education": [
+          {
+            "school name": "school name for user potato",
+            "degree": "degree for user potato",
+            "years attended": "2"
+          },
+          {
+            "school name": "second school for user potato",
+            "degree": "degree #2 for user potato",
+            "years attended": "2"
+          }
+        ],
+        "title": "title for user potato",
+        "major": "Major For User Potato",
+        "university": "University For User Potato",
+        "about": "about yourself for user potato"
       },
       "registrationTime": "11/16/2022 21:30:49",
-      "lastLogin": "11/16/2022 21:30:49"
+      "lastLogin": "11/17/2022 22:15:33"
     },
     {
       "username": "user69",
@@ -160,7 +236,7 @@
       "email": "True",
       "SMS": "True",
       "ads": "True",
-      "subscription": "False",
+      "subscription": "True",
       "incomingRequests": [],
       "outgoingRequests": [],
       "friendsList": [],
@@ -168,8 +244,8 @@
         "experience": [],
         "education": []
       },
-      "registrationTime": "11/17/2022 00:26:49",
-      "lastLogin": "11/17/2022 00:26:49"
+      "registrationTime": "11/17/2022 21:07:40",
+      "lastLogin": "11/17/2022 21:07:40"
     },
     {
       "username": "user72",
@@ -188,8 +264,8 @@
         "experience": [],
         "education": []
       },
-      "registrationTime": "11/17/2022 00:26:49",
-      "lastLogin": "11/17/2022 00:26:49"
+      "registrationTime": "11/17/2022 21:07:40",
+      "lastLogin": "11/17/2022 21:07:40"
     },
     {
       "username": "user743423413412",
@@ -200,7 +276,7 @@
       "email": "True",
       "SMS": "True",
       "ads": "True",
-      "subscription": "False",
+      "subscription": "True",
       "incomingRequests": [],
       "outgoingRequests": [],
       "friendsList": [],
@@ -208,8 +284,8 @@
         "experience": [],
         "education": []
       },
-      "registrationTime": "11/17/2022 00:26:49",
-      "lastLogin": "11/17/2022 00:26:49"
+      "registrationTime": "11/17/2022 21:07:40",
+      "lastLogin": "11/17/2022 21:07:40"
     }
   ]
 }

@@ -1,6 +1,7 @@
 import json
 from Code.Source.loginPrompt import register
 from Code.Source.globalVariables import dataFileInit, stackInit, getDataFile
+from Code.Source.homePageOptions import hasProfile
 
 def parseStudentAccountInput():
 
@@ -21,7 +22,11 @@ def parseStudentAccountInput():
                     student["username"] = tempList[0]
                     student["firstname"] = tempList[1]
                     student["lastname"] = tempList[2]
-                    student["password"] = tempList[3]
+                    if(tempList[3] == "plus"):
+                        student["subscription"] = True
+                    else:
+                        student["subscription"] = False
+                    student["password"] = tempList[4]
                     students.append(student)
                     student = {}
                     # print("Students", students)
@@ -39,14 +44,14 @@ def parseStudentAccountInput():
         print("No API Input: studentsAccounts.txt was not found")
 
     # print("List of students to be added: ",students)
-    # print(students)
+    print(students)
     return students
 
 #registers users from Input API data
 def runInputAPI():
     for student in parseStudentAccountInput():
         # print(student)
-        register(student["username"], student["password"], student["firstname"], student["lastname"], False)
+        register(student["username"], student["password"], student["firstname"], student["lastname"], student["subscription"])
     return
 
 def createMyCollege_usersOutput():
@@ -72,19 +77,36 @@ def createMyCollege_usersOutput():
     return
 
 def createMyCollege_profilesOutput():
-    print()
     #placeholder function for another time
     outputFile = "MyCollege_profiles.txt"
-
+    tupleValue = 1
     f = open(outputFile, "w") 
 
     with open(getDataFile()) as json_file:
         data = json.load(json_file)
         for user in data["accounts"]:
-            #need some way to check if they have profile, and stuff like that.
-            # if ":
-            #     f.write("=====\n")
-            print()
+            if(hasProfile(user["username"])):
+                # print(user["username"], "has a profile")
+                # print(user["profile"])
+                if(user["profile"]["title"]):
+                    f.write(user["profile"]["title"] + "\n")
+                if(user["profile"]["major"]):
+                    f.write(user["profile"]["major"] + "\n")
+                if(user["profile"]["university"]):
+                    f.write(user["profile"]["university"] + "\n")
+                if(user["profile"]["about"]):
+                    f.write(user["profile"]["about"] + "\n")
+                if(user["profile"]["experience"]):
+                    for experience in user["profile"]["experience"]:
+                        for entries in experience.items():
+                            f.write(entries[tupleValue] + " ")
+                        f.write("\n")
+                if(user["profile"]["education"]):
+                    for education in user["profile"]["education"]:
+                        for entries in education.items():
+                            f.write(entries[tupleValue] + " ")
+                        f.write("\n")
+                f.write("=====\n")
     f.close()
     return
 
@@ -94,7 +116,8 @@ def main():
     dataFileInit()
     stackInit()
     # runInputAPI()
-    createMyCollege_usersOutput()
+    # createMyCollege_usersOutput()
+    createMyCollege_profilesOutput()
     return
 
 
