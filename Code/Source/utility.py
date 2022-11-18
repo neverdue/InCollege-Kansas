@@ -376,6 +376,14 @@ def getApplicationsDataBase():
     with open(getApplicationsFile(), 'r') as json_file:
         data = json.load(json_file)
     return data
+
+def retrieveAllUsers():
+    accounts = []
+    with open(getDataFile()) as json_file:
+        data = json.load(json_file)
+        for user in data["accounts"]:
+            accounts.append(user["username"])
+    return accounts
         
             
 def terminateProgram():
