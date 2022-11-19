@@ -65,7 +65,9 @@ def parseStudentAccountInput():
 def runStudentInputAPI():
     accounts = retrieveAllUsers()
     for student in parseStudentAccountInput():
-        if student["username"] not in accounts and accountLimit() < 10:
+        if(accountLimit() >= 10):
+            break
+        if student["username"] not in accounts:
             register(student["username"], student["password"], student["firstname"], student["lastname"], student["subscription"])
     return
 
