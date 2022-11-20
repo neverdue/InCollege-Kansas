@@ -18,11 +18,9 @@ def dataFileInit(TESTMODE = False):
     global studentAccounts
     global MyCollege_user
     global MyCollege_profiles
-    newJobs = 'Code/ApiData/newJobs.txt'
     MyCollege_jobs = 'Code/ApiData/MyCollege_jobs.txt'
     MyCollege_appliedJobs = 'Code/ApiData/MyCollege_appliedJobs.txt'
     MyCollege_savedJobs = 'Code/ApiData/MyCollege_savedJobs.txt'
-    studentAccounts = 'Code/ApiData/studentAccounts.txt'
     MyCollege_user =  'Code/ApiData/MyCollege_user.txt'
     MyCollege_profiles =  'Code/ApiData/MyCollege_profiles.txt'
     if TESTMODE == False:
@@ -30,14 +28,18 @@ def dataFileInit(TESTMODE = False):
         jobFile = "Code/Data/jobPosts.json"
         applicationsFile = "Code/Data/applications.json"
         messageFile = "Code/Data/inbox.json"
-        accountsFile = "Code/Data/accounts-test.json"
+        accountsFile = "Code/Data/accounts.json"
+        newJobs = 'Code/ApiData/newJobs.txt'
+        studentAccounts = 'Code/ApiData/studentAccounts.txt'
         timer = 0
     else:
         dataFile = "Code/Data/accounts-test.json"
         jobFile = "Code/Data/jobPosts-test.json"
         applicationsFile = "Code/Data/applications-test.json"
         messageFile = "Code/Data/inbox-test.json"
-        accountsFile = "Code/Data/accounts.json"
+        accountsFile = "Code/Data/accounts-test.json"
+        newJobs = 'Code/ApiData/newJobs-test.txt'
+        studentAccounts = 'Code/ApiData/studentAccounts-test.txt'
         timer = 0
 
 def getDataFile():
