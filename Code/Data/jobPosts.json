@@ -1,5 +1,5 @@
 {
-    "numPosts": 10,
+    "numPosts": 9,
     "jobPosts": [
         {
             "id": "2",
@@ -90,16 +90,6 @@
             "Location": "Somewhere",
             "Salary": "$40000",
             "TimeCreated": "11/16/2022 21:47:36"
-        },
-        {
-            "id": "15",
-            "Title": "Electrician",
-            "Description": "You do stuff with electricity",
-            "Employer": "The electric man",
-            "Location": "I wonder",
-            "Salary": "You get paid in blessings",
-            "Name": "Andy Nguyen",
-            "TimeCreated": "11/16/2022 21:48:34"
         }
     ]
 }
