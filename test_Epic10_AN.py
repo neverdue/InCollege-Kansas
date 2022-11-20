@@ -1,3 +1,4 @@
+import io
 import pytest
 import json
 import datetime
@@ -409,13 +410,13 @@ def setup():
 )
 def test_createProfile(monkeypatch, inputs):
     try:
-        monkeypatch.setattr('builtins.input', lambda _: inputs.pop(0))
+        monkeypatch.setattr('sys.stdin', io.StringIO('\n'.join(inputs)))
         main()
         #createProfile()
         setExperienceInfo("TESTEXPERIENCE")
         inputAPIs()
         outputAPIs()
-    except IndexError:
+    except EOFError:
         # with open(MYCOLLEGE_PROFILES, "r") as txtFile:
         #     assert 1==1
         assert 1 == 1
