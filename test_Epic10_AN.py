@@ -443,10 +443,12 @@ def test_createAccount(monkeypatch, inputs):
 ]
 )
 def test_deleteJob(monkeypatch, inputs):
-    #try:
+    try:
         stackInit()
-        addPage()
-        monkeypatch.setattr('sys.stdin', io.StringIO((inputs)))
+        addPage(homePage)
+        addPage(deleteJobMenu)
+        # monkeypatch.setattr('sys.stdin', io.StringIO(''.join(inputs)))
+        monkeypatch.setattr('builtins.input', lambda _: inputs.pop(0))
         jobDict = {
                 "id": "8",
                 "Title": "Job8",
@@ -458,10 +460,10 @@ def test_deleteJob(monkeypatch, inputs):
                 "TimeCreated": "11/01/2022 23:59:59"
             }
         deleteJobMenu(jobDict)
-        #inputAPIs()
+        inputAPIs()
         outputAPIs()
 
-    #except EOFError:
+    except IndexError:
         assertList = ["Job8"]
         with open(MYCOLLEGE_USER) as txtFile:
             for tokens in assertList:
