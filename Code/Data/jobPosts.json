@@ -80,16 +80,6 @@
             "Location": "Tampa, FL",
             "Salary": "$30000",
             "TimeCreated": "11/16/2022 21:40:01"
-        },
-        {
-            "id": "14",
-            "Title": "Honey badger",
-            "Description": "Honey badger don't care\nFor some reason this description is long\nActually it's not that long\nI'm kidding it's long",
-            "Name": "tommy truong",
-            "Employer": "Self-employed",
-            "Location": "Somewhere",
-            "Salary": "$40000",
-            "TimeCreated": "11/16/2022 21:47:36"
         }
     ]
 }
