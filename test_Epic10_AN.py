@@ -480,7 +480,6 @@ def test_deleteJob(monkeypatch, inputs):
 def test_applyJob(monkeypatch, inputs):
     try:
         userInit("user1", "Andy", "Nguyen", "English", False, False, True, False, ["user2"], [], ["user2"], getUserProfile(), "11/01/2022 23:59:59", "11/01/2022 23:59:59")
-        print("user: ", getUser())
         monkeypatch.setattr('builtins.input', lambda _: inputs.pop(0))
         jobPage()
         #inputAPIs()
@@ -491,4 +490,24 @@ def test_applyJob(monkeypatch, inputs):
             for tokens in assertList:
                 assert tokens in txtFile
         txtFile.close()
-        assert 1 == 1
+
+# When a user saves a job posting, add their username and title of job to MyCollege_savedJobs.txt
+@pytest.mark.parametrize("inputs", 
+[
+    (
+        ["6", "3", "2"]
+    )
+]
+)
+def test_saveJobs(monkeypatch, inputs):
+    try:
+        userInit("user1", "Andy", "Nguyen", "English", False, False, True, False, ["user2"], [], ["user2"], getUserProfile(), "11/01/2022 23:59:59", "11/01/2022 23:59:59")
+        monkeypatch.setattr('builtins.input', lambda _: inputs.pop(0))
+        jobPage()
+        outputAPIs()
+    except IndexError:
+        assertList = ["user1,Job1,Job3\n", "=====\n"]
+        with open(MYCOLLEGE_SAVEDJOBS) as txtFile:
+            for tokens in assertList:
+                assert tokens in txtFile
+        txtFile.close()
