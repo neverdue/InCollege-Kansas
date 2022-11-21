@@ -540,7 +540,7 @@ def jobActionMenu(jobID, jobMessage=''):
     elif userInput == '3':
         back()
     else:
-        removePage()
+        # removePage()
         return "homePage"
     removePage()
     if jobMessage != '':

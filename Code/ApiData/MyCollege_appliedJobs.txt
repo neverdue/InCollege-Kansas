@@ -19,9 +19,9 @@ user1,money
 Poop scooper
 user2,money
 =====
-Professional monkey trainer
-=====
 Honey badger
+=====
+Professional monkey trainer
 =====
 Soundcloud rapper
 =====
