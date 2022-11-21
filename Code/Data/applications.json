@@ -15,6 +15,13 @@
                 "startDate": "01/02/2023",
                 "paragraph": "Moneyyyy",
                 "WhenApplied": "11/16/2022 21:42:26"
+            },
+            "11": {
+                "Title": "Professional dog trainer",
+                "graduationDate": "01/01/2023",
+                "startDate": "01/02/2023",
+                "paragraph": "monesssyyy",
+                "WhenApplied": "11/17/2022 20:35:54"
             }
         },
         "user2": {
@@ -31,7 +38,8 @@
         "user1": [
             "2",
             "3",
-            "10"
+            "10",
+            "14"
         ],
         "user2": [
             "3"

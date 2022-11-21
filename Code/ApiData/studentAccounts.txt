@@ -1,0 +1,24 @@
+user69 inputFirstName inputLastName
+plus
+Password123*
+=====
+user72 user72first user72last
+standard
+Password123!
+=====
+user743423413412 user72first user72last
+plus
+Password123!
+=====
+Boom Rier Nymoen
+plus
+Password123!
+=====
+test Rier Nymoeqweqween
+plus
+Password123!
+=====
+tweqweest Rier Nymoeqweqween
+plus
+Psword123!
+=====

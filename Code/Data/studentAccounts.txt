@@ -1,9 +1,0 @@
-user69 inputFirstName inputLastName
-Password123*
-=====
-user72 user72first user72last
-Password123!
-=====
-user743423413412 user72first user72last
-Password123!
-=====

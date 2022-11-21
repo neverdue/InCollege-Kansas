@@ -367,20 +367,6 @@ def parseData_newJobs():
         jobID += 1
     return parsedData_newJobs
 
-def updateJobsDataBase(jobsDataBase, newJobs):
-    jobTitlesDataBase = [job["Title"] for job in jobsDataBase]
-    newJobsTitles = [job["Title"] for job in newJobs]
-    for title in newJobsTitles:
-        if title not in jobTitlesDataBase and len(jobsDataBase) < 10:
-            jobsDataBase.append(newJobs[newJobsTitles.index(title)])
-    
-    with open (getJobFile()) as jsonFile:
-        data = json.load(jsonFile)
-        data["jobPosts"] = jobsDataBase
-        data["numPosts"] = len(jobsDataBase)
-    
-    writeJson(data, getJobFile())
-
 def getJobsDataBase():
     with open(getJobFile(), 'r') as json_file:
         jobsDataBase = json.load(json_file)["jobPosts"]
@@ -390,6 +376,14 @@ def getApplicationsDataBase():
     with open(getApplicationsFile(), 'r') as json_file:
         data = json.load(json_file)
     return data
+
+def retrieveAllUsers():
+    accounts = []
+    with open(getDataFile()) as json_file:
+        data = json.load(json_file)
+        for user in data["accounts"]:
+            accounts.append(user["username"])
+    return accounts
         
             
 def terminateProgram():
