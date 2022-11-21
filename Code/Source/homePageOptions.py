@@ -479,13 +479,17 @@ def compareApplicationID(jsonObj):
         with open(getApplicationsFile()) as json_file2:
             data2 = json.load(json_file2)
             temp = data2["applications"]
-            if jobID in temp[getUser()]:
-                count+=1
-                print(str(count) + ". " + items["Title"] +  " (applied)")
-                continue
-            elif jobID in getSavedJobIDs():
-                count+=1
-                print(str(count) + ". " + items["Title"] +  " (saved)")
+            if getUser() in temp:
+                if jobID in temp[getUser()]:
+                    count+=1
+                    print(str(count) + ". " + items["Title"] +  " (applied)")
+                    continue
+                elif jobID in getSavedJobIDs():
+                    count+=1
+                    print(str(count) + ". " + items["Title"] +  " (saved)")
+                elif jobID not in temp[getUser()]:
+                    count+=1
+                    print(str(count) + ". " + items["Title"])
             elif getUser() not in temp or jobID not in temp[getUser()]:
                 count+=1
                 print(str(count) + ". " + items["Title"])
