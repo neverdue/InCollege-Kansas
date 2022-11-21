@@ -21,39 +21,45 @@ def inputMyCollege_jobs(newJobs):
 
 def parseStudentAccountInput():
     inputFile = getStudentAccounts()
+    accounts = retrieveAllUsers()
+            #indexed list of student accounts to register
+    students = []
+    #student account object
+    student = {}
+    temp = []
+    #temp list to append
+    tempList = []
     try:
-        #indexed list of student accounts to register
-        students = []
-        #student account object
-        student = {}
-        temp = []
-        tempList = []
         with open(inputFile) as f:
             lines = f.readlines()
-            # print("Lines: ", lines)
+
             for line in lines:
+                if((accountLimit() + len(students)) > 10):
+                    break
+            
                 #Account Separators
                 if(line == '=====\n' or line == '====='):
-                    student["username"] = tempList[0]
-                    student["firstname"] = tempList[1]
-                    student["lastname"] = tempList[2]
-                    if(tempList[3] == "plus"):
-                        student["subscription"] = True
-                    else:
-                        student["subscription"] = False
-                    student["password"] = tempList[4]
-                    students.append(student)
-                    student = {}
+                    if(tempList[0] not in accounts):
+                        student["username"] = tempList[0]
+                        student["firstname"] = tempList[1]
+                        student["lastname"] = tempList[2]
+                        if(tempList[3] == "plus"):
+                            student["subscription"] = True
+                        else:
+                            student["subscription"] = False
+                        student["password"] = tempList[4]
+                        students.append(student)
+                        student = {}
                     # print("Students", students)
                     # print(tempList)
                     tempList = []
-                    continue
+
                 else:
                     temp = line.split()
                     # print("Line split", temp)
                     for i in temp:
-                        # print(i)
                         tempList.append(i)
+                        # print(tempList[0])
             # print(students)
     except:
         print("No API Input: studentsAccounts.txt was not found")
@@ -64,10 +70,9 @@ def parseStudentAccountInput():
 #registers users from Input API data
 def runStudentInputAPI():
     accounts = retrieveAllUsers()
-    for student in parseStudentAccountInput():
-        if(accountLimit() >= 10):
-            break
-        if student["username"] not in accounts:
+    students = parseStudentAccountInput()
+    if(len(students) > 0):
+        for student in students:
             register(student["username"], student["password"], student["firstname"], student["lastname"], student["subscription"])
     return
 
