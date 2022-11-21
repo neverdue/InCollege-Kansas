@@ -1,66 +1,49 @@
-QA Engineer
-Work as a QA Engineer
+Job1
+Work
 &&&
-Google
-Mountain View, CA
-$100000
-=====
-Software Engineer
-Be a FAANG software developer
-&&&
-FAANG
+Apple
 Silicon Valley
-200,000
+$300,000
 =====
-Professional cat washer
-Washes cats professionally
+Job3
+Working is good
 &&&
-Publix enterprise
-Brandon, FL
-$69,000
+Apple
+Silicon Valley
+$300,000
 =====
-Part-time piano tuner
-Tuning pianos part time
+Job4
+Work is worship
 &&&
-Walmart enterprise
-Havana, Cuba
-$700,000
+Apple
+Silicon Valley
+$300,000
 =====
-Soundcloud rapper
-Makes really bad music
+Job5
+Work is okay
 &&&
-Self-employed
-Mother's basement
-$0.00
+Apple
+Silicon Valley
+$300,000
 =====
-Poop scooper
-Professional pet waste extractor
+Job6
+Deletion pytest
 &&&
-Petsmart
-Tampa, FL
-$30,000
+Apple
+Silicon Valley
+$300,000
 =====
-Professional monkey trainer
-Trains monkeys to do tricks
+Job7
+app pytest
 &&&
-Circus
-Tampa, FL
-$30000
+Apple
+Silicon Valley
+$300,000
 =====
-Professional dog trainer
-Trains dogs to do tricks
+Job8
+save pytest
 &&&
-Circus
-Tampa, FL
-$30000
-=====
-Honey badger
-Honey badger don't care
-For some reason this description is long
-Actually it's not that long
-I'm kidding it's long
-&&&
-Self-employed
-Somewhere
-$40000
+Apple
+Silicon Valley
+$300,000
 =====

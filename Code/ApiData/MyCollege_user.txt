@@ -8,9 +8,11 @@ testuser2 standard
 =====
 testuser3 standard
 =====
-potatoes standard
+subTest plus
 =====
-user69 plus
+user7 plus
 =====
-Boom plus
+test1 plus
+=====
+test2 plus
 =====

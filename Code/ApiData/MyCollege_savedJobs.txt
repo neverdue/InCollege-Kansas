@@ -1,4 +1,0 @@
-user1,QA Engineer,Honey badger
-=====
-user2,Software Engineer
-=====

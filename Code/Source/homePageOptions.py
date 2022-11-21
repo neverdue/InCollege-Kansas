@@ -533,7 +533,7 @@ def jobActionMenu(jobID, jobMessage=''):
         unappliedJobIDs = [job["id"] for job in unappliedJobs()]
         if getJobDict(jobID)["Name"] == getFirst() + ' ' + getLast():
             print("\nYou can't save a job you've posted.")
-        elif jobID not in unappliedJobIDs:
+        elif jobID not in unappliedJobIDs and unsave == False:
             print("\nYou can't save a job you've already applied to.")
         else:
             saveJobPost(jobID, unsave)
