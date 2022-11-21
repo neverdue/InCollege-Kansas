@@ -56,8 +56,9 @@ def jobPage():
     fileName = getApplicationsFile()
     with open(fileName) as jsonFile:
         data = json.load(jsonFile)
-        for user in data["applications"][username]:
-            appCount += 1
+        for user in data["applications"]:
+            if user == username:
+                appCount += 1
 
     if appCount == 1:
         print("You have currently applied for 1 job\n\n")
