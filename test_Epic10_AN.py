@@ -2,16 +2,14 @@ import io
 import pytest
 import json
 import datetime
-from Code.Source.globalVariables import addPage, dataFileInit, getFirst, getUser, getUserProfile, setExperienceInfo, stackInit, userInit, logout, getJobFile
-from Code.Source.homePageOptions import addJobPost, createProfile, deleteJobMenu
+from Code.Source.globalVariables import addPage, dataFileInit, getUser, getUserProfile, stackInit, userInit, logout, getJobFile
+from Code.Source.homePageOptions import addJobPost, createProfile, deleteJobMenu, jobPage
 from Code.Source.inputAPI import inputAPIs
 from Code.Source.loginPrompt import signUpPage
 from Code.Source.menu import homePage
-from Code.Source.menuOptions import back
 from Code.Source.outputAPI import outputAPIs
-from Code.Source.mainPage import mainPage
 from Code.Source.utility import writeJson
-from main import main
+
 
 
 TESTMODE = True
@@ -39,20 +37,6 @@ def setup():
 
     creationTime = datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S")
 
-    with open(DATAFILE, 'r') as json_file:
-        data = json.load(json_file)
-        #using index1
-        indexForUser3 = 2
-        test_data = data["accounts"][indexForUser3]
-        pytest.username = test_data["username"]
-        pytest.first = test_data["firstName"]
-        pytest.last = test_data["lastName"]
-        pytest.incomingRequests = test_data["incomingRequests"]
-        pytest.outgoingRequests = test_data["outgoingRequests"]
-        pytest.friendsList = test_data["friendsList"]
-        pytest.profile = {"experience": [], "education": []}
-    userInit(pytest.username, pytest.first, pytest.last, "English", email, sms, ads, subscription, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile, "11/01/2022 23:59:59", "11/01/2022 23:59:59")
-    open(DATAFILE)
     accounts = {
         "accounts": [
             {
@@ -220,6 +204,21 @@ def setup():
     }
     writeJson(accounts, DATAFILE)
 
+    with open(DATAFILE, 'r') as json_file:
+        data = json.load(json_file)
+        #using index1
+        indexForUser3 = 2
+        test_data = data["accounts"][indexForUser3]
+        pytest.username = test_data["username"]
+        pytest.first = test_data["firstName"]
+        pytest.last = test_data["lastName"]
+        pytest.incomingRequests = test_data["incomingRequests"]
+        pytest.outgoingRequests = test_data["outgoingRequests"]
+        pytest.friendsList = test_data["friendsList"]
+        pytest.profile = {"experience": [], "education": []}
+    userInit(pytest.username, pytest.first, pytest.last, "English", email, sms, ads, subscription, pytest.incomingRequests, pytest.outgoingRequests, pytest.friendsList, pytest.profile, "11/01/2022 23:59:59", "11/01/2022 23:59:59")
+    open(DATAFILE)
+    
     open(APPLICATIONFILE)
     fileContents = {
         "deletedApplications": {
@@ -470,5 +469,26 @@ def test_deleteJob(monkeypatch, inputs):
                 assert tokens not in txtFile
         txtFile.close()
 
-
-
+# When a user applies for a job, add their username and paragraph under appropriate job in MyCollege-apliedJobs.txt
+@pytest.mark.parametrize("inputs", 
+[
+    (
+        ["6", "3", "1"]
+    )
+]
+)
+def test_applyJob(monkeypatch, inputs):
+    try:
+        userInit("user1", "Andy", "Nguyen", "English", False, False, True, False, ["user2"], [], ["user2"], getUserProfile(), "11/01/2022 23:59:59", "11/01/2022 23:59:59")
+        print("user: ", getUser())
+        monkeypatch.setattr('builtins.input', lambda _: inputs.pop(0))
+        jobPage()
+        #inputAPIs()
+        outputAPIs()
+    except IndexError:
+        assertList = ["Job2\n", "user1,A\n"]
+        with open(MYCOLLEGE_APPLIEDJOBS) as txtFile:
+            for tokens in assertList:
+                assert tokens in txtFile
+        txtFile.close()
+        assert 1 == 1
