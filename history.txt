@@ -1,4 +1,15 @@
-* ab284b3 (HEAD -> ScrumMaster_Epic10, origin/ScrumMaster_Epic10) Final commit TT
+*   806a935 (refs/stash) WIP on main: a885f00 Another fix
+|\  
+| * 6f56945 index on main: a885f00 Another fix
+|/  
+| * 895454e (HEAD -> main, origin/main, origin/HEAD) Fix for saving
+|/  
+* a885f00 Another fix
+* c6a00e9 Fixes for bugs
+* 44e8389 Made parser more efficient
+* 0151ac4 Fixed the error with search a job (all jobs option 6)
+* cac776c (origin/ScrumMaster_Epic10, ScrumMaster_Epic10) Final commit fr TT
+* ab284b3 Final commit TT
 *   b19e02d Merge branch 'Epic10-AN' of https://github.com/neverdue/InCollege-Kansas into ScrumMaster_Epic10
 |\  
 | * 5dd6051 (origin/Epic10-AN) removed redundant test file
@@ -19,12 +30,6 @@
 | |\  
 | | * 998c548 (origin/Epic10-Ashley) Input API tests
 | * | 2f49bd2 added last pytest for saved jobs to output api file
-| | | * 4c5e527 (refs/stash) WIP on ScrumMaster_Epic10: 7afc910 Merge branch 'Epic10-AN' of https://github.com/neverdue/InCollege-Kansas into ScrumMaster_Epic10
-| |_|/| 
-|/| | | 
-| | | * c2664c1 index on ScrumMaster_Epic10: 7afc910 Merge branch 'Epic10-AN' of https://github.com/neverdue/InCollege-Kansas into ScrumMaster_Epic10
-| |_|/  
-|/| |   
 * | | 7afc910 Merge branch 'Epic10-AN' of https://github.com/neverdue/InCollege-Kansas into ScrumMaster_Epic10
 |\| | 
 | * |   01b0c8e Merge branch 'Epic10-AN' of https://github.com/neverdue/InCollege-Kansas into Epic10-AN
@@ -65,7 +70,7 @@
 | |/  
 * | d77a7a9 (Epic8-Tester2) Merge branch 'main' of https://github.com/neverdue/InCollege-Kansas into Epic8-Tester2
 |\| 
-| * e39b78f (origin/main, origin/HEAD) Added burndown charts, git graph, and pulled merged changes from this week
+| * e39b78f Added burndown charts, git graph, and pulled merged changes from this week
 | *   0d3d6ba (origin/ScrumMaster-Epic8) Merge branch 'Epic8-AN' into ScrumMaster-Epic8
 | |\  
 | | * d1e8ee6 (origin/Epic8-AN) Fixed tests
@@ -198,7 +203,7 @@
 | |/| 
 | |/  
 |/|   
-* | 2c1f756 (main) Edit test_Epic5.py
+* | 2c1f756 Edit test_Epic5.py
 | * f97bf09 applied jobs now shows and fixed adding applicant
 | * a096e7d new entries added from testing
 | * 6a2b89f holds job applicants
