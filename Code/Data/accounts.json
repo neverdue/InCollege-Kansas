@@ -281,46 +281,6 @@
       },
       "registrationTime": "11/18/2022 20:11:49",
       "lastLogin": "11/18/2022 20:11:49"
-    },
-    {
-      "username": "user72",
-      "password": "Password123!",
-      "firstName": "user72first",
-      "lastName": "user72last",
-      "language": "English",
-      "email": "True",
-      "SMS": "True",
-      "ads": "True",
-      "subscription": "False",
-      "incomingRequests": [],
-      "outgoingRequests": [],
-      "friendsList": [],
-      "profile": {
-        "experience": [],
-        "education": []
-      },
-      "registrationTime": "11/18/2022 20:11:49",
-      "lastLogin": "11/18/2022 20:11:49"
-    },
-    {
-      "username": "user743423413412",
-      "password": "Password123!",
-      "firstName": "user72first",
-      "lastName": "user72last",
-      "language": "English",
-      "email": "True",
-      "SMS": "True",
-      "ads": "True",
-      "subscription": "True",
-      "incomingRequests": [],
-      "outgoingRequests": [],
-      "friendsList": [],
-      "profile": {
-        "experience": [],
-        "education": []
-      },
-      "registrationTime": "11/18/2022 20:11:49",
-      "lastLogin": "11/18/2022 20:11:49"
     }
   ]
 }

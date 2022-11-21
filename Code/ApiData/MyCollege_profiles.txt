@@ -1,70 +1,12 @@
-Edited Pytest Title
-Pytest Major
-Pytest University
-pytest Paragraph
-pytest Job pytest Employer 01/01/2020 01/01/2022 pytest Location pytest Description 
-pytest School pytest Degree 2 
+PROFILE TITLE EXAMPLE
+PROFILE MAJOR EXAMPLE
+PROFILE UNIVERSITY EXAMPLE
+PARAGRAPH ABOUT EXAMPLE
+usf cs 4 
 =====
-3rd year CS Student 
+Title Example
 Computer Science
-University Of South Florida
-I am user2
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
-=====
-3rd year CS Student 
-Computer Science
-University Of South Florida
-I am testuser1
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
-=====
-3rd year CS Student 
-Computer Science
-University Of South Florida
-I am testuser2
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
-=====
-3rd year CS Student 
-Computer Science
-University Of South Florida
-I am user3
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
-=====
-3rd year CS Student 
-Computer Science
-University Of South Florida
-I am user4
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
-=====
-3rd year CS Student 
-Computer Science
-University Of South Florida
-I am user5
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
-=====
-3rd year CS Student 
-Computer Science
-University Of South Florida
-I am user6
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
-=====
-3rd year CS Student 
-Computer Science
-University Of South Florida
-I am user7
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
-=====
-3rd year CS Student 
-Computer Science
-University Of South Florida
-I am user8
-SWE Apple 01/01/2022 12/31/2022 California Software Engineer 
-University of South Florida B.S. Computer Science 3 
+Universitytest
+Paragraph about myself!!!
+usf cs 4 
 =====

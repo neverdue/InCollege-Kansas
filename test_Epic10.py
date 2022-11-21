@@ -2,13 +2,13 @@ import io
 import pytest
 import json
 import datetime
-from Code.Source.globalVariables import addPage, dataFileInit, getUser, getUserProfile, stackInit, userInit, logout, getJobFile
+from Code.Source.globalVariables import addPage, dataFileInit, getDataFile, getNewJobs, getStudentAccounts, getUser, getUserProfile, stackInit, userInit, logout, getJobFile
 from Code.Source.homePageOptions import addJobPost, createProfile, deleteJobMenu, jobPage
-from Code.Source.inputAPI import inputAPIs
+from Code.Source.inputAPI import inputAPIs, inputMyCollege_jobs, runStudentInputAPI
 from Code.Source.loginPrompt import signUpPage
 from Code.Source.menu import homePage
 from Code.Source.outputAPI import outputAPIs
-from Code.Source.utility import writeJson
+from Code.Source.utility import parseData_newJobs, retrieveAllUsers, writeJson
 
 
 
@@ -133,6 +133,26 @@ def setup():
             },
             "registrationTime": "11/03/2022 23:59:59",
             "lastLogin": "11/03/2022 23:59:59"
+            },
+            {
+            "username": "user7",
+            "password": "Password123!",
+            "firstName": "Mayank",
+            "lastName": "Pandey",
+            "language": "English",
+            "email": "True",
+            "SMS": "True",
+            "ads": "True",
+            "subscription": "True",
+            "incomingRequests": [],
+            "outgoingRequests": [],
+            "friendsList": [],
+            "profile": {
+                "experience": [],
+                "education": []
+            },
+            "registrationTime": "11/09/2022 13:58:30",
+            "lastLogin": "11/09/2022 14:01:16"
             },
             {
             "username": "testuser2",
@@ -272,6 +292,85 @@ def setup():
         }
     }
     writeJson(fileContents, APPLICATIONFILE)
+
+    open(JOBFILE)
+    jobs = {
+        "numPosts": 7,
+        "currentIDs": 5,
+        "jobPosts": [
+            {
+                "id": "1",
+                "Title": "Job1",
+                "Description": "Work",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "John Smith",
+                "TimeCreated": "11/01/2022 23:59:59"
+            },
+            {
+                "id": "2",
+                "Title": "Job2",
+                "Description": "Work to live",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "John Smith",
+                "TimeCreated": "11/01/2022 23:59:59"
+            },
+            {
+                "id": "3",
+                "Title": "Job3",
+                "Description": "Working is good",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "Spoopy Ando",
+                "TimeCreated": "11/01/2022 23:59:59"
+            },
+            {
+                "id": "4",
+                "Title": "Job4",
+                "Description": "Work is worship",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "John Smith",
+                "TimeCreated": creationTime
+            },
+            {
+                "id": "5",
+                "Title": "Job5",
+                "Description": "Work is okay",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
+            },
+            {
+                "id": "6",
+                "Title": "Job6",
+                "Description": "Deletion pytest",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
+            },
+            {
+                "id": "7",
+                "Title": "Job7",
+                "Description": "app pytest",
+                "Employer": "Apple",
+                "Location": "Silicon Valley",
+                "Salary": "$300,000",
+                "Name": "Andy Nguyen",
+                "TimeCreated": "11/01/2022 23:59:59"
+            }
+        ]
+    }
+    writeJson(jobs, JOBFILE)
 
 def test_outputAppliedJobs():
     # Adding to newJobs-test.txt file
@@ -480,7 +579,6 @@ def test_deleteJob(monkeypatch, inputs):
 def test_applyJob(monkeypatch, inputs):
     try:
         userInit("user1", "Andy", "Nguyen", "English", False, False, True, False, ["user2"], [], ["user2"], getUserProfile(), "11/01/2022 23:59:59", "11/01/2022 23:59:59")
-        print("user: ", getUser())
         monkeypatch.setattr('builtins.input', lambda _: inputs.pop(0))
         jobPage()
         #inputAPIs()
@@ -491,4 +589,220 @@ def test_applyJob(monkeypatch, inputs):
             for tokens in assertList:
                 assert tokens in txtFile
         txtFile.close()
-        assert 1 == 1
+
+# When a user saves a job posting, add their username and title of job to MyCollege_savedJobs.txt
+@pytest.mark.parametrize("inputs", 
+[
+    (
+        ["6", "3", "2"]
+    )
+]
+)
+def test_saveJobs(monkeypatch, inputs):
+    try:
+        userInit("user1", "Andy", "Nguyen", "English", False, False, True, False, ["user2"], [], ["user2"], getUserProfile(), "11/01/2022 23:59:59", "11/01/2022 23:59:59")
+        monkeypatch.setattr('builtins.input', lambda _: inputs.pop(0))
+        jobPage()
+        outputAPIs()
+    except IndexError:
+        assertList = ["user1,Job1,Job3\n", "=====\n"]
+        with open(MYCOLLEGE_SAVEDJOBS) as txtFile:
+            for tokens in assertList:
+                assert tokens in txtFile
+        txtFile.close()
+
+
+#################################################################################
+
+
+# #Test Student account input API
+
+# #Test the users were created when API is called
+# def test_studentAPIInput():
+#     with open(getStudentAccounts(), 'w') as f:
+#         f.write("user20 random user\nplus\nPassword123*\n=====\nuserTest first last\nstandard\nPassword123!\n=====")
+    
+#     runStudentInputAPI()
+
+#     users = retrieveAllUsers()
+
+#     assert 'user20' in users
+#     assert 'userTest' in users
+
+#     dataFile = getDataFile()
+    
+#     with open(dataFile, "r") as json_file:
+#         data = json.load(json_file)
+        
+#         for users in data["accounts"]:
+#             if users["username"] == 'user20':
+#                 assert users["firstName"] == 'random'
+#                 assert users["lastName"] == 'user'
+#                 assert users["subscription"] == 'True'
+#                 assert users["password"] == 'Password123*'
+#             if users["username"] == 'userTest':
+#                 assert users["firstName"] == 'first'
+#                 assert users["lastName"] == 'last'
+#                 assert users["subscription"] == 'False'
+#                 assert users["password"] == 'Password123!'
+
+
+#Tests if there are the same usernames, it should not register the user
+def test_StudentAPIDuplicate():
+    with open(getStudentAccounts(), 'w') as f:
+        f.write("user20 random user\nplus\nPassword123*\n=====\nuser20 another rando\nstandard\nPassword123!\n=====\nuser7 Johnny Silverhand\nplus\nPassword123*\n=====")
+
+    runStudentInputAPI()
+
+    #Check if both were registered or just the first one since they have the same username
+    dataFile = getDataFile()
+    
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+        
+        for users in data["accounts"]:
+            if users["username"] == 'user20':
+                assert users["firstName"] == 'random'
+                assert users["lastName"] == 'user' 
+            if users["username"] == 'user7':
+                assert users["firstName"] != 'Johnny'
+                assert users["lastName"] != 'Silverhand'
+                assert users["firstName"] == 'Mayank'
+                assert users["lastName"] == 'Pandey'
+            
+
+
+# Test Job Input API functionality
+
+#Tests that job Inputs are put into json file
+def test_jobAPIInput():
+    with open(getNewJobs(), 'w') as f:
+        f.write("Professional monkey trainer\nTrains monkeys to do tricks \n&&&\nChau Nguyen\nCircus\nTampa, FL\n$30000\n=====\nProfessional dog trainer\nTrains dogs to do tricks\n&&&\ntommy truong\nCircus\nTampa, FL\n$30000\n=====\n")#Honey badger\nHoney badger don't care\nFor some reason this description is long\nActually it's not that long\nI'm kidding it's long\n&&&\ntommy truong\nSelf-employed\nSomewhere\n$40000\n=====\n")
+
+    #Call API
+    newJobs = parseData_newJobs()
+    inputMyCollege_jobs(newJobs)
+
+    #Assert that data is in files
+    dataFile = getJobFile()
+    check1 = False
+    check2 = False
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+
+        for jobs in data["jobPosts"]:
+            if jobs["Title"] == 'Professional monkey trainer':
+                check1 = True
+                assert jobs["Employer"] == 'Circus'
+            if jobs["Title"] == 'Professional dog trainer':
+                check2 = True
+                assert jobs["Employer"] == 'Circus'
+
+        assert check1 == True
+        assert check2 == True
+
+#Test Student account input API
+
+# #Test the users were created when API is called
+def test_studentAPIInput():
+    with open(getStudentAccounts(), 'w') as f:
+        f.write("user20 random user\nplus\nPassword123*\n=====\nuserTest first last\nstandard\nPassword123!\n=====")
+    
+    runStudentInputAPI()
+
+    users = retrieveAllUsers()
+
+    assert 'user20' in users
+    assert 'userTest' in users
+
+    dataFile = getDataFile()
+    
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+        
+        for users in data["accounts"]:
+            if users["username"] == 'user20':
+                assert users["firstName"] == 'random'
+                assert users["lastName"] == 'user'
+                assert users["subscription"] == 'True'
+                assert users["password"] == 'Password123*'
+            if users["username"] == 'userTest':
+                assert users["firstName"] == 'first'
+                assert users["lastName"] == 'last'
+                assert users["subscription"] == 'False'
+                assert users["password"] == 'Password123!'
+
+
+#Tests if there are the same usernames, it should not register the user
+def test_StudentAPIDuplicate():
+    with open(getStudentAccounts(), 'w') as f:
+        f.write("user20 random user\nplus\nPassword123*\n=====\nuser20 another rando\nstandard\nPassword123!\n=====\nuser7 Johnny Silverhand\nplus\nPassword123*\n=====")
+
+    runStudentInputAPI()
+
+    #Check if both were registered or just the first one since they have the same username
+    dataFile = getDataFile()
+    
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+        
+        for users in data["accounts"]:
+            if users["username"] == 'user20':
+                assert users["firstName"] == 'random'
+                assert users["lastName"] == 'user' 
+            if users["username"] == 'user7':
+                assert users["firstName"] != 'Johnny'
+                assert users["lastName"] != 'Silverhand'
+                assert users["firstName"] == 'Mayank'
+                assert users["lastName"] == 'Pandey'
+            
+
+
+# # Test Job Input API functionality
+
+#Tests that job Inputs are put into json file
+def test_jobAPIInput():
+    with open(getNewJobs(), 'w') as f:
+        f.write("Professional monkey trainer\nTrains monkeys to do tricks \n&&&\nChau Nguyen\nCircus\nTampa, FL\n$30000\n=====\nProfessional dog trainer\nTrains dogs to do tricks\n&&&\ntommy truong\nCircus\nTampa, FL\n$30000\n=====\n")#Honey badger\nHoney badger don't care\nFor some reason this description is long\nActually it's not that long\nI'm kidding it's long\n&&&\ntommy truong\nSelf-employed\nSomewhere\n$40000\n=====\n")
+
+    #Call API
+    newJobs = parseData_newJobs()
+    inputMyCollege_jobs(newJobs)
+
+    #Assert that data is in files
+    dataFile = getJobFile()
+    check1 = False
+    check2 = False
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+
+        for jobs in data["jobPosts"]:
+            if jobs["Title"] == 'Professional monkey trainer':
+                check1 = True
+                assert jobs["Employer"] == 'Circus'
+            if jobs["Title"] == 'Professional dog trainer':
+                check2 = True
+                assert jobs["Employer"] == 'Circus'
+
+        assert check1 == True
+        assert check2 == True
+
+#Test that a job that has the same name as an existing job does not get inputted
+def test_jobAPIDuplicates():
+    with open(getNewJobs(), 'w') as f:
+        f.write("Job3\nWorking is good\n&&&\nSpoopy Ando\nApple\nSilicon Valley\n$300,000\n=====\nProfessional monkey trainer\nTrains monkeys to do tricks \n&&&\nChau Nguyen\nCircus\nTampa, FL\n$30000\n=====\n")
+
+    #Call API
+    newJobs = parseData_newJobs()
+    inputMyCollege_jobs(newJobs)
+
+    #Assert that job3 is not appended to json file and that monkey trainer is id 8
+    dataFile = getJobFile()
+
+    with open(dataFile, "r") as json_file:
+        data = json.load(json_file)
+
+        for jobs in data["jobPosts"]:
+            if jobs["id"] == '8':
+                assert jobs["Title"] == 'Professional monkey trainer'
+                assert jobs["Title"] != 'Job3'
