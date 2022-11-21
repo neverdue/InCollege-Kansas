@@ -531,8 +531,10 @@ def jobActionMenu(jobID, jobMessage=''):
             addApplicant(jobID)
     elif userInput == '2':
         unappliedJobIDs = [job["id"] for job in unappliedJobs()]
-        if jobID not in unappliedJobIDs:
+        if getJobDict(jobID)["Name"] == getFirst() + ' ' + getLast():
             print("\nYou can't save a job you've posted.")
+        elif jobID not in unappliedJobIDs:
+            print("\nYou can't save a job you've already applied to.")
         else:
             saveJobPost(jobID, unsave)
     elif userInput == '3':
@@ -589,6 +591,7 @@ def addApplicant(jobIDno):
         }
         temp[getUser()][jobIDno] = applicationDictionary
     writeJson(data, applicationFile)
+    saveJobPost(jobIDno, True)
 
     applications = getApplicationsDataBase()["applications"]
     outputToMyCollege_appliedJobs(applications, getJobsDataBase())
@@ -685,11 +688,13 @@ def saveJobPost(jobID, unsave=False):
         data = json.load(jsonFile)
         if getUser() not in data["saved"]: data["saved"][getUser()] = [] 
         savedData = data["saved"][getUser()] 
-        if unsave: 
-            savedData.remove(jobID)
+        if unsave:
+            if jobID in savedData: 
+                savedData.remove(jobID)
+                print("\nThis job is unsaved!")
             if not savedData:
                 del data["saved"][getUser()]
-            print("\nThis job is unsaved!")
+                print("\nThis job is unsaved!")
         else:
             savedData.append(jobID)
             print("\nThis job is saved!")

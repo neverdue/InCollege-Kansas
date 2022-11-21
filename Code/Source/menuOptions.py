@@ -196,9 +196,9 @@ def privacyPolicy():
     message = "Select 1 for Guest Controls\nSelect 2 to go back\n"
     print(message)
     inputSelection = inputValidation(1, 2)
-    if inputSelection == 1:
+    if inputSelection == '1':
         guestControls()
-    elif inputSelection == 2:
+    elif inputSelection == '2':
         back()
 
 def guestControls():

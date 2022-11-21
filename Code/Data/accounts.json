@@ -6,8 +6,8 @@
       "firstName": "Andy",
       "lastName": "Nguyen",
       "language": "Spanish",
-      "email": "False",
-      "SMS": "False",
+      "email": "True",
+      "SMS": "True",
       "ads": "True",
       "subscription": "False",
       "incomingRequests": [
@@ -49,7 +49,7 @@
         "about": "paragraph about myself"
       },
       "registrationTime": "11/01/2022 23:59:59",
-      "lastLogin": "11/17/2022 21:40:06"
+      "lastLogin": "11/21/2022 11:39:29"
     },
     {
       "username": "user2",
@@ -228,41 +228,6 @@
       "lastLogin": "11/17/2022 22:15:33"
     },
     {
-      "username": "Boom",
-      "password": "Password123!",
-      "firstName": "Rier",
-      "lastName": "Nymoen",
-      "language": "English",
-      "email": "True",
-      "SMS": "True",
-      "ads": "True",
-      "subscription": "True",
-      "incomingRequests": [],
-      "outgoingRequests": [],
-      "friendsList": [],
-      "profile": {
-        "experience": [],
-        "education": [
-          {
-            "school name": "USF",
-            "degree": "Computer Science",
-            "years attended": "2020"
-          },
-          {
-            "school name": "usf",
-            "degree": "sf",
-            "years attended": "2"
-          }
-        ],
-        "title": "Developer 1",
-        "major": "Major For Boom",
-        "university": "Usf",
-        "about": "i like memes"
-      },
-      "registrationTime": "11/18/2022 00:02:36",
-      "lastLogin": "11/18/2022 00:06:00"
-    },
-    {
       "username": "user69",
       "password": "Password123*",
       "firstName": "inputFirstName",
@@ -279,8 +244,28 @@
         "experience": [],
         "education": []
       },
-      "registrationTime": "11/18/2022 20:11:49",
-      "lastLogin": "11/18/2022 20:11:49"
+      "registrationTime": "11/21/2022 11:17:41",
+      "lastLogin": "11/21/2022 11:17:41"
+    },
+    {
+      "username": "Boom",
+      "password": "Password123!",
+      "firstName": "Rier",
+      "lastName": "Nymoen",
+      "language": "English",
+      "email": "True",
+      "SMS": "True",
+      "ads": "True",
+      "subscription": "True",
+      "incomingRequests": [],
+      "outgoingRequests": [],
+      "friendsList": [],
+      "profile": {
+        "experience": [],
+        "education": []
+      },
+      "registrationTime": "11/21/2022 11:17:41",
+      "lastLogin": "11/21/2022 11:17:41"
     }
   ]
 }

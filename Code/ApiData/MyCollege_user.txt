@@ -10,11 +10,7 @@ testuser3 standard
 =====
 potatoes standard
 =====
-Boom plus
-=====
 user69 plus
 =====
-user72 standard
-=====
-user743423413412 plus
+Boom plus
 =====

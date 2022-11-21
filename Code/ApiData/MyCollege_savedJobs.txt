@@ -1,4 +1,4 @@
-user1,QA Engineer,Software Engineer,Professional monkey trainer,Honey badger
+user1,QA Engineer,Honey badger
 =====
 user2,Software Engineer
 =====

@@ -213,7 +213,9 @@ def searchFilter(filterAttribute):
                 
         for user in data["accounts"]:
             if (
-            filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()
+            (filterAttribute in user["profile"].keys() and user["profile"][filterAttribute].lower() == filterValue.lower()) 
+             or 
+            (filterAttribute == "lastName" and user["lastName"].lower() == filterValue.lower())
              and 
             user["username"] != getUser() and user["username"] not in getOutgoingRequests() 
              and 

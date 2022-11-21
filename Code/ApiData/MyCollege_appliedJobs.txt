@@ -7,21 +7,21 @@ user1,Moneyyyy
 Professional dog trainer
 user1,monesssyyy
 =====
+Part-time piano tuner
+user1,money
+=====
+Software Engineer
+user1,money
+=====
+Professional cat washer
+user1,money
+=====
 Poop scooper
 user2,money
-=====
-QA Engineer
-testuser1,Moneyyyy
 =====
 Professional monkey trainer
 =====
 Honey badger
 =====
 Soundcloud rapper
-=====
-Software Engineer
-=====
-Part-time piano tuner
-=====
-Professional cat washer
 =====
