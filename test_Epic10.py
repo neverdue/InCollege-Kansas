@@ -10,8 +10,6 @@ from Code.Source.menu import homePage
 from Code.Source.outputAPI import outputAPIs
 from Code.Source.utility import parseData_newJobs, retrieveAllUsers, writeJson
 
-
-
 TESTMODE = True
 JOBFILE = 'Code/Data/jobPosts-test.json'
 NEW_JOB_APIFILE = 'Code/ApiData/newJobs-test.txt'
